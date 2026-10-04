@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:cache",
+ "input": {
+  "type": "minecraft:sub",
+  "left": {
+   "type": "minecraft:sub",
+   "left": 1,
+   "right": {
+    "type": "minecraft:mul",
+    "left": "the_isles:dist/177_h5",
+    "right": 0.018518518518518517
+   }
+  },
+  "right": {
+   "type": "minecraft:mul",
+   "left": 0.2,
+   "right": {
+    "type": "minecraft:add",
+    "left": 1,
+    "right": "the_isles:noise/edge"
+   }
+  }
+ }
+}

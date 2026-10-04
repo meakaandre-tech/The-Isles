@@ -1,0 +1,241 @@
+id,cluster,cluster_name,climate,biome,x,z,y_top,y_bottom,thickness,radius,layer,kind,shape_seed,overrealm
+S1,S,Spawn,grassland,plains,0,0,64,-536,600,1200,main,land,225758,False
+S2,S,Spawn,grassland,sunflower_plains,501,1282,16,-80,96,123,main,land,479626,False
+S3,S,Spawn,grassland,meadow,566,1566,76,-62,138,135,main,land,399766,False
+S4,S,Spawn,grassland,cherry_grove,-811,-998,-12,-65,53,57,main,land,973287,False
+S5,S,Spawn,grassland,plains,817,1410,92,-22,114,139,main,land,72783,False
+S6,S,Spawn,grassland,sunflower_plains,155,1444,60,-90,150,184,main,land,631010,False
+S7,S,Spawn,grassland,meadow,-1434,-120,100,-49,149,192,main,land,201742,False
+S8,S,Spawn,grassland,cherry_grove,-936,-1116,124,76,48,59,main,land,534239,False
+S9,S,Spawn,grassland,plains,-1479,178,12,-55,67,71,main,land,811178,False
+S10,S,Spawn,grassland,sunflower_plains,-1675,352,184,73,111,123,main,land,744972,False
+S11,S,Spawn,grassland,meadow,-1138,-1107,192,129,63,64,main,land,432210,False
+S12,S,Spawn,grassland,cherry_grove,1016,-912,28,-76,104,135,main,land,149103,False
+A1,A,East Forest,temperate,forest,2300,0,-106,-398,292,280,main,land,615206,True
+A2,A,East Forest,temperate,birch_forest,1920,-3,-62,-111,49,45,main,land,132332,True
+A3,A,East Forest,temperate,flower_forest,1701,-8,-106,-203,97,97,main,land,921458,True
+A4,A,East Forest,temperate,old_growth_birch_forest,2033,297,-106,-151,45,45,main,land,515736,True
+A5,A,East Forest,temperate,windswept_forest,2580,-402,-90,-241,151,145,main,land,884603,True
+A6,A,East Forest,temperate,forest,2145,511,-182,-303,121,155,main,land,246735,True
+A7,A,East Forest,temperate,birch_forest,2821,-534,-206,-269,63,70,main,land,434450,True
+B1,B,Savanna,savanna,savanna,1150,1992,244,42,202,260,main,land,145951,False
+B2,B,Savanna,savanna,savanna_plateau,1464,1802,392,342,50,49,main,land,333920,False
+B3,B,Savanna,savanna,windswept_savanna,1662,1761,308,195,113,121,main,land,369999,False
+B4,B,Savanna,savanna,savanna,1285,1603,260,157,103,131,main,land,684840,False
+B5,B,Savanna,savanna,savanna_plateau,1851,1692,132,92,40,45,main,land,874794,False
+B6,B,Savanna,savanna,windswept_savanna,1504,1517,272,209,63,62,main,land,480502,False
+B7,B,Savanna,savanna,savanna,1462,2151,376,339,37,40,main,land,535144,False
+C1,C,Desert,arid,desert,-1150,1992,334,97,237,300,main,land,948629,True
+C2,C,Desert,arid,badlands,-1642,1952,418,261,157,146,main,land,870602,True
+C3,C,Desert,arid,wooded_badlands,-723,2365,290,133,157,205,main,land,128342,True
+C4,C,Desert,arid,eroded_badlands,-731,1827,294,204,90,87,main,land,434207,True
+C5,C,Desert,arid,desert,-1976,2043,298,151,147,135,main,land,399113,True
+C6,C,Desert,arid,badlands,-1031,2394,458,408,50,50,main,land,758578,True
+C7,C,Desert,arid,wooded_badlands,-447,2186,450,355,95,88,main,land,383245,True
+D1,D,Lukewarm Sea,lukewarm_sea,deep_lukewarm_ocean,-2300,0,334,123,211,300,main,basin,393689,True
+D2,D,Lukewarm Sea,lukewarm_sea,beach,-2123,400,274,211,63,77,main,land,703515,False
+D3,D,Lukewarm Sea,lukewarm_sea,lukewarm_ocean,-2431,544,366,227,139,201,main,basin,370009,True
+D4,D,Lukewarm Sea,lukewarm_sea,lukewarm_ocean,-2706,365,422,351,71,95,main,basin,468222,True
+D5,D,Lukewarm Sea,lukewarm_sea,beach,-2674,124,314,272,42,42,main,land,11719,False
+D6,D,Lukewarm Sea,lukewarm_sea,lukewarm_ocean,-2917,158,222,132,90,134,main,basin,802656,True
+D7,D,Lukewarm Sea,lukewarm_sea,lukewarm_ocean,-2874,-165,490,385,105,134,main,basin,246465,True
+E1,E,Taiga,taiga,taiga,-1150,-1992,244,31,213,280,main,land,658625,False
+E2,E,Taiga,taiga,old_growth_pine_taiga,-1498,-1813,136,93,43,47,main,land,423485,False
+E3,E,Taiga,taiga,old_growth_spruce_taiga,-1642,-2046,228,86,142,186,main,land,993296,False
+E4,E,Taiga,taiga,windswept_hills,-1907,-1970,404,345,59,68,main,land,870858,False
+E5,E,Taiga,taiga,taiga,-692,-1898,380,254,126,115,main,land,450351,False
+E6,E,Taiga,taiga,old_growth_pine_taiga,-1613,-1567,244,85,159,202,main,land,935171,False
+E7,E,Taiga,taiga,old_growth_spruce_taiga,-1918,-2166,288,225,63,58,main,land,390331,False
+F1,F,Dark Wood,dark,dark_forest,1150,-1992,-196,-452,256,240,main,land,830267,False
+F2,F,Dark Wood,dark,pale_garden,928,-1724,-168,-218,50,51,main,land,722524,False
+F3,F,Dark Wood,dark,dark_forest,710,-2087,-144,-275,131,171,main,land,313479,False
+F4,F,Dark Wood,dark,pale_garden,820,-2415,-36,-173,137,150,main,land,822615,False
+F5,F,Dark Wood,dark,dark_forest,846,-1506,-172,-328,156,158,main,land,936993,False
+F6,F,Dark Wood,dark,pale_garden,1452,-2268,-76,-185,109,140,main,land,379345,False
+G1,G,Birchwood,birchwood,birch_forest,3372,1397,150,-55,205,240,main,land,586262,True
+G2,G,Birchwood,birchwood,old_growth_birch_forest,3689,1203,134,88,46,59,main,land,45504,True
+G3,G,Birchwood,birchwood,flower_forest,3785,1321,178,121,57,55,main,land,542241,True
+G4,G,Birchwood,birchwood,forest,3382,1066,38,-36,74,70,main,land,460246,True
+G5,G,Birchwood,birchwood,windswept_forest,3193,882,194,47,147,137,main,land,947211,True
+G6,G,Birchwood,birchwood,birch_forest,3120,1755,78,-43,121,120,main,land,531894,True
+G7,G,Birchwood,birchwood,old_growth_birch_forest,2798,891,306,120,186,196,main,land,121060,True
+H1,H,Jungle,jungle,jungle,1397,3372,450,250,200,260,main,land,945022,False
+H2,H,Jungle,jungle,bamboo_jungle,1617,3694,346,278,68,75,main,land,974664,False
+H3,H,Jungle,jungle,sparse_jungle,923,3338,542,366,176,174,main,land,941317,False
+H4,H,Jungle,jungle,jungle,1048,3024,374,280,94,93,main,land,370074,False
+H5,H,Jungle,jungle,bamboo_jungle,1163,3650,606,558,48,64,main,land,749541,False
+H6,H,Jungle,jungle,sparse_jungle,1563,2869,342,190,152,202,main,land,410178,False
+H7,H,Jungle,jungle,jungle,1892,3445,438,293,145,186,main,land,542548,False
+I1,I,Warm Sea,warm_sea,warm_ocean,-1397,3372,-300,-519,219,280,main,basin,853465,True
+I2,I,Warm Sea,warm_sea,beach,-1325,2998,-364,-416,52,67,main,land,772653,False
+I3,I,Warm Sea,warm_sea,beach,-1029,3246,-240,-310,70,79,main,land,599511,False
+I4,I,Warm Sea,warm_sea,warm_ocean,-1412,2775,-328,-396,68,99,main,basin,132954,True
+I5,I,Warm Sea,warm_sea,warm_ocean,-1708,2977,-208,-353,145,187,main,basin,117641,True
+I6,I,Warm Sea,warm_sea,warm_ocean,-941,3476,-248,-318,70,113,main,basin,328547,True
+I7,I,Warm Sea,warm_sea,warm_ocean,-2163,3055,-384,-511,127,196,main,basin,310956,True
+J1,J,Mesa,mesa,badlands,-3372,1397,-500,-740,240,260,main,land,965151,True
+J2,J,Mesa,mesa,eroded_badlands,-3080,1155,-460,-500,40,52,main,land,366221,True
+J3,J,Mesa,mesa,wooded_badlands,-2966,1552,-500,-593,93,116,main,land,78950,True
+J4,J,Mesa,mesa,desert,-3710,1632,-584,-640,56,74,main,land,103973,True
+J5,J,Mesa,mesa,badlands,-3356,976,-456,-548,92,85,main,land,119173,True
+J6,J,Mesa,mesa,eroded_badlands,-3034,1890,-536,-688,152,183,main,land,502993,True
+J7,J,Mesa,mesa,wooded_badlands,-2703,1695,-604,-734,130,141,main,land,743371,True
+K1,K,Open Ocean,ocean_sea,deep_ocean,-3372,-1397,1250,1034,216,320,main,basin,658152,True
+K2,K,Open Ocean,ocean_sea,mushroom_fields,-2900,-1080,1274,1047,227,208,main,land,56918,False
+K3,K,Open Ocean,ocean_sea,ocean,-2773,-1406,1398,1324,74,101,main,basin,716092,True
+K4,K,Open Ocean,ocean_sea,ocean,-3008,-737,1210,1131,79,111,main,basin,575754,True
+K5,K,Open Ocean,ocean_sea,stony_shore,-3695,-1100,1246,1170,76,83,main,land,44506,False
+K6,K,Open Ocean,ocean_sea,ocean,-2486,-1286,1402,1309,93,143,main,basin,347930,True
+K7,K,Open Ocean,ocean_sea,ocean,-3019,-1693,1214,1142,72,95,main,basin,348888,True
+L1,L,Snowfields,snowy,snowy_plains,-1397,-3372,750,546,204,260,main,land,495285,False
+L2,L,Snowfields,snowy,snowy_taiga,-1091,-3212,686,626,60,63,main,land,879637,False
+L3,L,Snowfields,snowy,ice_spikes,-1219,-3037,706,639,67,79,main,land,83421,False
+L4,L,Snowfields,snowy,grove,-1025,-2938,742,687,55,65,main,land,958339,False
+L5,L,Snowfields,snowy,snowy_slopes,-1148,-2663,758,589,169,186,main,land,318762,False
+L6,L,Snowfields,snowy,snowy_plains,-1343,-2901,802,752,50,62,main,land,263172,False
+L7,L,Snowfields,snowy,snowy_taiga,-864,-3445,718,530,188,197,main,land,354083,False
+M1,M,Frozen Sea,frozen_sea,deep_frozen_ocean,1397,-3372,-1250,-1409,159,260,main,basin,910961,True
+M2,M,Frozen Sea,frozen_sea,frozen_ocean,1792,-3029,-1334,-1456,122,203,main,basin,518723,True
+M3,M,Frozen Sea,frozen_sea,snowy_beach,1969,-2777,-1110,-1161,51,64,main,land,707135,False
+M4,M,Frozen Sea,frozen_sea,snowy_beach,1114,-3126,-1350,-1390,40,52,main,land,961004,False
+M5,M,Frozen Sea,frozen_sea,frozen_ocean,835,-3151,-1274,-1397,123,159,main,basin,207092,True
+M6,M,Frozen Sea,frozen_sea,snowy_beach,1106,-3663,-1150,-1218,68,74,main,land,960952,False
+N1,N,Cold Sea,cold_sea,deep_cold_ocean,3372,-1397,-600,-791,191,260,main,basin,175427,True
+N2,N,Cold Sea,cold_sea,cold_ocean,3453,-952,-636,-750,114,151,main,basin,363212,True
+N3,N,Cold Sea,cold_sea,stony_shore,3690,-986,-500,-554,54,67,main,land,253021,False
+N4,N,Cold Sea,cold_sea,cold_ocean,3557,-1791,-520,-624,104,132,main,basin,957287,True
+N5,N,Cold Sea,cold_sea,cold_ocean,3268,-608,-688,-810,122,181,main,basin,430624,True
+N6,N,Cold Sea,cold_sea,cold_ocean,3734,-1199,-512,-584,72,105,main,basin,550720,True
+P1,P,High Peaks,peaks,stony_peaks,3380,-3380,700,320,380,340,main,land,924969,False
+P2,P,High Peaks,peaks,stony_peaks,3299,-2894,660,534,126,127,main,land,980839,False
+P3,P,High Peaks,peaks,frozen_peaks,3338,-2620,596,479,117,115,main,land,301345,False
+P4,P,High Peaks,peaks,windswept_gravelly_hills,2925,-3645,672,541,131,161,main,land,83198,False
+P5,P,High Peaks,peaks,windswept_hills,3091,-2684,600,511,89,86,main,land,910978,False
+P6,P,High Peaks,peaks,jagged_peaks,2739,-3806,732,676,56,63,main,land,646902,False
+Q1,Q,Alpine,alpine,meadow,-3420,-3420,350,130,220,230,main,land,711307,False
+Q2,Q,Alpine,alpine,cherry_grove,-3110,-3154,270,116,154,147,main,land,465980,False
+Q3,Q,Alpine,alpine,grove,-3370,-2993,306,204,102,97,main,land,331970,False
+Q4,Q,Alpine,alpine,snowy_slopes,-3329,-2751,266,144,122,117,main,land,969754,False
+Q5,Q,Alpine,alpine,meadow,-2997,-2879,282,204,78,91,main,land,438087,False
+Q6,Q,Alpine,alpine,cherry_grove,-3725,-2945,386,165,221,207,main,land,958619,False
+R1,R,Wetland,wetland,swamp,3420,3420,600,355,245,240,main,land,786616,False
+R2,R,Wetland,wetland,mangrove_swamp,3721,3344,568,515,53,49,main,land,985034,False
+R3,R,Wetland,wetland,swamp,3740,3198,608,549,59,59,main,land,905101,False
+R4,R,Wetland,wetland,mangrove_swamp,3025,3662,524,314,210,191,main,land,62036,False
+R5,R,Wetland,wetland,swamp,3859,3413,512,448,64,70,main,land,683609,False
+R6,R,Wetland,wetland,mangrove_swamp,3473,2967,544,367,177,175,main,land,431170,False
+T1,T,Great Desert,arid,desert,-3380,3380,-900,-1247,347,340,main,land,152296,True
+T2,T,Great Desert,arid,badlands,-3323,3831,-792,-871,79,85,main,land,347553,True
+T3,T,Great Desert,arid,wooded_badlands,-3029,3789,-772,-908,136,147,main,land,502739,True
+T4,T,Great Desert,arid,eroded_badlands,-2695,3763,-1000,-1135,135,152,main,land,383371,True
+T5,T,Great Desert,arid,desert,-2797,3488,-932,-1036,104,99,main,land,289598,True
+T6,T,Great Desert,arid,badlands,-2828,3276,-808,-858,50,57,main,land,340381,True
+a1,a,Pine Isles,taiga,taiga,2200,-1500,900,597,303,300,main,land,660605,False
+a2,a,Pine Isles,taiga,old_growth_pine_taiga,2024,-1868,788,710,78,83,main,land,934836,False
+a3,a,Pine Isles,taiga,old_growth_spruce_taiga,2611,-1732,940,791,149,150,main,land,196175,False
+a4,a,Pine Isles,taiga,windswept_hills,2167,-984,892,747,145,169,main,land,820445,False
+a5,a,Pine Isles,taiga,taiga,1837,-1794,852,811,41,54,main,land,362579,False
+a6,a,Pine Isles,taiga,old_growth_pine_taiga,1857,-816,832,696,136,138,main,land,666592,False
+b1,b,Little Cold Sea,cold_sea,deep_cold_ocean,-100,-2700,-260,-448,188,300,main,basin,431205,True
+b2,b,Little Cold Sea,cold_sea,cold_ocean,291,-2505,-352,-415,63,94,main,basin,284260,True
+b3,b,Little Cold Sea,cold_sea,cold_ocean,221,-2296,-304,-374,70,93,main,basin,199575,True
+b4,b,Little Cold Sea,cold_sea,stony_shore,-494,-2825,-148,-207,59,77,main,land,548271,False
+b5,b,Little Cold Sea,cold_sea,cold_ocean,-495,-2340,-172,-303,131,168,main,basin,18458,True
+b6,b,Little Cold Sea,cold_sea,cold_ocean,-36,-2138,-148,-245,97,136,main,basin,200073,True
+c1,c,Dry Isles,savanna,savanna,2500,2500,-800,-1083,283,300,main,land,110383,False
+c2,c,Dry Isles,savanna,savanna_plateau,2386,2083,-804,-874,70,71,main,land,994069,False
+c3,c,Dry Isles,savanna,windswept_savanna,2655,1973,-796,-905,109,142,main,land,726476,False
+c4,c,Dry Isles,savanna,savanna,2759,2959,-716,-840,124,164,main,land,606143,False
+c5,c,Dry Isles,savanna,savanna_plateau,2395,1897,-840,-913,73,73,main,land,981128,False
+c6,c,Dry Isles,savanna,windswept_savanna,2019,2345,-716,-854,138,145,main,land,528860,False
+d1,d,Coral Pools,warm_sea,warm_ocean,0,3100,900,682,218,300,main,basin,230725,True
+d2,d,Coral Pools,warm_sea,warm_ocean,-406,3323,844,750,94,123,main,basin,449092,True
+d3,d,Coral Pools,warm_sea,beach,-258,3539,992,938,54,65,main,land,698321,False
+d4,d,Coral Pools,warm_sea,beach,407,3109,796,727,69,86,main,land,444096,False
+d5,d,Coral Pools,warm_sea,warm_ocean,-192,2648,996,885,111,141,main,basin,174306,True
+d6,d,Coral Pools,warm_sea,beach,-119,3667,964,896,68,89,main,land,431621,False
+e1,e,Snow Isles,snowy,snowy_plains,-2200,-2900,210,-69,279,300,main,land,989099,False
+e2,e,Snow Isles,snowy,snowy_taiga,-2536,-2595,186,78,108,112,main,land,380812,False
+e3,e,Snow Isles,snowy,ice_spikes,-1876,-3092,202,146,56,52,main,land,323119,False
+e4,e,Snow Isles,snowy,grove,-2640,-2267,174,11,163,209,main,land,178865,False
+e5,e,Snow Isles,snowy,snowy_slopes,-1722,-2844,110,5,105,106,main,land,630756,False
+e6,e,Snow Isles,snowy,snowy_plains,-2116,-2515,334,303,31,41,main,land,472090,False
+f1,f,Woodland,temperate,forest,3600,200,-520,-792,272,300,main,land,678056,True
+f2,f,Woodland,temperate,birch_forest,3163,341,-516,-642,126,131,main,land,985863,True
+f3,f,Woodland,temperate,flower_forest,3486,-214,-620,-704,84,81,main,land,13935,True
+f4,f,Woodland,temperate,old_growth_birch_forest,3360,-108,-440,-485,45,60,main,land,305206,True
+f5,f,Woodland,temperate,windswept_forest,3661,-227,-584,-643,59,59,main,land,813067,True
+f6,f,Woodland,temperate,forest,3477,610,-600,-642,42,53,main,land,252644,True
+g1,g,Little Sea,lukewarm_sea,deep_lukewarm_ocean,-1500,1100,900,696,204,300,main,basin,604402,True
+g2,g,Little Sea,lukewarm_sea,beach,-1549,1519,896,805,91,84,main,land,892044,False
+g3,g,Little Sea,lukewarm_sea,beach,-1709,1495,960,903,57,55,main,land,658987,False
+g4,g,Little Sea,lukewarm_sea,beach,-1110,1291,1024,983,41,54,main,land,469569,False
+g5,g,Little Sea,lukewarm_sea,lukewarm_ocean,-1990,895,880,763,117,196,main,basin,624944,True
+g6,g,Little Sea,lukewarm_sea,beach,-1176,915,888,853,35,46,main,land,344981,False
+h1,h,High Meadows,alpine,meadow,100,-3600,900,594,306,300,main,land,835645,False
+h2,h,High Meadows,alpine,cherry_grove,-334,-3433,868,763,105,138,main,land,312444,False
+h3,h,High Meadows,alpine,grove,255,-3185,788,699,89,87,main,land,839592,False
+h4,h,High Meadows,alpine,snowy_slopes,-290,-3701,924,856,68,66,main,land,236756,False
+h5,h,High Meadows,alpine,meadow,421,-3039,844,789,55,54,main,land,205713,False
+h6,h,High Meadows,alpine,cherry_grove,522,-3468,988,921,67,63,main,land,9052,False
+i1,i,Grass Isles,grassland,plains,-3600,-300,-520,-795,275,284,main,land,479796,False
+i2,i,Grass Isles,grassland,sunflower_plains,-3699,85,-376,-434,58,56,main,land,801984,False
+i3,i,Grass Isles,grassland,meadow,-3505,134,-620,-681,61,65,main,land,161919,False
+i4,i,Grass Isles,grassland,cherry_grove,-3636,209,-492,-550,58,59,main,land,872678,False
+i5,i,Grass Isles,grassland,plains,-3763,265,-520,-563,43,56,main,land,244873,False
+i6,i,Grass Isles,grassland,sunflower_plains,-3332,311,-628,-750,122,130,main,land,512927,False
+j1,j,Birch Isles,birchwood,birch_forest,-1900,-800,420,120,300,274,main,land,814116,True
+j2,j,Birch Isles,birchwood,old_growth_birch_forest,-2413,-802,536,393,143,162,main,land,184973,True
+j3,j,Birch Isles,birchwood,flower_forest,-1845,-405,544,475,69,69,main,land,410286,True
+j4,j,Birch Isles,birchwood,forest,-1979,-1207,496,445,51,63,main,land,859500,True
+j5,j,Birch Isles,birchwood,windswept_forest,-2446,-582,368,332,36,40,main,land,450137,True
+j6,j,Birch Isles,birchwood,birch_forest,-1549,-759,512,458,54,58,main,land,691638,True
+k1,k,Bamboo Isles,jungle,jungle,-3600,2400,900,638,262,258,main,land,643873,False
+k2,k,Bamboo Isles,jungle,bamboo_jungle,-3786,2031,1032,961,71,83,main,land,730107,False
+k3,k,Bamboo Isles,jungle,sparse_jungle,-3836,2716,1004,940,64,71,main,land,478859,False
+k4,k,Bamboo Isles,jungle,jungle,-3889,2559,828,790,38,47,main,land,945867,False
+k5,k,Bamboo Isles,jungle,bamboo_jungle,-3688,2866,1020,941,79,83,main,land,180847,False
+k6,k,Bamboo Isles,jungle,sparse_jungle,-3407,2103,1056,993,63,59,main,land,391355,False
+l1,l,Dunes,arid,desert,-2800,2600,210,-6,216,244,main,land,291459,True
+l2,l,Dunes,arid,badlands,-2555,2222,258,82,176,180,main,land,749682,True
+l3,l,Dunes,arid,wooded_badlands,-3082,2802,358,305,53,57,main,land,508429,True
+l4,l,Dunes,arid,eroded_badlands,-2487,2807,214,164,50,62,main,land,927817,True
+l5,l,Dunes,arid,desert,-2402,2668,214,155,59,60,main,land,253204,True
+l6,l,Dunes,arid,badlands,-2291,2571,134,97,37,46,main,land,524600,True
+m1,m,The Crags,peaks,jagged_peaks,-2600,-3700,-520,-747,227,236,main,land,458238,False
+m2,m,The Crags,peaks,stony_peaks,-2554,-3336,-624,-708,84,77,main,land,46395,False
+m3,m,The Crags,peaks,frozen_peaks,-2368,-3429,-408,-490,82,96,main,land,940481,False
+m4,m,The Crags,peaks,windswept_gravelly_hills,-2161,-3533,-408,-480,72,74,main,land,72940,False
+m5,m,The Crags,peaks,windswept_hills,-2025,-3674,-488,-559,71,82,main,land,991292,False
+m6,m,The Crags,peaks,jagged_peaks,-1786,-3747,-504,-628,124,128,main,land,429534,False
+n1,n,Marsh Isles,wetland,swamp,3700,2200,-260,-452,192,236,main,land,157657,False
+n2,n,Marsh Isles,wetland,mangrove_swamp,3313,2142,-212,-286,74,80,main,land,305194,False
+n3,n,Marsh Isles,wetland,swamp,3232,2331,-112,-215,103,101,main,land,494393,False
+n4,n,Marsh Isles,wetland,mangrove_swamp,3333,2524,-288,-365,77,94,main,land,15824,False
+n5,n,Marsh Isles,wetland,swamp,3537,2473,-212,-249,37,43,main,land,163262,False
+n6,n,Marsh Isles,wetland,mangrove_swamp,3104,2470,-256,-301,45,55,main,land,709863,False
+Sh1,S,Spawn,grassland,plains,-443,-454,234,198,36,42,high,land,126964,False
+Sh2,S,Spawn,grassland,plains,-575,-264,231,198,33,45,high,land,307462,False
+Sh3,S,Spawn,grassland,plains,-185,-524,308,274,34,31,high,land,337419,False
+Sh4,S,Spawn,grassland,plains,-83,-243,271,231,40,27,high,land,664142,False
+Sh5,S,Spawn,grassland,plains,212,-329,255,208,47,38,high,land,563341,False
+Ch6,C,Desert,arid,desert,-1207,2029,488,448,40,41,high,land,986355,True
+Eh7,E,Taiga,taiga,taiga,-1224,-1998,391,358,33,32,high,land,161318,False
+Fh8,F,Dark Wood,dark,dark_forest,1048,-2054,8,-22,30,28,high,land,692223,False
+Hh9,H,Jungle,jungle,jungle,1476,3482,582,548,34,38,high,land,778851,False
+Rh11,R,Wetland,wetland,swamp,3449,3392,837,799,38,29,high,land,213886,False
+Th12,T,Great Desert,arid,desert,-3409,3310,-662,-709,47,24,high,land,652451,True
+ah13,a,Pine Isles,taiga,taiga,2160,-1543,1132,1082,50,27,high,land,118950,False
+ch14,c,Dry Isles,savanna,savanna,2476,2355,-644,-690,46,22,high,land,264026,False
+eh15,e,Snow Isles,snowy,snowy_plains,-2160,-2862,452,402,50,36,high,land,616554,False
+fh16,f,Woodland,temperate,forest,3472,267,-299,-339,40,40,high,land,663525,True
+hh17,h,High Meadows,alpine,meadow,181,-3671,1155,1118,37,35,high,land,402857,False
+ih18,i,Grass Isles,grassland,plains,-3627,-206,-347,-384,37,22,high,land,685079,False
+kh19,k,Bamboo Isles,jungle,jungle,-3484,2444,1129,1087,42,37,high,land,293364,False
+lh20,l,Dunes,arid,desert,-2817,2510,449,405,44,30,high,land,212899,True
+Pt2,P,High Peaks,peaks,jagged_peaks,3373,-3417,1029,769,260,210,tier,land,623608,False
+Pt3,P,High Peaks,peaks,frozen_peaks,3376,-3364,1283,1083,200,108,tier,land,536033,False
+Qt2,Q,Alpine,alpine,grove,-3388,-3458,569,409,160,138,tier,land,604382,False
+Qt3,Q,Alpine,alpine,snowy_slopes,-3411,-3418,736,616,120,69,tier,land,950466,False
+Jt2,J,Mesa,mesa,wooded_badlands,-3378,1433,-304,-444,140,156,tier,land,901736,True
+Jt3,J,Mesa,mesa,eroded_badlands,-3368,1402,-136,-256,120,78,tier,land,153256,True
