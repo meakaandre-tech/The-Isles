@@ -1,0 +1,65 @@
+name: Pack test
+# Boots Minecraft 26.3 (Fabric) with The Isles: first a server with only Fabric API and the data pack, then the
+# whole mod pack with a real client. Logs and screenshots go to the ci-logs branch, the tested zip to a release.
+# See packtest/README.md.
+on:
+  push:
+    branches: ["pack-test"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pack-test
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Rebuild the data pack from the layout and zip it
+        shell: bash
+        run: |
+          mkdir -p /tmp/ci
+          python3 tools/build_pack.py | tee /tmp/ci/build.txt
+          git status --porcelain datapack | tee /tmp/ci/datapack-drift.txt
+          [ -s /tmp/ci/datapack-drift.txt ] && echo "WARNING: committed datapack/ differs from the generator output" | tee -a /tmp/ci/build.txt
+          (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
+          ls -l /tmp/the-isles-tested.zip | tee -a /tmp/ci/build.txt
+      - name: Run the tests
+        continue-on-error: true
+        shell: bash
+        run: bash packtest/run.sh
+      - name: Publish logs and screenshots to the ci-logs branch
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p /tmp/ci
+          echo "${GITHUB_SHA}" > /tmp/ci/commit.txt
+          cd /tmp/ci
+          git init -q -b ci-logs
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A && git commit -q -m "Pack test for ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs
+      - name: Publish the tested data pack
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          # only when the run says so: packtest/run.sh writes /tmp/ci/verdict.txt, first line PASS or FAIL
+          if [ -f packtest/publish ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
+            gh release delete pack-test-latest -y --cleanup-tag -R "${{ github.repository }}" || true
+            sleep 3
+            gh release create pack-test-latest /tmp/the-isles-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \
+              --prerelease --title "The Isles - tested data pack (26.3)" \
+              --notes "Data pack built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
+          else
+            echo "not published"
+          fi

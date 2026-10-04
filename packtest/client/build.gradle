@@ -1,0 +1,20 @@
+// Empty Loom project: only used to launch a 26.3 Fabric client whose run/mods folder holds the whole pack.
+plugins {
+    id "net.fabricmc.fabric-loom" version "${loom_version}"
+}
+repositories { mavenCentral() }
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+}
+loom {
+    runs {
+        client {
+            vmArgs "-Xmx${System.getenv('CLIENT_XMX') ?: '3G'}"
+        }
+    }
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
