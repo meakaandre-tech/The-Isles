@@ -5,7 +5,7 @@ Every island in the layout becomes a density function; a coarse x/z grid selects
 islands are evaluated at a position, so cost per sample stays small. Biomes are assigned
 per island through the multi-noise "temperature" input, which carries a per-island code.
 """
-import json, math, shutil, sys
+import json, math, os, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -13,10 +13,24 @@ OUT = ROOT / "datapack"
 OUT_MODS = ROOT / "datapack-mods"
 NS = "the_isles"
 MIN_Y, HEIGHT = -2032, 4064
+# Generation cost (measured by packtest's perf phase, see packtest/README.md). The environment variables are for those
+# measurements only.
+CELL_XZ, CELL_Y = int(os.environ.get("ISLES_CELL_XZ", 4)), int(os.environ.get("ISLES_CELL_Y", 8))   # density is computed on this grid and interpolated
+TRIM_NOISE = os.environ.get("ISLES_TRIM_NOISE", "0") == "1"   # terrain is only computed in the layers that hold islands
 CELL = 512          # grid cell size for the island lookup
 PAD = 8             # footprint padding in blocks
 SURFACE_RULE_DEPTH = 48   # the vanilla surface rule only runs this many blocks into the ground (see main)
 VOID_BIOME = f"{NS}:void"
+BIOME_MARGIN = 24   # an island's biome reaches this many blocks past its (noise-warped) rim, see biome_term
+# Look (dimension type attributes, see main): one cloud layer is all the game offers (one height per dimension or biome,
+# and every biome occurs at many altitudes), so it stays where the vanilla one is, near the middle of the islands.
+CLOUD_HEIGHT = 192.33
+FOG_COLOR = "#a4c5ff"     # the whole sky takes this colour (between the vanilla sky #78a7ff and fog #c0d8ff)
+SKY_FOG_END = 3.0
+# Structures (see structures()): depth of the buried ones under the island surface, strongholds around the spawn
+TRIAL_DEPTH, CITY_DEPTH, PORTAL_ROOM_DEPTH = (-48, -32), -60, -30
+STRONGHOLD_RINGS = {"distance": 12, "spread": 3, "count": 9}
+JIGSAW_PADDING = {"bottom": 48, "top": 0}   # a jigsaw start this close to the bottom of the world is dropped
 
 # surface relief (blocks) by biome; anything not listed uses DEFAULT_RELIEF
 RELIEF = {"jagged_peaks": 190, "frozen_peaks": 160, "stony_peaks": 130, "snowy_slopes": 90, "grove": 50,
@@ -153,6 +167,103 @@ def grid(islands, leaf):
         cols.append(mc("interval_select", input=ref("z"), thresholds=edges, functions=rows))
     return mc("interval_select", input=ref("x"), thresholds=edges, functions=cols)
 
+def nbt_structure(size, blocks):
+    """a structure template (gzipped NBT, 26.3 layout: palette entries are {id, properties}); blocks: {(x, y, z): (id, {props})}"""
+    import gzip, struct
+    def name(n): b = n.encode(); return struct.pack(">H", len(b)) + b
+    def tag(t, n, payload): return bytes([t]) + name(n) + payload
+    def ints(n, v): return tag(9, n, bytes([3]) + struct.pack(">i", len(v)) + b"".join(struct.pack(">i", x) for x in v))
+    def comps(n, items): return tag(9, n, bytes([10 if items else 0]) + struct.pack(">i", len(items)) + b"".join(items))
+    palette, index, out = [], {}, []
+    for pos in sorted(blocks):
+        bid, props = blocks[pos]; key = (bid, tuple(sorted(props.items())))
+        if key not in index:
+            index[key] = len(palette)
+            body = tag(8, "id", name(bid))
+            if props: body += tag(10, "properties", b"".join(tag(8, k, name(v)) for k, v in sorted(props.items())) + b"\0")
+            palette.append(body + b"\0")
+        out.append(ints("pos", list(pos)) + tag(3, "state", struct.pack(">i", index[key])) + b"\0")
+    root = ints("size", list(size)) + comps("entities", []) + comps("blocks", out) + comps("palette", palette) + tag(3, "DataVersion", struct.pack(">i", 5023))
+    return gzip.compress(tag(10, "", root + b"\0"), mtime=0)
+
+def portal_room():
+    """the room of the_isles:stronghold: 11 x 8 x 11, stone brick shell, a floor of bricks with the lava pit, the twelve empty frames on it"""
+    B = {}
+    brick = ("minecraft:stone_bricks", {})
+    for x in range(11):
+        for y in range(8):
+            for z in range(11):
+                shell = x in (0, 10) or y in (0, 7) or z in (0, 10)
+                B[(x, y, z)] = brick if shell or y == 1 else ("minecraft:air", {})
+    for x in (4, 5, 6):
+        for z in (4, 5, 6): B[(x, 1, z)] = ("minecraft:lava", {"level": "0"})
+    frame = lambda facing: ("minecraft:end_portal_frame", {"eye": "false", "facing": facing})
+    for k in (4, 5, 6):
+        B[(k, 2, 3)] = frame("south"); B[(k, 2, 7)] = frame("north"); B[(3, 2, k)] = frame("east"); B[(7, 2, k)] = frame("west")
+    for x, z in ((1, 1), (1, 9), (9, 1), (9, 9)): B[(x, 2, z)] = ("minecraft:torch", {})
+    return nbt_structure((11, 8, 11), B)
+
+def structures(islands, biomes):
+    """Every vanilla Overworld structure relative to its island. tools/vanilla_structure/ holds the 26.3 files.
+
+    The game takes a structure's height either from the terrain under it (a heightmap) or from a number: an absolute
+    height, or the generator's sea level, which here is the bottom of the world. The first kind already follows the
+    islands. Of the second kind the jigsaw structures have a data switch (project_start_to_heightmap) and so have the
+    ruined portals (their setups); the rest is hard-coded and is switched off here (an empty biome list, which also
+    takes them out of /locate and of the per-chunk structure search):
+      stronghold, mineshaft, mineshaft_mesa   moved under the sea level by the code -> the lowest layers of the world
+      monument                                built at y 39..61
+      mansion                                 only where the ground is at y 60 or higher (kept when a dark forest or pale
+                                              garden island is that high)
+    Without the stronghold nothing leads to the End, so the pack has one of its own: the_isles:stronghold, a sealed
+    End portal room buried under the surface, placed like the vanilla one (rings around the origin: the first three
+    lie in the spawn island) and found by eyes of ender."""
+    src = Path(__file__).parent / "vanilla_structure"
+    report = {}
+    high_dark = any(i["biome"] in ("dark_forest", "pale_garden") and i["y_top"] >= 76 for i in islands)
+    off = {"stronghold", "mineshaft", "mineshaft_mesa", "monument"} | (set() if high_dark else {"mansion"})
+    for f in sorted(src.glob("*.json")):
+        d = json.loads(f.read_text()); name = f.stem; how = None
+        if name in off:
+            d["biomes"] = []; how = "off"
+        elif d["type"] == "minecraft:jigsaw":
+            d["dimension_padding"] = JIGSAW_PADDING
+            if "project_start_to_heightmap" in d: how = "surface (as in vanilla), not at the bottom of the world"
+            else:
+                d["project_start_to_heightmap"] = "OCEAN_FLOOR_WG"
+                lo, hi = TRIAL_DEPTH if name == "trial_chambers" else (CITY_DEPTH, CITY_DEPTH)
+                d["start_height"] = {"absolute": lo} if lo == hi else {"type": "minecraft:uniform", "min_inclusive": {"absolute": lo}, "max_inclusive": {"absolute": hi}}
+                how = f"{-hi}..{-lo} blocks under the island surface" if lo != hi else f"{-lo} blocks under the island surface"
+        elif d["type"] == "minecraft:ruined_portal":
+            for su in d["setups"]:
+                if su["placement"] in ("underground", "in_mountain"): su["placement"] = "partly_buried"
+            how = "on or half in the island surface"
+        if how:
+            write(f"data/minecraft/worldgen/structure/{name}.json", d); report[name] = how
+    # the pack's own way to the End
+    (OUT / f"data/{NS}/structure").mkdir(parents=True, exist_ok=True)
+    (OUT / f"data/{NS}/structure/portal_room.nbt").write_bytes(portal_room())
+    write(f"data/{NS}/worldgen/template_pool/portal_room.json", {"elements": [{"element": {
+        "element_type": "minecraft:single_pool_element", "location": ref("portal_room"), "processors": {"processors": []},
+        "projection": "rigid"}, "weight": 1}], "fallback": "minecraft:empty"})
+    write(f"data/{NS}/worldgen/structure/stronghold.json", {
+        "type": "minecraft:jigsaw", "biomes": [f"minecraft:{b}" for b in biomes], "dimension_padding": JIGSAW_PADDING,
+        "max_distance_from_center": 80, "project_start_to_heightmap": "OCEAN_FLOOR_WG", "size": 1, "spawn_overrides": {},
+        "start_height": {"absolute": PORTAL_ROOM_DEPTH}, "start_pool": ref("portal_room"), "step": "underground_structures",
+        "terrain_adaptation": "bury", "use_expansion_hack": False})
+    write("data/minecraft/worldgen/structure_set/strongholds.json", {"placement": {
+        "type": "minecraft:concentric_rings", "preferred_biomes": "#minecraft:stronghold_biased_to", "salt": 0, **STRONGHOLD_RINGS},
+        "structures": [{"structure": ref("stronghold"), "weight": 1}]})
+    write("data/minecraft/tags/worldgen/structure/eye_of_ender_located.json", {"replace": True, "values": [ref("stronghold")]})
+    return report
+
+def noise_range(islands):
+    """the layers the generator fills: the whole world, or (TRIM_NOISE) only those that can hold an island, in steps of 16"""
+    if not TRIM_NOISE: return {"height": HEIGHT, "min_y": MIN_Y}
+    lo = min(i["y_bottom"] for i in islands) - 96; hi = max(i["y_top"] for i in islands) + 96
+    lo = max(MIN_Y, lo // 16 * 16); hi = min(MIN_Y + HEIGHT, -(-hi // 16) * 16)
+    return {"height": hi - lo, "min_y": lo}
+
 def main():
     layout = json.loads((ROOT / "layout" / "islands.json").read_text())
     islands = layout["islands"]
@@ -199,16 +310,20 @@ def main():
                 levels.append((below["y_top"] + t["y_bottom"]) / 2); below = t
             val = mc("interval_select", input=Y, thresholds=levels,
                      functions=[code[i["biome"]] - VOID] + [code[t["biome"]] - VOID for t in stack])
-        return choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, val, 0)
+        if stack: return choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, val, 0)
+        # The biome ends BIOME_MARGIN blocks past the island's own rim (enough for the colour blending and the ragged
+        # edge) instead of at the full radius: the rim is drawn in by up to a fifth of the radius, and every empty
+        # column inside the biome is a place where a structure can start with nothing under it.
+        return choice(ref(f"edge/{i['key']}"), -BIOME_MARGIN / i["radius"], 2, val, 0)
     write(f"data/{NS}/worldgen/density_function/biome_code.json",
           add(VOID, grid(mains, lambda hit: fold(add, [biome_term(i) for i in hit]) if hit else 0)))
 
     # --- noise settings, surface rule, dimension
-    final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=4, cell_size_y=8,
+    final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
                 input=mul(mc("blend_density", input=ref("terrain")), 0.64))), mc("beardifier"))
     write(f"data/{NS}/worldgen/noise_settings/isles.json", {
         "default_block": "minecraft:stone", "default_fluid": "minecraft:water", "disable_mob_generation": False,
-        "legacy_random_source": False, "material_rule": ref("isles"), "noise": {"height": HEIGHT, "min_y": MIN_Y},
+        "legacy_random_source": False, "material_rule": ref("isles"), "noise": noise_range(islands),
         "noise_router": {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
                          "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final},
         "sea_level": MIN_Y, "spawn_target": []})
@@ -231,7 +346,6 @@ def main():
         "type": "minecraft:noise", "biome_source": {"type": "minecraft:multi_noise", "biomes": entries}, "settings": ref("isles")}})
     dim = json.loads((Path(__file__).parent / "vanilla_overworld_dimension_type.json").read_text())
     dim.update(min_y=MIN_Y, height=HEIGHT, logical_height=HEIGHT)
-    write("data/minecraft/dimension_type/overworld.json", dim)
     # --- no snow line: rainy biomes stay rainy at any altitude
     warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
@@ -248,6 +362,8 @@ def main():
     # islands they would float at y -2032. Off until those islands hold water.
     for name in ("iceberg_packed", "iceberg_blue"):
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": f"minecraft:{name}", "placement": [mc("count", count=0)]})
+    # --- structures follow the islands
+    for name, how in structures(islands, biomes).items(): print(f"structure {name}: {how}")
     # --- ores follow the island surface
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
