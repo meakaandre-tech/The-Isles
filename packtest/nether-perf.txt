@@ -1,0 +1,12 @@
+# name, then "-pack" (the vanilla Nether) or settings of tools/build_nether.py (see its head); nothing = the pack as it is
+vanilla -pack
+before ISLES_NETHER_OLD=noise,surface,features
+now
+layers8 ISLES_NETHER_LAYERS=8
+layers6 ISLES_NETHER_LAYERS=6
+layers6-cavern320 ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320
+features-before ISLES_NETHER_OLD=features
+no-aquifer ISLES_NETHER_OFF=aquifer
+no-features ISLES_NETHER_OFF=features
+no-carver ISLES_NETHER_OFF=carver
+cell-y16 ISLES_NETHER_CELL_Y=16

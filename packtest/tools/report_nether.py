@@ -19,16 +19,39 @@ def scans(msg):
     for t, n in res.items():
         a, b = t.rsplit(' ', 1); rows.setdefault(a, {})[b.split(':')[1]] = n
     return rows
-def table(rows, keys):
+def table(rows, keys, w=16):
     bl = []
     for k in keys:
         for b in rows.get(k, {}):
             if b not in bl: bl.append(b)
-    print('   ' + 'box'.ljust(16) + ' '.join(b[:9].rjust(9) for b in bl))
+    print('   ' + 'box'.ljust(w) + ' '.join(b[:9].rjust(9) for b in bl))
     for k in keys:
-        if k in rows: print('   ' + k.ljust(16) + ' '.join(('' if rows[k].get(b) is None else str(rows[k][b])).rjust(9) for b in bl))
+        if k in rows: print('   ' + k.ljust(w) + ' '.join(('' if rows[k].get(b) is None else str(rows[k][b])).rjust(9) for b in bl))
+
+def perf(D, fails):
+    """the perf variants of nether-phase.sh: times, heap, block counts of two layers, where the threads were"""
+    import glob
+    run = open(f'{D}/run.txt', errors='replace').read().split('\n') if os.path.exists(f'{D}/run.txt') else []
+    lines = [l for l in run if ' NPERF ' in l]
+    if not lines: return
+    print('\n================ nether, perf variants (packtest/nether-perf.txt; one fresh world each) ================')
+    print('   seconds for 64 chunks / for 9 chunks elsewhere afterwards, heap before -> with the chunks loaded')
+    for l in lines: print('  ', l)
+    names, rows = [], {}
+    for f in sorted(glob.glob(f'{D}/server-nperf*-*.log')):
+        n = os.path.basename(f)[7:-4]
+        for k, v in scans(messages(f)).items(): rows[f'{n} {k}'] = v
+    if rows:
+        print('-- blocks of two layers in a 64x64 box, per variant (same layers and seed: the same counts)')
+        table(rows, sorted(rows), 34)
+    for f in sorted(glob.glob(f'{D}/nperf*-stacks.txt')):
+        print(f'-- where the time goes, {os.path.basename(f)[:-11]}')
+        for l in open(f).read().split('\n')[:22]:
+            if l.startswith('--- top'): break
+            print('   ' + l)
 
 def report(D, fails, notes):
+    perf(D, fails)
     msg = messages(f'{D}/server-nether.log')
     if not msg: return
     name = 'nether'
@@ -69,7 +92,7 @@ def report(D, fails, notes):
             if r.get('bedrock') and l['k'] < len(BN.LAYERS) - 1: fails.append(f'{name}: {r["bedrock"]} bedrock in layer {l["k"]}')
             for b in ('lava', 'nether_quartz_ore', 'nether_gold_ore', 'ancient_debris'):
                 if r and not r.get(b): fails.append(f'{name}: no {b} in layer {l["k"]}')
-            if r and r.get('sulfur_ore') == 0: fails.append(f'{name}: no sulfur ore in layer {l["k"]}')
+            if r.get('sulfur_ore'): fails.append(f'{name}: {r["sulfur_ore"]} sulfur ore in layer {l["k"]} (it is switched off)')
         if not rows.get('bottom-pad', {}).get('bedrock'): fails.append(f'{name}: no bedrock at the bottom')
         print('-- air in the 16 blocks around each layer boundary, 128x128 (of 262144): ' + ' '.join(str(rows[k].get('air')) for k in rows if k.startswith('separator')))
         print('-- structures: marker blocks per layer around the located start')
@@ -81,6 +104,12 @@ def report(D, fails, notes):
         if re.match(r'(COUNT|PORTALTEST|CHECK|VIEW|LOCATE|TICK) ', m): cur = m; seen[cur] = []; continue
         if cur and (m.startswith('Test passed') or 'has the following entity data' in m or re.match(r'(UNDER|AT|NBIOME|PORTAL) ', m) or 'is at [' in m or 'Could not find' in m or 'Percentiles' in m):
             seen[cur].append(re.sub(r'.*has the following entity data: ', '', m))
+    frz = [l for l in open(f'{D}/server-nether.log', errors='replace').read().split('\n')]
+    a = next((n for n, l in enumerate(frz) if 'FREEZE start' in l), None)
+    if a is not None:
+        print('-- portal into Nether that does not exist yet (server thread; the pings are sent half a second apart)')
+        for l in frz[a:a + 60]:
+            if 'FREEZE' in l or "Can't keep up" in l or 'lost connection' in l or 'CHECK through the overworld-fresh' in l: print('   ' + l[:150])
     print('-- mobs, portals, structures found, tick times')
     for k, v in seen.items():
         if v and not k.startswith('VIEW'): print(f'   {k:<52} {" | ".join(v)[:200]}')

@@ -86,6 +86,16 @@ C = C + ['say SECTION portal destinations'] + [N + f'forceload add {i["x"] - 24}
     '#poll 1200 ' + N + 'execute if loaded 2016 0 -984 run say LOADED portal-destinations ## LOADED portal-destinations']
 open(OUT + '/commands-nether.txt', 'w').write('\n'.join(C + ['say SECTION end nether']) + '\n')
 
+# perf variants (nether-phase.sh, nperf_phase): the generation itself is timed by the script; afterwards the blocks of two
+# layers of the 64 chunks (the same pack built two ways has to give the same counts), and the vanilla Nether's box
+PB = [b for b in BLOCKS if not b.startswith('cgs:')] + ['#minecraft:air']
+open(OUT + '/commands-nether-perf-head.txt', 'w').write('\n'.join(HEAD) + '\n')
+Pc = ['say SECTION layers']
+if os.environ.get('NPERF_PACK', '1') == '0': scan(Pc, 'vanilla', 0, 0, 0, 63, 127, 63, PB)
+else:
+    for l in (LAY[len(LAY) // 4], next(l for l in LAY if l['bottom'] == -16)): scan(Pc, f'layer{l["k"]}', 0, l['bottom'], 0, 63, l['top'] - 1, 63, PB)
+open(OUT + '/commands-nether-perf.txt', 'w').write('\n'.join(Pc + ['tick query', 'say SECTION end nether-perf']) + '\n')
+
 B = HEAD + gen() + ['say SECTION layers']
 scan(B, 'vanilla', 0, 0, 0, 63, 127, 63, BLOCKS)
 B += [N + 'forceload remove all', 'tick query']
@@ -100,7 +110,7 @@ def where(tag): return [f'cmd say CHECK {tag}', 'cmd data get entity packtest Di
                         'cmd execute at packtest run function packtest:nbiome']
 # views and mobs in two layers: a platform in the cavern, 45 blocks above the lava
 for k, (px, pz) in ((6, (72, 40)), (9, (72, 40))):
-    l = LAY[k]; y = l['lava'] + 45
+    l = LAY[min(k, len(LAY) - 1)]; y = l['lava'] + 45
     S += [f'cmd say SECTION layer {k}', f'cmd {N}forceload add {px} {pz}', 'sleep 3', f'cmd {N}fill {px - 2} {y - 1} {pz - 2} {px + 2} {y - 1} {pz + 2} minecraft:glass',
           f'cmd {N}fill {px - 2} {y} {pz - 2} {px + 2} {y + 3} {pz + 2} minecraft:air', f'cmd {N}tp packtest {px + .5} {y} {pz + .5} 0 10', 'sleep 75']
     for yaw, pitch in ((0, 10), (90, 25), (180, -20), (270, 40), (0, 89)): S += [f'cmd say VIEW layer{k} yaw {yaw} pitch {pitch}', f'cmd {N}tp packtest {px + .5} {y} {pz + .5} {yaw} {pitch}', 'sleep 9', 'shot']
@@ -122,10 +132,22 @@ for tag, i in (('low', lo), ('high', hi)):
           'cmd execute at packtest run tp packtest ~3 ~ ~3', 'sleep 2', 'cmd forceload remove all']
 # portals from the Nether: layer 2 under the spawn island, layer 9 under a void column
 for tag, k, x, z in (('layer2-under-S1', 2, 300, 300), ('layer9-void', 9, 2000, -1000)):
-    y = LAY[k]['lava'] + 40
+    y = LAY[min(k, len(LAY) - 1)]['lava'] + 40
     S += [f'cmd say PORTALTEST nether-{tag} at {x} {y} {z}', f'cmd {N}tp packtest {x + .5} {y} {z + 2.5}', 'sleep 30',
           f'cmd {N}fill {x - 3} {y - 1} {z - 3} {x + 4} {y - 1} {z + 3} minecraft:netherrack', f'cmd {N}fill {x - 3} {y} {z - 3} {x + 4} {y + 4} {z + 3} minecraft:air']
     S += frame(N, f'execute positioned {x} {y} {z} run ')
     S += [f'cmd {N}tp packtest {x + .5} {y} {z + .5}', 'sleep 40'] + where(f'through the nether-{tag} portal') + ['shot', 'cmd execute at packtest run tp packtest ~3 ~ ~3', 'sleep 2']
 S += ['cmd tick query', 'cmd say SECTION end client']
+# last, because the client may time out: a portal whose destination does not exist yet. The server thread generates the
+# chunks around it; the console commands sent meanwhile are answered when it is back (FREEZE pings, one every half second:
+# the gap in their timestamps is the freeze), and the server logs "Can't keep up".
+near = lambda i: any(abs(i['x'] - x) < 400 and abs(i['z'] - z) < 400 for x, z in [(p['x'], p['z']) for p in PT] + [(300, 300), (2000, -1000), (0, 0)])
+i = next(i for i in sorted(ISL.values(), key=lambda i: i['y_top'])[len(ISL) // 2:] if not near(i)); x, z = i['x'], i['z']
+S += [f'cmd say PORTALTEST overworld-fresh island {i["id"]} top {i["y_top"]}', f'cmd forceload add {x} {z}', f'cmd tp packtest {x} {i["y_top"] + 30} {z}', 'sleep 25',
+      f'cmd execute positioned {x} 0 {z} positioned over motion_blocking run summon minecraft:marker ~ ~ ~ {{Tags:["pffresh"]}}',
+      'cmd execute at @e[type=minecraft:marker,tag=pffresh,limit=1] run tp packtest ~6 ~ ~3', 'sleep 2']
+S += frame('', 'execute at @e[type=minecraft:marker,tag=pffresh,limit=1] run ')
+S += ['cmd say FREEZE start', 'cmd execute at @e[type=minecraft:marker,tag=pffresh,limit=1] run tp packtest ~ ~ ~']
+for k in range(12): S += ['sleep 0.5', f'cmd say FREEZE ping {k}']
+S += ['sleep 60'] + where('through the overworld-fresh portal') + ['shot', 'cmd say SECTION end fresh portal']
 open(OUT + '/script-nether.txt', 'w').write('\n'.join(S) + '\n')
