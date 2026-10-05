@@ -1,0 +1,52 @@
+144 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 24.3%    35 saving / loading chunks
+ 21.5%    31 features
+ 16.0%    23 surface rule
+ 12.5%    18 commands (fill / scans of the test)
+  6.9%    10 terrain: aquifer
+  6.9%    10 terrain: fill (blocks into sections)
+  4.2%     6 tick
+  2.8%     4 terrain: 3D noise
+  1.4%     2 other
+  1.4%     2 full chunk (entities, block entities, POI)
+  0.7%     1 structures
+  0.7%     1 carvers
+  0.7%     1 terrain: other density functions
+--- features
+ 18.8%    27 placement.FeaturePlacer.place
+  0.7%     1 other
+  0.7%     1 feature.ScatteredOreFeature.place
+  0.7%     1 placement.BlockPredicateFilter.shouldPlace
+  0.7%     1 feature.ReplaceBlobsFeature.place
+--- top frames
+   18 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < net.minecraft.server.level.WorldGenRegion.getBlockState
+   17 net.minecraft.util.DelegateDataOutput.writeLong < net.minecraft.nbt.LongArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+   10 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   10 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    8 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000a299d230.tryApply < material.rule.SequenceRule.lambda$compile$0
+    8 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000a299d230.tryApply
+    7 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    7 net.minecraft.server.commands.FillCommand.fillBlocks < net.minecraft.server.commands.FillCommand.lambda$wrapWithMode$0 < net.minecraft.server.commands.FillCommand$$Lambda/0x00000000a276f418.run
+    6 net.minecraft.util.DelegateDataOutput.write < net.minecraft.nbt.ByteArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    4 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000a2999268.get
+    4 chunk.PalettedContainer.pack < chunk.PalettedContainer.lambda$codec$2 < chunk.PalettedContainer$$Lambda/0x00000000a287f6b8.apply
+    3 block.state.BlockBehaviour.handler$bom000$lithium$notifyOnShapeUpdate < block.state.BlockBehaviour.updateShape < block.state.BlockBehaviour$BlockStateBase.updateShape
+    2 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x00000000a299e210.call
+    2 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    2 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.BinaryFunction$ConstAddSampler.sampleVolume
+    2 net.minecraft.util.DelegateDataOutput.writeUTF < net.minecraft.nbt.NbtIo$StringFallbackDataOutput.writeUTF < net.minecraft.nbt.StringTag.write
+    2 net.minecraft.server.level.ChunkMap.getVisibleChunkIfPresent < net.minecraft.server.level.ServerChunkCache.getVisibleChunkIfPresent < net.minecraft.server.level.ServerChunkCache.blockChanged
+    2 block.state.BlockBehaviour$BlockStateBase.handleNeighborChanged < redstone.NeighborUpdater.executeUpdate < redstone.CollectingNeighborUpdater$MultiNeighborUpdate.runNext
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    1 NoiseBasedChunkGenerator.iterateNoiseColumn < NoiseBasedChunkGenerator.getBaseColumn < structure.structures.NetherFossilStructure.findGenerationPoint
+    1 net.minecraft.world.entity.monster.piglin.AbstractPiglin.applyOpenDoorsAbility < net.minecraft.world.entity.monster.piglin.AbstractPiglin.<init> < net.minecraft.world.entity.monster.piglin.Piglin.<init>
+    1 carver.CaveWorldCarver.createTunnel < carver.CaveWorldCarver.carve < NoiseBasedChunkGenerator.generateCarvers
+    1 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000a299d230.tryApply < material.rule.ConditionRule.lambda$compile$0
+    1 synth.NoiseStack$Perlin.get < material.MaterialSystem.getSurfaceDepth < material.MaterialRuleContext.updateXZ
+    1 feature.AbstractOreFeature.checkNeighbors < feature.AbstractOreFeature.isAdjacentToAir < feature.AbstractOreFeature.canPlaceOre
+    1 block.state.properties.Property$Value.<init> < block.state.properties.Property.value < block.state.StateDefinition.lambda$appendPropertyCodec$3
+    1 net.minecraft.server.level.ChunkHolder.c2me$undirtyLight < net.minecraft.server.level.ServerChunkCache.mdf8486c$c2me-opts-scheduling$lambda$onLightUpdate$0$1 < net.minecraft.server.level.ServerChunkCache$$Lambda/0x00000000a29c33e0.run
+    1 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < LevelReader.getChunk
+    1 densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume < biome.MultiNoiseBiomeSource.createResolverForChunk
+    1 net.minecraft.nbt.CompoundTag.writeNamedTag < net.minecraft.nbt.CompoundTag.write < net.minecraft.nbt.ListTag.write
