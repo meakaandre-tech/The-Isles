@@ -61,7 +61,7 @@ Neither may be redistributed. That is why nothing of them is in this repository 
 `layout/biome_sources.json`:
 
 ```json
-{ "order": ["overrealm", "geophilic", "vanilla"], "biomes": {}, "drop_features": ["orealm:sequence/jellyfish"] }
+{ "order": ["overrealm", "geophilic", "vanilla"], "biomes": {}, "islands": {}, "drop_features": ["orealm:sequence/jellyfish", "orealm:spring/ocean_caves"] }
 ```
 
 For every vanilla biome of the layout the first pack of `order` that ships that biome for 26.3 is used; `vanilla`
@@ -73,9 +73,22 @@ old one or keep it, the last by name wins), run `tools/build_pack.py`, and the t
 names of `order` prefers Geophilic wherever both have a biome. A build with other versions than the tested ones
 (`layout/providers.json`) says so; it also lists anything of a pack it left out.
 
-The choice is per biome, not per island: structures, the surface rule and biome tags go by the biome's id, so an
-island cannot have its own variant of `minecraft:forest`. (The old `overrealm` column of the layout said which
-islands have a biome that Overrealm ships; the build now works that out and prints it, the column is gone.)
+A pack can also bring biomes with ids of their own (`orealm:...`). Those are assigned by id, to every island of a layout
+biome or to single islands (ids of `layout/islands.json`):
+
+```json
+"biomes":  {"minecraft:taiga": "geophilic", "minecraft:meadow": "orealm:some_new_biome"},
+"islands": {"A6": "orealm:some_new_biome", "C5": "minecraft:savanna"}
+```
+
+Any vanilla biome or biome file of a pack in `vendor/` works; an id nobody has is reported by the build and the island
+keeps its biome. Such a biome gets the constant climate, the colours of the vanilla biome with the nearest climate where
+it sets none, and it joins the vanilla biome tags of the biomes it replaces (structures, mob rules and the mods' ores
+go by tags). Its ground is the default grass and dirt unless it is one of the ids the vanilla surface rule knows:
+a pack's own surface rule is part of its noise settings, which The Isles replaces. The island keeps its shape (relief
+follows the layout biome). These two keys only act in the build with packs (`build/`), not in the vanilla `datapack/`.
+No generator code is involved in any of this. (The old `overrealm` column of the layout said which islands have a biome
+that Overrealm ships; the build now works that out and prints it, the column is gone.)
 
 What the build does to a provider's files, for any version:
 
@@ -92,7 +105,7 @@ What the build does to a provider's files, for any version:
 The sea-basin islands are still dry (see the status table), so Overrealm's ocean floors generate without water:
 corals, sponges, shelves and wrecks lie on a dry sea bed, kelp and sea grass do not grow.
 
-## Cave world: Dwarfhollow inside the spawn island (branch `dwarfhollow`)
+## Cave world: Dwarfhollow inside the spawn island
 
 With a copy of [Dwarfhollow](https://www.patreon.com/posts/dwarfhollow-135712745) 0.1 (kanokarob, "Cavernous World",
 the author's Patreon; no licence in the pack, his terms forbid redistribution) in `vendor/`, `tools/build_pack.py`
@@ -121,8 +134,9 @@ which walks the whole column for every layer - 2,000 blocks of void under the is
 get random heights inside the cave world and a short search for the floor instead (12 attempts per unit of count).
 
 It costs generation time everywhere, because the game evaluates the cave noise for every chunk of the world, and more
-inside S1 (surface rule and features of a decorated cave world); numbers in `packtest/README.md`. That is why this is
-on its own branch.
+inside S1 (surface rule and features of a decorated cave world); numbers in `packtest/README.md`. To build without it, keep the Dwarfhollow zip out of `vendor/` (or run
+`ISLES_PROVIDERS=overrealm,geophilic python3 tools/build_pack.py`): the spawn island is then solid rock and nothing
+of this costs anything.
 
 ## Editing the layout
 

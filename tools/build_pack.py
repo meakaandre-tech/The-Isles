@@ -50,6 +50,8 @@ DEFAULT_RELIEF = 18
 # 1,100 blocks tall, and in the empty columns of the biome footprint a stone column down to the bottom of the world.
 BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
 def pack_biome(i): return BIOME_SUBSTITUTE.get(i["biome"], i["biome"])   # the biome the generated pack uses for an island
+def bid(b): return b if ":" in b else f"minecraft:{b}"   # biomes are named without "minecraft:" in here; others keep their namespace
+def bfile(b): return "data/{}/worldgen/biome/{}.json".format(*bid(b).split(":", 1))
 
 # Ores. The vanilla ore features pick an absolute height (or one counted from the bottom of the world, 2,000 blocks
 # below anything), so most islands get none and no island gets diamonds. The pack replaces their placement by a
@@ -310,7 +312,7 @@ def structures(islands, biomes):
         "element_type": "minecraft:single_pool_element", "location": ref("portal_room"), "processors": {"processors": []},
         "projection": "rigid"}, "weight": 1}], "fallback": "minecraft:empty"})
     write(f"data/{NS}/worldgen/structure/stronghold.json", {
-        "type": "minecraft:jigsaw", "biomes": [f"minecraft:{b}" for b in biomes], "dimension_padding": JIGSAW_PADDING,
+        "type": "minecraft:jigsaw", "biomes": [bid(b) for b in biomes], "dimension_padding": JIGSAW_PADDING,
         "max_distance_from_center": 80, "project_start_to_heightmap": "OCEAN_FLOOR_WG", "size": 1, "spawn_overrides": {},
         "start_height": {"absolute": PORTAL_ROOM_DEPTH}, "start_pool": ref("portal_room"), "step": "underground_structures",
         "terrain_adaptation": "bury", "use_expansion_hack": False})
@@ -387,6 +389,7 @@ class Sources:
     def __init__(self, packs):
         cfg = json.loads((ROOT / "layout" / "biome_sources.json").read_text())
         self.order, self.overrides, self.drop = cfg["order"], cfg.get("biomes", {}), cfg.get("drop_features", [])
+        self.by_island = cfg.get("islands", {})
         cw = cfg.get("cave_world") or {}
         self.cave, self.cave_island = packs.get(cw.get("provider")), cw.get("island", "S1")   # tools/build_caves.py
         self.packs = {k: v for k, v in packs.items() if v.biomes()}
@@ -398,8 +401,28 @@ class Sources:
         for pid, p in self.packs.items():
             if not p.supports: self.warnings.append(f"{pid} ({p.path.name}) is for pack format {p.format[0]}..{p.format[1]}, not {prov.FORMAT}")
             elif not p.tested: self.warnings.append(f"{pid} ({p.path.name}) is not the version this was tested with ({p.meta.get('version')})")
+    def target(self, i):
+        """another biome id for an island, asked for in biome_sources.json: "islands": {"A6": "orealm:x"} for one island,
+        "biomes": {"minecraft:forest": "orealm:x"} for every island of a layout biome. Any id works that is a vanilla
+        biome or a biome file of a provider in vendor/; otherwise the island keeps its biome (with a warning).
+        -> the biome as the generator names it, or None"""
+        lay = i.get("layout_biome", i["biome"])
+        want = self.by_island.get(i["id"])
+        if want is None:
+            for k in (lay, i["biome"]):
+                v = self.overrides.get(f"minecraft:{k}", self.overrides.get(k))
+                if v is not None and ":" in v: want = v; break
+        if want is None: return None
+        if want.startswith("minecraft:") and (Path(__file__).parent / "vanilla_biome" / f"{want[10:]}.json").exists(): return want[10:]
+        if not want.startswith("minecraft:") and any(bfile(want) in p.files for p in self.packs.values()): return want
+        w = f"{want} (asked for in biome_sources.json) is not a vanilla biome and no pack in vendor/ has it: {lay} is kept"
+        if w not in self.warnings: self.warnings.append(w)
+        return None
     def of(self, biome):
+        if ":" in biome:   # a biome of a provider's own namespace
+            return next(pid for pid in self.order + sorted(self.packs) if pid in self.packs and bfile(biome) in self.packs[pid].files)
         want = self.overrides.get(f"minecraft:{biome}", self.overrides.get(biome))
+        if want is not None and ":" in want: want = None   # (a biome id, see target)
         if want is not None:
             if want == "vanilla" or biome in self.has.get(want, ()): return want
             self.warnings.append(f"{biome}: {want} asked for in biome_sources.json but it does not ship that biome (or is not in vendor/)")
@@ -425,7 +448,7 @@ class Sources:
         return walk(placed)
     def biome(self, pid, name):
         """the provider's biome file without the features that cannot work here -> (file, [features taken out])"""
-        d = self.packs[pid].json(f"data/minecraft/worldgen/biome/{name}.json"); gone = []
+        d = self.packs[pid].json(bfile(name)); gone = []
         for step in d["features"]:
             for f in list(step):
                 if any(fnmatch.fnmatch(f, pat) for pat in self.drop) or (not f.startswith("minecraft:") and self.at_sea_level(pid, f)):
@@ -489,6 +512,13 @@ def build(src):
         print(f"{a} -> {b} on {sum(1 for i in islands if i.get('layout_biome') == a)} islands")
     if OUT.exists(): shutil.rmtree(OUT)
 
+    replaced = {}   # biome ids asked for in biome_sources.json -> the layout biomes they stand in for
+    for i in islands:
+        t = src.target(i) if src else None
+        if t and t != i["biome"]:
+            i.setdefault("layout_biome", i["biome"]); replaced.setdefault(t, set()).add(i["biome"]); i["biome"] = t
+    for t, was in sorted(replaced.items()):
+        print(f"{bid(t)} instead of {' '.join(sorted(was))} on {sum(1 for i in islands if i['biome'] == t and 'layout_biome' in i)} islands (biome_sources.json)")
     biomes = sorted({i["biome"] for i in islands})
     source = {b: src.of(b) if src else "vanilla" for b in biomes}
     used = sorted(set(source.values()) - {"vanilla"})
@@ -575,7 +605,7 @@ def build(src):
     def point(c):
         p = {"temperature": [round(c - 0.03, 4), round(c + 0.03, 4)], "humidity": 0, "continentalness": 0, "erosion": 0, "weirdness": 0, "depth": 0, "offset": 0}
         return caves.island_point(p) if caves else p
-    entries = [{"biome": VOID_BIOME, "parameters": point(VOID)}] + [{"biome": f"minecraft:{b}", "parameters": point(code[b])} for b in biomes]
+    entries = [{"biome": VOID_BIOME, "parameters": point(VOID)}] + [{"biome": bid(b), "parameters": point(code[b])} for b in biomes]
     if caves:
         entries += caves.entries()
         for l in caves.log: print(l)
@@ -593,6 +623,11 @@ def build(src):
     warm = []
     for b in biomes:
         d, gone = src.biome(source[b], b) if source[b] != "vanilla" else (None, [])
+        if ":" in b:   # a provider's own biome: constant climate, colours of the nearest vanilla climate
+            if gone: print(f"{b} ({source[b]}): taken out {' '.join(gone)}")
+            c, twin = climate_other(d)
+            if c: warm.append(b); print(f"{b} ({source[b]}): constant climate, colours of {twin} where it sets none")
+            write(bfile(b), c or d); continue
         if d is not None:
             v = vanilla_biome(b)
             odd = (d["temperature"], d["downfall"]) != (v["temperature"], v["downfall"]) and not {"grass_color", "foliage_color"} <= set(d.get("effects", {}))
@@ -605,6 +640,17 @@ def build(src):
         if c: warm.append(b)
         if c or d: write(f"data/minecraft/worldgen/biome/{b}.json", c or d)
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
+    # A provider's own biome is in none of the vanilla biome tags (structures, mob rules and the mods' ores go by them),
+    # unless its pack says so: it joins the tags of the layout biomes it stands in for.
+    member = json.loads((Path(__file__).parent / "vanilla_biome_tags.json").read_text()); join = {}
+    for t, was in replaced.items():
+        if ":" in t:
+            for tag in {tag for w in was for tag in member.get(w, [])}: join.setdefault(tag, []).append(t)
+    for tag, ids in sorted(join.items()):
+        ns, name = tag.split(":", 1); p = OUT / f"data/{ns}/tags/worldgen/biome/{name}.json"
+        old = json.loads(p.read_text()) if p.exists() else {"values": []}
+        old["values"] += [v for v in sorted(ids) if v not in old["values"]]
+        write(f"data/{ns}/tags/worldgen/biome/{name}.json", old)
     if src:
         n = {b: sum(1 for i in islands if i["biome"] == b) for b in biomes}
         print("biome -> provider (islands)")
