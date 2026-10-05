@@ -375,6 +375,8 @@ class Sources:
     def __init__(self, packs):
         cfg = json.loads((ROOT / "layout" / "biome_sources.json").read_text())
         self.order, self.overrides, self.drop = cfg["order"], cfg.get("biomes", {}), cfg.get("drop_features", [])
+        cw = cfg.get("cave_world") or {}
+        self.cave, self.cave_island = packs.get(cw.get("provider")), cw.get("island", "S1")   # tools/build_caves.py
         self.packs = {k: v for k, v in packs.items() if v.biomes()}
         self.has = {k: set(v.biomes()) for k, v in self.packs.items()}
         self.warnings = []
@@ -457,8 +459,8 @@ def main():
     want = os.environ.get("ISLES_PROVIDERS")   # none | a comma-separated list | unset: everything in vendor/
     packs = {} if want == "none" else prov.load(set(want.split(",")) if want else None)
     src = Sources(packs)
-    if not src.packs:
-        print("no biome provider in vendor/ (or ISLES_PROVIDERS=none): vanilla biomes only"); return
+    if not src.packs and not src.cave:
+        print("no provider in vendor/ (or ISLES_PROVIDERS=none): vanilla biomes only"); return
     OUT = BUILD / "the-isles"
     try: build(src)
     finally: OUT = ROOT / "datapack"
@@ -499,7 +501,13 @@ def build(src):
               mc("gradient", axis=axis, from_coordinate=-100000, to_coordinate=100000, from_value=-100000.0, to_value=100000.0))
     # --- islands
     for i in islands: write(f"data/{NS}/worldgen/density_function/dist/{i['key']}.json", dist_fn(i))
-    write(f"data/{NS}/worldgen/density_function/terrain.json", terrain(islands))
+    land = terrain(islands)
+    caves = None
+    if src and src.cave:   # the cave world inside the spawn island (tools/build_caves.py)
+        import build_caves
+        caves = build_caves.Caves(sys.modules[__name__], src.cave, layout, islands, src.cave_island)
+        land = caves.carve(land); caves.files()
+    write(f"data/{NS}/worldgen/density_function/terrain.json", land)
 
     # --- biome code: one main island per column; stacked tiers switch biome by height
     mains = [i for i in islands if i["layer"] == "main"]
@@ -533,27 +541,32 @@ def build(src):
     # --- noise settings, surface rule, dimension
     final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
                 input=mul(mc("blend_density", input=ref("terrain")), 0.64))), mc("beardifier"))
+    router = {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
+              "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final}
+    if caves: caves.router(router)
     write(f"data/{NS}/worldgen/noise_settings/isles.json", {
         "default_block": "minecraft:stone", "default_fluid": "minecraft:water", "disable_mob_generation": False,
         "legacy_random_source": False, "material_rule": ref("isles"), "noise": noise_range(islands),
-        "noise_router": {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
-                         "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final},
-        "sea_level": MIN_Y, "spawn_target": []})
+        "noise_router": router, "sea_level": MIN_Y, "spawn_target": []})
     # The vanilla overworld only runs its surface rule near the surface (above_preliminary_surface). Without a limit the
     # badlands branch turns a whole column into terracotta bands, and the band lookup throws below y -192
     # (ArrayIndexOutOfBoundsException in MaterialSystem.getBand), which kills chunk generation there.
     near_surface = {"type": "minecraft:stone_depth", "offset": SURFACE_RULE_DEPTH, "add_surface_depth": True,
                     "secondary_depth_range": 0, "surface_type": "floor"}
-    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": [
+    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": ([caves.surface_rule()] if caves else []) + [
         {"type": "minecraft:condition", "if_true": near_surface, "then_run": "minecraft:overworld/surface"}]})
     write(f"data/{NS}/worldgen/biome/void.json", {
         "attributes": {"minecraft:gameplay/natural_mob_spawns": {"argument": {"spawn_costs": {}, "spawns_by_category": {
             k: [] for k in ["ambient", "axolotls", "creature", "misc", "monster", "underground_water_creature", "water_ambient", "water_creature"]}},
             "modifier": "overlay"}, "minecraft:visual/sky_color": "#78a7ff"},
         "carvers": [], "downfall": 0.5, "effects": {"water_color": "#3f76e4"}, "features": [], "has_precipitation": False, "temperature": 0.5})
-    def point(c): return {"temperature": [round(c - 0.03, 4), round(c + 0.03, 4)], "humidity": 0, "continentalness": 0,
-                          "erosion": 0, "weirdness": 0, "depth": 0, "offset": 0}
+    def point(c):
+        p = {"temperature": [round(c - 0.03, 4), round(c + 0.03, 4)], "humidity": 0, "continentalness": 0, "erosion": 0, "weirdness": 0, "depth": 0, "offset": 0}
+        return caves.island_point(p) if caves else p
     entries = [{"biome": VOID_BIOME, "parameters": point(VOID)}] + [{"biome": f"minecraft:{b}", "parameters": point(code[b])} for b in biomes]
+    if caves:
+        entries += caves.entries()
+        for l in caves.log: print(l)
     write("data/minecraft/dimension/overworld.json", {"type": "minecraft:overworld", "generator": {
         "type": "minecraft:noise", "biome_source": {"type": "minecraft:multi_noise", "biomes": entries}, "settings": ref("isles")}})
     dim = json.loads((Path(__file__).parent / "vanilla_overworld_dimension_type.json").read_text())
