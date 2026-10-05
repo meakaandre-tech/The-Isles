@@ -79,7 +79,7 @@ QUICK = os.path.exists(ROOT + '/packtest/nether-quick')   # switch: only the por
 if QUICK: C = HEAD
 # Going through a portal into Nether that does not exist yet generates about 16 chunks on the server thread: 48 s without
 # the mods on the test machine, and the client was disconnected meanwhile. The first two portal tests therefore find their
-# destination generated (they measure where the portal goes); PORTALFRESH below goes into fresh terrain and is timed.
+# destination generated (they measure where the portal goes).
 PT = sorted(ISL.values(), key=lambda i: i['y_top']); PT = [PT[0], PT[-1]]
 C = C + ['say SECTION portal destinations'] + [N + f'forceload add {i["x"] - 24} {i["z"] - 24} {i["x"] + 24} {i["z"] + 24}' for i in PT] + [
     '#poll 900 ' + N + f'execute if loaded {PT[1]["x"] + 24} 0 {PT[1]["z"] + 24} run say LOADED portal-destinations ## LOADED portal-destinations']
@@ -115,6 +115,7 @@ for tag, i in (('low', lo), ('high', hi)):
     S += [f'cmd say PORTALTEST overworld-{tag} island {i["id"]} top {i["y_top"]}', f'cmd forceload add {x} {z}', f'cmd tp packtest {x} {i["y_top"] + 30} {z}', 'sleep 25',
           f'cmd execute positioned {x} 0 {z} positioned over motion_blocking run summon minecraft:marker ~ ~ ~ {{Tags:["pf{tag}"]}}',
           f'cmd data get entity @e[type=minecraft:marker,tag=pf{tag},limit=1] Pos']
+    S += [f'cmd execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run tp packtest ~6 ~ ~3', 'sleep 2']   # not inside the frame while it is lit
     S += frame('', f'execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run ')
     S += [f'cmd execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run tp packtest ~ ~ ~', 'sleep 40'] + where(f'through the overworld-{tag} portal') + ['shot',
           'cmd execute at packtest run tp packtest ~3 ~ ~3', 'sleep 2', 'cmd forceload remove all']
