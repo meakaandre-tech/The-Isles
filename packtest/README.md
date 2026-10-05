@@ -92,6 +92,12 @@ build (run 31f9796; the released zips are the vanilla build, which the generator
   existed in that job (branches `ci-key-*` / `ci-vendor-*`). That put ciphertext of the packs on a public repository,
   which is still an upload of them; the hand-over was taken out again (scripts and workflow step) and the leftover
   branches are to be deleted. With those two packs the pack is now built and checked locally only.
+* **Geophilic alone** (run 4a96523, partial: what the workflow can still test, and the fall-back when Overrealm is not
+  there - 30 biomes from Geophilic, 18 vanilla). No error or warning from the data packs. Geophilic's desert on C5 (55
+  cacti, 61 dead bushes, 71 bone blocks, sandstone), forest on A6 (2,680 logs, 26,304 leaves, 2,101 leaf litter), birch
+  forest on f2 (2,595 logs, 1,000 flowers, 6 pumpkins); no snow on any of them, nothing in the open under the twelve
+  sampled islands (whole footprints: air only). The run's verdict says FAIL because a partial run skips the sections
+  three checks need (build limits, reactor); nothing was published, the release is still the one of run 31f9796.
 * **Loading.** No error or warning from the data packs: 0 lines with Fabric API only, the same single mod warning as
   before with the whole mod pack.
 * **What grows** (96x96 columns around the centre of an island, from the upper part of the body to 60 above the top;
