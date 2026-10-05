@@ -114,9 +114,22 @@ def per_layer(height):
         h = dict(height); h["min_inclusive"] = anchor(height["min_inclusive"], l); h["max_inclusive"] = anchor(height["max_inclusive"], l)
         return h
     return {"type": "minecraft:weighted_list", "distribution": [{"data": one(l), "weight": 1} for l in LAYERS]}
+# count_on_every_layer (fungi, forest vegetation, deltas, basalt columns) walks down the whole column once per floor it
+# finds: with twelve layers that was a third of the generation time. Replaced by random heights in every layer, each
+# dropped onto the floor below it (at most 32 blocks; FLOOR_TRIES makes up for the attempts that find none).
+FLOOR_TRIES = 12
+def on_floors(count):
+    air = {"type": "minecraft:matching_block_tag", "tag": "minecraft:air"}
+    return [mc("count", count=FLOOR_TRIES), mc("count", count=count), mc("in_square"),
+            mc("height_range", height=mc("uniform", min_inclusive={"absolute": 32}, max_inclusive={"below_top": 8})),
+            mc("block_predicate_filter", predicate=air),
+            mc("environment_scan", direction_of_search="down", max_steps=32, target_condition={"type": "minecraft:solid"}, allowed_search_condition=air),
+            mc("offset", x=0, y=1, z=0)]
 def layered_feature(d):
     """every layer gets the attempts the vanilla Nether gets per chunk"""
     d = copy.deepcopy(d)
+    if d["placement"][0]["type"] == "minecraft:count_on_every_layer":
+        d["placement"] = on_floors(d["placement"][0]["count"]) + d["placement"][1:]
     for p in d["placement"]:
         if p["type"] == "minecraft:height_range": p["height"] = per_layer(p["height"])
     d["placement"].insert(0, mc("count", count=len(LAYERS)))
