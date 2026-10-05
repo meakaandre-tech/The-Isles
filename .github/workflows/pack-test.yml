@@ -5,13 +5,16 @@ name: Pack test
 # See packtest/README.md.
 on:
   push:
-    branches: ["pack-test"]
+    branches: ["pack-test", "dwarfhollow"]
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: pack-test-${{ github.ref }}
   cancel-in-progress: true
+env:
+  # a run of another branch than pack-test keeps its logs and key branches apart (ci-logs-dh-*, ci-key-dh-*)
+  SUFFIX: ${{ github.ref_name == 'pack-test' && ' ' || 'dh-' }}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -53,7 +56,7 @@ jobs:
           want=$( (cat packtest/providers 2>/dev/null || true) | tr -s ' \n' ',,' | sed 's/^,//;s/,$//')
           if [ -n "$want" ]; then
             (python3 tools/providers.py fetch 2>&1 || true) | tee /tmp/ci/build.txt
-            (bash packtest/tools/vendor-recv.sh "${{ matrix.part }}" "$want" 2>&1 || true) | tee -a /tmp/ci/build.txt
+            (bash packtest/tools/vendor-recv.sh "${SUFFIX// /}${{ matrix.part }}" "$want" 2>&1 || true) | tee -a /tmp/ci/build.txt
           fi
           echo "ISLES_PROVIDERS=${want:-none}" >> "$GITHUB_ENV"
           ISLES_PROVIDERS=${want:-none} python3 tools/build_pack.py | tee -a /tmp/ci/build.txt
@@ -71,8 +74,8 @@ jobs:
         env:
           PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
           PHASES: ${{ steps.ph.outputs.phases }}
-          LOGS_BRANCH: ci-logs-${{ matrix.part }}
-        run: bash packtest/run.sh
+          PART: ${{ matrix.part }}
+        run: LOGS_BRANCH="ci-logs-${SUFFIX// /}${PART}" bash packtest/run.sh
       - name: Keep the logs for the report job
         if: always() && steps.ph.outputs.phases != ''
         shell: bash
@@ -116,6 +119,7 @@ jobs:
           git add -A && git commit -q -m "Pack test for ${GITHUB_SHA}"
           # a partial run (packtest/quick) does not replace the logs of the last full one
           if [ -f "$GITHUB_WORKSPACE/packtest/quick" ]; then to=ci-logs-quick; else to=ci-logs; fi
+          [ "${SUFFIX// /}" = "" ] || to=ci-logs-dh
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "ci-logs:$to"
       - name: Publish the tested data pack
         env:
@@ -123,7 +127,7 @@ jobs:
         shell: bash
         run: |
           # only when the run says so: packtest/publish exists and the report's verdict (first line of verdict.txt) is PASS
-          if [ -f packtest/publish ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
+          if [ -f packtest/publish ] && [ "${GITHUB_REF_NAME}" = pack-test ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
             gh release delete pack-test-latest -y --cleanup-tag -R "${{ github.repository }}" || true
             sleep 3
             gh release create pack-test-latest /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \

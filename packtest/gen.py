@@ -47,6 +47,9 @@ json.dump({"pack": {"description": "The Isles pack test probes", "min_format": 1
 def fn(name, lines): open(f'{F}/{name}.mcfunction', 'w').write('\n'.join(lines) + '\n')
 
 biomes = sorted({'minecraft:' + i['biome'] for i in L['islands']}) + ['the_isles:void']
+CAVE_DIR = ROOT + '/build/the-isles/data/dwho/worldgen/biome'      # the cave world inside the spawn island (tools/build_caves.py), when built
+CAVE_BIOMES = sorted('dwho:' + f[:-5] for f in os.listdir(CAVE_DIR)) if os.path.isdir(CAVE_DIR) else []
+biomes += CAVE_BIOMES
 fn('biome', [f'execute if biome ~ ~ ~ {b} run say BIOME {b}' for b in biomes] +
    ['execute ' + ' '.join(f'unless biome ~ ~ ~ {b}' for b in biomes) + ' run say BIOME other'])
 TOPS = ['air', 'water', 'ice', 'packed_ice', 'blue_ice', 'snow', 'snow_block', 'powder_snow', 'grass_block', 'dirt', 'sand', 'red_sand', 'sandstone',
@@ -68,6 +71,12 @@ fn('col', ['kill @e[type=minecraft:marker,tag=pt]',
            'execute positioned over motion_blocking_no_leaves if block ~ ~ ~ minecraft:snow run say SNOWLAYER',
            'execute positioned over motion_blocking_no_leaves run function packtest:biome',
            'kill @e[type=minecraft:marker,tag=pt]'])
+
+# packtest:vprofile - run at the top of a column: says "V <n>" for every second block below that is air (n blocks down), down 640 blocks;
+# packtest:hprofile - the same along +x, 420 blocks. Solid and open stretches of a line through an island.
+fn('vprofile', [f'execute if block ~ ~-{n} ~ #minecraft:air run say V {n}' for n in range(0, 640, 2)])
+fn('hprofile', [f'execute if block ~{n} ~ ~ #minecraft:air run say H {n}' for n in range(0, 420, 2)])
+fn('vbiome', [f'execute positioned ~ ~-{n} ~ run function packtest:biome' for n in range(40, 520, 40)])
 
 def region_fn(name, cx0, cz0, cx1, cz1, dim=None):
     """packtest:count_<name> says "PREGEN <name> done" once every chunk of the region is loaded"""
@@ -276,6 +285,40 @@ def biome_scans():
         c += ['forceload remove all']
     return c
 
+# ---- the cave world inside the spawn island
+SINK = L.get('sinkholes', [])
+CAVE_COLS = [(0, 0), (300, 0), (-300, 200), (200, -400), (600, 100), (-650, 450), (850, -300), (-900, -500), (1000, 300), (0, 1050), (-1080, 0), (560, -900)]
+CAVE_BLOCKS = ['minecraft:air', 'minecraft:water', 'minecraft:lava', 'minecraft:light', 'minecraft:grass_block', 'minecraft:mycelium', 'minecraft:mud', 'minecraft:moss_block',
+               'minecraft:sand', 'minecraft:packed_ice', 'minecraft:blue_ice', 'minecraft:snow_block', 'minecraft:calcite', 'minecraft:amethyst_block', 'minecraft:honeycomb_block',
+               'minecraft:dripstone_block', 'minecraft:deepslate', 'minecraft:tuff', 'minecraft:basalt', 'minecraft:sculk', 'minecraft:prismarine', 'minecraft:gravel',
+               '#minecraft:logs', '#minecraft:leaves', '#minecraft:flowers', 'minecraft:short_grass', 'minecraft:red_mushroom_block', 'minecraft:brown_mushroom_block',
+               'minecraft:coal_ore', 'minecraft:iron_ore', 'minecraft:copper_ore', 'minecraft:gold_ore', 'minecraft:redstone_ore', 'minecraft:lapis_ore', 'minecraft:diamond_ore',
+               'minecraft:emerald_ore', 'minecraft:deepslate_iron_ore', 'minecraft:deepslate_diamond_ore', 'minecraft:spawner', 'minecraft:chest', 'minecraft:stone']
+def cave_probes():
+    """Lines through the spawn island: 12 columns from above the surface down past the underside (roof, caverns, floor shell), the
+    sinkholes, four lines outwards through the rim at two depths (side shell), the biome every 40 blocks down, and what a 48x48
+    column box holds in three depth bands."""
+    s1 = I['S1']; c = ['say SECTION caves']
+    cols = [('col', x, z) for x, z in CAVE_COLS] + [(f'sink-{k["id"]}', k['x'], k['z']) for k in SINK]
+    if SINK: cols.append(('ramp-' + SINK[0]['id'], SINK[0]['x'] + SINK[0]['radius'] - 4, SINK[0]['z'] + 6))
+    for tag, x, z in cols:
+        c += [f'forceload add {x} {z}', f'#poll 300 execute if loaded {x} 0 {z} run say LOADED {tag} ## LOADED {tag}', f'say VPROFILE {tag} {x} {z} from 90',
+              f'execute positioned {x} 90 {z} run function packtest:vprofile', f'say VBIOME {tag} {x} {z} from 90 every 40',
+              f'execute positioned {x} 90 {z} run function packtest:vbiome', 'forceload remove all']
+    for tag, x, z, y in [('east', 800, 0, -60), ('east-deep', 800, 0, -160), ('south', 0, 800, -60), ('diag', 620, 620, -100)]:
+        dx, dz = (1, 0) if tag.startswith('east') else (0, 0)
+        if tag.startswith('east'):
+            c += [f'forceload add {x} {z} {x + 420} {z}', f'#poll 300 execute if loaded {x} 0 {z} if loaded {x + 420} 0 {z} if loaded {x + 208} 0 {z} run say LOADED h-{tag} ## LOADED h-{tag}',
+                  f'say HPROFILE {tag} {x} {y} {z}', f'execute positioned {x} {y} {z} run function packtest:hprofile', 'forceload remove all']
+    for tag, x, z in [('centre', 0, 0), ('mid', 420, -260), ('outer', -780, 380)]:
+        x0, z0 = x // 16 * 16, z // 16 * 16
+        c += [f'forceload add {x0} {z0} {x0 + 47} {z0 + 47}', f'#time CAVEGEN-{tag}-9-chunks', f'#poll 300 execute if loaded {x0} 0 {z0} if loaded {x0 + 47} 0 {z0 + 47} run say LOADED box-{tag} ## LOADED box-{tag}', '#time']
+        for band, (y0, y1) in (('high', (-150, -12)), ('mid', (-290, -151)), ('low', (-395, -291))):
+            c += [f'say SCANBOX cave-{tag}-{band} 48x48 columns at {x0} {z0}, y {y0}..{y1}, volume {48 * 48 * (y1 - y0 + 1)}']
+            for b in CAVE_BLOCKS: c += [f'say SCAN cave-{tag}-{band} {b}', f'fill {x0} {y0} {z0} {x0 + 47} {y1} {z0 + 47} minecraft:structure_void replace {b}']
+        c += ['forceload remove all']
+    return c + ['tick query']
+
 def write(name, lines):
     open(f'{OUT}/commands-{name}.txt', 'w').write('\n'.join(lines + [f'say SECTION end {name}']) + '\n')
 
@@ -286,7 +329,8 @@ write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUI
       + (structures() if on('structures') else [])
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
       + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
-      + ['tick query'] + (churn() if on('churn') else []) + (biome_scans() if on('biomes') else []))
+      + ['tick query'] + (churn() if on('churn') else []) + (biome_scans() if on('biomes') else [])
+      + (cave_probes() if CAVE_BIOMES and on('caves') else []))
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
 write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER)

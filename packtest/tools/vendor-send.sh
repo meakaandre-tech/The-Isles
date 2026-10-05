@@ -14,7 +14,7 @@ P
 T=$(mktemp -d); end=$(( $(date +%s) + 60 * ${1:-30} )); touch $T/served
 echo "sending: $files"
 while [ $(date +%s) -lt $end ]; do
-  for part in vanilla pack perf nether; do
+  for part in vanilla pack perf nether dh-vanilla dh-pack dh-perf dh-nether; do
     sha=$(git ls-remote origin "refs/heads/ci-key-$part" | cut -f1)
     [ -z "$sha" ] && continue; grep -q "$sha" $T/served && continue
     git fetch -q origin "ci-key-$part" || continue
@@ -30,5 +30,5 @@ while [ $(date +%s) -lt $end ]; do
   done
   sleep 8
 done
-for part in vanilla pack perf nether; do git push -q origin --delete "ci-vendor-$part" "ci-key-$part" 2>/dev/null; done
+for part in vanilla pack perf nether dh-vanilla dh-pack dh-perf dh-nether; do git push -q origin --delete "ci-vendor-$part" "ci-key-$part" 2>/dev/null; done
 rm -rf $T; echo "done, branches deleted"

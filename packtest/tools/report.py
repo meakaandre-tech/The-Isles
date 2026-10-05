@@ -112,6 +112,45 @@ def structure_table(name, log, probes, scans):
         if 'y-of-the-frames' in k or k.startswith('floor-under'): print(f'   {k}: {" | ".join(x[:60] for x in v)}')
         if k.startswith('floor-under') and filled(v): fails.append(f'{name}: {k}: {filled(v)} blocks on the world floor')
 
+def cave_report(log):
+    """VPROFILE/HPROFILE: the open stretches of lines through the spawn island (every second block is tested)"""
+    cur, runs, bio = None, {}, {}
+    for l in lines(log):
+        t, m = msg(l)
+        g = re.match(r'(VPROFILE|HPROFILE|VBIOME) (\S+) (.*)', m)
+        if g: cur = (g.group(1), g.group(2), g.group(3)); (bio if g.group(1) == 'VBIOME' else runs).setdefault(cur, []); continue
+        if cur and cur[0] != 'VBIOME' and re.match(r'[VH] \d+$', m): runs[cur].append(int(m[2:]))
+        elif cur and cur[0] == 'VBIOME' and m.startswith('BIOME '): bio[cur].append(m[6:].replace('minecraft:', '').replace('dwho:', 'dh:'))
+        elif m.startswith(('SECTION', 'LOADED', 'SCANBOX', 'say ')): cur = None
+    if not runs: return
+    print('\n-- cave world: lines through the spawn island (open stretches; V: blocks below y 90, H: blocks east of the start)')
+    for (kind, tag, where), v in runs.items():
+        seg, start, prev = [], None, None
+        for n in v:
+            if start is None: start = prev = n
+            elif n - prev > 2: seg.append((start, prev)); start = n
+            prev = n
+        if start is not None: seg.append((start, prev))
+        if kind == 'VPROFILE':
+            # first stretch: the sky down to the ground; last: the void under the island; between them the caverns
+            top = seg[0][1] + 2 if seg and seg[0][0] == 0 else 0
+            under = seg[-1][0] if seg and seg[-1][1] >= 636 else None
+            mid = [s for s in seg[1:] if not (under is not None and s[0] == under)] if top else seg
+            ground, bottom = 90 - top, (90 - under) if under is not None else None
+            roof = (mid[0][0] - top) if mid else None
+            floor = (under - mid[-1][1] - 2) if mid and under is not None else None
+            opn = sum(b - a + 2 for a, b in mid)
+            print(f'   {tag:<12}{where:<22} ground y {ground:>4}, underside y {str(bottom):>5}, rock over the first cavern {str(roof):>4}, rock under the last {str(floor):>4}, '
+                  f'{len(mid)} caverns, {opn} open blocks; open at y ' + ' '.join(f'{90 - b}..{90 - a}' for a, b in mid[:14]))
+            if tag.startswith('col') and mid and (roof is not None and roof < 30 or floor is not None and floor < 12):
+                fails.append(f'cave world: thin shell at {tag} {where}: {roof} blocks of roof, {floor} of floor')
+        else:
+            last = seg[-1] if seg else None
+            shell = (last[0] - seg[-2][1] - 2) if last and last[1] >= 416 and len(seg) > 1 else None
+            print(f'   {tag:<12}{where:<22} open stretches (blocks east) ' + ' '.join(f'{a}..{b}' for a, b in seg[:16]) + f'; rock between the last cavern and the void: {shell}')
+    for (kind, tag, where), v in bio.items():
+        print(f'   biomes {tag:<12} ' + ' | '.join(v))
+
 def phase_times():
     """run.txt -> {phase: [(label, value)]} for the TIME and HEAP lines"""
     res, cur = {}, None
@@ -218,6 +257,7 @@ def server_report(name, isles=True):
             print('      none of: ' + ' '.join(b.split(':')[1] for b, n in d.items() if n == 0))
             if any(n is None for n in d.values()): print('      no answer: ' + ' '.join(b for b, n in d.items() if n is None))
     structure_table(name, log, probes, scans)
+    cave_report(log)
     for start in ('BODY', 'MID', 'COUNT', 'LOCATE', 'DIMCOUNT', 'OIL', 'CHECK', 'WORLDSPAWN', 'VIEW'):
         d = parse_tagged(log, start)
         if d:
