@@ -1,0 +1,11 @@
+{
+ "type": "minecraft:cache",
+ "input": {
+  "type": "minecraft:range_choice",
+  "input": "the_isles:dist/185_j1",
+  "min_inclusive": 0,
+  "max_exclusive": 282,
+  "when_in_range": 1,
+  "when_out_of_range": 0
+ }
+}

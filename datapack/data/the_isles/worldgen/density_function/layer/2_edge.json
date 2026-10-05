@@ -1,0 +1,58 @@
+{
+ "type": "minecraft:slice",
+ "axis": "y",
+ "coordinate": 0,
+ "input": {
+  "type": "minecraft:add",
+  "left": {
+   "type": "minecraft:add",
+   "left": {
+    "type": "minecraft:add",
+    "left": {
+     "type": "minecraft:mul",
+     "left": "the_isles:inside/235_pt3",
+     "right": {
+      "type": "minecraft:mul",
+      "left": "the_isles:edge/235_pt3",
+      "right": 9.0
+     }
+    },
+    "right": {
+     "type": "minecraft:mul",
+     "left": "the_isles:inside/237_qt3",
+     "right": {
+      "type": "minecraft:mul",
+      "left": "the_isles:edge/237_qt3",
+      "right": 5.75
+     }
+    }
+   },
+   "right": {
+    "type": "minecraft:mul",
+    "left": "the_isles:inside/239_jt3",
+    "right": {
+     "type": "minecraft:mul",
+     "left": "the_isles:edge/239_jt3",
+     "right": 6.5
+    }
+   }
+  },
+  "right": {
+   "type": "minecraft:mul",
+   "left": {
+    "type": "minecraft:sub",
+    "left": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": "the_isles:inside/235_pt3",
+      "right": "the_isles:inside/237_qt3"
+     },
+     "right": "the_isles:inside/239_jt3"
+    },
+    "right": 1
+   },
+   "right": 1000.0
+  }
+ }
+}

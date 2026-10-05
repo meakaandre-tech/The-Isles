@@ -1,0 +1,26 @@
+{
+ "type": "minecraft:slice",
+ "axis": "y",
+ "coordinate": 0,
+ "input": {
+  "type": "minecraft:add",
+  "left": {
+   "type": "minecraft:add",
+   "left": {
+    "type": "minecraft:mul",
+    "left": "the_isles:inside/235_pt3",
+    "right": "the_isles:surface/235_pt3"
+   },
+   "right": {
+    "type": "minecraft:mul",
+    "left": "the_isles:inside/237_qt3",
+    "right": "the_isles:surface/237_qt3"
+   }
+  },
+  "right": {
+   "type": "minecraft:mul",
+   "left": "the_isles:inside/239_jt3",
+   "right": "the_isles:surface/239_jt3"
+  }
+ }
+}

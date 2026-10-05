@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Builds the The Isles data pack (Minecraft Java 26.3, pack format 121) from layout/islands.json.
 
-Every island in the layout becomes a density function; a coarse x/z grid selects which
-islands are evaluated at a position, so cost per sample stays small. Biomes are assigned
-per island through the multi-noise "temperature" input, which carries a per-island code.
+Every island in the layout becomes a set of flat (x/z) density functions; per layer of islands that do not touch,
+one function turns them into terrain (see terrain()). Biomes are assigned per island through the multi-noise
+"temperature" input, which carries a per-island code.
 """
 import json, math, os, shutil, sys
 from pathlib import Path
@@ -126,7 +126,16 @@ def write(rel, obj, out=None):
 def dist_fn(i):
     return mc("slice", axis="y", coordinate=0, input=mc("distance_to_point", metric="euclidean", point=[i["x"], 0, i["z"]]))
 
-def island_density(i):
+def tree(fn, items):
+    """fold(fn, items) as a balanced tree (a chain of 200 nested functions is a deep recursion for the game's parser)"""
+    items = list(items)
+    while len(items) > 1: items = [fn(items[k], items[k + 1]) if k + 1 < len(items) else items[k] for k in range(0, len(items), 2)]
+    return items[0]
+def flat(f): return mc("slice", axis="y", coordinate=0, input=f)   # f only depends on x and z: computed once per column
+
+def island_fields(i):
+    """The parts of an island that only depend on x and z: (inside its footprint 1/0, surface height, bottom height, edge term).
+    Its density is  clamp(min((surface - y) / 8, (y - bottom) / 12, edge) + 0.55 * rag, -1, 1)  inside the footprint and -1 outside."""
     R, top, t = i["radius"], i["y_top"], i["thickness"]
     basin = i["kind"] == "basin"
     amp = 0 if basin else min(RELIEF.get(i.get("layout_biome", i["biome"]), DEFAULT_RELIEF), 0.5 * t)   # the shape follows the layout biome
@@ -146,8 +155,41 @@ def island_density(i):
     body = max(12, (t - amp - (0.3 * t if basin else 0)) / 1.3)
     taper = add(mul(0.4, mc("sqrt", input=c)), mul(0.6, c))
     bottom = sub(surface, mul(mul(body, taper), add(1, mul(0.3, UNDER))))
-    solid = dmin(dmin(mul(sub(surface, Y), 1 / 8), mul(sub(Y, bottom), 1 / 12)), mul(e, R / 12))
-    return choice(d, 0, R + PAD, clamp(add(solid, mul(0.55, RAG)), -1, 1), -1)
+    write(f"data/{NS}/worldgen/density_function/inside/{i['key']}.json", mc("cache", input=choice(d, 0, R + PAD, 1, 0)))
+    return ref(f"inside/{i['key']}"), surface, bottom, mul(e, R / 12)
+
+def layers(islands):
+    """groups of islands whose padded footprints do not touch (stacked tiers and the islets above an island go to further groups)"""
+    out = []
+    for i in sorted(islands, key=lambda i: -i["radius"]):
+        for g in out:
+            if all(math.hypot(i["x"] - j["x"], i["z"] - j["z"]) > i["radius"] + j["radius"] + 2 * PAD + 8 for j in g): g.append(i); break
+        else: out.append([i])
+    return out
+
+def terrain(islands):
+    """The density of the world: the highest of the layers' densities.
+
+    The 26.3 density functions are evaluated for a whole chunk at once and nothing in them is skipped: a range_choice or
+    an interval_select computes every branch for every point and then picks. A function per island therefore costs every
+    chunk the sum of all 240 islands, wherever it is (measured: 60 to 80% of the generation time, void as much as land).
+    So everything that only depends on x and z is combined per layer on one flat slice (25 points per chunk instead of
+    12,725) - surface, bottom and edge of whichever island of the layer the column belongs to - and only the last step,
+    the same for every island, runs on the whole chunk, once per layer. The values are the same as before."""
+    BIG = 1000.0
+    parts = []
+    for n, group in enumerate(layers(islands)):
+        f = {i["key"]: island_fields(i) for i in sorted(group, key=lambda i: i["key"])}
+        inside = [v[0] for v in f.values()]
+        fields = {"surface": tree(add, [mul(v[0], v[1]) for v in f.values()]), "bottom": tree(add, [mul(v[0], v[2]) for v in f.values()]),
+                  # the island's edge term inside a footprint, -BIG (nothing) outside
+                  "edge": add(tree(add, [mul(v[0], v[3]) for v in f.values()]), mul(sub(tree(add, inside), 1), BIG))}
+        for k, v in fields.items(): write(f"data/{NS}/worldgen/density_function/layer/{n}_{k}.json", flat(v))
+        S, B, E = (ref(f"layer/{n}_{k}") for k in ("surface", "bottom", "edge"))
+        solid = dmin(dmin(mul(sub(S, Y), 1 / 8), mul(sub(Y, B), 1 / 12)), E)
+        parts.append(clamp(add(solid, mul(0.55, RAG)), -1, 1))
+        print(f"layer {n}: {len(group)} islands")
+    return tree(dmax, parts)
 
 def grid(islands, leaf):
     """interval_select on x then z; each leaf gets the islands whose padded footprint touches that cell."""
@@ -290,11 +332,8 @@ def main():
         write(f"data/{NS}/worldgen/density_function/{axis}.json",
               mc("gradient", axis=axis, from_coordinate=-100000, to_coordinate=100000, from_value=-100000.0, to_value=100000.0))
     # --- islands
-    for i in islands:
-        write(f"data/{NS}/worldgen/density_function/dist/{i['key']}.json", dist_fn(i))
-        write(f"data/{NS}/worldgen/density_function/island/{i['key']}.json", island_density(i))
-    write(f"data/{NS}/worldgen/density_function/terrain.json",
-          grid(islands, lambda hit: fold(dmax, [ref(f"island/{i['key']}") for i in hit]) if hit else -1))
+    for i in islands: write(f"data/{NS}/worldgen/density_function/dist/{i['key']}.json", dist_fn(i))
+    write(f"data/{NS}/worldgen/density_function/terrain.json", terrain(islands))
 
     # --- biome code: one main island per column; stacked tiers switch biome by height
     mains = [i for i in islands if i["layer"] == "main"]
@@ -315,8 +354,12 @@ def main():
         # edge) instead of at the full radius: the rim is drawn in by up to a fifth of the radius, and every empty
         # column inside the biome is a place where a structure can start with nothing under it.
         return choice(ref(f"edge/{i['key']}"), -BIOME_MARGIN / i["radius"], 2, val, 0)
-    write(f"data/{NS}/worldgen/density_function/biome_code.json",
-          add(VOID, grid(mains, lambda hit: fold(add, [biome_term(i) for i in hit]) if hit else 0)))
+    def has_stack(i): return i["id"] == i["cluster"] + "1" and i["cluster"] in tiers
+    # one flat slice for the islands with one biome (through the grid: a single lookup, as /locate does, only computes its
+    # own cell), and the three stacks, whose biome changes with the height
+    write(f"data/{NS}/worldgen/density_function/biome_code.json", tree(add, [VOID,
+          flat(grid([i for i in mains if not has_stack(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0))]
+          + [biome_term(i) for i in mains if has_stack(i)]))
 
     # --- noise settings, surface rule, dimension
     final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
