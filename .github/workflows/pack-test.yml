@@ -109,8 +109,8 @@ jobs:
           ISLES_PROVIDERS=none python3 tools/build_pack.py > /dev/null
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
           (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
-          python3 packtest/tools/report.py /tmp/ci > /tmp/ci/report.txt 2>&1
-          head -80 /tmp/ci/report.txt; cat /tmp/ci/verdict.txt
+          python3 packtest/tools/report.py /tmp/ci > /tmp/ci/report.txt 2>&1 || { echo "FAIL"; echo "- report.py failed, see the end of report.txt"; } > /tmp/ci/verdict.txt
+          head -80 /tmp/ci/report.txt; tail -5 /tmp/ci/report.txt; cat /tmp/ci/verdict.txt
           echo "${GITHUB_SHA}" > /tmp/ci/commit.txt
           cd /tmp/ci
           git init -q -b ci-logs
