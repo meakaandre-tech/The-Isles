@@ -107,7 +107,7 @@ def surface_rule():
 def anchor(a, l):
     if "absolute" in a: return {"absolute": a["absolute"] - 32 + l["lava"]}
     if "above_bottom" in a: return {"absolute": l["bottom"] + a["above_bottom"]}
-    return {"absolute": l["top"] - a["below_top"]}
+    return {"absolute": l["top"] - 1 - a["below_top"]}
 def per_layer(height):
     """a height provider of the vanilla Nether -> the same one in a random layer"""
     def one(l):

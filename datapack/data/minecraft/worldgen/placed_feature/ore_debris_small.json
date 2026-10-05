@@ -17,7 +17,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -1664
+        "absolute": -1665
        },
        "min_inclusive": {
         "absolute": -2008
@@ -29,7 +29,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -1344
+        "absolute": -1345
        },
        "min_inclusive": {
         "absolute": -1648
@@ -41,7 +41,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -1064
+        "absolute": -1065
        },
        "min_inclusive": {
         "absolute": -1328
@@ -53,7 +53,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -704
+        "absolute": -705
        },
        "min_inclusive": {
         "absolute": -1048
@@ -65,7 +65,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -384
+        "absolute": -385
        },
        "min_inclusive": {
         "absolute": -688
@@ -77,7 +77,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": -24
+        "absolute": -25
        },
        "min_inclusive": {
         "absolute": -368
@@ -89,7 +89,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 296
+        "absolute": 295
        },
        "min_inclusive": {
         "absolute": -8
@@ -101,7 +101,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 656
+        "absolute": 655
        },
        "min_inclusive": {
         "absolute": 312
@@ -113,7 +113,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 936
+        "absolute": 935
        },
        "min_inclusive": {
         "absolute": 672
@@ -125,7 +125,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 1256
+        "absolute": 1255
        },
        "min_inclusive": {
         "absolute": 952
@@ -137,7 +137,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 1616
+        "absolute": 1615
        },
        "min_inclusive": {
         "absolute": 1272
@@ -149,7 +149,7 @@
       "data": {
        "type": "minecraft:uniform",
        "max_inclusive": {
-        "absolute": 2024
+        "absolute": 2023
        },
        "min_inclusive": {
         "absolute": 1632
