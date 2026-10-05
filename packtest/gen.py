@@ -95,16 +95,16 @@ def island_probes():
               f'say MID {k} {i["y_top"] - i["thickness"] // 3}', f'execute positioned {x} {i["y_top"] - i["thickness"] // 3} {z} run function packtest:at',
               f'execute positioned {x} {i["y_top"] - i["thickness"] // 3} {z} run function packtest:biome',
               f'execute if biome {x} {i["y_top"] + 3} {z} minecraft:{i["biome"]} run say TOPBIOMEOK {k}',
-              f'forceload remove {x} {z} {x + half} {z}', f'forceload remove {x + out} {z}']
-    return c
+              ]
+    # tickets are dropped once, at the end: removing and re-adding tickets on neighbouring chunks within seconds is what the "churn" section does
+    return c + ['forceload remove all']
 
 def void_probes():
     c = ['say SECTION void']
     for n, (x, z) in enumerate(void_points()):
         c += [f'forceload add {x} {z}', f'#poll 120 execute if loaded {x} 0 {z} run say LOADED void{n} ## LOADED void{n}']
         probe(c, f'void{n} void', x, z)
-        c += [f'forceload remove {x} {z}']
-    return c
+    return c + ['forceload remove all']
 
 def limits():
     """build limits: blocks can be placed at the lowest and highest layer, not beyond"""
@@ -124,7 +124,7 @@ REG_LAND = (20, -8, 35, 7)       # 16x16 chunks inside the spawn island (600 blo
 p = I['P1']; REG_TIER = (p['x'] // 16 - 4, p['z'] // 16 - 4, p['x'] // 16 + 3, p['z'] // 16 + 3)   # 8x8 chunks through three stacked tiers
 v = void_points()[0]; REG_VOID = (v[0] // 16 - 8, v[1] // 16 - 8, v[0] // 16 + 7, v[1] // 16 + 7)
 
-HEAD = ['say SECTION start', 'scoreboard objectives add pt dummy', 'gamerule max_block_modifications 100000000', 'gamerule spawn_radius 0', 'tick query']
+HEAD = ['say SECTION start', 'scoreboard objectives add pt dummy', 'gamerule max_block_modifications 100000000', 'gamerule respawn_radius 0', 'tick query']
 ANIMALS = ['cow', 'sheep', 'pig', 'chicken', 'horse', 'rabbit', 'wolf', 'fox', 'llama', 'goat', 'frog', 'parrot', 'panda', 'camel', 'armadillo',
            'polar_bear', 'donkey', 'mooshroom', 'turtle', 'ocelot', 'cat']
 def animals():
@@ -153,12 +153,22 @@ def dims():
           'execute in minecraft:the_end run forceload remove 0 0']
     return c
 
+def churn():
+    """tickets on the same chunks added and removed within seconds (what the first version of the island probes did); in the first runs a
+    chunk worker died with "Parent chunk missing" and no chunk loaded any more. Run last, on both generators."""
+    c = ['say SECTION churn']
+    for k in range(6):
+        x = -2000 - 40 * k
+        c += [f'forceload add {x} 2000 {x + 64} 2000', f'forceload add {x + 200} 2000', '#sleep 4', f'forceload remove {x} 2000 {x + 64} 2000', f'forceload remove {x + 200} 2000']
+    c += ['#sleep 5', 'forceload add 2000 2000', '#poll 120 execute if loaded 2000 0 2000 run say CHURN chunks-still-load ## CHURN chunks-still-load', 'forceload remove all']
+    return c
+
 def write(name, lines):
     open(f'{OUT}/commands-{name}.txt', 'w').write('\n'.join(lines + [f'say SECTION end {name}']) + '\n')
 
 # vanilla = Fabric API + The Isles only; baseline = the same server without The Isles (vanilla generator), timing only
 write('vanilla', HEAD + island_probes() + void_probes() + limits() + pregen('land', *REG_LAND) + animals() + pregen('void', *REG_VOID)
-      + pregen('tiers', *REG_TIER) + dims() + structures() + ['tick query'])
-write('baseline', HEAD + pregen('land', *REG_LAND) + ['tick query'])
+      + pregen('tiers', *REG_TIER) + dims() + structures() + ['tick query'] + churn())
+write('baseline', HEAD + pregen('land', *REG_LAND) + ['tick query'] + churn())
 json.dump({'sample': SAMPLE, 'void': void_points(), 'regions': {'land': REG_LAND, 'void': REG_VOID, 'tiers': REG_TIER}}, open(OUT + '/gen.json', 'w'))
 print('sample islands:', ' '.join(SAMPLE))

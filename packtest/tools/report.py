@@ -18,10 +18,10 @@ def lines(name):
     return open(p, errors='replace').read().split('\n') if os.path.exists(p) else []
 def msg(l):
     m = re.match(r'^\[[\d:]+\] \[([^\]]*)\]: (.*)$', l)
-    return (m.group(1), re.sub(r'^(\[Not Secure\] )?\[Server\] ', '', m.group(2))) if m else ('', l)
+    return (m.group(1), re.sub(r'^(\[Not Secure\] )?\[Server\] |^System chat: ', '', m.group(2))) if m else ('', l)
 
 NOISE = re.compile(r'Ambiguity between arguments|is missing mods\.toml|Mod .* uses the version|experimental|Server Watchdog|Can\'t keep up|'
-                   r'moved too quickly|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
+                   r'moved too quickly|make no attempt to authenticate|While this makes the game possible|To change this, set "online-mode"|sun.misc.Unsafe|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
 def problems(name):
     out = []
     for l in lines(name):
@@ -60,7 +60,7 @@ def parse_tagged(name, start):
         t, m = msg(l)
         if m.startswith(start + ' '): cur = m[len(start) + 1:]; res[cur] = []; continue
         if re.match(r'(SECTION|PROBE|BODY|MID|COUNT|LOCATE|DIMCOUNT|SCAN|LOADED|PREGEN|CHECK) ', m) or m.startswith('say '): cur = None
-        elif cur is not None and t.startswith('Server thread'): res[cur].append(m)
+        elif cur is not None and t.startswith('Server thread') and not m.startswith(('Running function', 'Executed ', 'Marked ', 'Unmarked ')): res[cur].append(m)
     return res
 
 def server_report(name, isles=True):
