@@ -78,13 +78,13 @@ def probe(lines, tag, x, z, expect_biome=None):
     if expect_biome:
         lines += [f'execute positioned {x} 0 {z} positioned over motion_blocking_no_leaves if biome ~ ~ ~ minecraft:{expect_biome} run say BIOMEOK {tag}']
 
-def island_probes():
+def island_probes(sample=None):
     c = ['say SECTION islands']
-    for k in SAMPLE:
+    for k in sample or SAMPLE:
         i = I[k]; x, z, R = i['x'], i['z'], i['radius']
         half = int(R * 0.5); out = R + 40
         c += [f'forceload add {x} {z} {x + half} {z}', f'forceload add {x + out} {z}',
-              f'#poll 240 execute if loaded {x} 0 {z} if loaded {x + half} 0 {z} if loaded {x + out} 0 {z} run say LOADED {k} ## LOADED {k}']
+              f'#poll 90 execute if loaded {x} 0 {z} if loaded {x + half} 0 {z} if loaded {x + out} 0 {z} run say LOADED {k} ## LOADED {k}']
         probe(c, f'{k} centre', x, z, i['biome'])
         probe(c, f'{k} half', x + half, z, i['biome'])
         probe(c, f'{k} outside', x + out, z)
@@ -172,3 +172,9 @@ write('vanilla', HEAD + island_probes() + void_probes() + limits() + pregen('lan
 write('baseline', HEAD + pregen('land', *REG_LAND) + ['tick query'] + churn())
 json.dump({'sample': SAMPLE, 'void': void_points(), 'regions': {'land': REG_LAND, 'void': REG_VOID, 'tiers': REG_TIER}}, open(OUT + '/gen.json', 'w'))
 print('sample islands:', ' '.join(SAMPLE))
+
+# bisect-*: fresh worlds for narrowing a generation failure down (phase "bisect")
+if os.path.exists(ROOT + '/packtest/bisect.txt'):
+    for n, line in enumerate(open(ROOT + '/packtest/bisect.txt').read().split('\n')):
+        ids = line.split()
+        if ids: write(f'bisect-{n}', HEAD + island_probes(ids))

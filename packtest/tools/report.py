@@ -116,7 +116,9 @@ def server_report(name, isles=True):
 for l in lines('run.txt'):
     if l.startswith('['): print(l)
 for l in lines('build.txt'): print('build:', l)
-server_report('vanilla'); server_report('baseline', False); server_report('pack')
+server_report('vanilla'); server_report('baseline', False)
+for n in range(20): server_report(f'bisect-{n}')
+server_report('pack')
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
 print('\n================ verdict ================')

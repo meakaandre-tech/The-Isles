@@ -90,7 +90,10 @@ feed() { # $1 = command file, $2 = server log
           sed -n "${before},\$p" $2 | grep -qE "$re" && { ok=ok; break; }
           sleep 2
         done
-        ts "poll $ok after $(( $(date +%s) - t0 ))s: $re";;
+        ts "poll $ok after $(( $(date +%s) - t0 ))s: $re"
+        if [ $ok = TIMEOUT ] && [ ! -f $out/timeout-stacks.txt ]; then   # first timeout: what are the server's threads doing
+          pid=$(pgrep -f 'server.jar' | head -1); [ -n "$pid" ] && jstack $pid > $out/timeout-stacks.txt 2>&1
+        fi;;
       "#wait "*)   # "#wait N ## regex": waits until the log shows the regex after the previous command
         rest=${line#\#wait }; t=${rest%% *}; re=${rest##* \#\# }; t0=$(date +%s); ok=TIMEOUT
         while [ $(( $(date +%s) - t0 )) -lt $t ]; do
@@ -112,6 +115,7 @@ props() { # $1 = level-name
 }
 simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   local name=$1 dir=$W/$1
+  CUR=$dir
   mkdir -p $dir/mods $dir/world/datapacks && cd $dir
   cp $W/server.jar . && cp "$W"/mods/fabric-api*.jar mods/
   [ "$2" = 1 ] && cp $ZIP world/datapacks/the-isles.zip
@@ -134,6 +138,7 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
 
 has vanilla && simple_phase vanilla 1
 has baseline && simple_phase baseline 0
+if has bisect; then for f in $W/gen/commands-bisect-*.txt; do n=$(basename $f .txt); simple_phase ${n#commands-} 1; done; fi
 has pack && source $P/pack-phase.sh
 
 cd $root
