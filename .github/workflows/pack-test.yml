@@ -132,7 +132,7 @@ jobs:
             sleep 3
             gh release create pack-test-latest /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \
               --prerelease --title "The Isles - tested data pack (26.3)" \
-              --notes "the-isles-tested.zip: the world (no mod needed). the-isles-mods-tested.zip: add it next to the first one when playing with Create, Create Nuclear and Create: Gunsmithing (their ores then follow the islands). Built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
+              --notes "the-isles-tested.zip: the world (no mod needed). the-isles-mods-tested.zip: add it next to the first one when playing with Create, Create Nuclear and Create: Gunsmithing (their ores then follow the islands). Both have the vanilla biomes: Geophilic and Overrealm may not be redistributed, tools/build_pack.py builds them in from your own copies (README, Biome packs). Built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
           else
             echo "not published"
           fi
