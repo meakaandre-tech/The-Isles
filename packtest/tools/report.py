@@ -137,7 +137,8 @@ def cave_report(log):
             under = seg[-1][0] if seg and seg[-1][1] >= 636 else None
             mid = [s for s in seg[1:] if not (under is not None and s[0] == under)] if top else seg
             ground, bottom = 90 - top, (90 - under) if under is not None else None
-            roof = (mid[0][0] - top) if mid else None
+            deep = [s for s in mid if 90 - s[0] < -5]   # (above that the open blocks are the game's own caves and structures in the roof)
+            roof = (deep[0][0] - top) if deep else None
             floor = (under - mid[-1][1] - 2) if mid and under is not None else None
             opn = sum(b - a + 2 for a, b in mid)
             print(f'   {tag:<12}{where:<22} ground y {ground:>4}, underside y {str(bottom):>5}, rock over the first cavern {str(roof):>4}, rock under the last {str(floor):>4}, '

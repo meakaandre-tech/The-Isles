@@ -516,6 +516,25 @@ if on('biomeviews'):
         S += [f'cmd say VIEW biome {k} {i["biome"]} top, near, side', f'cmd tp packtest {x} {g + 75} {z} 180 90', 'sleep 40', 'shot',
               f'cmd tp packtest {x} {g + 22} {z + min(50, rad // 2)} 180 24', 'sleep 10', 'shot',
               f'cmd tp packtest {x} {top - i["thickness"] // 3} {z + rad + 80} 180 -4', 'sleep 18', 'shot']
+# the cave world inside the spawn island: the sinkholes from above and from inside, places inside the rock at three depths (a spectator
+# sees the caverns around; every place once as it is and once with night vision), then mobs around a player at the foot of a sinkhole
+if CAVE_BIOMES and on('caveviews'):
+    S += ['cmd say SECTION cave views', 'cmd gamemode spectator packtest', 'cmd time set noon']
+    k = SINK[0]; kx, kz, kr = k['x'], k['z'], k['radius']
+    for tag, cmd, wait in [('sinkhole from above', f'cmd tp packtest {kx} 150 {kz} 0 90', 40), ('sinkhole from its rim', f'cmd tp packtest {kx + kr + 12} 72 {kz} 90 40', 12),
+                           ('inside the shaft, looking down along the ramp', f'cmd tp packtest {kx + kr - 14} 30 {kz} 60 35', 12),
+                           ('foot of the shaft', f'cmd tp packtest {kx} -128 {kz} 135 5', 14), ('foot of the shaft, looking up', f'cmd tp packtest {kx + 20} -130 {kz} 90 -60', 8)]:
+        S += [f'cmd say VIEW cave {tag}', cmd, f'sleep {wait}', 'shot']
+    if len(SINK) > 1:
+        S += [f'cmd say VIEW cave water landing {SINK[1]["id"]}', f'cmd tp packtest {SINK[1]["x"]} -60 {SINK[1]["z"]} 0 80', 'sleep 30', 'shot',
+              'cmd say CHECK water at the foot of the water landing sinkhole', f'cmd execute positioned {SINK[1]["x"]} 0 {SINK[1]["z"]} positioned over motion_blocking run function packtest:at',
+              f'cmd execute positioned {SINK[1]["x"]} 0 {SINK[1]["z"]} run function packtest:col', 'cmd scoreboard players get y pt']
+    for x, y, z in [(0, -60, 0), (0, -180, 0), (0, -320, 0), (416, -100, -272), (416, -220, -272), (-300, -200, 200)]:
+        S += [f'cmd say VIEW cave inside {x} {y} {z}', f'cmd tp packtest {x} {y} {z} 45 10', 'cmd execute at packtest run function packtest:biome', 'sleep 25', 'shot',
+              'cmd effect give packtest minecraft:night_vision 60 0 true', 'sleep 4', 'shot', 'cmd effect clear packtest']
+    CAVE_MOBS = ['zombie', 'skeleton', 'creeper', 'spider', 'enderman', 'witch', 'slime', 'bat', 'cave_spider', 'glow_squid', 'cow', 'sheep', 'pig', 'chicken', 'armadillo', 'bogged', 'stray', 'drowned', 'axolotl']
+    S += ['cmd gamemode creative packtest', f'cmd tp packtest {kx} -132 {kz} 0 0', 'cmd gamerule spawn_monsters true', 'cmd difficulty normal', 'sleep 90', 'cmd say SECTION cave mobs',
+          'cmd data get entity packtest Pos'] + count('cave', CAVE_MOBS) + ['cmd tick query', 'shot', 'cmd gamerule spawn_monsters false', 'cmd gamemode spectator packtest']
 # the look of the sky: on a low, a middle and a high island (standing on the rim, looking out over the void: level, down, up), in the open
 # void at three heights, and at dusk and at night
 if on('look'):
