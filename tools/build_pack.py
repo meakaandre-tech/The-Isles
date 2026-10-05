@@ -357,9 +357,12 @@ def main():
     def has_stack(i): return i["id"] == i["cluster"] + "1" and i["cluster"] in tiers
     # one flat slice for the islands with one biome (through the grid: a single lookup, as /locate does, only computes its
     # own cell), and the three stacks, whose biome changes with the height
-    write(f"data/{NS}/worldgen/density_function/biome_code.json", tree(add, [VOID,
-          flat(grid([i for i in mains if not has_stack(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0))]
-          + [biome_term(i) for i in mains if has_stack(i)]))
+    # Below the lowest island everything is void biome: a structure that starts over an empty column gets the bottom of
+    # the world as its height, and with the island's biome there it would be built on the world floor (igloos, treasure).
+    floor = min(i["y_bottom"] for i in islands) - 64
+    write(f"data/{NS}/worldgen/density_function/biome_code.json", add(VOID, mul(choice(Y, floor, 100000, 1, 0), tree(add,
+          [flat(grid([i for i in mains if not has_stack(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0))]
+          + [biome_term(i) for i in mains if has_stack(i)]))))
 
     # --- noise settings, surface rule, dimension
     final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
