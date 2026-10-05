@@ -1,0 +1,5 @@
+c2me-only ^c2me
+all-but-c2me . ^c2me
+lithium-only ^lithium
+perf-only ^(c2me|lithium|ferritecore|krypton)
+content-only . ^(c2me|lithium|ferritecore|krypton|sodium|ImmediatelyFast|entityculling|moreculling|dynamic-fps|modmenu)

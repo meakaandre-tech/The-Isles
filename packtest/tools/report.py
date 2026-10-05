@@ -19,7 +19,7 @@ def msg(l):
     return (m.group(1), re.sub(r'^(\[Not Secure\] )?\[Server\] |^System chat: ', '', m.group(2))) if m else ('', l)
 
 NOISE = re.compile(r'Ambiguity between arguments|is missing mods\.toml|Mod .* uses the version|experimental|Server Watchdog|Can\'t keep up|'
-                   r'moved too quickly|make no attempt to authenticate|While this makes the game possible|To change this, set "online-mode"|sun.misc.Unsafe|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
+                   r'moved too quickly|packtest:biome|the_isles:void|make no attempt to authenticate|While this makes the game possible|To change this, set "online-mode"|sun.misc.Unsafe|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
 def problems(name):
     out = []
     for l in lines(name):
@@ -45,6 +45,7 @@ def parse_probes(name):
         if m.startswith('TOP ') and 'top' not in cur: cur['top'] = m[4:]
         elif m.startswith('BIOME ') and 'biome' not in cur: cur['biome'] = m[6:]
         elif m.startswith('BIOMEOK '): cur['biomeok'] = True
+        elif m == 'SNOWLAYER': cur['snow'] = True
         else:
             g = re.match(r'(y|ws) has (-?\d+) \[pt\]', m)
             if g and g.group(1) not in cur: cur[g.group(1)] = int(g.group(2))
@@ -86,17 +87,30 @@ def server_report(name, isles=True):
                 exp = f'void {MIN_Y}'
                 if y != MIN_Y: verdict = 'FAIL not empty'
                 elif b != 'the_isles:void': verdict = 'FAIL biome'
+            elif p['kind'] == 'structure' and not cov: verdict = 'IN THE VOID' if y == MIN_Y else 'outside every island footprint, on something'
             elif y is None: verdict = 'FAIL no answer'
             else:
                 ranges = [(i, top_range(i)) for i in cov]
                 hit = [i for i, (lo, hi) in ranges if lo <= y <= hi]
                 want = max(core, key=lambda i: i['y_top']) if core else None
                 exp = (f"{want['id']} {want['y_top']}" if want else 'rim ' + '/'.join(i['id'] for i in cov))
-                if y == MIN_Y and core: verdict = 'FAIL no ground'
+                if p['kind'] == 'structure': verdict = 'in an island' if y > MIN_Y else 'IN THE VOID'
+                elif y == MIN_Y and core and p['kind'] == 'half' and core[0]['radius'] < 100: verdict = 'ok (hole in a small ragged island)'
+                elif y == MIN_Y and core: verdict = 'FAIL no ground'
                 elif not hit and core: verdict = f'FAIL height (allowed {",".join("%d..%d" % r for _, r in ranges)})'
                 elif hit and b != 'minecraft:' + hit[0]['biome'] and b not in ['minecraft:' + i['biome'] for i in cov]: verdict = f"FAIL biome (want {hit[0]['biome']})"
-            if verdict != 'ok': fails.append(f"{name}: probe {p['tag']} {p['kind']}: {verdict}")
-            print(f"{p['tag']:<16}{p['x']:>6}{p['z']:>6}{str(y):>8}{str(p.get('ws')):>7}  {exp:<16}{b:<30}{p.get('top', '?'):<14} {verdict}")
+            if 'FAIL' in verdict: fails.append(f"{name}: probe {p['tag']} {p['kind']}: {verdict}")
+            print(f"{p['tag']:<16}{p['x']:>6}{p['z']:>6}{str(y):>8}{str(p.get('ws')):>7}  {exp:<16}{b:<30}{p.get('top', '?') + (' +snow' if p.get('snow') else ''):<14} {verdict}")
+        # snow cover by biome: only the biomes that snow in the vanilla overworld may have it
+        SNOWY = {'snowy_plains', 'ice_spikes', 'snowy_taiga', 'snowy_beach', 'grove', 'snowy_slopes', 'jagged_peaks', 'frozen_peaks', 'frozen_ocean', 'deep_frozen_ocean'}
+        snow = {}
+        for p in probes:
+            if p.get('y', MIN_Y) > MIN_Y and p.get('biome', '').startswith('minecraft:'):
+                k = p['biome'][10:]; snow.setdefault(k, [0, 0]); snow[k][0] += 1; snow[k][1] += 1 if p.get('snow') else 0
+        wrong = sorted(k for k, (n, sn) in snow.items() if sn and k not in SNOWY)
+        print(f"\nsnow layer on the ground: {sum(v[1] for v in snow.values())} of {sum(v[0] for v in snow.values())} probes; "
+              f"in biomes that do not snow in vanilla: {', '.join(f'{k} {snow[k][1]}/{snow[k][0]}' for k in wrong) or 'none'}")
+        if wrong: fails.append(f'{name}: snow cover in {len(wrong)} biomes that rain in vanilla ({", ".join(wrong[:6])}...)')
     scans = parse_tagged(log, 'SCAN')
     if scans:   # blocks per island: "SCAN <island> <block>" followed by the fill answers
         table = {}
@@ -115,7 +129,7 @@ def server_report(name, isles=True):
         d = parse_tagged(log, start)
         if d:
             print(f'\n-- {start}')
-            for k, v in d.items(): print(f'   {k:<34} {" | ".join(x[:110] for x in v[:6])}')
+            for k, v in d.items(): print(f'   {k:<34} {" | ".join(x[:(420 if start == "CHECK" else 110)] for x in v[:(30 if start == "CHECK" else 6)])}')
     print('\n-- other')
     for l in ls:
         t, m = msg(l)
@@ -134,8 +148,8 @@ for l in lines('build.txt'): print('build:', l)
 server_report('vanilla'); server_report('baseline', False)
 for n in range(20): server_report(f'bisect-{n}')
 server_report('pack')
-if lines('server2-pack.log'):
-    os.rename(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log'); server_report('pack-restart')
+if os.path.exists(f'{D}/server2-pack.log'): os.replace(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log')
+server_report('pack-restart')
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
 print('\n================ verdict ================')

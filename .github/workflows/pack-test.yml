@@ -27,10 +27,11 @@ jobs:
         run: |
           mkdir -p /tmp/ci
           python3 tools/build_pack.py | tee /tmp/ci/build.txt
-          git status --porcelain datapack | tee /tmp/ci/datapack-drift.txt
-          [ -s /tmp/ci/datapack-drift.txt ] && echo "WARNING: committed datapack/ differs from the generator output" | tee -a /tmp/ci/build.txt
+          git status --porcelain datapack datapack-mods | tee /tmp/ci/datapack-drift.txt
+          [ -s /tmp/ci/datapack-drift.txt ] && echo "WARNING: the committed data packs differ from the generator output" | tee -a /tmp/ci/build.txt
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
-          ls -l /tmp/the-isles-tested.zip | tee -a /tmp/ci/build.txt
+          (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
+          ls -l /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip | tee -a /tmp/ci/build.txt
       - name: Run the tests
         continue-on-error: true
         shell: bash
@@ -59,9 +60,9 @@ jobs:
           if [ -f packtest/publish ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
             gh release delete pack-test-latest -y --cleanup-tag -R "${{ github.repository }}" || true
             sleep 3
-            gh release create pack-test-latest /tmp/the-isles-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \
+            gh release create pack-test-latest /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \
               --prerelease --title "The Isles - tested data pack (26.3)" \
-              --notes "Data pack built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
+              --notes "the-isles-tested.zip: the world (no mod needed). the-isles-mods-tested.zip: add it next to the first one when playing with Create, Create Nuclear and Create: Gunsmithing (their ores then follow the islands). Built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
           else
             echo "not published"
           fi

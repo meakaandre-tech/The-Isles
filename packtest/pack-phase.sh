@@ -4,6 +4,7 @@ mkdir -p $dir/mods $dir/world/datapacks && cd $dir
 cp $W/server.jar . && cp $W/mods/*.jar mods/
 [ -f $P/debug ] && [ -f $W/packtest-debug.jar ] && cp $W/packtest-debug.jar mods/
 cp $ZIP world/datapacks/the-isles.zip
+[ -f $P/no-mods-datapack ] || cp $ZIP_MODS world/datapacks/the-isles-mods.zip
 cp -r $W/gen/probes world/datapacks/packtest-probes
 props world
 [ -d $P/server-config ] && cp -r $P/server-config/. .

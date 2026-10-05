@@ -62,6 +62,7 @@ fn('col', ['kill @e[type=minecraft:marker,tag=pt]',
            'execute positioned over world_surface run summon minecraft:marker ~ ~ ~ {Tags:["pt","ws"]}',
            'execute store result score ws pt run data get entity @e[type=minecraft:marker,tag=ws,limit=1] Pos[1]',
            'execute positioned over motion_blocking_no_leaves run function packtest:top',
+           'execute positioned over motion_blocking_no_leaves if block ~ ~ ~ minecraft:snow run say SNOWLAYER',
            'execute positioned over motion_blocking_no_leaves run function packtest:biome',
            'kill @e[type=minecraft:marker,tag=pt]'])
 
@@ -119,12 +120,12 @@ def limits():
             f'setblock {x} {MIN_Y - 1} {z} minecraft:gold_block', f'setblock {x} {TOP_Y + 1} {z} minecraft:gold_block',
             f'forceload remove {x} {z}']
 
-def pregen(name, cx0, cz0, cx1, cz1, wait=900):
+def pregen(name, cx0, cz0, cx1, cz1, wait=900, after=()):
     """time to generate a region (forceload returns when the chunks are there), heap in use with it loaded, then drop it"""
     n = region_fn(name, cx0, cz0, cx1, cz1)
     return ['forceload remove all', '#sleep 20', f'#heap before-{name}', f'say PREGEN {name} start {n}', f'#time PREGEN-{name}-{n}-chunks',
             f'forceload add {cx0 * 16} {cz0 * 16} {cx1 * 16} {cz1 * 16}',
-            f'#poll {wait} function packtest:count_{name} ## PREGEN {name} done', '#time', f'#heap with-{name}', 'tick query', 'forceload remove all']
+            f'#poll {wait} function packtest:count_{name} ## PREGEN {name} done', '#time', f'#heap with-{name}', 'tick query'] + list(after) + ['forceload remove all']
 
 REG_LAND = (20, -8, 35, 7)       # 16x16 chunks inside the spawn island (600 blocks of rock under them)
 p = I['P1']; REG_TIER = (p['x'] // 16 - 4, p['z'] // 16 - 4, p['x'] // 16 + 3, p['z'] // 16 + 3)   # 8x8 chunks through three stacked tiers
@@ -139,11 +140,64 @@ def animals():
 def structures():
     c = ['say SECTION structures']
     for s in ['minecraft:village_plains', 'minecraft:stronghold', 'minecraft:mineshaft', 'minecraft:pillager_outpost', 'minecraft:trial_chambers',
-              'minecraft:ancient_city', 'minecraft:ruined_portal', 'minecraft:desert_pyramid', 'minecraft:shipwreck']:
-        c += [f'say LOCATE {s}', f'locate structure {s}', '#wait 120 ## is at \\[|Could not find|could not find|ERROR']
+              'minecraft:ancient_city', 'minecraft:ruined_portal', 'minecraft:desert_pyramid', 'minecraft:shipwreck', 'minecraft:ocean_ruin_warm',
+              'minecraft:monument', 'minecraft:buried_treasure', 'minecraft:mansion', 'minecraft:igloo', 'minecraft:jungle_pyramid', 'minecraft:swamp_hut']:
+        # "#loc" defines {LX} {LZ} from the answer; the column there is then looked at: is the structure in an island or in the void
+        c += [f'say LOCATE {s}', f'locate structure {s}', '#wait 120 ## is at \\[|Could not find|could not find|ERROR', '#loc',
+              'forceload add {LX} {LZ}', f'say PROBE @{s.split(":")[1]} structure {{LX}} {{LZ}}', 'execute positioned {LX} 0 {LZ} run function packtest:col',
+              'scoreboard players get y pt', 'scoreboard players get ws pt', 'forceload remove all']
+    c += ['say LOCATE stronghold-blocks', 'locate structure minecraft:stronghold', '#wait 120 ## is at \\[|Could not find', '#loc',
+          'forceload add {X0} {Z0} {X1} {Z1}']
+    for b in ['stone_bricks', 'mossy_stone_bricks', 'end_portal_frame', 'iron_bars', 'stone', 'grass_block']:
+        c += [f'say SCAN stronghold minecraft:{b}', f'fill {{X0}} {MIN_Y} {{Z0}} {{X1}} {TOP_Y} {{Z1}} minecraft:structure_void replace minecraft:{b}',
+              f'fill {{X0}} {MIN_Y} {{Z0}} {{X1}} {TOP_Y} {{Z1}} minecraft:{b} replace minecraft:structure_void']
+    c += ['forceload remove all']
+    # structures the game puts at a fixed height or relative to its sea level (here the bottom of the world):
+    # the stronghold again, split by height; a mineshaft; the trial chambers nearest to K1 (an island at y 1250)
+    c += ['locate structure minecraft:stronghold', '#wait 120 ## is at \\[|Could not find', '#loc', 'forceload add {X0} {Z0} {X1} {Z1}']
+    for tag, y0, y1 in (('bottom-100', MIN_Y, MIN_Y + 100), ('rest', MIN_Y + 101, TOP_Y)):
+        c += [f'say SCAN stronghold-{tag} minecraft:stone_bricks', f'fill {{X0}} {y0} {{Z0}} {{X1}} {y1} {{Z1}} minecraft:structure_void replace minecraft:stone_bricks',
+              f'fill {{X0}} {y0} {{Z0}} {{X1}} {y1} {{Z1}} minecraft:stone_bricks replace minecraft:structure_void']
+    c += ['forceload remove all', 'say LOCATE mineshaft-blocks', 'locate structure minecraft:mineshaft', '#wait 120 ## is at \\[|Could not find', '#loc',
+          'forceload add {X0} {Z0} {X1} {Z1}']
+    for tag, y0, y1 in (('bottom-100', MIN_Y, MIN_Y + 100), ('rest', MIN_Y + 101, TOP_Y)):
+        for b in ('oak_planks', 'oak_fence', 'rail'):
+            c += [f'say SCAN mineshaft-{tag} minecraft:{b}', f'fill {{X0}} {y0} {{Z0}} {{X1}} {y1} {{Z1}} minecraft:structure_void replace minecraft:{b}',
+                  f'fill {{X0}} {y0} {{Z0}} {{X1}} {y1} {{Z1}} minecraft:{b} replace minecraft:structure_void']
+    k = I['K1']
+    c += ['forceload remove all', 'say LOCATE trial-chambers-near-K1', f'execute positioned {k["x"]} 0 {k["z"]} run locate structure minecraft:trial_chambers',
+          '#wait 120 ## is at \\[|Could not find', '#loc', 'forceload add {X0} {Z0} {X1} {Z1}', 'say PROBE @trial-near-K1 structure {LX} {LZ}',
+          'execute positioned {LX} 0 {LZ} run function packtest:col', 'scoreboard players get y pt', 'scoreboard players get ws pt']
+    for b in ('trial_spawner', 'tuff_bricks', 'waxed_copper_block', 'vault'):
+        c += [f'say SCAN trial-chambers-y-64..0 minecraft:{b}', f'fill {{X0}} -64 {{Z0}} {{X1}} 0 {{Z1}} minecraft:structure_void replace minecraft:{b}',
+              f'fill {{X0}} -64 {{Z0}} {{X1}} 0 {{Z1}} minecraft:{b} replace minecraft:structure_void']
+    c += ['forceload remove all']
+    # icebergs and ice spikes: packed ice under the frozen ocean island M5 at the bottom of the world, and under the ice spikes island e3 below its bottom
+    m5, e3 = I['M5'], I['e3']
+    c += [f'forceload add {m5["x"] - 40} {m5["z"] - 40} {m5["x"] + 40} {m5["z"] + 40}']
+    for b in ('packed_ice', 'blue_ice', 'snow_block', 'ice'):
+        c += [f'say SCAN M5-world-bottom-64 minecraft:{b}', f'fill {m5["x"] - 40} {MIN_Y} {m5["z"] - 40} {m5["x"] + 40} {MIN_Y + 64} {m5["z"] + 40} minecraft:structure_void replace minecraft:{b}',
+              f'fill {m5["x"] - 40} {MIN_Y} {m5["z"] - 40} {m5["x"] + 40} {MIN_Y + 64} {m5["z"] + 40} minecraft:{b} replace minecraft:structure_void']
+    c += ['forceload remove all', f'forceload add {e3["x"] - 60} {e3["z"] - 60} {e3["x"] + 60} {e3["z"] + 60}',
+          f'say SCAN e3-below-the-island-y50..{e3["y_bottom"] - 30} minecraft:packed_ice',
+          f'fill {e3["x"] - 60} 50 {e3["z"] - 60} {e3["x"] + 60} {e3["y_bottom"] - 30} {e3["z"] + 60} minecraft:structure_void replace minecraft:packed_ice',
+          f'fill {e3["x"] - 60} 50 {e3["z"] - 60} {e3["x"] + 60} {e3["y_bottom"] - 30} {e3["z"] + 60} minecraft:packed_ice replace minecraft:structure_void',
+          f'say SCAN e3-on-the-island minecraft:packed_ice',
+          f'fill {e3["x"] - 60} {e3["y_bottom"] - 29} {e3["z"] - 60} {e3["x"] + 60} {e3["y_top"] + 60} {e3["z"] + 60} minecraft:structure_void replace minecraft:packed_ice',
+          f'fill {e3["x"] - 60} {e3["y_bottom"] - 29} {e3["z"] - 60} {e3["x"] + 60} {e3["y_top"] + 60} {e3["z"] + 60} minecraft:packed_ice replace minecraft:structure_void',
+          'forceload remove all']
     for b in ['minecraft:jagged_peaks', 'minecraft:mushroom_fields', 'the_isles:void']:
         c += [f'say LOCATE biome {b}', f'locate biome {b}', '#wait 120 ## is at \\[|Could not find|could not find|ERROR']
     return c
+
+def anomalies():
+    """things earlier runs turned up: sand at y -15 over I1 (warm ocean basin, top y -300)"""
+    c = ['say SECTION anomalies', 'forceload add -1273 3356 -1241 3388', 'say BODY I1-sand-column']
+    c += [f'execute positioned -1257 {y} 3372 run function packtest:at' for y in (-14, -16, -20, -40, -80, -150, -250, -330, -366)]
+    for b in ['sand', 'sandstone', 'water', 'stone', 'gravel', 'suspicious_sand', 'chest', 'oak_planks', 'spruce_planks', 'dark_oak_planks', 'prismarine', 'cut_sandstone']:
+        c += [f'say SCAN I1-above-the-basin minecraft:{b}', f'fill -1289 -290 3340 -1226 100 3403 minecraft:structure_void replace minecraft:{b}',
+              f'fill -1289 -290 3340 -1226 100 3403 minecraft:{b} replace minecraft:structure_void']
+    return c + ['forceload remove all']
 
 def dims():
     c = ['say SECTION dims']
@@ -173,8 +227,9 @@ def write(name, lines):
     open(f'{OUT}/commands-{name}.txt', 'w').write('\n'.join(lines + [f'say SECTION end {name}']) + '\n')
 
 # vanilla = Fabric API + The Isles only; baseline = the same server without The Isles (vanilla generator), timing only
-write('vanilla', HEAD + island_probes() + void_probes() + limits() + pregen('land', *REG_LAND) + animals() + pregen('void', *REG_VOID)
-      + pregen('tiers', *REG_TIER) + dims() + structures() + ['tick query'] + churn())
+write('vanilla', HEAD + island_probes() + void_probes() + limits() + pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID)
+      + pregen('tiers', *REG_TIER) + anomalies() + dims() + structures() + ['tick query'] + churn())
+write('speed', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID))
 write('baseline', HEAD + pregen('land', *REG_LAND) + ['tick query'] + churn())
 json.dump({'sample': SAMPLE, 'void': void_points(), 'regions': {'land': REG_LAND, 'void': REG_VOID, 'tiers': REG_TIER}}, open(OUT + '/gen.json', 'w'))
 print('sample islands:', ' '.join(SAMPLE))
@@ -187,9 +242,11 @@ def look(px, py, pz, tx, ty, tz):
     return f"cmd tp packtest {px} {py} {pz} {math.degrees(math.atan2(-dx, dz)):.1f} {-math.degrees(math.atan2(dy, math.hypot(dx, dz))):.1f}"
 
 C += HEAD + ['gamerule immediate_respawn true', 'time set noon', 'gamerule advance_time false',
-             'say SECTION spawn', 'summon minecraft:marker ~ ~ ~ {Tags:["wspawn"]}', 'say WORLDSPAWN', 'data get entity @e[type=minecraft:marker,tag=wspawn,limit=1] Pos']
+             'say SECTION spawn', 'forceload add -16 -16 16 16', 'summon minecraft:marker ~ ~ ~ {Tags:["wspawn"]}', 'say WORLDSPAWN',
+             'data get entity @e[type=minecraft:marker,tag=wspawn,limit=1] Pos']
 probe(C, 'spawn centre', 0, 0)
-C += island_probes() + void_probes() + pregen('land', *REG_LAND)
+C += ['say SPAWNCOL', 'execute at @e[type=minecraft:marker,tag=wspawn,limit=1] run function packtest:col', 'scoreboard players get y pt']
+C += island_probes() + void_probes() + pregen('land', *REG_LAND, after=animals())
 
 # ---- ores: what is inside the islands, by altitude (64x64 columns through the whole body)
 ORES = ['minecraft:stone', 'minecraft:deepslate', 'minecraft:dirt', 'minecraft:gravel', 'minecraft:granite', 'minecraft:diorite', 'minecraft:andesite', 'minecraft:tuff',
@@ -202,13 +259,17 @@ def scan(lines, tag, pre, x0, y0, z0, x1, y1, z1, blocks):
     for b in blocks:
         lines += [f'say SCAN {tag} {b}', f'{pre}fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}',
                   f'{pre}fill {x0} {y0} {z0} {x1} {y1} {z1} {b} replace minecraft:structure_void']
-C += ['say SECTION ores']
-for k in SCAN_ISLANDS:
-    i = I[k]; x0, z0 = i['x'] // 16 * 16, i['z'] // 16 * 16
-    C += [f'forceload add {x0} {z0} {x0 + 63} {z0 + 63}', f'#poll 240 execute if loaded {x0} 0 {z0} if loaded {x0 + 63} 0 {z0 + 63} run say LOADED scan-{k} ## LOADED scan-{k}',
-          f'say SCANBOX {k} {i["biome"]} y {i["y_bottom"] - 20}..{i["y_top"] + 10}']
-    scan(C, k, '', x0, i['y_bottom'] - 20, z0, x0 + 63, i['y_top'] + 10, z0 + 63, ORES)
-    C += ['forceload remove all']
+def ore_scans(islands, blocks):
+    c = ['say SECTION ores']
+    for k in islands:
+        i = I[k]; x0, z0 = i['x'] // 16 * 16, i['z'] // 16 * 16
+        c += [f'forceload add {x0} {z0} {x0 + 63} {z0 + 63}', f'#poll 240 execute if loaded {x0} 0 {z0} if loaded {x0 + 63} 0 {z0 + 63} run say LOADED scan-{k} ## LOADED scan-{k}',
+              f'say SCANBOX {k} {i["biome"]} y {i["y_bottom"] - 20}..{i["y_top"] + 10}']
+        scan(c, k, '', x0, i['y_bottom'] - 20, z0, x0 + 63, i['y_top'] + 10, z0 + 63, blocks)
+        c += ['forceload remove all']
+    return c
+C += ore_scans(SCAN_ISLANDS, ORES)
+write('vanilla-ores', ore_scans(['S1', 'B1', 'a1', 'T1', 'S2'], [b for b in ORES if b.startswith('minecraft:')]))
 N = 'execute in minecraft:the_nether run '
 C += ['say SECTION nether ores', N + 'forceload add -16 -16 47 47', '#poll 240 ' + N + 'execute if loaded -16 0 -16 if loaded 47 0 47 run say LOADED nether ## LOADED nether']
 scan(C, 'nether', N, -16, 0, -16, 47, 127, 47, ['minecraft:netherrack', 'cgs:sulfur_ore', 'minecraft:nether_quartz_ore', 'minecraft:nether_gold_ore', 'create:scoria', 'minecraft:bedrock'])
@@ -278,7 +339,9 @@ TY, TZ = k1['y_top'] + 15, -1150
 TX = [-3660, -3630, -3600, -3570, -3540]
 C += [f'forceload add {TX[0] - 16} {TZ - 16} {TX[-1] + 16} {TZ + 16}',
       f'#poll 240 execute if loaded {TX[0] - 16} 0 {TZ - 16} if loaded {TX[-1] + 16} 0 {TZ + 16} run say LOADED tube ## LOADED tube',
-      f'fill {TX[0] - 6} {TY - 1} {TZ - 1} {TX[-1] + 12} {TY - 1} {TZ + 2} minecraft:glass',
+      'say SECTION tube line: ground under the two ends, nothing under the middle']
+probe(C, 'tube-K5 ground', TX[0], TZ); probe(C, 'tube-gap void', (TX[0] + TX[-1]) // 2 - 8, TZ); probe(C, 'tube-K1 ground', TX[-1], TZ)
+C += [f'fill {TX[0] - 6} {TY - 1} {TZ - 1} {TX[-1] + 12} {TY - 1} {TZ + 2} minecraft:glass',
       f'setblock {TX[0]} {TY} {TZ} create_hypertube:hypertube_entrance[facing=east,locked=false]',
       f'setblock {TX[0]} {TY} {TZ + 1} create:cogwheel[axis=x]', f'setblock {TX[0] - 1} {TY} {TZ + 1} create:creative_motor[facing=east]{{ScrollValue:64}}',
       f'setblock {TX[-1]} {TY} {TZ} create_hypertube:hypertube_entrance[facing=west,locked=false]',
@@ -287,7 +350,6 @@ C += [f'forceload add {TX[0] - 16} {TZ - 16} {TX[-1] + 16} {TZ + 16}',
 for x in TX[1:-1]:
     C += [f'setblock {x} {TY} {TZ} create_hypertube:hypertube_accelerator[facing=east]', f'setblock {x} {TY} {TZ + 1} create:cogwheel[axis=x]',
           f'setblock {x - 1} {TY} {TZ + 1} create:creative_motor[facing=east]{{ScrollValue:64}}']
-probe(C, 'tube-K5 ground', TX[0], TZ); probe(C, 'tube-gap void', (TX[0] + TX[-1]) // 2 - 8, TZ); probe(C, 'tube-K1 ground', TX[-1], TZ)
 # portals: one on the spawn island, one in the Nether under a void column of the Overworld
 VX, VZ = void_points()[7]
 C += ['forceload add 16 16 47 47', '#poll 240 execute if loaded 16 0 16 if loaded 47 0 47 run say LOADED portal ## LOADED portal',
@@ -330,6 +392,7 @@ for k in VIEWS:
     i = I[k]; x, z, rad, top = i['x'], i['z'], i['radius'], i['y_top']
     S += [f'cmd say VIEW {k} {i["biome"]} top', f'cmd tp packtest {x} {top + max(70, min(190, int(rad * 1.3)))} {z} 180 90', 'sleep 40', 'shot',
           f'cmd say VIEW {k} side', f'cmd tp packtest {x} {top + 12} {z + rad + 70} 180 12', 'sleep 14', 'shot']
+S += ['cmd say VIEW I1 sand above the basin', 'cmd tp packtest -1257 20 3440 180 25', 'sleep 40', 'shot']
 S += ['cmd say VIEW void looking down and at the horizon, y 0 and y -1500', f'cmd tp packtest {VX} 0 {VZ} 0 0', 'sleep 20', 'shot', f'cmd tp packtest {VX} -1500 {VZ} 0 -30', 'sleep 8', 'shot',
       f'cmd tp packtest {VX} 1500 {VZ} 0 30', 'sleep 8', 'shot',
       'cmd say VIEW snow', f'cmd tp packtest {I["e3"]["x"]} {I["e3"]["y_top"] + 20} {I["e3"]["z"] + 60} 180 15', 'cmd weather rain', 'sleep 25', 'shot', 'cmd weather clear']

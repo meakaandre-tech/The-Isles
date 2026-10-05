@@ -25,6 +25,8 @@ has() { echo " $phases " | grep -q " $1 "; }
 nproc; free -m | head -2
 ZIP=/tmp/the-isles-tested.zip
 [ -f $ZIP ] || (cd $root/datapack && zip -q -r -X $ZIP .)
+ZIP_MODS=/tmp/the-isles-mods-tested.zip
+[ -f $ZIP_MODS ] || (cd $root/datapack-mods && zip -q -r -X $ZIP_MODS .)
 python3 $P/gen.py $W/gen || ts "gen.py FAILED"
 cp $W/gen/gen.json $out/ 2>/dev/null
 MC=26.3; LOADER=0.19.5
@@ -35,7 +37,7 @@ mkdir -p $W/mods
 while IFS=$'\t' read -r url name; do
   [ -z "$url" ] && continue
   if [ -f $P/exclude.txt ] && echo "$name" | grep -qE -f <(grep -v '^\s*$' $P/exclude.txt); then echo "excluded: $name"; continue; fi
-  has pack || case "$name" in fabric-api*) ;; *) continue;; esac
+  has pack || has speed || case "$name" in fabric-api*) ;; *) continue;; esac
   for try in 1 2 3; do curl -fsSL -o "$W/mods/$name" "$url" && break; sleep 5; done
   [ -s "$W/mods/$name" ] || echo "DOWNLOAD FAILED: $name"
 done < $P/mods.tsv
@@ -94,7 +96,7 @@ alive() { # $1 = log: does the server thread still answer the console (20 s)
 }
 feed() { # $1 = command file, $2 = server log
   [ -f "$1" ] || return
-  local before=1 line rest t pc re t0 ok
+  local before=1 line rest t pc re t0 ok ans LX= LZ= X0= Z0= X1= Z1=
   while read -r line; do
     grep -q '^EXIT' $2 && { ts "server gone, feed aborted at: $line"; break; }
     case "$line" in
@@ -118,13 +120,22 @@ feed() { # $1 = command file, $2 = server log
           sed -n "${before},\$p" $2 | grep -qE "$re" && { ok=ok; break; }; sleep 1
         done
         [ $ok = ok ] || ts "wait TIMEOUT after ${t}s: $re";;
+      "#loc")   # the place a preceding /locate found -> {LX} {LZ}, and {X0} {Z0} {X1} {Z1}: 5x5 chunks around it; lines using them are skipped otherwise
+        LX=; ans=$(sed -n "${before},\$p" $2 | grep -E 'is at \[' | tail -1)
+        if [ -n "$ans" ]; then
+          LX=$(echo "$ans" | sed -E 's/.*is at \[(-?[0-9]+), [^,]+, (-?[0-9]+)\].*/\1/'); LZ=$(echo "$ans" | sed -E 's/.*is at \[(-?[0-9]+), [^,]+, (-?[0-9]+)\].*/\2/')
+          X0=$(python3 -c "print(($LX//16)*16-32)"); Z0=$(python3 -c "print(($LZ//16)*16-32)"); X1=$((X0+79)); Z1=$((Z0+79))
+        fi;;
       "#time "*) tname=${line#\#time }; ttime=$(date +%s.%N);;   # "#time name" ... "#time": seconds in between
       "#time") ts "TIME $tname $(python3 -c "import time; print(round(time.time() - $ttime, 1))") s";;
       "#heap "*)  # heap in use after a full collection
         pid=$(pgrep -f 'server.jar' | head -1)
         [ -n "$pid" ] && { jcmd $pid GC.run >/dev/null 2>&1; sleep 2; ts "HEAP ${line#\#heap } $(jcmd $pid GC.heap_info 2>/dev/null | grep -oE 'used [0-9]+[KMG]' | head -1) $(grep -c . $2 >/dev/null; echo)"; };;
       ""|"#"*) ;;
-      *) before=$(( $(wc -l < $2) + 1 )); echo "$line" >&3; sleep 0.12;;
+      *) case "$line" in *"{"[LXZ]*) [ -z "$LX" ] && continue
+           line=$(echo "$line" | sed "s/{LX}/$LX/g;s/{LZ}/$LZ/g;s/{X0}/$X0/g;s/{Z0}/$Z0/g;s/{X1}/$X1/g;s/{Z1}/$Z1/g");; esac
+         case "$line" in locate*|fill*|"execute in"*fill*) before=$(( $(wc -l < $2) + 1 ));; esac
+         echo "$line" >&3; sleep 0.12;;
     esac
   done < "$1"
 }
@@ -149,7 +160,7 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   ts "$name: server start"
   start_server server.log
   if grep -q 'Done (' server.log; then
-    feed $W/gen/commands-$name.txt server.log; finish_feed server.log
+    feed $W/gen/commands-$name.txt server.log; [ -f $W/gen/commands-$name-ores.txt ] && feed $W/gen/commands-$name-ores.txt server.log; finish_feed server.log
     ts "$name: commands done"
     stop_server server.log
   fi
@@ -161,10 +172,28 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   ts "$name: stopped"
 }
 
+speed_phase() { # $1 = name, $2 = regex of the mod files that stay in (fabric-api always does), $3 = regex of those left out: generation speed with a subset of the pack
+  local name=speed-$1 dir=$W/speed-$1
+  mkdir -p $dir/mods $dir/world/datapacks && cd $dir
+  cp $W/server.jar . && for j in $W/mods/*.jar; do b=$(basename "$j"); case "$b" in fabric-api*) cp "$j" mods/;; *) echo "$b" | grep -qE "$2" && ! echo "$b" | grep -qE "${3:-^\$}" && cp "$j" mods/;; esac; done
+  cp $ZIP world/datapacks/the-isles.zip; cp -r $W/gen/probes world/datapacks/packtest-probes
+  ls mods | grep -q '^create-fly' && ls mods | grep -q '^cgs' && ls mods | grep -q '^createnuclear' && cp $ZIP_MODS world/datapacks/the-isles-mods.zip
+  props world
+  ts "$name: server start with $(ls mods | wc -l) mods"
+  start_server server.log
+  if grep -q 'Done (' server.log; then
+    feed $W/gen/commands-speed.txt server.log; finish_feed server.log
+    ts "$name: done"; stop_server server.log
+  fi
+  exec 3>&-
+  cp server.log $out/server-$name.log
+}
 has vanilla && simple_phase vanilla 1
 has baseline && simple_phase baseline 0
 if has bisect; then for f in $W/gen/commands-bisect-*.txt; do n=$(basename $f .txt); simple_phase ${n#commands-} 1; done; fi
 has pack && source $P/pack-phase.sh
+# speed: one line per configuration in packtest/speed.txt: name, regex of the mod jars to keep, regex of those to drop
+if has speed && [ -f $P/speed.txt ]; then while read -r sname skeep sdrop; do [ -n "$sname" ] && speed_phase "$sname" "$skeep" "$sdrop" < /dev/null; done < $P/speed.txt; fi
 
 cd $root
 python3 $P/tools/report.py $out > $out/report.txt 2>&1
