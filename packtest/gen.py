@@ -317,6 +317,13 @@ def cave_probes():
             c += [f'say SCANBOX cave-{tag}-{band} 48x48 columns at {x0} {z0}, y {y0}..{y1}, volume {48 * 48 * (y1 - y0 + 1)}']
             for b in CAVE_BLOCKS: c += [f'say SCAN cave-{tag}-{band} {b}', f'fill {x0} {y0} {z0} {x0 + 47} {y1} {z0 + 47} minecraft:structure_void replace {b}']
         c += ['forceload remove all']
+    for k in SINK:   # what lies on the floor of the shafts (water of the landings; snow and ice must not be there)
+        x0, z0, x1, z1 = k['x'] - k['radius'], k['z'] - k['radius'], k['x'] + k['radius'], k['z'] + k['radius']
+        c += [f'forceload add {x0} {z0} {x1} {z1}', f'#poll 300 execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {k["x"]} 0 {k["z"]} run say LOADED floor-{k["id"]} ## LOADED floor-{k["id"]}',
+              '#sleep 15', f'say SCANBOX floor-{k["id"]} {k.get("type")} y -160..-90 in the shaft']
+        for b in ['minecraft:water', 'minecraft:ice', 'minecraft:snow', 'minecraft:grass_block', '#minecraft:logs']:
+            c += [f'say SCAN floor-{k["id"]} {b}', f'fill {x0} -160 {z0} {x1} -90 {z1} minecraft:structure_void replace {b}']
+        c += ['forceload remove all']
     return c + ['tick query']
 
 def write(name, lines):
@@ -335,7 +342,13 @@ write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUI
 # dumps while they generate, the tick times after, and a /locate that finds nothing
 write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER)
       + ['say LOCATE mansion', '#time LOCATE-mansion', 'locate structure minecraft:mansion', '#wait 180 ## is at \\[|Could not find', '#time',
-         'say LOCATE jungle_pyramid', '#time LOCATE-jungle_pyramid', 'locate structure minecraft:jungle_pyramid', '#wait 180 ## is at \\[|Could not find', '#time', 'tick query'])
+         'say LOCATE jungle_pyramid', '#time LOCATE-jungle_pyramid', 'locate structure minecraft:jungle_pyramid', '#wait 180 ## is at \\[|Could not find', '#time', 'tick query',
+         # the cave world's sea storey under the middle of the spawn island: water and air in 48x48 columns (variants with its seas)
+         'forceload add 0 0 47 47', '#poll 300 execute if loaded 0 0 0 if loaded 47 0 47 run say LOADED sea ## LOADED sea', '#sleep 10',
+         'say SCANBOX sea 48x48 columns at 0 0, y -395..-300', 'say SCAN sea minecraft:water', 'fill 0 -395 0 47 -300 47 minecraft:structure_void replace minecraft:water',
+         'say SCAN sea minecraft:air', 'fill 0 -395 0 47 -300 47 minecraft:structure_void replace minecraft:air',
+         'say SCANBOX sea-below 48x48 columns at 0 0, y -700..-560 (under the island: nothing may be there)', 'say SCAN sea-below minecraft:water',
+         'fill 0 -700 0 47 -560 47 minecraft:structure_void replace minecraft:water', 'forceload remove all', 'tick query'])
 write('speed', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID))
 write('baseline', HEAD + pregen('land', *REG_LAND) + ['tick query'] + churn())
 json.dump({'sample': SAMPLE, 'void': void_points(), 'regions': {'land': REG_LAND, 'void': REG_VOID, 'tiers': REG_TIER}}, open(OUT + '/gen.json', 'w'))
