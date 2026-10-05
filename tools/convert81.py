@@ -57,6 +57,7 @@ class Converter:
             return {"type": "minecraft:offset", "x": self.any(o["xz_spread"]), "y": self.any(o["y_spread"]), "z": self.any(o["xz_spread"])}
         if t == "minecraft:count_on_every_layer" and self.every_layer: self.note("count_on_every_layer replaced"); return {"__many__": self.every_layer(o["count"])}
         out = {k: self.any(v) for k, v in o.items()}
+        if t is None and "fallback" in o and "rules" in o: out = {"type": "minecraft:rule_based", **out}   # (disks had it without a type)
         if t in PROVIDERS: out["type"] = PROVIDERS[t]
         elif t: out["type"] = t
         return out
@@ -90,8 +91,11 @@ class Converter:
             inner = cfg["feature"]
             if isinstance(inner, str): inner = self.placed[inner]
             xz, y = cfg.get("xz_spread", 7), cfg.get("y_spread", 3)
-            tri = lambda r: {"type": "minecraft:trapezoid", "min": -r, "max": r, "plateau": 0}
-            pl += [{"type": "minecraft:count", "count": min(256, cfg.get("tries", 128))}, {"type": "minecraft:offset", "x": tri(xz), "y": tri(y), "z": tri(xz)}]
+            tri = lambda r: {"type": "minecraft:trapezoid", "min": -r, "max": r, "plateau": 0} if r else 0
+            pl.append({"type": "minecraft:count", "count": min(256, cfg.get("tries", 128))})
+            while xz > 0 or y > 0:   # an offset reaches 16 blocks at most: wider spreads take several
+                a, b = min(xz, 16), min(y, 16); xz -= a; y -= b
+                pl.append({"type": "minecraft:offset", "x": tri(a), "y": tri(b), "z": tri(a)})
             pl += list(inner["placement"]); f = inner["feature"]; self.note("patch unfolded")
         return {"feature": f if isinstance(f, str) else self.feature(f), "placement": self.modifiers(pl)}
 
