@@ -18,7 +18,8 @@ and with the Create mod pack it is made for); the test, its findings and what is
 | Done | Not yet |
 |---|---|
 | Island terrain from the layout | Water in the sea-basin islands (they generate as dry bowls) |
-| One biome per island, tiers switch biome by height | Cave world inside the spawn island, and its sinkholes |
+| One biome per island, tiers switch biome by height | Water in the cave world's seas |
+| Cave world inside the spawn island, and its sinkholes (with Dwarfhollow, see below) | |
 | Max world height | Cave systems and deepslate inside islands |
 | Ores follow the surface of each island (depth instead of absolute height) | Surface rules that depend on fixed heights (badlands bands below y 63) |
 | Rain or snow by biome, not by altitude | A way into the End (strongholds generate at the bottom of the world), oil deposits for Create Diesel Generators (no bedrock) |
@@ -90,6 +91,38 @@ What the build does to a provider's files, for any version:
 
 The sea-basin islands are still dry (see the status table), so Overrealm's ocean floors generate without water:
 corals, sponges, shelves and wrecks lie on a dry sea bed, kelp and sea grass do not grow.
+
+## Cave world: Dwarfhollow inside the spawn island (branch `dwarfhollow`)
+
+With a copy of [Dwarfhollow](https://www.patreon.com/posts/dwarfhollow-135712745) 0.1 (kanokarob, "Cavernous World",
+the author's Patreon; no licence in the pack, his terms forbid redistribution) in `vendor/`, `tools/build_pack.py`
+also builds its cave world into the spawn island S1 (`tools/build_caves.py`, switched by `"cave_world"` in
+`layout/biome_sources.json`). Like the biome packs it only goes into `build/the-isles.zip`. Without the pack the
+island is solid rock as before.
+
+Dwarfhollow by itself replaces the Overworld by one cave world of 384 layers (y -64..320): rock full of caverns,
+15 biomes in three storeys - highlands, midlands, and seas at the bottom - lit by invisible light blocks, with its own
+ores, geodes, trees and ground cover. In The Isles:
+
+| | |
+|---|---|
+| Where | inside S1 only; the surface stays `plains`, the islets above and the other islands are untouched |
+| Heights | not scaled: Dwarfhollow's y is world y + 331. Its ceiling is at y -11, its floor at y -395; highlands down to about y -150, midlands to y -340, seas below (sea level y -337) |
+| What is missing where the island is thinner | the island is 600 thick only near the middle and its underside is irregular (y -250..-520 there, rising to the rim); the cave world ends 32 blocks above the underside wherever that is, so the lower storeys only exist towards the middle |
+| Shell | at least 56 blocks of rock under the surface (the portal rooms, 30 blocks down, stay in rock), 32 above the underside, 28 in from the rim; the carving fades out over 12 more blocks. The game's cave carvers are off in the cave biomes (they tunnel through anything) |
+| Biomes | Dwarfhollow's own biome list and climate noises inside that zone; the pack's ores are filtered by biome, so inside it there are only Dwarfhollow's ores (and the mods', through `datapack-mods` and the biome tags) |
+| Entrances | the six sinkholes of `layout/islands.json`: shafts from the surface down to y -110..-150 that open into a cavern. SK1 (radius 60, 140 blocks from the spawn point) has a ramp winding down its wall, one turn per 36 blocks; SK2 and SK3 ("water landing") have water on their floor; SK4-SK6 are sheer drops |
+| Seas | dry for now: the game can only keep water there with aquifers, which this world does not use (not tried yet, see `packtest/README.md`) |
+| Left out of Dwarfhollow | its dimension and dimension type, its noise settings (terrain and surface rule are rebuilt here), and its functions, predicates and entity tag: they only move the world spawn and respawning players under its bedrock ceiling |
+
+Its files are for pack format 81 (Minecraft 1.21.5); `tools/convert81.py` converts features, biomes and the surface rule to
+the 26.3 formats at build time. One thing is done differently: its features are spread with `count_on_every_layer`,
+which walks the whole column for every layer - 2,000 blocks of void under the island for each of 73 features - so they
+get random heights inside the cave world and a short search for the floor instead (12 attempts per unit of count).
+
+It costs generation time everywhere, because the game evaluates the cave noise for every chunk of the world, and more
+inside S1 (surface rule and features of a decorated cave world); numbers in `packtest/README.md`. That is why this is
+on its own branch.
 
 ## Editing the layout
 

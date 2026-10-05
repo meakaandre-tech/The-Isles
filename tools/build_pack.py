@@ -96,6 +96,18 @@ def climate_biome(name, d=None):
     d["temperature"] = WARM
     return d
 
+def climate_other(d):
+    """the same for a biome that is not a vanilla one (the cave world's): its colours are those of the vanilla biome with the
+    same - or the nearest - temperature and downfall -> (file or None, name of that vanilla biome)"""
+    if not d["has_precipitation"] or d["temperature"] < 0.15 or d.get("temperature_modifier") == "frozen": return None, None
+    colors = json.loads((Path(__file__).parent / "vanilla_biome_colors.json").read_text())
+    twin = min(sorted(colors), key=lambda n: (lambda v: (v["temperature"] - d["temperature"]) ** 2 + (v["downfall"] - d["downfall"]) ** 2)(vanilla_biome(n)))
+    grass, foliage, dry = colors[twin]
+    eff = d.setdefault("effects", {})
+    eff.setdefault("grass_color", grass); eff.setdefault("foliage_color", foliage); eff.setdefault("dry_foliage_color", dry)
+    d["temperature"] = WARM
+    return d, twin
+
 def mc(t, **kw): return {"type": f"minecraft:{t}", **kw}
 def depth_mods(d0, d1):
     """placement modifiers that move a position (d0 + 16 * Binomial(n, 1/2) + 0..15) blocks under the top block of its column, at most d1"""
@@ -544,7 +556,8 @@ def build(src):
     router = {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
               "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final}
     if caves: caves.router(router)
-    write(f"data/{NS}/worldgen/noise_settings/isles.json", {
+    sea = {"aquifers": caves.aquifers()} if caves and os.environ.get("ISLES_CAVE_SEA", "0") == "1" else {}   # (being measured, see packtest/README.md)
+    write(f"data/{NS}/worldgen/noise_settings/isles.json", {**sea,
         "default_block": "minecraft:stone", "default_fluid": "minecraft:water", "disable_mob_generation": False,
         "legacy_random_source": False, "material_rule": ref("isles"), "noise": noise_range(islands),
         "noise_router": router, "sea_level": MIN_Y, "spawn_target": []})

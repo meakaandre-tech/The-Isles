@@ -181,17 +181,33 @@ class Caves:
         feats, placed = conv.features()
         for kind, d in (("feature", feats), ("placed_feature", placed)):
             for k, v in d.items(): bp.write(f"data/{NSD}/worldgen/{kind}/{k.split(':')[1]}.json", fix_types(v))
+        climates = []
         for b in self.biomes:
             d = convert81.biome(self.pack.json(f"data/{NSD}/worldgen/biome/{b}.json"))
             d["carvers"] = []   # the game's cave carvers tunnel through anything, the shell included; the cave world has its own caverns
+            # The climate of the islands' biomes (see build_pack.climate_biome): 1,700 blocks above the generator's sea level the
+            # game takes every biome for frozen - snow on the floor of the sinkholes, ice on the water of the landings.
+            t, dn = d["temperature"], d["downfall"]
+            c, twin = bp.climate_other(d)
+            if c: climates.append(f"{b} ({t}/{dn}: {twin})")
             bp.write(f"data/{NSD}/worldgen/biome/{b}.json", d)
         n = 0
         for rel, data in f.items():   # its block and biome tags (the function tags and the entity tag belong to what is left out)
             if rel.startswith((f"data/{NSD}/tags/block/", f"data/{NSD}/tags/worldgen/", "data/minecraft/tags/worldgen/biome/")):
                 bp.write(rel, json.loads(data)); n += 1
         self.conv = conv
+        self.log.append("cave biomes with a constant climate and the colours of the vanilla biome of the same temperature/downfall: " + ", ".join(climates))
         self.log.append(f"dwarfhollow ({self.pack.path.name}): {len(feats)} features, {len(placed)} placed features, {len(self.biomes)} biomes, {n} tags converted; "
                         + ", ".join(f"{v} x {k}" for k, v in conv.notes.items()))
+    def aquifers(self):
+        """The seas of the cave world (its sea level -6 = y -337 here). The world's sea level has to stay at its bottom (the game
+        floods everything below it), so the water comes from aquifers, as the lava seas of this pack's Nether do: flooded only
+        inside the cave zone and only in the band of heights whose fluid level is the sea level (a level can only be at 40n + 23)."""
+        bp = self.bp; inner = bp.ref("cave/inner"); sea = -6 + SHIFT
+        assert (sea - 23) % 40 == 0
+        band = bp.mc("interval_select", input=bp.Y, thresholds=[float(sea - 23 - 40), float(sea + 17)], functions=[-1.0, 0.6, -1.0])
+        return {"barrier": 0.0, "lava": 0.0, "surface_level": float(bp.MIN_Y + bp.HEIGHT), "fluid_level_spread": 0.45,
+                "fluid_level_floodedness": bp.choice(inner, 4, 100000, band, -1.0), "exclusion": bp.sub(4.0, inner)}
     def surface_features(self):
         """placed features for the biome at the island's surface -> [ids]: the water at the foot of the "water_landing" sinkholes"""
         bp = self.bp
