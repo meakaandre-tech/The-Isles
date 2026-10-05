@@ -1,0 +1,14 @@
+{
+ "pack": {
+  "description": "The Isles - ores of Create, Create Nuclear and Gunsmithing follow the islands",
+  "pack_format": 121,
+  "min_format": [
+   121,
+   0
+  ],
+  "max_format": [
+   121,
+   0
+  ]
+ }
+}

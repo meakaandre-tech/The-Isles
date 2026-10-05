@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "datapack"
+OUT_MODS = ROOT / "datapack-mods"
 NS = "the_isles"
 MIN_Y, HEIGHT = -2032, 4064
 CELL = 512          # grid cell size for the island lookup
@@ -32,6 +33,30 @@ DEFAULT_RELIEF = 18
 # 1,100 blocks tall, and in the empty columns of the biome footprint a stone column down to the bottom of the world.
 BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
 
+# Ores. The vanilla ore features pick an absolute height (or one counted from the bottom of the world, 2,000 blocks
+# below anything), so most islands get none and no island gets diamonds. The pack replaces their placement by a
+# depth below the island's own surface: what the vanilla overworld has at y is put (64 - y) blocks under the ground.
+# (placed feature, feature, count or -rarity, shallowest depth, deepest depth); counts are the vanilla ones scaled by
+# the share of the vanilla height range that lies under y 64. Ores that only exist above y 64 (coal_upper, iron_upper,
+# the *_upper stone blobs) and cave decoration keep their vanilla placement.
+ORES = [("ore_coal_lower", "ore_coal_buried", 5, 0, 64), ("ore_copper", "ore_copper_small", 12, 0, 80),
+        ("ore_iron_middle", "ore_iron", 10, 8, 88), ("ore_iron_small", "ore_iron_small", 10, 0, 128),
+        ("ore_gold", "ore_gold_buried", 4, 32, 128), ("ore_gold_lower", "ore_gold_buried", {"type": "minecraft:uniform", "min_inclusive": 0, "max_inclusive": 1}, 112, 128),
+        ("ore_gold_extra", "ore_gold", 7, 0, 32), ("ore_redstone", "ore_redstone", 4, 48, 128), ("ore_redstone_lower", "ore_redstone", 8, 96, 160),
+        ("ore_diamond", "ore_diamond_small", 7, 48, 208), ("ore_diamond_buried", "ore_diamond_buried", 4, 48, 208),
+        ("ore_diamond_large", "ore_diamond_large", -9, 48, 208), ("ore_diamond_medium", "ore_diamond_medium", 2, 68, 128),
+        ("ore_lapis", "ore_lapis", 2, 32, 96), ("ore_lapis_buried", "ore_lapis_buried", 4, 0, 128), ("ore_emerald", "ore_emerald", 5, 0, 80),
+        ("ore_infested", "ore_infested", 14, 0, 128), ("ore_dirt", "ore_dirt", 3, 0, 64), ("ore_gravel", "ore_gravel", 5, 0, 128),
+        ("ore_granite_lower", "ore_granite", 2, 4, 64), ("ore_diorite_lower", "ore_diorite", 2, 4, 64),
+        ("ore_andesite_lower", "ore_andesite", 2, 4, 64), ("ore_tuff", "ore_tuff", 2, 64, 128)]
+# The same for the ores of the mods of the owner's pack. These go into a second data pack (datapack-mods/): a data
+# pack that names a mod's feature does not load without that mod.
+MOD_ORES = [("create", "zinc_ore", "create:zinc_ore", 8, 0, 128, "create:config_filter"),
+            ("create", "striated_ores_overworld", "create:striated_ores_overworld", -18, 0, 96, "create:config_filter"),
+            ("createnuclear", "uranium_ore", "createnuclear:uranium_ore", 6, 0, 128, "create:config_filter"),
+            ("createnuclear", "striated_ores_overworld", "createnuclear:striated_ores_overworld", -18, 0, 96, "create:config_filter"),
+            ("cgs", "lead_ore_placed", "cgs:lead_ore", 11, 0, 128, "minecraft:biome")]
+
 # Climate. The game cools a biome by 0.00125 per block above "sea level + 17" and snows below 0.15. The sea level of this
 # world has to be its bottom (anything else floods the void: lava below y -54, the default fluid below the sea level),
 # so every biome would be 2,000 blocks "up a mountain": snow cover and snowfall on plains, jungles and beaches alike.
@@ -50,6 +75,17 @@ def climate_biome(name):
     return d
 
 def mc(t, **kw): return {"type": f"minecraft:{t}", **kw}
+def ore_placement(feature, count, d0, d1, last):
+    """count attempts per chunk, each (d0 + 16 * Binomial(n, 1/2) + 0..15) blocks under the top block of its column, at most d1"""
+    down = lambda y: mc("offset", x=0, y=y, z=0)
+    mods = [mc("rarity_filter", chance=-count) if isinstance(count, int) and count < 0 else mc("count", count=count),
+            mc("in_square"), mc("heightmap", heightmap="OCEAN_FLOOR_WG")]
+    base = d0 + 1                        # the heightmap is the first free block above the ground
+    while base > 0:
+        mods.append(down(-min(16, base))); base -= 16
+    mods += [mc("randomly_selected", placements=[down(0), down(-16)])] * max(0, round((d1 - d0) / 16) - 1)
+    mods += [down({"type": "minecraft:uniform", "min_inclusive": -15, "max_inclusive": 0}), {"type": last}]
+    return {"feature": feature, "placement": mods}
 def add(a, b): return mc("add", left=a, right=b)
 def sub(a, b): return mc("sub", left=a, right=b)
 def mul(a, b): return mc("mul", left=a, right=b)
@@ -67,8 +103,8 @@ def fold(fn, items):
 Y = "minecraft:y"
 EDGE, RELIEF_N, UNDER, RAG = ref("noise/edge"), ref("noise/relief"), ref("noise/under"), ref("noise/rag")
 
-def write(rel, obj):
-    p = OUT / rel; p.parent.mkdir(parents=True, exist_ok=True)
+def write(rel, obj, out=None):
+    p = (out or OUT) / rel; p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(obj, indent=1) + "\n")
 
 def dist_fn(i):
@@ -197,6 +233,14 @@ def main():
     # --- no snow line: rainy biomes stay rainy at any altitude
     warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
+    # --- ores follow the island surface
+    for name, feature, count, d0, d1 in ORES:
+        write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
+    if OUT_MODS.exists(): shutil.rmtree(OUT_MODS)
+    write("pack.mcmeta", {"pack": {"description": "The Isles - ores of Create, Create Nuclear and Gunsmithing follow the islands",
+                                   "pack_format": 121, "min_format": [121, 0], "max_format": [121, 0]}}, OUT_MODS)
+    for ns, name, feature, count, d0, d1, last in MOD_ORES:
+        write(f"data/{ns}/worldgen/placed_feature/{name}.json", ore_placement(feature, count, d0, d1, last), OUT_MODS)
     files = sum(1 for p in OUT.rglob("*") if p.is_file())
     print(f"{len(islands)} islands, {len(biomes)} biomes, {files} files -> {OUT}")
 

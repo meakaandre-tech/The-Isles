@@ -1,0 +1,121 @@
+{
+ "feature": "minecraft:ore_redstone",
+ "placement": [
+  {
+   "type": "minecraft:count",
+   "count": 4
+  },
+  {
+   "type": "minecraft:in_square"
+  },
+  {
+   "type": "minecraft:heightmap",
+   "heightmap": "OCEAN_FLOOR_WG"
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": -16,
+   "z": 0
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": -16,
+   "z": 0
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": -16,
+   "z": 0
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": -1,
+   "z": 0
+  },
+  {
+   "type": "minecraft:randomly_selected",
+   "placements": [
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": 0,
+     "z": 0
+    },
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": -16,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "type": "minecraft:randomly_selected",
+   "placements": [
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": 0,
+     "z": 0
+    },
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": -16,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "type": "minecraft:randomly_selected",
+   "placements": [
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": 0,
+     "z": 0
+    },
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": -16,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "type": "minecraft:randomly_selected",
+   "placements": [
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": 0,
+     "z": 0
+    },
+    {
+     "type": "minecraft:offset",
+     "x": 0,
+     "y": -16,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": {
+    "type": "minecraft:uniform",
+    "min_inclusive": -15,
+    "max_inclusive": 0
+   },
+   "z": 0
+  },
+  {
+   "type": "minecraft:biome"
+  }
+ ]
+}
