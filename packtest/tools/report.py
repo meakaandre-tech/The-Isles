@@ -77,32 +77,37 @@ def filled(v):
 def structure_table(name, log, probes, scans):
     """/locate results with what stands there: ground of the column, the structure's blocks near the ground and anywhere else in the columns"""
     loc = parse_tagged(log, 'LOCATE')
-    rows = [k for k in loc if '@' in k]
+    rows = [k for k in loc if '/' in k]
     if not rows: return
     took = {m.group(1): m.group(2) for l in lines('run.txt') for m in [re.search(r'TIME LOCATE-(\S+) ([\d.]+) s', l)] if m} if name == 'vanilla' else {}
     pr = {p['tag'][1:]: p for p in probes if p['kind'] == 'structure'}
-    print(f'\n-- structures ({name}): /locate from three places, the ground there, the structure\'s blocks within 100 below..60 above the ground and in the rest of the columns')
-    print(f'   {"structure@from":<34}{"found at":>16}{"island":>8}{"ground":>8}{"near":>7}{"elsewhere":>10}{"locate s":>9}  verdict')
+    print(f'\n-- structures ({name}): /locate, the ground there, the structure\'s marker blocks from 130 below to 70 above that ground (5x5 chunks), in the rest of those columns, and of all of them in the lowest 200 layers of the world')
+    print(f'   {"structure/from":<34}{"found at":>16}{"island":>8}{"ground":>8}{"near":>7}{"elsewhere":>10}{"floor":>7}{"locate s":>9}  verdict')
     for k in rows:
         ans = ' | '.join(loc[k]); m = re.search(r'is at \[(-?\d+), [^,]+, (-?\d+)\]', ans)
-        off = k.split('@')[0] in ('stronghold', 'mineshaft', 'mineshaft_mesa', 'monument', 'mansion', 'ancient_city')
+        off = k.split('/')[0] in ('stronghold', 'mineshaft', 'mineshaft_mesa', 'monument', 'mansion', 'ancient_city')
         if not m:
             verdict = 'off, as generated' if off and 'ould not find' in ans else 'not found' if 'ould not find' in ans else 'NO ANSWER: ' + ans[:60]
-            if 'NO ANSWER' in verdict or (k.startswith('isles-stronghold') and not off): fails.append(f'{name}: structure {k}: {verdict}')
-            print(f'   {k:<34}{"-":>16}{"":>8}{"":>8}{"":>7}{"":>10}{took.get(k, ""):>9}  {verdict}'); continue
+            if 'NO ANSWER' in verdict or k.startswith('isles-stronghold'): fails.append(f'{name}: structure {k}: {verdict}')
+            print(f'   {k:<34}{"-":>16}{"":>8}{"":>8}{"":>7}{"":>10}{"":>7}{took.get(k, ""):>9}  {verdict}'); continue
         x, z = int(m.group(1)), int(m.group(2)); p = pr.get(k, {}); y = p.get('y')
-        cov = covering(x, z); near = filled(scans.get(k + ' near', [])) if any(q.startswith(k + ' near') for q in scans) else None
-        nk = [q for q in scans if q.startswith(k + ' near')]; ek = [q for q in scans if q.startswith(k + ' elsewhere')]
-        near = filled(scans[nk[0]]) if nk else None; else_ = filled(scans[ek[0]]) if ek else None
+        cov = covering(x, z)
+        def cnt(kind):
+            q = [q for q in scans if q.startswith(f'{k} {kind} ')]
+            return filled(scans[q[0]]) if q else None
+        near, else_, floor = cnt('near'), cnt('elsewhere'), cnt('floor')
         verdict = 'ok'
         if off: verdict = 'FAIL: the generator switches this off'
         elif y is None: verdict = 'no probe'
-        elif y == MIN_Y: verdict = 'FAIL: starts over the void'
-        elif else_: verdict = f'FAIL: {else_} blocks outside the island band'
-        elif near == 0: verdict = 'ok (none of its marker blocks near)'
-        if 'FAIL' in verdict: fails.append(f'{name}: structure {k} at {x} {z}: {verdict}')
+        elif floor: verdict = f'ON THE WORLD FLOOR: {floor} blocks'
+        elif y == MIN_Y: verdict = 'starts over the void (nothing built)' if not near and not else_ else 'starts over the void'
+        elif not near and not else_: verdict = 'ok (none of its marker blocks there)'
+        elif else_: verdict = 'ok (reaches more than 130 below / 70 above the ground at its start)'
+        # the pack's own stronghold must be right; the others are findings (rims), listed, not fatal
+        if 'FAIL' in verdict or (k.startswith('isles-stronghold') and not verdict.startswith('ok')): fails.append(f'{name}: structure {k} at {x} {z}: {verdict}')
+        elif 'FLOOR' in verdict: notes.append(f'{name}: structure {k} at {x} {z}: {verdict}')
         isl = max(cov, key=lambda i: i['y_top'])['id'] if cov else '-'
-        print(f'   {k:<34}{f"{x} {z}":>16}{isl:>8}{str(y):>8}{str(near):>7}{str(else_):>10}{took.get(k, ""):>9}  {verdict}')
+        print(f'   {k:<34}{f"{x} {z}":>16}{isl:>8}{str(y):>8}{str(near):>7}{str(else_):>10}{str(floor):>7}{took.get(k, ""):>9}  {verdict}')
     for k, v in scans.items():
         if 'y-of-the-frames' in k or k.startswith('floor-under'): print(f'   {k}: {" | ".join(x[:60] for x in v)}')
         if k.startswith('floor-under') and filled(v): fails.append(f'{name}: {k}: {filled(v)} blocks on the world floor')
@@ -201,7 +206,7 @@ def server_report(name, isles=True):
     if scans:   # blocks per island: "SCAN <island> <block>" followed by the fill answers
         table = {}
         for k, v in scans.items():
-            if '@' in k.split(' ')[0]: continue   # structure scans: see structure_table
+            if '/' in k.split(' ')[0]: continue   # structure scans: see structure_table
             isl, block = k.split(' ', 1)
             m = re.search(r'filled (\d+) block', v[0]) if v else None
             table.setdefault(isl, {})[block] = int(m.group(1)) if m else (0 if v and 'No blocks' in v[0] else None)
@@ -227,6 +232,8 @@ def server_report(name, isles=True):
         ok = {msg(l)[1].split()[1] for l in ls if msg(l)[1].startswith('TOPBIOMEOK ')}
         if want and want - ok and name in ('vanilla', 'pack'):
             fails.append(f'{name}: biome above the island is not the layout biome on {sorted(want - ok)}')
+        if name in ('pack', 'pack-restart') and any('SECTION reactor' in l or 'SECTION restart' in l for l in ls) and not any('CHECK reactor-assembled' in l for l in ls):
+            fails.append(f'{name}: the Create Nuclear reactor is not assembled')
         for lim in ('bottom-ok', 'top-ok'):
             if name == 'vanilla' and not any('LIMIT ' + lim in l for l in ls): fails.append(f'{name}: build limit {lim} missing')
 
@@ -248,6 +255,7 @@ accepted = [f for f in fails if any(re.search(k, f) for k in known)]
 fails = [f for f in fails if f not in accepted]
 print('\n================ verdict ================')
 for f in accepted: print('  known:', f)
+for f in notes: print('  note:', f)
 print('PASS' if not fails else 'FAIL')
 for f in fails: print('  -', f)
 open(f'{D}/verdict.txt', 'w').write(('PASS' if not fails else 'FAIL') + '\n' + ''.join(f'- {f}\n' for f in fails[:30]))

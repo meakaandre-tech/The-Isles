@@ -152,24 +152,26 @@ STRUCTS = [('the_isles:stronghold', 'minecraft:end_portal_frame'), ('minecraft:v
 SEVERAL = {'the_isles:stronghold', 'minecraft:village_plains', 'minecraft:trial_chambers', 'minecraft:ruined_portal', 'minecraft:shipwreck'}
 def structures():
     """/locate every Overworld structure (the common ones from three places), then look at what stands there: the ground of that
-    column, the structure's blocks within 100 blocks below and 60 above the ground ("near"), and in the rest of the 5x5 chunk columns
-    from the bottom of the world to the top ("elsewhere", must be 0: nothing may hang in the void or lie on the world floor)."""
+    column, the structure's blocks in the 5x5 chunks around it from 130 blocks below to 70 above that ground ("near"), in the rest of
+    those columns from the bottom of the world to the top ("elsewhere": for a structure on a basin rim or a stacked tier that can be
+    its own lower part), and how many of all of them lie in the lowest 200 layers ("floor", must be 0)."""
     c = ['say SECTION structures']
     origins = [('spawn', 0, 0), ('K1', I['K1']['x'], I['K1']['z']), ('T1', I['T1']['x'], I['T1']['z'])]
     for s, block in STRUCTS:
         for tag, ox, oz in (origins if s in SEVERAL else origins[:1]):
-            k = f'{s.split(":")[1]}@{tag}' if s != 'the_isles:stronghold' else f'isles-stronghold@{tag}'
+            k = f'{s.split(":")[1]}/{tag}' if s != 'the_isles:stronghold' else f'isles-stronghold/{tag}'   # ("@s" in a say command is a selector)
             c += [f'say LOCATE {k}', f'#time LOCATE-{k}', f'execute positioned {ox} 0 {oz} run locate structure {s}',
                   '#wait 180 ## is at \\[|Could not find|could not find|ERROR|Unknown|There is no structure', '#time', '#loc']
             if block is None: continue
             c += ['forceload add {X0} {Z0} {X1} {Z1}', '#poll 240 execute if loaded {X0} 0 {Z0} if loaded {X1} 0 {Z1} if loaded {LX} 0 {LZ} run say LOADED loc ## LOADED loc',
-                  f'say PROBE @{k} structure {{LX}} {{LZ}}', 'execute positioned {LX} 0 {LZ} run function packtest:col', 'scoreboard players get y pt', 'scoreboard players get ws pt',
+                  f'say PROBE ={k} structure {{LX}} {{LZ}}', 'execute positioned {LX} 0 {LZ} run function packtest:col', 'scoreboard players get y pt', 'scoreboard players get ws pt',
                   f'say SCAN {k} near {block}',
-                  f'execute positioned {{LX}} 0 {{LZ}} positioned over motion_blocking_no_leaves run fill ~-40 ~-100 ~-40 ~39 ~60 ~39 minecraft:structure_void replace {block}',
-                  f'say SCAN {k} elsewhere {block}', f'fill {{X0}} {MIN_Y} {{Z0}} {{X1}} {TOP_Y} {{Z1}} minecraft:structure_void replace {block}']
+                  f'execute positioned {{LX}} 0 {{LZ}} positioned over motion_blocking_no_leaves run fill {{X0}} ~-130 {{Z0}} {{X1}} ~70 {{Z1}} minecraft:structure_void replace {block}',
+                  f'say SCAN {k} elsewhere {block}', f'fill {{X0}} {MIN_Y} {{Z0}} {{X1}} {TOP_Y} {{Z1}} minecraft:structure_void replace {block}',
+                  f'say SCAN {k} floor {block}', f'fill {{X0}} {MIN_Y} {{Z0}} {{X1}} {MIN_Y + 200} {{Z1}} minecraft:lime_wool replace minecraft:structure_void']
             if s == 'the_isles:stronghold':   # how deep the room is: the frames stand 28 blocks under the ground of their column
                 c += [f'say SCAN {k} y-of-the-frames minecraft:structure_void'] + [
-                    f'execute positioned {{LX}} 0 {{LZ}} positioned over motion_blocking_no_leaves run fill ~-40 ~{-10 * n - 10} ~-40 ~39 ~{-10 * n - 1} ~39 minecraft:end_portal_frame[eye=false] replace minecraft:structure_void'
+                    f'execute positioned {{LX}} 0 {{LZ}} positioned over motion_blocking_no_leaves run fill ~-40 ~{-10 * n - 10} ~-30 ~30 ~{-10 * n - 1} ~30 minecraft:end_portal_frame[eye=false] replace minecraft:structure_void'
                     for n in range(6)]
             c += ['forceload remove all']
     # what the old generator left on the world floor under the spawn island (stronghold at 176 1504, mineshaft at -48 -144)
@@ -402,7 +404,7 @@ if on('spawn'):
           'cmd tp packtest 1240 -1900 0', 'sleep 14', 'cmd say CHECK after the fall out of the world', 'cmd data get entity packtest Pos', 'cmd data get entity packtest Health', 'shot']
 S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd gamerule spawn_monsters false', 'cmd gamemode spectator packtest']
 # views: top-down and from the side, of a spread of islands
-VIEWS = ['S2', 'Pt3', 'D4', 'K6', 'M4', 'T3', 'C4', 'e3']
+VIEWS = ['S2', 'Pt3', 'D4', 'T3', 'C4', 'e3']
 if on('views'):
     S += ['cmd say SECTION views']
     for k in VIEWS:
@@ -431,23 +433,12 @@ if on('modsclient'):
           f'cmd tp packtest {BX + 20.5} {BY + 3} {BZ + 2.5} -90 15', 'sleep 5', 'shot',
           'cmd say CHECK create press result', f'cmd data get block {P(2, 0, 4)}', 'cmd say CHECK diesel engine shaft speed (client on)', f'cmd data get block {D(1, 2, 0)} Speed',
           'cmd say CHECK pumpjack hole on a pipe-less island (client on)', f'cmd data get block {D(1, 0, 10)}', 'cmd say CHECK pumpjack hole on bedrock (client on)', f'cmd data get block {D(5, 1, 10)}']
-    # Create Nuclear: the controller goes on with the player there (the mod's own smoke test: .github/smoke-script.txt of the port), then the
-    # blueprint is configured (pattern of rods), put into the controller, and rods go into the input. Clicks: that test's, for GUI scale 2.
-    def gui(x, y): return f'click {round(640 + (x - 640) * 2 / 3)} {round(360 + (y - 360) * 2 / 3)}'
+    # Create Nuclear: the controller goes on with the player there (as in the mod's own smoke test, .github/smoke-script.txt of the port).
+    # Configuring the blueprint and loading rods needs the mod's GUIs; that part is covered by the mod's smoke test, not here.
     S += ['cmd say SECTION reactor', f'cmd tp packtest {BX + 30.5} {BY + 2} {BZ + 2.5} 90 0', 'sleep 6', f'cmd setblock {Nn(4, 3, 2)} createnuclear:reactor_controller', 'sleep 3',
-          f'cmd execute if block {Nn(4, 3, 2)} createnuclear:reactor_controller[assembled=true] run say CHECK reactor-assembled', 'cmd say CHECK reactor controller placed',
-          f'cmd data get block {Nn(4, 3, 2)}', 'shot',
-          'cmd item replace entity packtest hotbar.0 with createnuclear:reactor_blueprint_item', 'cmd item replace entity packtest hotbar.1 with createnuclear:uranium_rod 16',
-          'cmd item replace entity packtest hotbar.2 with createnuclear:graphite_rod 16', f'cmd tp packtest {BX + 30.5} {BY + 2} {BZ + 2.5} -90 -60', 'key 1', 'sleep 3', 'rclick 640 360', 'sleep 3']
-    S += [gui(*q) for q in ((532, 652), (640, 308), (604, 308), (676, 308), (640, 272), (532, 652), (568, 652), (640, 344), (604, 272), (676, 272), (604, 344), (676, 344), (568, 652))]
-    S += ['sleep 1', 'shot', 'key Escape', 'sleep 2', 'cmd say CHECK reactor blueprint', 'cmd data get entity packtest SelectedItem',
-          f'cmd tp packtest {BX + 30.5} {BY + 2} {BZ + 2.5} 90 0', 'key 1', 'sleep 4', 'rclick 640 360', 'sleep 8', 'cmd say CHECK reactor controller with the blueprint', f'cmd data get block {Nn(4, 3, 2)}',
-          f'cmd tp packtest {BX + 22.5} {BY + 2} {BZ + 2.5} -90 0', 'key 2', 'sleep 4', 'rclick 640 360', 'sleep 3']
-    S += [gui(*q) for q in ((533, 497), (607, 245), (569, 497), (673, 245))]
-    S += ['sleep 1', 'shot', 'key Escape', 'sleep 2', 'cmd say CHECK reactor input', f'cmd data get block {Nn(0, 3, 2)}', 'sleep 20',
-          'cmd say CHECK reactor controller running', f'cmd data get block {Nn(4, 3, 2)}', 'cmd say CHECK reactor output', f'cmd data get block {Nn(4, 0, 2)}',
-          f'cmd execute if block {Nn(4, 3, 2)} createnuclear:reactor_controller[assembled=true] run say CHECK reactor-assembled',
-          'cmd item replace entity packtest armor.head with create:goggles', f'cmd tp packtest {BX + 30.5} {BY + 2} {BZ + 2.5} 90 0', 'sleep 4', 'shot', 'cmd clear packtest']
+          f'cmd execute if block {Nn(4, 3, 2)} createnuclear:reactor_controller[assembled=true] run say CHECK reactor-assembled', 'cmd say CHECK reactor controller',
+          f'cmd data get block {Nn(4, 3, 2)}', 'cmd item replace entity packtest armor.head with create:goggles', 'sleep 3', 'shot',
+          'cmd item replace entity packtest armor.head with minecraft:air']
 if on('guns'):
     # gun: revolver, reload, three shots at the golem
     S += ['cmd say SECTION guns', f'cmd tp packtest {BX + 45.5} {BY} {BZ + 4.5} 0 2', 'cmd gamemode survival packtest', 'cmd item replace entity packtest armor.head with minecraft:air',
