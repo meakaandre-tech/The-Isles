@@ -358,6 +358,7 @@ def terrain_probes():
         load(c, f'geyser-{k}', x - 24, z - 24, x + 24, z + 24, 240)
         c += [f'say GEYSER {k} {x} {y} {z}', f'execute positioned {x} 0 {z} run function packtest:col', 'scoreboard players get y pt',
               f'execute positioned {x} {y} {z} run function packtest:potent']
+        c += [l for dy in range(10, -6, -2) for l in (f'say GEYSERCOL {k} {dy}', f'execute positioned {x} {y + dy} {z} run function packtest:at')]
         for st in ('dormant', 'erupting', 'wet', 'dry', 'continuous'):
             c += [f'say SCAN geyser-{k} potent_sulfur[{st}]', f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:barrier replace minecraft:potent_sulfur[potent_sulfur_state={st}]',
                   f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:potent_sulfur[potent_sulfur_state={st}] replace minecraft:barrier']
@@ -399,17 +400,17 @@ def terrain_probes():
     # --- caves
     for k in CAVE_SAMPLE:
         i = I[k]; x, z, R, top, t = i['x'], i['z'], i['radius'], i['y_top'], i['thickness']
-        roof = _bt.cave_roof(_bp, RAW[k]); amp = relief(i)
+        ctop = _bt.cave_top(_bp, RAW[k]); amp = relief(i)
         ox = 200 if k == 'S1' else 0     # (not through the spawn point)
         load(c, f'cave-{k}', x + ox - 80, z - 80, x + ox + 80, z + 80, 300)
-        y1 = int(top - amp - 10 - roof - 4); y0 = int(max(y1 - 110, top - 0.55 * t))
-        if y1 - y0 >= 16:
-            box(c, f'cave-{k}', x + ox - 64, y0, z - 64, x + ox + 63, y1, z + 63, ['minecraft:air', 'minecraft:cave_air', 'minecraft:water', 'minecraft:lava', 'minecraft:grass_block', 'minecraft:dirt',
-                '#minecraft:coal_ores', '#minecraft:iron_ores', '#minecraft:copper_ores', '#minecraft:diamond_ores'], f'(the body of {k}: thickness {t}, cave roof {roof})')
+        y1 = ctop - 6; y0 = int(max(y1 - 110, top - 0.55 * t))
         for n, (dx, dz) in enumerate(((0, 0), (40, 0), (-40, 0), (0, 40), (0, -40), (60, 60), (-60, -60), (60, -60), (-60, 60))):
             c += [f'say VPROFILE cave-{k}-{n} {x + ox + dx} {z + dz}', f'execute positioned {x + ox + dx} 0 {z + dz} positioned over world_surface run function packtest:vprofile']
-        if amp <= 20:   # entrances: air in the roof shell (2..24 blocks under the ground), on a grid of 6 blocks over the middle of the island
-            r = int(min(0.55 * R, 150)) // 6 * 6; ye = int(top - amp - 12)
+        if y1 - y0 >= 16:
+            box(c, f'cave-{k}', x + ox - 64, y0, z - 64, x + ox + 63, y1, z + 63, ['minecraft:air', 'minecraft:cave_air', 'minecraft:water', 'minecraft:lava', 'minecraft:grass_block', 'minecraft:dirt',
+                '#minecraft:coal_ores', '#minecraft:iron_ores', '#minecraft:copper_ores', '#minecraft:diamond_ores'], f'(the body of {k}: thickness {t}, caves below y {ctop})')
+        if amp <= 20:   # entrances: air between the ground and the caves' level, on a grid of 6 blocks over the middle of the island
+            r = int(min(0.55 * R, 150)) // 6 * 6; ye = int(top - amp - 22)     # (12 under the lowest ground, 14 over the caves' own level)
             fn(f'ent_{k.lower()}', [f'execute if block {x + ox + dx} {ye} {z + dz} #minecraft:air run say ENT {dx} {dz}' for dx in range(-r, r + 1, 6) for dz in range(-r, r + 1, 6) if math.hypot(dx, dz) <= r])
             load(c, f'ent-{k}', x + ox - r, z - r, x + ox + r, z + r, 400)
             c += [f'say ENTGRID {k} y {ye} radius {r} step 6', f'function packtest:ent_{k.lower()}', f'say ENTGRID {k} end']
@@ -647,6 +648,33 @@ if on('biomeviews'):
         S += [f'cmd say VIEW biome {k} {i["biome"]} top, near, side', f'cmd tp packtest {x} {g + 75} {z} 180 90', 'sleep 40', 'shot',
               f'cmd tp packtest {x} {g + 22} {z + min(50, rad // 2)} 180 24', 'sleep 10', 'shot',
               f'cmd tp packtest {x} {top - i["thickness"] // 3} {z + rad + 80} 180 -4', 'sleep 18', 'shot']
+# terrain: a sea from above, from its shore and under water; fish around a player; a cave from inside; the mesa stack; a snow cap; a geyser; sulfur caves
+if on('terrainviews'):
+    S += ['cmd say SECTION terrain views']
+    i = I['d5']; x, z, w = i['x'], i['z'], _bt.basin_shape(i)['water']
+    S += [f'cmd say VIEW terrain sea d5 {i["biome"]} top, shore, under water', f'cmd tp packtest {x} {w + 110} {z} 180 90', 'sleep 45', 'shot',
+          f'cmd tp packtest {x} {w + 14} {z + 30} 180 20', 'sleep 12', 'shot', f'cmd tp packtest {x} {w - 6} {z} 180 10', 'cmd effect give packtest minecraft:night_vision infinite 0 true', 'sleep 10', 'shot',
+          # fish: the player has to be in the world (not a spectator) for anything to spawn
+          'cmd gamemode creative packtest', 'cmd gamerule spawn_monsters true', 'cmd time set midnight', f'cmd tp packtest {x} {w + 2} {z}', 'sleep 100', 'cmd say SECTION sea life d5']
+    S += count('sea-d5', ['tropical_fish', 'drowned', 'cod', 'salmon', 'pufferfish', 'squid', 'dolphin', 'turtle']) + ['shot', 'cmd gamerule spawn_monsters false', 'cmd time set noon',
+          'cmd kill @e[type=minecraft:drowned]', 'cmd gamemode spectator packtest']
+    i = I['M5']; x, z, w = i['x'], i['z'], _bt.basin_shape(i)['water']
+    S += [f'cmd say VIEW terrain frozen sea M5 top, side', f'cmd tp packtest {x} {w + 110} {z} 180 90', 'sleep 45', 'shot', f'cmd tp packtest {x} {w + 20} {z + i["radius"] + 60} 180 8', 'sleep 15', 'shot']
+    i = I['C1']; x, z = i['x'], i['z']; yc = _bt.cave_top(_bp, RAW['C1']) - 20
+    S += [f'cmd say VIEW terrain caves C1 inside the rock at y {yc} (night vision)', f'cmd tp packtest {x} {yc} {z} 0 0', 'sleep 25', 'shot', f'cmd tp packtest {x} {yc} {z} 90 20', 'sleep 6', 'shot',
+          f'cmd tp packtest {x + 60} {yc - 20} {z + 60} 200 0', 'sleep 12', 'shot', 'cmd effect clear packtest',
+          f'cmd say VIEW terrain C1 from above (entrances)', f'cmd tp packtest {x} {i["y_top"] + 90} {z} 180 90', 'sleep 35', 'shot']
+    j = I['J1']
+    S += [f'cmd say VIEW terrain mesa stack from the side', f'cmd tp packtest {j["x"]} {j["y_top"] + 160} {j["z"] + j["radius"] + 190} 180 5', 'sleep 50', 'shot',
+          f'cmd tp packtest {I["Jt2"]["x"]} {I["Jt2"]["y_top"] + 10} {I["Jt2"]["z"] + I["Jt2"]["radius"] + 40} 180 10', 'sleep 20', 'shot']
+    for k in [i['id'] for i in L['islands'] if i['biome'] in _bt.SNOW_CAPS][:1]:
+        i = I[k]
+        S += [f'cmd say VIEW terrain snow cap {k} {i["biome"]}', f'cmd tp packtest {i["x"]} {i["y_top"] + 40} {i["z"] + i["radius"] + 30} 180 15', 'sleep 40', 'shot']
+    for g in GEYSERS[:1] + [g for g in GEYSERS if g['island'] in ('L1', 'C1')]:
+        S += [f'cmd say VIEW terrain geyser {g["island"]}', f'cmd tp packtest {g["x"]} {g["y"] + 9} {g["z"] + 14} 180 30', 'sleep 30', 'shot', 'sleep 20', 'shot']
+    p = POCKETS[0]['chamber'] if POCKETS else None
+    if p: S += ['cmd say VIEW terrain sulfur caves under the geyser of S1 (night vision)', 'cmd effect give packtest minecraft:night_vision infinite 0 true',
+                f'cmd tp packtest {p["x"]} {p["y"]} {p["z"]} 0 10', 'sleep 20', 'shot', f'cmd tp packtest {p["x"]} {p["y"] + 2} {p["z"]} 120 -10', 'sleep 5', 'shot', 'cmd effect clear packtest']
 # the cave world inside the spawn island: the sinkholes from above and from inside, places inside the rock at three depths (a spectator
 # sees the caverns around; every place once as it is and once with night vision), then mobs around a player at the foot of a sinkhole
 if CAVE_BIOMES and on('caveviews'):
