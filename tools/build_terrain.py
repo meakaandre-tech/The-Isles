@@ -120,11 +120,11 @@ def cave_noise(bp):
 def springs(bp):
     """The game's water and lava springs pick a height of the whole world and open wherever one side of the rock is free: in
     an island's underside or rim that is a stream into the void (water was counted under M5 and f2). Here they are placed by
-    depth under the surface and only with rock 10 blocks to every side and 10 and 18 blocks below - in cave walls well
+    depth under the surface and only with rock 10 blocks to every side and 10 and 16 blocks below - in cave walls well
     inside the island."""
     mc = bp.mc
     rock = mc("block_predicate_filter", predicate=mc("all_of", predicates=[
-        mc("matching_block_tag", tag="minecraft:base_stone_overworld", offset=o) for o in ([10, 0, 0], [-10, 0, 0], [0, 0, 10], [0, 0, -10], [0, -10, 0], [0, -18, 0])]))
+        mc("matching_block_tag", tag="minecraft:base_stone_overworld", offset=o) for o in ([10, 0, 0], [-10, 0, 0], [0, 0, 10], [0, 0, -10], [0, -10, 0], [0, -16, 0])]))
     for name, feature, count, d0, d1 in (("spring_water", "minecraft:spring_water", 12, 8, 128), ("spring_lava", "minecraft:spring_lava_overworld", 3, 40, 128)):
         bp.write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": feature, "placement":
                  [mc("count", count=count), mc("in_square")] + bp.depth_mods(d0, d1) + [rock, mc("biome")]})
