@@ -246,6 +246,8 @@ server_report('pack')
 if os.path.exists(f'{D}/server2-pack.log'): os.replace(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log')
 server_report('pack-restart')
 perf_report()
+import report_nether
+report_nether.report(D, fails, notes)
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
 # packtest/known.txt: regexes of failures that are known findings (reported, not fixed); they do not fail the run

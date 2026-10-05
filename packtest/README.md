@@ -27,6 +27,8 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 | `pack` | every mod of `mods.tsv` + both data packs, a real client under Xvfb, then a restart | boot log, ores per island, oil, a Create line / diesel engine / reactor / gun / hypertube across the void, spawn, respawn, mobs, weather, portals, the look of the sky at three altitudes, screenshots |
 | `perf` | one fresh world per line of `perf.txt`: the pack built by an older commit (`@commit`) or with generator settings | generation time of the same land / void / stacked-tier regions, heap, tick times, a `/locate` that finds nothing; thread dumps while generating, summed up by step in the report |
 | `speed` | servers with subsets of the mods (`speed.txt`) | which mods change the generation time |
+| `nether` | Fabric API + The Isles (with `nethermods`: every mod and `datapack-mods`), then a client | the Nether: generation time and heap of 64 chunks, columns through all layers, blocks per layer, bedrock, structures per layer, views and mob counts in two layers, four portals (`nether-phase.sh`, `gen_nether.py`, screenshots `nether-NN.png`, `nether-stacks.txt`) |
+| `netherbase` | the same server without The Isles | the vanilla Nether as reference for time, heap and block counts |
 | `bisect` | one fresh world per line of `bisect.txt` (island ids) | which island breaks generation |
 
 ## Files
@@ -148,6 +150,46 @@ Left to do, by expected gain (none of it done here):
    (`config/c2me.toml`) is worth a try on the owner's CPU.
 6. In the mods, not the pack: `/locate` and explorer maps for structures that can exist but are rare (jungle temple:
    10 s) still block the server thread; that is vanilla behaviour.
+
+### Nether
+
+Built by `tools/build_nether.py` (called from `build_pack.py`); numbers from the `nether` job (every mod, client) and its
+vanilla reference (`netherbase`), 4-core runner.
+
+* **Shape.** Same height as the Overworld (y -2032..2031, `logical_height` 4064, ceiling). Twelve cavern layers, each a
+  vanilla Nether stretched in height: bottoms at y -2016, -1656, -1336, -1056, -696, -376, -16, 304, 664, 944, 1264, 1624
+  (heights 280..408). Between two layers there is only netherrack, about 35 blocks; bedrock exists in the bottom 5 and
+  top 5 blocks of the dimension (0 bedrock in every other layer box, 12,286 / 12,352 at the bottom / roof).
+  Where a 2D noise is high the rock between layers gives way to the cavern noise - shafts at the same x/z through all
+  layers, on ground without lava; the cave carver also runs over the whole height.
+* **Lava.** One sea per layer, 39 blocks above the layer bottom (y -1977, -1617, -1297, -1017, -657, -337, 23, 343, 703,
+  983, 1303, 1663). They are aquifers: `sea_level` has to be the bottom of the world (the game floods every cave below it),
+  and an aquifer's surface can only be at 40n + 23, which is why the layer heights are multiples of 40.
+* **Biomes.** The five vanilla Nether biomes, a different map in every layer (the layer at y 0 has the vanilla map).
+  The surface rule is the vanilla one per layer, its heights moved with the lava.
+* **Scale and portals.** `coordinate_scale` 1: a portal comes out at the same x/y/z, the Nether under the map is as large
+  as the map (one constant, `COORDINATE_SCALE`; with the vanilla 8 the map would be 1000 x 1000 blocks of Nether).
+  Lowest island (M4, y -1351) -> Nether 1106 -1362 -3137; highest (K6, y 1374) -> Nether -2486 1374 -1285 (71 above that
+  layer's lava, probably the game's own obsidian platform); Nether 300 -1257 300 -> spawn island at y 53;
+  Nether 2000 1023 -1000 -> the game's platform in the void at the same place. Every arrival stood in a portal on obsidian.
+* **Ores, features.** Every Nether feature that picks a height gets the vanilla attempts per chunk in every layer. Per
+  64x64 layer box: quartz 670..3,434 (vanilla Nether box 2,667), gold 276..1,151 (971), ancient debris 17..36 (25),
+  glowstone 14..161 (50), Gunsmithing sulfur ore 334..1,447 (`datapack-mods`; 1,515 in the vanilla Nether).
+* **Structures.** Bastions and fossils go to a random layer (the grid of bastions/fortresses is 10 chunks instead of 27, so a
+  layer has the vanilla number of bastions). Fortresses (y 48..70) and Nether ruined portals (y 32..100) have their
+  heights in the game's code: they only exist in the layer at y -16..303, which is placed so that they stand above its
+  lava as in vanilla.
+* **Mobs.** After 240 s around a player: 81 piglins, 34 hoglins, 17 striders, 11 zombified piglins, 1 ghast in the layer at
+  y -16; 34 piglins, 10 hoglins, 10 striders, 3 zombified piglins, 2 ghasts, 2 skeletons, 1 enderman in the layer at y 944.
+* **Performance.** 64 chunks: 70.5 s with every mod (157.6 s with Fabric API only, before the feature placement was
+  changed) - the vanilla Nether takes 7.2 s. Heap with them loaded 0.8..1.3 GB (vanilla 0.19). What is left is terrain noise
+  and the surface rule, both proportional to the height. A portal or teleport into Nether that does not exist yet
+  generates about 16 chunks on the server thread: 41..48 s without the performance mods (the client timed out both
+  times), 23..30 s with them. Pre-generate the Nether around portals, or use fewer layers (`HEIGHTS`).
+* **What data cannot do.** Fortresses and ruined portals in other layers; natural spawning picks a random height of the
+  whole column (most attempts are far from the player; it works, the rate against vanilla is not measured); mobs placed at
+  chunk generation only appear in the top layer; basalt columns do not rise out of the lava seas; caves carved below a
+  lava surface stay dry until a block update.
 
 ### Open
 

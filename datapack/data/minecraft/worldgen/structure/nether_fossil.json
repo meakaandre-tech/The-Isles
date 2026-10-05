@@ -1,0 +1,156 @@
+{
+ "type": "minecraft:nether_fossil",
+ "biomes": "#minecraft:has_structure/nether_fossil",
+ "height": {
+  "type": "minecraft:weighted_list",
+  "distribution": [
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -1659
+     },
+     "min_inclusive": {
+      "absolute": -1977
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -1339
+     },
+     "min_inclusive": {
+      "absolute": -1617
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -1059
+     },
+     "min_inclusive": {
+      "absolute": -1297
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -699
+     },
+     "min_inclusive": {
+      "absolute": -1017
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -379
+     },
+     "min_inclusive": {
+      "absolute": -657
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": -19
+     },
+     "min_inclusive": {
+      "absolute": -337
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 301
+     },
+     "min_inclusive": {
+      "absolute": 23
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 661
+     },
+     "min_inclusive": {
+      "absolute": 343
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 941
+     },
+     "min_inclusive": {
+      "absolute": 703
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 1261
+     },
+     "min_inclusive": {
+      "absolute": 983
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 1621
+     },
+     "min_inclusive": {
+      "absolute": 1303
+     }
+    },
+    "weight": 1
+   },
+   {
+    "data": {
+     "type": "minecraft:uniform",
+     "max_inclusive": {
+      "absolute": 2029
+     },
+     "min_inclusive": {
+      "absolute": 1663
+     }
+    },
+    "weight": 1
+   }
+  ]
+ },
+ "spawn_overrides": {},
+ "step": "underground_decoration",
+ "terrain_adaptation": "beard_thin"
+}

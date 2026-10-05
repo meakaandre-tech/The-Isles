@@ -1,0 +1,244 @@
+{
+ "feature": "minecraft:crimson_forest_vegetation",
+ "placement": [
+  {
+   "type": "minecraft:count",
+   "count": 12
+  },
+  {
+   "type": "minecraft:count",
+   "count": 12
+  },
+  {
+   "type": "minecraft:count",
+   "count": 6
+  },
+  {
+   "type": "minecraft:in_square"
+  },
+  {
+   "type": "minecraft:height_range",
+   "height": {
+    "type": "minecraft:weighted_list",
+    "distribution": [
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -1977
+       },
+       "max_inclusive": {
+        "absolute": -1665
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -1617
+       },
+       "max_inclusive": {
+        "absolute": -1345
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -1297
+       },
+       "max_inclusive": {
+        "absolute": -1065
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -1017
+       },
+       "max_inclusive": {
+        "absolute": -705
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -657
+       },
+       "max_inclusive": {
+        "absolute": -385
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": -337
+       },
+       "max_inclusive": {
+        "absolute": -25
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 23
+       },
+       "max_inclusive": {
+        "absolute": 295
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 343
+       },
+       "max_inclusive": {
+        "absolute": 655
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 703
+       },
+       "max_inclusive": {
+        "absolute": 935
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 983
+       },
+       "max_inclusive": {
+        "absolute": 1255
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 1303
+       },
+       "max_inclusive": {
+        "absolute": 1615
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "min_inclusive": {
+        "absolute": 1663
+       },
+       "max_inclusive": {
+        "absolute": 2023
+       }
+      },
+      "weight": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_block_tag",
+    "tag": "minecraft:air"
+   }
+  },
+  {
+   "type": "minecraft:environment_scan",
+   "direction_of_search": "down",
+   "max_steps": 32,
+   "target_condition": {
+    "type": "minecraft:solid"
+   },
+   "allowed_search_condition": {
+    "type": "minecraft:matching_block_tag",
+    "tag": "minecraft:air"
+   }
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": 1,
+   "z": 0
+  },
+  {
+   "type": "minecraft:biome"
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_block_tag",
+    "offset": [
+     0,
+     -1,
+     0
+    ],
+    "tag": "minecraft:nylium"
+   }
+  },
+  {
+   "type": "minecraft:count",
+   "count": 64
+  },
+  {
+   "type": "minecraft:offset",
+   "x": {
+    "type": "minecraft:trapezoid",
+    "max": 7,
+    "min": -7,
+    "plateau": 0
+   },
+   "y": {
+    "type": "minecraft:trapezoid",
+    "max": 3,
+    "min": -3,
+    "plateau": 0
+   },
+   "z": {
+    "type": "minecraft:trapezoid",
+    "max": 7,
+    "min": -7,
+    "plateau": 0
+   }
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_block_tag",
+    "tag": "minecraft:air"
+   }
+  }
+ ]
+}

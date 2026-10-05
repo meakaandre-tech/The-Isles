@@ -428,6 +428,9 @@ def main():
                                    "pack_format": 121, "min_format": [121, 0], "max_format": [121, 0]}}, OUT_MODS)
     for ns, name, feature, count, d0, d1, last in MOD_ORES:
         write(f"data/{ns}/worldgen/placed_feature/{name}.json", ore_placement(feature, count, d0, d1, last), OUT_MODS)
+    # --- the Nether: stacked layers over the same height (tools/build_nether.py)
+    import build_nether
+    build_nether.build(write, OUT_MODS)
     files = sum(1 for p in OUT.rglob("*") if p.is_file())
     print(f"{len(islands)} islands, {len(biomes)} biomes, {files} files -> {OUT}")
 

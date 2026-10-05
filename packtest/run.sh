@@ -15,7 +15,7 @@ ts() { echo "[$(date +%H:%M:%S)] $*"; }
 snapshot() {
   for d in $W/*/; do n=$(basename $d); [ -f $d/server.log ] && cp $d/server.log $out/server-$n.log; [ -f $d/server2.log ] && cp $d/server2.log $out/server2-$n.log; done 2>/dev/null
   echo "${GITHUB_SHA} (running, $(date +%H:%M:%S))" > $out/commit.txt
-  rm -rf /tmp/ci-snap && cp -r $out /tmp/ci-snap && cd /tmp/ci-snap && git init -q -b ci-logs && git config user.name "github-actions" \
+  rm -rf /tmp/ci-snap && cp -r $out /tmp/ci-snap && cd /tmp/ci-snap && git init -q -b ${LOGS_BRANCH:-ci-logs} && git config user.name "github-actions" \
     && git config user.email "actions@users.noreply.github.com" && git add -A && git commit -q -m "Pack test for ${GITHUB_SHA} (in progress)" \
     && git push -q -f "$PUSH_URL" "HEAD:${LOGS_BRANCH:-ci-logs}"
 }
@@ -28,6 +28,7 @@ ZIP=/tmp/the-isles-tested.zip
 ZIP_MODS=/tmp/the-isles-mods-tested.zip
 [ -f $ZIP_MODS ] || (cd $root/datapack-mods && zip -q -r -X $ZIP_MODS .)
 python3 $P/gen.py $W/gen || ts "gen.py FAILED"
+[ -f $P/gen_nether.py ] && { python3 $P/gen_nether.py $W/gen || ts "gen_nether.py FAILED"; }
 cp $W/gen/gen.json $out/ 2>/dev/null
 MC=26.3; LOADER=0.19.5
 VD=$(cat $P/view-distance 2>/dev/null || echo 8)
@@ -37,7 +38,7 @@ mkdir -p $W/mods
 while IFS=$'\t' read -r url name; do
   [ -z "$url" ] && continue
   if [ -f $P/exclude.txt ] && echo "$name" | grep -qE -f <(grep -v '^\s*$' $P/exclude.txt); then echo "excluded: $name"; continue; fi
-  has pack || has speed || case "$name" in fabric-api*) ;; *) continue;; esac
+  has pack || has speed || has nethermods || case "$name" in fabric-api*) ;; *) continue;; esac
   for try in 1 2 3; do curl -fsSL -o "$W/mods/$name" "$url" && break; sleep 5; done
   [ -s "$W/mods/$name" ] || echo "DOWNLOAD FAILED: $name"
 done < $P/mods.tsv
@@ -48,7 +49,7 @@ curl -fsSL -o $W/server.jar "https://meta.fabricmc.net/v2/versions/loader/$MC/$L
 ls -l $W/server.jar
 
 # ---- client project warm-up in the background while the servers run
-if has pack && [ ! -f $P/server-only ]; then
+if { has pack || has nether; } && [ ! -f $P/server-only ]; then
   (sudo apt-get update -q >/dev/null 2>&1; sudo apt-get install -y -q xvfb xdotool imagemagick libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0 libgles2 mesa-utils >/dev/null 2>&1; echo apt-done) > $out/apt.txt 2>&1 &
   C=$P/client
   mkdir -p $C/run/mods && cp $W/mods/*.jar $C/run/mods/
@@ -216,6 +217,8 @@ perf_phase() { # $1 = name, rest = how the pack is built: "@<commit>" (the gener
 has vanilla && simple_phase vanilla 1
 has baseline && simple_phase baseline 0
 if has bisect; then for f in $W/gen/commands-bisect-*.txt; do n=$(basename $f .txt); simple_phase ${n#commands-} 1; done; fi
+has netherbase && simple_phase nether-base 0
+has nether && source $P/nether-phase.sh   # the Nether: probes, a client in two layers, portals (nethermods: with every mod)
 has pack && source $P/pack-phase.sh
 # speed: one line per configuration in packtest/speed.txt: name, regex of the mod jars to keep, regex of those to drop
 if has speed && [ -f $P/speed.txt ]; then while read -r sname skeep sdrop; do [ -n "$sname" ] && speed_phase "$sname" "$skeep" "$sdrop" < /dev/null; done < $P/speed.txt; fi

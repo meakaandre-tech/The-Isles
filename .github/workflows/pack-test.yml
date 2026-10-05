@@ -1,6 +1,6 @@
 name: Pack test
 # Boots Minecraft 26.3 (Fabric) with The Isles: a server with only Fabric API and the data pack, the whole mod pack
-# with a real client, and generation timings of pack variants - one job each, side by side. A last job puts the logs
+# with a real client, generation timings of pack variants, and the Nether (every mod, client) - one job each, side by side. A last job puts the logs
 # together, writes the report, pushes everything to the ci-logs branch and publishes the tested zips as a release.
 # See packtest/README.md.
 on:
@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [vanilla, pack, perf]
+        part: [vanilla, pack, perf, nether]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,7 +30,7 @@ jobs:
         run: |
           want=""
           for w in $(cat packtest/phases); do
-            case "${{ matrix.part }}:$w" in vanilla:vanilla|vanilla:baseline|vanilla:bisect|pack:pack|pack:speed|perf:perf) want="$want $w";; esac
+            case "${{ matrix.part }}:$w" in vanilla:vanilla|vanilla:baseline|vanilla:bisect|pack:pack|pack:speed|perf:perf|nether:netherbase|nether:nether|nether:nethermods) want="$want $w";; esac
           done
           echo "phases=${want# }" >> "$GITHUB_OUTPUT"; echo "phases: ${want}"
       - uses: actions/setup-java@v4
@@ -39,7 +39,7 @@ jobs:
           distribution: temurin
           java-version: 25
       - uses: gradle/actions/setup-gradle@v4
-        if: steps.ph.outputs.phases != '' && matrix.part == 'pack'
+        if: steps.ph.outputs.phases != '' && (matrix.part == 'pack' || matrix.part == 'nether')
       - name: Rebuild the data pack from the layout and zip it
         if: steps.ph.outputs.phases != ''
         shell: bash
@@ -87,7 +87,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p /tmp/ci
-          for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
+          for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf /tmp/parts/ci-nether; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
           cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null; cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null | sort -u > /tmp/ci/build.txt
           python3 tools/build_pack.py > /dev/null
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)

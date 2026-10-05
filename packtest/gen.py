@@ -211,7 +211,7 @@ def dims():
     c = ['say SECTION dims']
     for d, blocks in (('the_nether', ['netherrack', 'bedrock', 'lava']), ('the_end', ['end_stone', 'obsidian', 'bedrock'])):
         c += [f'execute in minecraft:{d} run forceload add -16 -16 31 31',
-              f'#poll 240 execute in minecraft:{d} if loaded 0 0 0 if loaded 31 0 31 if loaded -16 0 -16 run say LOADED {d} ## LOADED {d}']
+              f'#poll 900 execute in minecraft:{d} if loaded 0 0 0 if loaded 31 0 31 if loaded -16 0 -16 run say LOADED {d} ## LOADED {d}']
         for b in blocks:
             # count by swapping to a marker block and back ("Successfully filled N block(s)")
             c += [f'say DIMCOUNT {d} {b}', f'execute in minecraft:{d} run fill -16 0 -16 31 127 31 minecraft:structure_void replace minecraft:{b}',
@@ -292,7 +292,7 @@ if on('ores'): C += ore_scans(SCAN_ISLANDS, ORES)
 write('vanilla-ores', ore_scans(['S1', 'B1', 'a1', 'T1', 'S2'], [b for b in ORES if b.startswith('minecraft:')]))
 N = 'execute in minecraft:the_nether run '
 C += ['say SECTION nether ores', N + 'forceload add -16 -16 47 47', '#poll 240 ' + N + 'execute if loaded -16 0 -16 if loaded 47 0 47 run say LOADED nether ## LOADED nether']
-scan(C, 'nether', N, -16, 0, -16, 47, 127, 47, ['minecraft:netherrack', 'cgs:sulfur_ore', 'minecraft:nether_quartz_ore', 'minecraft:nether_gold_ore', 'create:scoria', 'minecraft:bedrock'])
+scan(C, 'nether', N, -16, -16, -16, 47, 303, 47, ['minecraft:netherrack', 'cgs:sulfur_ore', 'minecraft:nether_quartz_ore', 'minecraft:nether_gold_ore', 'create:scoria', 'minecraft:bedrock'])
 C += [N + 'forceload remove all']
 # ---- oil (Create Diesel Generators): the amount per chunk, and whether anything in the world can serve as the deposit a pumpjack drills to
 C += ['say SECTION oil']
@@ -372,15 +372,20 @@ for x in TX[1:-1]:
     C += [f'setblock {x} {TY} {TZ} create_hypertube:hypertube_accelerator[facing=east]', f'setblock {x} {TY} {TZ + 1} create:cogwheel[axis=x]',
           f'setblock {x - 1} {TY} {TZ + 1} create:creative_motor[facing=east]{{ScrollValue:64}}']
 # portals: one on the spawn island, one in the Nether under a void column of the Overworld
+from build_nether import COORDINATE_SCALE
+NSC = int(COORDINATE_SCALE)   # Overworld blocks per Nether block (1 in this pack, 8 in vanilla)
 VX, VZ = void_points()[7]
 C += ['forceload add 16 16 47 47', '#poll 240 execute if loaded 16 0 16 if loaded 47 0 47 run say LOADED portal ## LOADED portal',
       'fill 28 99 28 36 99 32 minecraft:smooth_stone', 'fill 28 100 28 36 106 32 minecraft:air', 'fill 30 100 30 33 104 30 minecraft:obsidian', 'fill 31 101 30 32 103 30 minecraft:air',
       'setblock 31 101 30 minecraft:fire', 'execute if block 31 101 30 minecraft:nether_portal run say PORTAL overworld-lit',
-      N + f'forceload add {VX // 8 - 16} {VZ // 8 - 16} {VX // 8 + 16} {VZ // 8 + 16}',
-      '#poll 240 ' + N + f'execute if loaded {VX // 8} 0 {VZ // 8} run say LOADED nether-portal ## LOADED nether-portal',
-      N + f'fill {VX // 8 - 3} 69 {VZ // 8 - 3} {VX // 8 + 6} 69 {VZ // 8 + 3} minecraft:obsidian', N + f'fill {VX // 8 - 3} 70 {VZ // 8 - 3} {VX // 8 + 6} 76 {VZ // 8 + 3} minecraft:air',
-      N + f'fill {VX // 8} 70 {VZ // 8} {VX // 8 + 3} 74 {VZ // 8} minecraft:obsidian', N + f'fill {VX // 8 + 1} 71 {VZ // 8} {VX // 8 + 2} 73 {VZ // 8} minecraft:air',
-      N + f'setblock {VX // 8 + 1} 71 {VZ // 8} minecraft:fire', N + f'execute if block {VX // 8 + 1} 71 {VZ // 8} minecraft:nether_portal run say PORTAL nether-lit']
+      # the Nether where that portal leads, generated now: the portal search generates it on the server thread otherwise (see README, Nether)
+      N + f'forceload add {31 // NSC - 16} {30 // NSC - 16} {31 // NSC + 16} {30 // NSC + 16}',
+      '#poll 600 ' + N + f'execute if loaded {31 // NSC - 16} 0 {30 // NSC - 16} if loaded {31 // NSC + 16} 0 {30 // NSC + 16} run say LOADED nether-spawn-portal ## LOADED nether-spawn-portal',
+      N + f'forceload add {VX // NSC - 16} {VZ // NSC - 16} {VX // NSC + 16} {VZ // NSC + 16}',
+      '#poll 240 ' + N + f'execute if loaded {VX // NSC} 0 {VZ // NSC} run say LOADED nether-portal ## LOADED nether-portal',
+      N + f'fill {VX // NSC - 3} 69 {VZ // NSC - 3} {VX // NSC + 6} 69 {VZ // NSC + 3} minecraft:obsidian', N + f'fill {VX // NSC - 3} 70 {VZ // NSC - 3} {VX // NSC + 6} 76 {VZ // NSC + 3} minecraft:air',
+      N + f'fill {VX // NSC} 70 {VZ // NSC} {VX // NSC + 3} 74 {VZ // NSC} minecraft:obsidian', N + f'fill {VX // NSC + 1} 71 {VZ // NSC} {VX // NSC + 2} 73 {VZ // NSC} minecraft:air',
+      N + f'setblock {VX // NSC + 1} 71 {VZ // NSC} minecraft:fire', N + f'execute if block {VX // NSC + 1} 71 {VZ // NSC} minecraft:nether_portal run say PORTAL nether-lit']
 C += ['tick sprint 200', '#sleep 8', 'say SECTION mods placed',
       'say CHECK create shaft speed', f'data get block {P(4, 1, 0)} Speed', 'say CHECK create press depot', f'data get block {P(2, 0, 4)}',
       f'execute if entity @e[type=create:stationary_contraption] run say CHECK contraptions-assembled', 'say CHECK contraption count',
@@ -467,8 +472,8 @@ if on('portals'):
           'cmd tp packtest 31.5 101 30.5', 'sleep 14', 'cmd say CHECK through the overworld portal', 'cmd data get entity packtest Dimension', 'cmd data get entity packtest Pos', 'shot',
           'cmd execute as packtest at @s run tp @s ~3 ~ ~', 'sleep 16', 'cmd execute as packtest at @s run tp @s ~-3 ~ ~', 'sleep 14',
           'cmd say CHECK back through the nether side', 'cmd data get entity packtest Dimension', 'cmd data get entity packtest Pos', 'shot',
-          f'cmd execute in minecraft:the_nether run tp packtest {VX // 8 + 5.5} 70 {VZ // 8 + 0.5} 90 0', 'sleep 20', 'shot',
-          f'cmd execute in minecraft:the_nether run tp packtest {VX // 8 + 1.5} 71 {VZ // 8 + 0.5}', 'sleep 16',
+          f'cmd execute in minecraft:the_nether run tp packtest {VX // NSC + 5.5} 70 {VZ // NSC + 0.5} 90 0', 'sleep 20', 'shot',
+          f'cmd execute in minecraft:the_nether run tp packtest {VX // NSC + 1.5} 71 {VZ // NSC + 0.5}', 'sleep 16',
           f'cmd say CHECK from a nether portal under the void column {VX} {VZ}', 'cmd data get entity packtest Dimension', 'cmd data get entity packtest Pos',
           'cmd execute at packtest run function packtest:top', 'cmd execute at packtest run function packtest:col', 'cmd scoreboard players get y pt', 'shot',
           'cmd gamemode spectator packtest', 'cmd execute as packtest at @s run tp @s ~12 ~8 ~12 135 25', 'sleep 6', 'shot',
