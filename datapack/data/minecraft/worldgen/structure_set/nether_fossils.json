@@ -1,0 +1,14 @@
+{
+ "placement": {
+  "type": "minecraft:random_spread",
+  "salt": 14357921,
+  "separation": 0,
+  "spacing": 1
+ },
+ "structures": [
+  {
+   "structure": "minecraft:nether_fossil",
+   "weight": 1
+  }
+ ]
+}

@@ -1,0 +1,171 @@
+{
+ "feature": "minecraft:spring_lava_nether",
+ "placement": [
+  {
+   "type": "minecraft:count",
+   "count": 12
+  },
+  {
+   "type": "minecraft:count",
+   "count": 16
+  },
+  {
+   "type": "minecraft:in_square"
+  },
+  {
+   "type": "minecraft:height_range",
+   "height": {
+    "type": "minecraft:weighted_list",
+    "distribution": [
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -1660
+       },
+       "min_inclusive": {
+        "absolute": -2012
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -1340
+       },
+       "min_inclusive": {
+        "absolute": -1652
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -1060
+       },
+       "min_inclusive": {
+        "absolute": -1332
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -700
+       },
+       "min_inclusive": {
+        "absolute": -1052
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -380
+       },
+       "min_inclusive": {
+        "absolute": -692
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": -20
+       },
+       "min_inclusive": {
+        "absolute": -372
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 300
+       },
+       "min_inclusive": {
+        "absolute": -12
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 660
+       },
+       "min_inclusive": {
+        "absolute": 308
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 940
+       },
+       "min_inclusive": {
+        "absolute": 668
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 1260
+       },
+       "min_inclusive": {
+        "absolute": 948
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 1620
+       },
+       "min_inclusive": {
+        "absolute": 1268
+       }
+      },
+      "weight": 1
+     },
+     {
+      "data": {
+       "type": "minecraft:uniform",
+       "max_inclusive": {
+        "absolute": 2028
+       },
+       "min_inclusive": {
+        "absolute": 1628
+       }
+      },
+      "weight": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "minecraft:biome"
+  }
+ ]
+}
