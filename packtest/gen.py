@@ -360,10 +360,10 @@ def terrain_probes():
               f'execute positioned {x} {y} {z} run function packtest:potent']
         c += [l for dy in range(10, -6, -2) for l in (f'say GEYSERCOL {k} {dy}', f'execute positioned {x} {y + dy} {z} run function packtest:at')]
         for st in ('dormant', 'erupting', 'wet', 'dry', 'continuous'):
-            c += [f'say SCAN geyser-{k} potent_sulfur[{st}]', f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:barrier replace minecraft:potent_sulfur[potent_sulfur_state={st}]',
-                  f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:potent_sulfur[potent_sulfur_state={st}] replace minecraft:barrier']
+            c += [f'say SCAN geyser-{k} potent_sulfur[{st}]', f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 14} {z + 12} minecraft:barrier replace minecraft:potent_sulfur[potent_sulfur_state={st}]',
+                  f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 14} {z + 12} minecraft:potent_sulfur[potent_sulfur_state={st}] replace minecraft:barrier']
         if n == 0: c += [f'say ERUPTION watch {k}', '#time ERUPTION', f'#poll 400 execute positioned {x} {y} {z} run function packtest:erupt ## ERUPTING', '#time']
-        box(c, f'geyser-{k}', x - 12, y - 10, z - 12, x + 12, y + 6, z + 12,
+        box(c, f'geyser-{k}', x - 12, y - 10, z - 12, x + 12, y + 14, z + 12,
             ['minecraft:sulfur_spike', 'minecraft:potent_sulfur', 'minecraft:magma_block', 'minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:water', 'minecraft:ice', 'minecraft:light', 'minecraft:tuff', 'minecraft:granite'])   # (spikes first: they break when the sulfur under them goes)
     # --- sulfur caves: the pocket under five geysers
     for p in POCKETS[:25:5]:
@@ -385,7 +385,8 @@ def terrain_probes():
               f'execute if block {x} {w + 1} {z} #minecraft:air run say SEAABOVE {k} air', f'execute if biome {x} {w - 2} {z} minecraft:{i["biome"]} run say SEABIOME {k} ok']
         box(c, f'sea-life-{k}', x - R, w - d - 14, z - R, x + R, w + 2, z + R, SEA_BLOCKS, '(the sea: before its water is counted)')
         box(c, f'sea-{k}', x - R - 24, w - d - 14, z - R - 24, x + R + 24, w, z + R + 24, ['minecraft:water', 'minecraft:ice'], '(the sea: floor to water level)')
-        box(c, f'sea-over-{k}', x - R - 24, w + 1, z - R - 24, x + R + 24, w + 40, z + R + 24, ['minecraft:water'], '(above the water level: none)')
+        box(c, f'sea-over-middle-{k}', x - R // 3, w + 1, z - R // 3, x + R // 3, w + 40, z + R // 3, ['minecraft:water'], '(above the water level over the middle of the sea: none)')
+        box(c, f'sea-over-{k}', x - R - 24, w + 1, z - R - 24, x + R + 24, w + 40, z + R + 24, ['minecraft:water'], '(above the water level, shore ring included: pools of the shore biome)')
         box(c, f'sea-under-{k}', x - R - 24, i['y_bottom'] - 220, z - R - 24, x + R + 24, w - d - 15, z + R + 24, ['minecraft:water'], '(under the sea floor and under the island: none)')
     # (a second pass with fresh chunks is not needed: the corners of the square around the round island lie outside its rim)
     for k in SEA_SAMPLE[:3]:
@@ -403,13 +404,13 @@ def terrain_probes():
         ctop = _bt.cave_top(_bp, RAW[k]); amp = relief(i)
         ox = 200 if k == 'S1' else 100     # (beside the columns the island probes look at)
         load(c, f'cave-{k}', x + ox - 80, z - 80, x + ox + 80, z + 80, 300)
-        y1 = ctop - 6; y0 = int(max(y1 - 110, top - 0.55 * t))
+        y1 = ctop - 6; y0 = int(max(y1 - 110, top - 0.3 * t - amp))     # (not below the underside, which is higher away from the centre)
         for n, (dx, dz) in enumerate(((0, 0), (40, 0), (-40, 0), (0, 40), (0, -40), (60, 60), (-60, -60), (60, -60), (-60, 60))):
             c += [f'say VPROFILE cave-{k}-{n} {x + ox + dx} {z + dz}', f'execute positioned {x + ox + dx} 0 {z + dz} positioned over world_surface run function packtest:vprofile']
         if y1 - y0 >= 16:
             box(c, f'cave-{k}', x + ox - 64, y0, z - 64, x + ox + 63, y1, z + 63, ['minecraft:air', 'minecraft:cave_air', 'minecraft:water', 'minecraft:lava', 'minecraft:grass_block', 'minecraft:dirt',
                 '#minecraft:coal_ores', '#minecraft:iron_ores', '#minecraft:copper_ores', '#minecraft:diamond_ores'], f'(the body of {k}: thickness {t}, caves below y {ctop})')
-        if amp <= 20:   # entrances: air between the ground and the caves' level, on a grid of 6 blocks over the middle of the island
+        if amp <= 20 and t >= 150:   # entrances (thick islands: under a thin one the grid's height is below the island): air between the ground and the caves' level, on a grid of 6 blocks over the middle of the island
             r = int(min(0.55 * R, 150)) // 6 * 6; ye = int(top - amp - 22)     # (12 under the lowest ground, 14 over the caves' own level)
             fn(f'ent_{k.lower()}', [f'execute if block {x + ox + dx} {ye} {z + dz} #minecraft:air run say ENT {dx} {dz}' for dx in range(-r, r + 1, 6) for dz in range(-r, r + 1, 6) if math.hypot(dx, dz) <= r])
             load(c, f'ent-{k}', x + ox - r, z - r, x + ox + r, z + r, 400)
