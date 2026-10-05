@@ -64,7 +64,7 @@
   "exclusion": {
    "type": "minecraft:sub",
    "left": "the_isles:nether/holes",
-   "right": 0.25
+   "right": 0.42
   }
  },
  "default_block": "minecraft:netherrack",
@@ -143,7 +143,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -177,7 +177,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -208,7 +208,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -242,7 +242,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -273,7 +273,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -307,7 +307,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -338,7 +338,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -372,7 +372,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -403,7 +403,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -437,7 +437,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -468,7 +468,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -502,7 +502,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -533,7 +533,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -567,7 +567,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -598,7 +598,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -632,7 +632,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -663,7 +663,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -697,7 +697,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -728,7 +728,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -762,7 +762,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },
@@ -793,7 +793,7 @@
                "left": {
                 "type": "minecraft:sub",
                 "left": "the_isles:nether/holes",
-                "right": 0.42
+                "right": 0.55
                },
                "right": 8.0
               },
@@ -827,7 +827,7 @@
               "left": {
                "type": "minecraft:sub",
                "left": "the_isles:nether/holes",
-               "right": 0.42
+               "right": 0.55
               },
               "right": 8.0
              },

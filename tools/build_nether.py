@@ -35,7 +35,7 @@ LAVA = 39
 SPREAD = 0.45
 # Shafts: where this 2D noise is high, the rock between two layers gives way to the cavern noise (same x/z in every
 # layer), and a little wider no lava is generated, so the shafts start on dry ground.
-HOLE, HOLE_DRY = 0.42, 0.25
+HOLE, HOLE_DRY = 0.55, 0.42
 CAVE_PROBABILITY = 0.75   # vanilla 0.2 per chunk for 128 blocks of height
 
 def layers():
