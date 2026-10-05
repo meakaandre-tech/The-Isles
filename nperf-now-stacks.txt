@@ -1,0 +1,53 @@
+93 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 25.8%    24 surface rule
+ 16.1%    15 terrain: fill (blocks into sections)
+ 14.0%    13 terrain: aquifer
+ 12.9%    12 terrain: 3D noise
+ 10.8%    10 light
+  9.7%     9 features
+  6.5%     6 terrain: other density functions
+  2.2%     2 full chunk (entities, block entities, POI)
+  1.1%     1 structures
+  1.1%     1 tick
+--- features
+  1.1%     1 feature.RandomNeighborSpreadFeature.place
+  1.1%     1 feature.HugeFungusFeature.place
+  1.1%     1 feature.ReplaceBlobsFeature.place
+  1.1%     1 placement.CountPlacement.hashCode
+  1.1%     1 placement.BiomeFilter.shouldPlace
+  1.1%     1 placement.EnvironmentScanPlacement.modify
+  1.1%     1 placement.FeaturePlacer.place
+  1.1%     1 feature.DeltaFeature.place
+  1.1%     1 placement.OffsetPlacement.modify
+--- top frames
+   12 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   12 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000291a8240.get
+   11 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+    6 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000291aad60.tryApply
+    5 lighting.LightEngine.getState < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    4 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    4 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000291a9950.apply < material.MaterialRuleContext.getBiome
+    4 lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000291aad60.tryApply < material.rule.SequenceRule.lambda$compile$0
+    2 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < net.minecraft.server.level.WorldGenRegion.getBlockState
+    2 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 material.FluidState.isRandomlyTicking < net.minecraft.server.level.ServerLevel.tickChunk < net.minecraft.server.level.ServerChunkCache.lambda$tickChunks$0
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000291af7f8.visitColumn
+    1 net.minecraft.nbt.CompoundTag.getIntOr < structure.templatesystem.StructureTemplate.lambda$loadPalette$0 < structure.templatesystem.StructureTemplate$$Lambda/0x0000000029191800.accept
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume
+    1 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < LevelReader.getChunk
+    1 synth.NoiseStack$Perlin.get < densityfunction.generator.NoiseFunction$Sampler.sampleValue < densityfunction.op.SliceFunction$YSampler.sampleValue
+    1 lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates < lighting.LevelLightEngine.runLightUpdates
+    1 chunk.ProtoChunk.setBlockState < net.minecraft.server.level.WorldGenRegion.setBlock < LevelWriter.setBlock
+    1 placement.CountPlacement.hashCode < placement.PlacedFeature.hashCode < biome.BiomeGenerationSettings.hasFeature
+    1 densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume < biome.MultiNoiseBiomeSource.createResolverForChunk
+    1 densityfunction.op.LerpFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    1 biome.BiomeManager.getBiome < LevelReader.getBiome < placement.BiomeFilter.shouldPlace
+    1 Beardifier.sampleValueUnchecked < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    1 densityfunction.op.InterpolatedFunction$Sampler.fillCell < densityfunction.op.InterpolatedFunction$Sampler.sampleWithBlockStep < densityfunction.op.InterpolatedFunction$Sampler.sampleVolume
+    1 chunk.LevelChunkSection.getBlockState < net.minecraft.server.level.ServerLevel.tickChunk < net.minecraft.server.level.ServerChunkCache.lambda$tickChunks$0
+    1 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration

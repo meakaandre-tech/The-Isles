@@ -1,0 +1,46 @@
+89 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 32.6%    29 terrain: aquifer
+ 29.2%    26 surface rule
+  7.9%     7 terrain: 3D noise
+  6.7%     6 terrain: fill (blocks into sections)
+  6.7%     6 light
+  5.6%     5 terrain: other density functions
+  4.5%     4 features
+  3.4%     3 tick
+  2.2%     2 saving / loading chunks
+  1.1%     1 structures
+--- features
+  1.1%     1 placement.OffsetPlacement.modify
+  1.1%     1 feature.OreFeature.place
+  1.1%     1 placement.BlockPredicateFilter.shouldPlace
+  1.1%     1 feature.HugeFungusFeature.place
+--- top frames
+   28 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    7 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+    6 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000791af040.tryApply
+    5 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000791af040.tryApply < material.rule.SequenceRule.lambda$compile$0
+    4 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    4 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000791acc90.apply
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000791ab330.get
+    3 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    3 Beardifier.sampleValueUnchecked < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    3 lighting.LightEngine.getState < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSet < chunk.LevelChunkSection.setBlockState
+    2 lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    2 densityfunction.op.InterpolatedFunction$Sampler.fillCell < densityfunction.op.InterpolatedFunction$Sampler.sampleWithBlockStep < densityfunction.op.InterpolatedFunction$Sampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeFluidType < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000791acc90.apply < material.MaterialRuleContext.getBiome
+    1 placement.OffsetPlacement.modify < placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck
+    1 LevelHeightAccessor.isOutsideBuildHeight < feature.OreFeature.doPlace < feature.OreFeature.place
+    1 net.minecraft.server.level.WorldGenRegion.warnIfReadOutsideWriteZone < net.minecraft.server.level.WorldGenRegion.getBlockState < blockpredicates.StateTestingPredicate.test
+    1 net.minecraft.util.FastBufferedInputStream.fill < net.minecraft.util.FastBufferedInputStream.read < net.minecraft.nbt.IntTag$1.readAccounted
+    1 material.FlowingFluid$SpreadContext.<init> < material.FlowingFluid.getSpread < material.FlowingFluid.spreadToSides
+    1 WorldgenRandom.next < BitRandomSource.nextFloat < feature.HugeFungusFeature.placeHatBlock
+    1 net.minecraft.server.dedicated.DedicatedServer.handleConsoleInputs < net.minecraft.server.dedicated.DedicatedServer.tickConnection < net.minecraft.server.MinecraftServer.tickChildren
+    1 lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates < lighting.LevelLightEngine.runLightUpdates
+    1 net.minecraft.world.entity.LivingEntity.getEffectiveGravity < net.minecraft.world.entity.LivingEntity.travelInAir < net.minecraft.world.entity.LivingEntity.travel
+    1 block.state.properties.Property$Value.<init> < block.state.properties.Property.value < block.state.StateDefinition.lambda$appendPropertyCodec$3
+    1 net.minecraft.util.SimpleBitStorage.unpack < chunk.PalettedContainer.reencodeContents < chunk.PalettedContainer.pack
+    1 net.minecraft.world.entity.ai.behavior.StrollAroundPoi.lambda$create$1 < net.minecraft.world.entity.ai.behavior.StrollAroundPoi$$Lambda/0x0000000079280e50.apply < net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder$Instance$3.tryTrigger

@@ -1,0 +1,15 @@
+5 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 20.0%     1 saving / loading chunks
+ 20.0%     1 other
+ 20.0%     1 terrain: fill (blocks into sections)
+ 20.0%     1 light
+ 20.0%     1 features
+--- features
+ 20.0%     1 placement.FeaturePlacer.place
+--- top frames
+    1 chunk.storage.IOWorker.lambda$createOldDataForRegion$1 < chunk.storage.IOWorker$$Lambda/0x000000004d1a7b68.accept < ChunkPos$2.tryAdvance
+    1 net.minecraft.TracingExecutor.execute < net.minecraft.util.thread.AbstractConsecutiveExecutor.registerForExecution < net.minecraft.util.thread.AbstractConsecutiveExecutor.run
+    1 chunk.PalettedContainer.forEachInPalette < chunk.ChunkAccess.collectBiomesInPalette < chunk.status.ChunkStatusTasks.collectPossibleBiomes
+    1 lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    1 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration

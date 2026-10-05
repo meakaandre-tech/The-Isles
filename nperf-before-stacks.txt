@@ -1,0 +1,49 @@
+228 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 39.5%    90 surface rule
+ 29.8%    68 terrain: 3D noise
+ 10.1%    23 terrain: fill (blocks into sections)
+  9.6%    22 terrain: aquifer
+  3.1%     7 terrain: other density functions
+  3.1%     7 features
+  2.2%     5 light
+  1.3%     3 carvers
+  0.4%     1 tick
+  0.4%     1 biomes
+  0.4%     1 other
+--- features
+  1.3%     3 feature.ReplaceBlobsFeature.place
+  0.9%     2 feature.SteppedColumnClusterFeature.place
+  0.4%     1 feature.DeltaFeature.place
+  0.4%     1 placement.EnvironmentScanPlacement.modify
+--- top frames
+   66 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+   29 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x0000000076f2d800.apply < material.MaterialRuleContext.getBiome
+   21 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   20 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000771a5690.get
+   14 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    9 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    8 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x0000000077066c50.tryApply
+    6 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x0000000077066c50.tryApply < material.rule.SequenceRule.lambda$compile$0
+    5 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    5 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x0000000076f2d800.apply
+    4 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSet < chunk.LevelChunkSection.setBlockState
+    3 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    3 lighting.LightEngine.getState < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    2 NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000771aa560.visitColumn < chunk.CarvingMask.visitSegment
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 material.rule.SequenceRule.lambda$compile$0 < material.rule.SequenceRule$$Lambda/0x00000000771a8000.tryApply < material.rule.ConditionRule.lambda$compile$0
+    2 chunk.LevelChunkSection.setBlockState < chunk.LevelChunkSection.setBlockState < chunk.ProtoChunk.setBlockState
+    2 lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates < lighting.LevelLightEngine.runLightUpdates
+    2 densityfunction.op.LerpFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    2 material.FluidState.isRandomlyTicking < net.minecraft.server.level.ServerLevel.tickChunk < net.minecraft.server.level.ServerChunkCache.lambda$tickChunks$0
+    1 synth.NoiseStack$Perlin.get < densityfunction.generator.NoiseFunction$Sampler.sampleValue < densityfunction.op.SliceFunction$YSampler.sampleValue
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 net.minecraft.core.TypedInstance.is < NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000771aa560.visitColumn
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000771aa560.visitColumn
+    1 net.minecraft.TracingExecutor.execute < net.minecraft.util.thread.AbstractConsecutiveExecutor.registerForExecution < net.minecraft.util.thread.AbstractConsecutiveExecutor.schedule
+    1 synth.NoiseStack$Perlin.get < material.MaterialSystem.getSurfaceDepth < material.MaterialRuleContext.updateXZ
+    1 RandomState.getOrCreateRandomFactory < net.minecraft.server.level.WorldGenRegion.<init> < chunk.status.ChunkStatusTasks.buildTerrain
+    1 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    1 feature.SteppedColumnClusterFeature.place < placement.FeaturePlacer.place < placement.FeaturePlacer.place
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume

@@ -1,0 +1,47 @@
+94 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 36.2%    34 surface rule
+ 17.0%    16 terrain: aquifer
+ 11.7%    11 terrain: 3D noise
+ 11.7%    11 terrain: fill (blocks into sections)
+  7.4%     7 features
+  7.4%     7 light
+  3.2%     3 saving / loading chunks
+  2.1%     2 terrain: other density functions
+  2.1%     2 other
+  1.1%     1 tick
+--- features
+  2.1%     2 other
+  2.1%     2 placement.BlockPredicateFilter.shouldPlace
+  1.1%     1 placement.CountPlacement.hashCode
+  1.1%     1 placement.BiomeFilter.shouldPlace
+  1.1%     1 feature.SteppedColumnClusterFeature.place
+--- top frames
+   16 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   12 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x0000000065069468.tryApply < material.rule.SequenceRule.lambda$compile$0
+   11 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+   10 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000651ae208.get
+    8 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x0000000065069468.tryApply
+    5 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    4 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000651af4b8.apply
+    3 lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    3 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 lighting.LightEngine.getState < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    2 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    2 net.minecraft.util.SimpleBitStorage.unpack < chunk.PalettedContainer.reencodeContents < chunk.PalettedContainer.pack
+    1 net.minecraft.world.entity.monster.piglin.AbstractPiglin.applyOpenDoorsAbility < net.minecraft.world.entity.monster.piglin.AbstractPiglin.<init> < net.minecraft.world.entity.monster.piglin.Piglin.<init>
+    1 net.minecraft.server.level.ChunkGenerationTask.getCenter < net.minecraft.server.level.ChunkMap.runGenerationTask < net.minecraft.server.level.ChunkMap.lambda$runGenerationTask$1
+    1 densityfunction.op.IntervalSelectFunction.hashCode < densityfunction.DensityFunctionCompiler.getSampler < RandomState.getSampler
+    1 densityfunction.op.BinaryFunction$AddSampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume
+    1 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSet < chunk.LevelChunkSection.setBlockState
+    1 placement.CountPlacement.hashCode < placement.PlacedFeature.hashCode < biome.BiomeGenerationSettings.hasFeature
+    1 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    1 chunk.ChunkGenerator$$Lambda/0x00000000651b7d48.accept < chunk.ChunkGenerator.applyBiomeDecoration < chunk.status.ChunkStatusTasks.generateFeatures
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < LevelReader.getBiome
+    1 net.minecraft.server.level.ChunkTaskPriorityQueue.submit < net.minecraft.server.level.ChunkTaskDispatcher.lambda$submit$0 < net.minecraft.server.level.ChunkTaskDispatcher$$Lambda/0x0000000065186bd0.run
+    1 net.minecraft.server.MinecraftServer.processPacketsAndTick < net.minecraft.server.MinecraftServer.runServer < net.minecraft.server.MinecraftServer.lambda$spin$0
+    1 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    1 lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates < lighting.LevelLightEngine.runLightUpdates
+    1 net.minecraft.core.Holder$Reference.is < net.minecraft.core.HolderSet$Named.contains < net.minecraft.core.TypedInstance.is
+    1 net.minecraft.world.entity.ai.behavior.GateBehavior.tickOrStop < net.minecraft.world.entity.ai.Brain.tickEachRunningBehavior < net.minecraft.world.entity.ai.Brain.tick
+    1 net.minecraft.util.SimpleBitStorage.<init> < chunk.PalettedContainer.pack < chunk.PalettedContainer.lambda$codec$2

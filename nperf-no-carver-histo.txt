@@ -1,0 +1,23 @@
+24938:
+ num     #instances         #bytes  class name (module)
+-------------------------------------------------------
+   1:        159705      134693640  [J (java.base@25.0.4.1)
+   2:        370147       98731224  [B (java.base@25.0.4.1)
+   3:        214277       22050064  [Ljava.lang.Object; (java.base@25.0.4.1)
+   4:        660510       21136320  java.util.concurrent.locks.ReentrantLock$NonfairSync (java.base@25.0.4.1)
+   5:        660401       21132832  java.util.concurrent.Semaphore$NonfairSync (java.base@25.0.4.1)
+   6:        660400       21132800  net.minecraft.util.ThreadingDetector
+   7:        660400       15849600  net.minecraft.world.level.chunk.PalettedContainer
+   8:        660400       15849600  net.minecraft.world.level.chunk.PalettedContainer$Data
+   9:        491468       11795232  net.minecraft.core.BlockPos
+  10:        481673       11560152  net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate$StructureBlockInfo
+  11:        660473       10567568  java.util.concurrent.locks.ReentrantLock (java.base@25.0.4.1)
+  12:        660401       10566416  java.util.concurrent.Semaphore (java.base@25.0.4.1)
+  13:        330200       10566400  net.minecraft.world.level.chunk.LevelChunkSection
+  14:          8053        8591064  [Ljdk.internal.vm.FillerElement; (java.base@25.0.4.1)
+  15:        520221        8323536  net.minecraft.util.ZeroBitStorage
+  16:        520221        8323536  net.minecraft.world.level.chunk.SingleValuePalette
+  17:        311191        7468584  java.lang.String (java.base@25.0.4.1)
+  18:        142729        6850992  net.minecraft.util.SimpleBitStorage
+  19:        204368        6539776  java.util.HashMap$Node (java.base@25.0.4.1)
+Total      11052408      549043584

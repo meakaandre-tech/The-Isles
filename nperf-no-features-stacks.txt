@@ -1,0 +1,37 @@
+81 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 38.3%    31 surface rule
+ 19.8%    16 terrain: aquifer
+ 17.3%    14 terrain: 3D noise
+ 11.1%     9 terrain: fill (blocks into sections)
+  4.9%     4 terrain: other density functions
+  3.7%     3 light
+  1.2%     1 structures
+  1.2%     1 spawn at generation
+  1.2%     1 biomes
+  1.2%     1 tick
+--- top frames
+   16 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   14 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+   10 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000005c1aa460.tryApply
+    8 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000005c1ae980.apply < material.MaterialRuleContext.getBiome
+    5 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000005c1ad270.get
+    5 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000005c1aa460.tryApply < material.rule.SequenceRule.lambda$compile$0
+    4 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSet < chunk.LevelChunkSection.setBlockState
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 densityfunction.op.InterpolatedFunction$Sampler.fillCell < densityfunction.op.InterpolatedFunction$Sampler.sampleWithBlockStep < densityfunction.op.InterpolatedFunction$Sampler.sampleVolume
+    1 chunk.LevelChunkSection.setBlockState < chunk.LevelChunkSection.setBlockState < chunk.ProtoChunk.setBlockState
+    1 structure.templatesystem.StructureTemplate$Palette.jigsaws < structure.templatesystem.StructureTemplate.getJigsaws < structure.pools.SinglePoolElement.getShuffledJigsawBlocks
+    1 lighting.LayerLightSectionStorage.setStoredLevel < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    1 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    1 net.minecraft.world.attribute.EnvironmentAttributeSystem.lambda$addBiomeLayer$0 < net.minecraft.world.attribute.EnvironmentAttributeSystem$$Lambda/0x000000005c16b430.apply < net.minecraft.world.attribute.EnvironmentAttributeSystem.addBiomeLayer
+    1 biome.MultiNoiseBiomeSource.createResolverForChunk < chunk.ChunkGenerator.doCreateBiomes < chunk.ChunkGenerator.lambda$createBiomes$0
+    1 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    1 lighting.LayerLightSectionStorage$$Lambda/0x000000005c1df598.accept < net.minecraft.core.SectionPos.aroundAndAtBlockPos < net.minecraft.core.SectionPos.aroundAndAtBlockPos
+    1 net.minecraft.world.phys.shapes.Shapes.collide < net.minecraft.world.entity.Entity.collideWithShapes < net.minecraft.world.entity.Entity.collideBoundingBox
+    1 block.state.BlockBehaviour$BlockStateBase.affectNeighborsAfterRemoval < chunk.LevelChunk.setBlockState < Level.setBlock
+    1 Beardifier.sampleValueUnchecked < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    1 lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates < lighting.LevelLightEngine.runLightUpdates
