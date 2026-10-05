@@ -32,6 +32,23 @@ DEFAULT_RELIEF = 18
 # 1,100 blocks tall, and in the empty columns of the biome footprint a stone column down to the bottom of the world.
 BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
 
+# Climate. The game cools a biome by 0.00125 per block above "sea level + 17" and snows below 0.15. The sea level of this
+# world has to be its bottom (anything else floods the void: lava below y -54, the default fluid below the sea level),
+# so every biome would be 2,000 blocks "up a mountain": snow cover and snowfall on plains, jungles and beaches alike.
+# The biomes that rain in the vanilla overworld are therefore written into the pack with a temperature that stays above
+# 0.15 up to the build limit; their grass and leaf colours, which the game derives from the temperature, are pinned to
+# the vanilla values (tools/vanilla_biome_colors.json, read off the vanilla colormaps at each biome's own
+# temperature and downfall). Biomes that snow in vanilla are left alone. Input: tools/vanilla_biome/ (26.3).
+WARM = 5.5
+def climate_biome(name):
+    d = json.loads((Path(__file__).parent / "vanilla_biome" / f"{name}.json").read_text())
+    if not d["has_precipitation"] or d["temperature"] < 0.15 or d.get("temperature_modifier") == "frozen": return None
+    grass, foliage, dry = json.loads((Path(__file__).parent / "vanilla_biome_colors.json").read_text())[name]
+    eff = d.setdefault("effects", {})
+    eff.setdefault("grass_color", grass); eff.setdefault("foliage_color", foliage); eff.setdefault("dry_foliage_color", dry)
+    d["temperature"] = WARM
+    return d
+
 def mc(t, **kw): return {"type": f"minecraft:{t}", **kw}
 def add(a, b): return mc("add", left=a, right=b)
 def sub(a, b): return mc("sub", left=a, right=b)
@@ -177,6 +194,9 @@ def main():
     dim = json.loads((Path(__file__).parent / "vanilla_overworld_dimension_type.json").read_text())
     dim.update(min_y=MIN_Y, height=HEIGHT, logical_height=HEIGHT)
     write("data/minecraft/dimension_type/overworld.json", dim)
+    # --- no snow line: rainy biomes stay rainy at any altitude
+    warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
+    print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
     files = sum(1 for p in OUT.rglob("*") if p.is_file())
     print(f"{len(islands)} islands, {len(biomes)} biomes, {files} files -> {OUT}")
 
