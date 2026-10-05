@@ -92,7 +92,12 @@ def climate_biome(name, d=None):
     """the biome file with a climate that does not depend on the altitude, or None when nothing has to change; d: a
     provider's version of the biome (default: the vanilla one)"""
     d = d or vanilla_biome(name)
-    if not d["has_precipitation"] or d["temperature"] < 0.15 or d.get("temperature_modifier") == "frozen": return None
+    if d["temperature"] < 0.15 or d.get("temperature_modifier") == "frozen": return None
+    if not d["has_precipitation"]:
+        # Dry biomes (desert, savanna, badlands: 2.0) get no snow, but water freezes by the same altitude rule: above y -535 a
+        # village's well and farm water were ice. Their colours are those of temperature 1 and more, which WARM is too.
+        if d["temperature"] < 1.0: return None
+        d["temperature"] = WARM; return d
     grass, foliage, dry = json.loads((Path(__file__).parent / "vanilla_biome_colors.json").read_text())[name]
     eff = d.setdefault("effects", {})
     eff.setdefault("grass_color", grass); eff.setdefault("foliage_color", foliage); eff.setdefault("dry_foliage_color", dry)
@@ -193,6 +198,9 @@ def island_fields(i):
     thick = mul(mul(body, taper), add(1, mul(0.3, UNDER)))
     if basin: thick = dmax(thick, mul(26, clamp(mul(e, R / 10), 0, 1)))
     bottom = sub(surface, thick)
+    if g:   # rock under the chamber of the sulfur caves below the geyser, wherever the island is thin there
+        floor = bt.pocket(g)["chamber"]["y"] - bt.CHAMBER_H - bt.FLOOR - 14
+        bottom = sub(bottom, mul(clamp(mul(sub(2 * bt.PAD_R, gd), 1 / 8), 0, 1), clamp(sub(bottom, floor), 0, 1000)))
     write(f"data/{NS}/worldgen/density_function/inside/{i['key']}.json", mc("cache", input=choice(d, 0, R + PAD, 1, 0)))
     return ref(f"inside/{i['key']}"), surface, bottom, mul(e, R / 12)
 
@@ -239,9 +247,7 @@ def terrain(islands, nocave=()):
         if pockets:
             fields["pnear"] = tree(add, [mul(f[i["key"]][0], near(i)) for i in pockets])
             fields["py"] = tree(add, [mul(f[i["key"]][0], bt.pocket(i["geyser_at"])["chamber"]["y"]) for i in pockets])
-        # the lowest height at which the surface rule runs (surface_level): only the lowest island of a column counts
-        levels.append(add(tree(add, [mul(f[i["key"]][0], sub(f[i["key"]][1], bt.surface_margin(sys.modules[__name__], i))) for i in group]),
-                          mul(sub(1, tree(add, inside)), 100000.0)))
+        for i in group: levels.append((i, f[i["key"]]))
         for k, v in fields.items(): write(f"data/{NS}/worldgen/density_function/layer/{n}_{k}.json", flat(v))
         S, B, E = (ref(f"layer/{n}_{k}") for k in ("surface", "bottom", "edge"))
         solid = dmin(dmin(mul(sub(S, Y), 1 / 8), mul(sub(Y, B), 1 / 12)), E)
@@ -255,8 +261,15 @@ def terrain(islands, nocave=()):
             part = dmin(part, add(cave, mul(3.2, sub(1, clamp(mul(inner, 1 / bt.FADE), 0, 1)))))   # >= 1.7 (no effect) outside the zone
         parts.append(part)
         print(f"layer {n}: {len(group)} islands, {len(caved)} with caves")
-    low = tree(dmin, levels)
-    write(f"data/{NS}/worldgen/density_function/surface_level.json", flat(choice(low, -50000, 50000, low, float(MIN_Y - 64))))
+    # The lowest height at which the surface rule runs (the router's chunk_surface_level): the surface of the lowest island of
+    # the column less a margin for its relief; far below everything where there is no island. Through the grid: the game asks
+    # for it column by column, and a lookup then only computes the islands of its own cell (as one sum over all islands it
+    # cost every chunk 40% more time, void included).
+    def level(hit):
+        if not hit: return float(MIN_Y - 64)
+        low = tree(dmin, [add(mul(v[0], sub(v[1], bt.surface_margin(sys.modules[__name__], i))), mul(sub(1, v[0]), 100000.0)) for i, v in levels if i in hit])
+        return choice(low, -50000, 50000, low, float(MIN_Y - 64))
+    write(f"data/{NS}/worldgen/density_function/surface_level.json", flat(grid(islands, level)))
     return tree(dmax, parts)
 
 def grid(islands, leaf):

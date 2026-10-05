@@ -5247,8 +5247,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -583,
-           "max_exclusive": -549,
+           "min_inclusive": -575,
+           "max_exclusive": -543,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_179_i1",
@@ -5269,8 +5269,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -583,
-           "max_exclusive": -549,
+           "min_inclusive": -575,
+           "max_exclusive": -543,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_179_i1",
@@ -5291,8 +5291,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -583,
-           "max_exclusive": -549,
+           "min_inclusive": -575,
+           "max_exclusive": -543,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_179_i1",
@@ -5316,8 +5316,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 826,
-           "max_exclusive": 860,
+           "min_inclusive": 834,
+           "max_exclusive": 866,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_191_k1",
@@ -5338,8 +5338,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 826,
-           "max_exclusive": 860,
+           "min_inclusive": 834,
+           "max_exclusive": 866,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_191_k1",
@@ -5360,8 +5360,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -963,
-           "max_exclusive": -929,
+           "min_inclusive": -955,
+           "max_exclusive": -923,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_125_t1",
@@ -5382,8 +5382,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -963,
-           "max_exclusive": -929,
+           "min_inclusive": -955,
+           "max_exclusive": -923,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_125_t1",
@@ -5433,8 +5433,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -583,
-           "max_exclusive": -549,
+           "min_inclusive": -575,
+           "max_exclusive": -543,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_179_i1",
@@ -5455,8 +5455,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -583,
-           "max_exclusive": -549,
+           "min_inclusive": -575,
+           "max_exclusive": -543,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_179_i1",
@@ -5481,8 +5481,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 826,
-           "max_exclusive": 860,
+           "min_inclusive": 834,
+           "max_exclusive": 866,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_191_k1",
@@ -5505,8 +5505,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": -963,
-            "max_exclusive": -929,
+            "min_inclusive": -955,
+            "max_exclusive": -923,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_125_t1",
@@ -5527,8 +5527,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 826,
-            "max_exclusive": 860,
+            "min_inclusive": 834,
+            "max_exclusive": 866,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_191_k1",
@@ -5550,8 +5550,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -963,
-           "max_exclusive": -929,
+           "min_inclusive": -955,
+           "max_exclusive": -923,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_125_t1",
@@ -5572,8 +5572,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -963,
-           "max_exclusive": -929,
+           "min_inclusive": -955,
+           "max_exclusive": -923,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_125_t1",
@@ -5617,8 +5617,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -644,
-           "max_exclusive": -610,
+           "min_inclusive": -636,
+           "max_exclusive": -604,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_203_m1",
@@ -5639,8 +5639,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -644,
-           "max_exclusive": -610,
+           "min_inclusive": -636,
+           "max_exclusive": -604,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_203_m1",
@@ -5671,8 +5671,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 147,
-           "max_exclusive": 181,
+           "min_inclusive": 155,
+           "max_exclusive": 187,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_197_l1",
@@ -5693,8 +5693,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 147,
-           "max_exclusive": 181,
+           "min_inclusive": 155,
+           "max_exclusive": 187,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_197_l1",
@@ -5715,8 +5715,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -963,
-           "max_exclusive": -929,
+           "min_inclusive": -955,
+           "max_exclusive": -923,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_125_t1",
@@ -5761,8 +5761,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -644,
-           "max_exclusive": -610,
+           "min_inclusive": -636,
+           "max_exclusive": -604,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_203_m1",
@@ -5785,8 +5785,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 148,
-            "max_exclusive": 182,
+            "min_inclusive": 156,
+            "max_exclusive": 188,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_155_e1",
@@ -5807,8 +5807,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": -644,
-            "max_exclusive": -610,
+            "min_inclusive": -636,
+            "max_exclusive": -604,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_203_m1",
@@ -5830,8 +5830,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 148,
-           "max_exclusive": 182,
+           "min_inclusive": 156,
+           "max_exclusive": 188,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_155_e1",
@@ -5854,8 +5854,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 353,
-           "max_exclusive": 387,
+           "min_inclusive": 361,
+           "max_exclusive": 393,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_185_j1",
@@ -5876,8 +5876,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 353,
-           "max_exclusive": 387,
+           "min_inclusive": 361,
+           "max_exclusive": 393,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_185_j1",
@@ -5903,8 +5903,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 147,
-           "max_exclusive": 181,
+           "min_inclusive": 155,
+           "max_exclusive": 187,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_197_l1",
@@ -5925,8 +5925,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 147,
-           "max_exclusive": 181,
+           "min_inclusive": 155,
+           "max_exclusive": 187,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_197_l1",
@@ -5972,8 +5972,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 688,
-           "max_exclusive": 722,
+           "min_inclusive": 696,
+           "max_exclusive": 728,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_088_l1",
@@ -5996,8 +5996,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 688,
-            "max_exclusive": 722,
+            "min_inclusive": 696,
+            "max_exclusive": 728,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_088_l1",
@@ -6018,8 +6018,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 148,
-            "max_exclusive": 182,
+            "min_inclusive": 156,
+            "max_exclusive": 188,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_155_e1",
@@ -6041,8 +6041,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 148,
-           "max_exclusive": 182,
+           "min_inclusive": 156,
+           "max_exclusive": 188,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_155_e1",
@@ -6065,8 +6065,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 353,
-           "max_exclusive": 387,
+           "min_inclusive": 361,
+           "max_exclusive": 393,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_185_j1",
@@ -6087,8 +6087,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 353,
-           "max_exclusive": 387,
+           "min_inclusive": 361,
+           "max_exclusive": 393,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_185_j1",
@@ -6109,8 +6109,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 353,
-           "max_exclusive": 387,
+           "min_inclusive": 361,
+           "max_exclusive": 393,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_185_j1",
@@ -6162,8 +6162,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 688,
-           "max_exclusive": 722,
+           "min_inclusive": 696,
+           "max_exclusive": 728,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_088_l1",
@@ -6184,8 +6184,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 688,
-           "max_exclusive": 722,
+           "min_inclusive": 696,
+           "max_exclusive": 728,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_088_l1",
@@ -6207,8 +6207,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 174,
-           "max_exclusive": 208,
+           "min_inclusive": 182,
+           "max_exclusive": 214,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_040_e1",
@@ -6229,8 +6229,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 174,
-           "max_exclusive": 208,
+           "min_inclusive": 182,
+           "max_exclusive": 214,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_040_e1",
@@ -6252,8 +6252,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6274,8 +6274,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6296,8 +6296,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6318,8 +6318,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6341,8 +6341,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 271,
-           "max_exclusive": 305,
+           "min_inclusive": 279,
+           "max_exclusive": 311,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_026_c1",
@@ -6363,8 +6363,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 271,
-           "max_exclusive": 305,
+           "min_inclusive": 279,
+           "max_exclusive": 311,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_026_c1",
@@ -6414,8 +6414,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 174,
-           "max_exclusive": 208,
+           "min_inclusive": 182,
+           "max_exclusive": 214,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_040_e1",
@@ -6436,8 +6436,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 174,
-           "max_exclusive": 208,
+           "min_inclusive": 182,
+           "max_exclusive": 214,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_040_e1",
@@ -6458,8 +6458,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6480,8 +6480,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6502,8 +6502,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6524,8 +6524,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6546,8 +6546,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6568,8 +6568,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6590,8 +6590,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 271,
-           "max_exclusive": 305,
+           "min_inclusive": 279,
+           "max_exclusive": 311,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_026_c1",
@@ -6612,8 +6612,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 271,
-           "max_exclusive": 305,
+           "min_inclusive": 279,
+           "max_exclusive": 311,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_026_c1",
@@ -6660,8 +6660,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 824,
-           "max_exclusive": 858,
+           "min_inclusive": 832,
+           "max_exclusive": 864,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_173_h1",
@@ -6682,8 +6682,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 824,
-           "max_exclusive": 858,
+           "min_inclusive": 832,
+           "max_exclusive": 864,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_173_h1",
@@ -6707,8 +6707,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6729,8 +6729,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6751,8 +6751,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6773,8 +6773,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6795,8 +6795,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6817,8 +6817,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6867,8 +6867,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 824,
-           "max_exclusive": 858,
+           "min_inclusive": 832,
+           "max_exclusive": 864,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_173_h1",
@@ -6889,8 +6889,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 824,
-           "max_exclusive": 858,
+           "min_inclusive": 832,
+           "max_exclusive": 864,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_173_h1",
@@ -6914,8 +6914,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6936,8 +6936,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6958,8 +6958,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -6980,8 +6980,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7002,8 +7002,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7024,8 +7024,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7077,8 +7077,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -265,
-           "max_exclusive": -231,
+           "min_inclusive": -257,
+           "max_exclusive": -225,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_047_f1",
@@ -7099,8 +7099,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -265,
-           "max_exclusive": -231,
+           "min_inclusive": -257,
+           "max_exclusive": -225,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_047_f1",
@@ -7121,8 +7121,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7143,8 +7143,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7165,8 +7165,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7187,8 +7187,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7209,8 +7209,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7231,8 +7231,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7253,8 +7253,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 177,
-           "max_exclusive": 211,
+           "min_inclusive": 185,
+           "max_exclusive": 217,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_019_b1",
@@ -7275,8 +7275,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 177,
-           "max_exclusive": 211,
+           "min_inclusive": 185,
+           "max_exclusive": 217,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_019_b1",
@@ -7326,8 +7326,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -265,
-           "max_exclusive": -231,
+           "min_inclusive": -257,
+           "max_exclusive": -225,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_047_f1",
@@ -7348,8 +7348,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -265,
-           "max_exclusive": -231,
+           "min_inclusive": -257,
+           "max_exclusive": -225,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_047_f1",
@@ -7371,8 +7371,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7393,8 +7393,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7415,8 +7415,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7437,8 +7437,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 1,
-           "max_exclusive": 35,
+           "min_inclusive": 9,
+           "max_exclusive": 41,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_000_s1",
@@ -7460,8 +7460,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 177,
-           "max_exclusive": 211,
+           "min_inclusive": 185,
+           "max_exclusive": 217,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_019_b1",
@@ -7482,8 +7482,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 177,
-           "max_exclusive": 211,
+           "min_inclusive": 185,
+           "max_exclusive": 217,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_019_b1",
@@ -7505,8 +7505,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 376,
-           "max_exclusive": 410,
+           "min_inclusive": 384,
+           "max_exclusive": 416,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_060_h1",
@@ -7527,8 +7527,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 376,
-           "max_exclusive": 410,
+           "min_inclusive": 384,
+           "max_exclusive": 416,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_060_h1",
@@ -7576,8 +7576,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 830,
-           "max_exclusive": 864,
+           "min_inclusive": 838,
+           "max_exclusive": 870,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_131_a1",
@@ -7598,8 +7598,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 830,
-           "max_exclusive": 864,
+           "min_inclusive": 838,
+           "max_exclusive": 870,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_131_a1",
@@ -7621,8 +7621,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7643,8 +7643,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7670,8 +7670,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 376,
-           "max_exclusive": 410,
+           "min_inclusive": 384,
+           "max_exclusive": 416,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_060_h1",
@@ -7692,8 +7692,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 376,
-           "max_exclusive": 410,
+           "min_inclusive": 384,
+           "max_exclusive": 416,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_060_h1",
@@ -7741,8 +7741,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 830,
-           "max_exclusive": 864,
+           "min_inclusive": 838,
+           "max_exclusive": 870,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_131_a1",
@@ -7763,8 +7763,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 830,
-           "max_exclusive": 864,
+           "min_inclusive": 838,
+           "max_exclusive": 870,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_131_a1",
@@ -7786,8 +7786,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7808,8 +7808,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7833,8 +7833,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -867,
-           "max_exclusive": -833,
+           "min_inclusive": -859,
+           "max_exclusive": -827,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_143_c1",
@@ -7855,8 +7855,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -867,
-           "max_exclusive": -833,
+           "min_inclusive": -859,
+           "max_exclusive": -827,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_143_c1",
@@ -7909,8 +7909,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7931,8 +7931,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -173,
-           "max_exclusive": -139,
+           "min_inclusive": -165,
+           "max_exclusive": -133,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_012_a1",
@@ -7956,8 +7956,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -867,
-           "max_exclusive": -833,
+           "min_inclusive": -859,
+           "max_exclusive": -827,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_143_c1",
@@ -7978,8 +7978,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -867,
-           "max_exclusive": -833,
+           "min_inclusive": -859,
+           "max_exclusive": -827,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_143_c1",
@@ -8032,8 +8032,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8054,8 +8054,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8076,8 +8076,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8098,8 +8098,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 83,
-           "max_exclusive": 117,
+           "min_inclusive": 91,
+           "max_exclusive": 123,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_053_g1",
@@ -8122,8 +8122,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 83,
-            "max_exclusive": 117,
+            "min_inclusive": 91,
+            "max_exclusive": 123,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_053_g1",
@@ -8144,8 +8144,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": -319,
-            "max_exclusive": -285,
+            "min_inclusive": -311,
+            "max_exclusive": -279,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_209_n1",
@@ -8167,8 +8167,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -319,
-           "max_exclusive": -285,
+           "min_inclusive": -311,
+           "max_exclusive": -279,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_209_n1",
@@ -8190,8 +8190,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 541,
-           "max_exclusive": 575,
+           "min_inclusive": 549,
+           "max_exclusive": 581,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_119_r1",
@@ -8212,8 +8212,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 541,
-           "max_exclusive": 575,
+           "min_inclusive": 549,
+           "max_exclusive": 581,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_119_r1",
@@ -8264,8 +8264,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8286,8 +8286,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8308,8 +8308,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -587,
-           "max_exclusive": -553,
+           "min_inclusive": -579,
+           "max_exclusive": -547,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_161_f1",
@@ -8330,8 +8330,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 83,
-           "max_exclusive": 117,
+           "min_inclusive": 91,
+           "max_exclusive": 123,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_053_g1",
@@ -8354,8 +8354,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": 83,
-            "max_exclusive": 117,
+            "min_inclusive": 91,
+            "max_exclusive": 123,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_053_g1",
@@ -8376,8 +8376,8 @@
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "minecraft:y",
-            "min_inclusive": -319,
-            "max_exclusive": -285,
+            "min_inclusive": -311,
+            "max_exclusive": -279,
             "when_in_range": {
              "type": "minecraft:range_choice",
              "input": "the_isles:dist/pocket_209_n1",
@@ -8399,8 +8399,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": -319,
-           "max_exclusive": -285,
+           "min_inclusive": -311,
+           "max_exclusive": -279,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_209_n1",
@@ -8422,8 +8422,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 541,
-           "max_exclusive": 575,
+           "min_inclusive": 549,
+           "max_exclusive": 581,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_119_r1",
@@ -8444,8 +8444,8 @@
           "when_in_range": {
            "type": "minecraft:range_choice",
            "input": "minecraft:y",
-           "min_inclusive": 541,
-           "max_exclusive": 575,
+           "min_inclusive": 549,
+           "max_exclusive": 581,
            "when_in_range": {
             "type": "minecraft:range_choice",
             "input": "the_isles:dist/pocket_119_r1",
@@ -8473,8 +8473,8 @@
       "when_in_range": {
        "type": "minecraft:range_choice",
        "input": "minecraft:y",
-       "min_inclusive": -583,
-       "max_exclusive": -549,
+       "min_inclusive": -575,
+       "max_exclusive": -543,
        "when_in_range": {
         "type": "minecraft:range_choice",
         "input": "the_isles:dist/pocket_074_j1",
@@ -8519,8 +8519,8 @@
       "when_in_range": {
        "type": "minecraft:range_choice",
        "input": "minecraft:y",
-       "min_inclusive": 566,
-       "max_exclusive": 600,
+       "min_inclusive": 574,
+       "max_exclusive": 606,
        "when_in_range": {
         "type": "minecraft:range_choice",
         "input": "the_isles:dist/pocket_107_p1",
@@ -8567,8 +8567,8 @@
     "when_in_range": {
      "type": "minecraft:range_choice",
      "input": "minecraft:y",
-     "min_inclusive": 274,
-     "max_exclusive": 308,
+     "min_inclusive": 282,
+     "max_exclusive": 314,
      "when_in_range": {
       "type": "minecraft:range_choice",
       "input": "the_isles:dist/pocket_113_q1",

@@ -110,8 +110,9 @@ def cave_noise(bp):
     return bp.ref("hollow/noise")
 
 # ---------------------------------------------------------------------------------------------------------- sulfur
-POCKET_R, POCKET_TOP, POCKET_BOTTOM = 40, 20, 54     # the sulfur caves under a geyser: radius, and depth under the geyser's ground
+POCKET_R, POCKET_TOP, POCKET_BOTTOM = 40, 14, 46     # the sulfur caves under a geyser: radius, and depth under the geyser's ground
 CHAMBER_R, CHAMBER_H = 12, 5                         # the cavern in the middle of the pocket (always open)
+WARMTH = 13                                          # light over a geyser's pool where water freezes (see sulfur)
 PAD_R = 14                                           # the ground is level this far around a geyser
 def flag_big(layout):
     """writes "geyser": true/false into every island of the layout (once; the owner edits the flags afterwards)"""
@@ -152,10 +153,22 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     if not sites: return None, None
     air = mc("matching_block_tag", tag="minecraft:air")
     # the geyser: the vanilla sulfur spring on the ground at the fixed place (under a tier too: no heightmap)
+    # (down to the ground through whatever a tree of the chunk next door hangs over it: a start in leaves found no ground)
+    tree = mc("any_of", predicates=[mc("matching_block_tag", tag="minecraft:leaves"), mc("matching_block_tag", tag="minecraft:logs")])
     bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser.json", {"feature": "minecraft:sulfur_spring", "placement": [
         mc("fixed_placement", positions=[[g["x"], g["y"] + 8, g["z"]] for i, g in sites]),
-        mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("solid"), allowed_search_condition=air),
+        mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("all_of", predicates=[mc("solid"), mc("not", predicate=tree)]),
+           allowed_search_condition=mc("any_of", predicates=[air, tree, mc("replaceable")])),
         mc("offset", x=0, y=1, z=0)]})
+    # Where water freezes (snowy plains, peaks) the spring's pool would be ice and the geyser "dry": a light block (invisible,
+    # level 13) over the water above every potent sulfur block of those springs keeps it open (ice from generation melts).
+    cold = [g for i, g in sites if bp.vanilla_biome(layout_biome(i))["temperature"] < 0.15]
+    potent = lambda dy: mc("matching_blocks", blocks="minecraft:potent_sulfur", offset=[0, dy, 0])
+    bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser_warmth.json", {
+        "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:light", "properties": {"level": str(WARMTH), "waterlogged": "false"}}},
+        "placement": [mc("fixed_placement", positions=[[g["x"] - 8, g["y"] - 8, g["z"] - 8] for g in cold]), mc("cuboid", xz_size=15, y_size=12),
+                      mc("block_predicate_filter", predicate=mc("all_of", predicates=[air, mc("matching_blocks", blocks="minecraft:water", offset=[0, -1, 0]),
+                                                                                      mc("any_of", predicates=[potent(-2), potent(-3)])]))]})
     # the vanilla features of the biome pick heights of the whole world: here a depth under the island's surface (the pockets
     # lie POCKET_TOP..POCKET_BOTTOM under it), with the vanilla attempts scaled to that height
     src = HERE.parent / "tools"
@@ -173,7 +186,8 @@ def sulfur(bp, islands, layout, sea_biomes=()):
               z=mc("clamped_normal", deviation=3.0, max_inclusive=10, mean=0.0, min_inclusive=-10))])
     biome = json.loads((HERE / "vanilla_biome" / "sulfur_caves.json").read_text())
     # one geyser per big island: the springs the biome grows up to the surface by itself (rooted_sulfur_spring) are replaced by the fixed one
-    biome["features"] = [[bp.ref("geyser") if f == "minecraft:rooted_sulfur_spring" else f for f in step] for step in biome["features"]]
+    biome["features"] = [[x for f in step for x in ([bp.ref("geyser")] + ([bp.ref("geyser_warmth")] if cold else []) if f == "minecraft:rooted_sulfur_spring" else [f])]
+                         for step in biome["features"]]
     biome["carvers"] = []
     # the surface rule of the biome (sulfur and cinnabar in bands of a 3D noise) for every block of a pocket; heights first
     lo, hi = min(g["y"] for i, g in sites) - POCKET_BOTTOM - 8, max(g["y"] for i, g in sites) - POCKET_TOP + 8
