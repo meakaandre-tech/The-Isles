@@ -77,6 +77,12 @@ C += structure('fossil', 'minecraft:nether_fossil', 0, 0, 'minecraft:bone_block'
 C += ['tick query']
 QUICK = os.path.exists(ROOT + '/packtest/nether-quick')   # switch: only the portal tests
 if QUICK: C = HEAD
+# Going through a portal into Nether that does not exist yet generates about 16 chunks on the server thread: 48 s without
+# the mods on the test machine, and the client was disconnected meanwhile. The first two portal tests therefore find their
+# destination generated (they measure where the portal goes); PORTALFRESH below goes into fresh terrain and is timed.
+PT = sorted(ISL.values(), key=lambda i: i['y_top']); PT = [PT[0], PT[-1]]
+C = C + ['say SECTION portal destinations'] + [N + f'forceload add {i["x"] - 24} {i["z"] - 24} {i["x"] + 24} {i["z"] + 24}' for i in PT] + [
+    '#poll 900 ' + N + f'execute if loaded {PT[1]["x"] + 24} 0 {PT[1]["z"] + 24} run say LOADED portal-destinations ## LOADED portal-destinations']
 open(OUT + '/commands-nether.txt', 'w').write('\n'.join(C + ['say SECTION end nether']) + '\n')
 
 B = HEAD + gen() + ['say SECTION layers']
