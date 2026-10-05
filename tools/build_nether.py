@@ -3,7 +3,7 @@
 
 Called by tools/build_pack.py (build(write, out_mods)); writes into datapack/
   data/minecraft/dimension/the_nether.json, dimension_type/the_nether.json
-  data/the_isles/worldgen/noise_settings/nether.json, material_rule/nether.json, noise/nether_holes.json
+  data/the_isles/worldgen/noise_settings/nether.json, material_rule/nether.json, nether_layers.json, noise/nether_holes.json
   data/minecraft/worldgen/placed_feature/*.json   the Nether features that pick a height, once per layer
   data/minecraft/worldgen/structure/bastion_remnant.json, nether_fossil.json, structure_set/*, carver/nether_cave.json
 and into datapack-mods/ an override that switches off the sulfur ore of Create: Gunsmithing.
@@ -12,7 +12,7 @@ Vanilla 26.3 inputs: tools/vanilla_nether/.
 Every layer is a vanilla Nether stretched in height: netherrack floor, lava sea, open cavern, ceiling. Between two
 layers there is only netherrack (about 35 blocks); bedrock exists at the bottom and at the top of the dimension.
 """
-import copy, json
+import copy, json, os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent / "vanilla_nether"
@@ -26,6 +26,19 @@ COORDINATE_SCALE = 1.0
 # The seventh layer starts at y -16, so its lava is at y 23 and the structures the game places at fixed heights
 # (fortress y 48..70, ruined portal y 32..100) stand in it like in the vanilla Nether.
 HEIGHTS = [360, 320, 280, 360, 320, 360, 320, 360, 280, 320, 360]
+# Generation cost (packtest's "netherperf" variants, see packtest/README.md). The environment variables are for those
+# measurements; the pack is built with the defaults.
+#   ISLES_NETHER_LAYERS=8|6       fewer, taller layers over the same height
+#   ISLES_NETHER_CAVERN=<blocks>  with fewer layers: caverns no taller than this, solid netherrack above them instead
+#   ISLES_NETHER_OLD=noise,surface,features   the density function / surface rule / placement of the floor features as
+#                                 they were before (noise, surface: the same blocks, slower)
+#   ISLES_NETHER_OFF=aquifer,carver,features   leave a part out (what does it cost)
+#   ISLES_NETHER_CELL_Y, ISLES_NETHER_CELL_XZ   interpolation grid of the terrain (vanilla 8 and 4)
+ENV = os.environ.get
+OLD, OFF = set(ENV("ISLES_NETHER_OLD", "").split(",")), set(ENV("ISLES_NETHER_OFF", "").split(","))
+CELL_XZ, CELL_Y = int(ENV("ISLES_NETHER_CELL_XZ", 4)), int(ENV("ISLES_NETHER_CELL_Y", 8))
+HEIGHTS = {12: HEIGHTS, 8: [520, 480, 480, 520, 520, 480, 480], 6: [680, 640, 680, 680, 680]}[int(ENV("ISLES_NETHER_LAYERS", 12))]
+CAVERN = int(ENV("ISLES_NETHER_CAVERN", 0))
 FIRST = MIN_Y + 16
 FLOOR, ROOF = 32, 24      # blocks over which a layer's floor / ceiling fades from solid rock to the cavern noise
 # LAVA: the lava seas are aquifers. The game puts an aquifer's surface at 40 * floor(y / 40) + 20 + 3 * floor(10 * spread / 3),
@@ -41,8 +54,8 @@ CAVE_PROBABILITY = 0.75   # vanilla 0.2 per chunk for 128 blocks of height
 def layers():
     out, b = [], FIRST
     for h in HEIGHTS + [None]:
-        t = TOP if h is None else b + h
-        out.append({"k": len(out), "bottom": b, "top": t, "lava": b + LAVA})
+        t = TOP if h is None else b + h     # where the next layer starts; "top": where this one's ceiling is solid
+        out.append({"k": len(out), "bottom": b, "top": min(t, b + CAVERN) if CAVERN else t, "lava": b + LAVA})
         b = t
     assert all((l["bottom"] + 16) % 40 == 0 for l in out) and any(l["bottom"] == -16 for l in out)
     return out
@@ -55,17 +68,24 @@ def by_layer(values):
 def grad(y0, v0, y1, v1): return mc("gradient", axis="y", from_coordinate=y0, from_value=v0, to_coordinate=y1, to_value=v1)
 
 def density():
+    """Every layer is the vanilla Nether's function: lerp(floor, 2.5, lerp(roof, 0.9375, base_3d_noise)). The game computes
+    every branch of an interval_select for every point, so the layers only select the two fades (functions of y, plus the
+    flat shaft noise); the 3D noise - 40 octaves, nearly all of the cost - is computed once, not once per layer."""
     hole = mc("clamp", input=mc("mul", left=mc("sub", left=f"{NS}:nether/holes", right=HOLE), right=8.0), min=0.0, max=1.0)
     hole = mc("cache", input=hole)
-    out = []
+    floors, roofs = [], []
     for l in LAYERS:
         floor = grad(l["bottom"], 0.0, l["bottom"] + FLOOR, 1.0)
         roof = grad(l["top"] - ROOF, 1.0, l["top"], 0.0)
         if l["k"] > 0: floor = mc("max", left=floor, right=hole)
         if l["k"] < len(LAYERS) - 1: roof = mc("max", left=roof, right=hole)
-        out.append(mc("lerp", alpha=floor, first=2.5, second=mc("lerp", alpha=roof, first=0.9375, second="minecraft:nether/base_3d_noise")))
-    return mc("add", left=mc("squeeze", input=mc("interpolated", cell_size_xz=4, cell_size_y=8,
-              input=mc("mul", left=mc("blend_density", input=by_layer(out)), right=0.64))), right=mc("beardifier"))
+        floors.append(floor); roofs.append(roof)
+    noise = "minecraft:nether/base_3d_noise"
+    def cavern(floor, roof): return mc("lerp", alpha=floor, first=2.5, second=mc("lerp", alpha=roof, first=0.9375, second=noise))
+    if "noise" in OLD: inner = by_layer([cavern(f, r) for f, r in zip(floors, roofs)])
+    else: inner = cavern(by_layer(floors), by_layer(roofs))
+    return mc("add", left=mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
+              input=mc("mul", left=mc("blend_density", input=inner), right=0.64))), right=mc("beardifier"))
 
 def climate(noise):
     """a different 2D biome map in every layer; the layer at y 0 has the map of the vanilla Nether"""
@@ -76,6 +96,7 @@ def aquifers():
     th, vals = [], [-1.0]
     for l in LAYERS:
         th += [l["bottom"] + 16, l["bottom"] + 56]; vals += [0.6, -1.0]
+    if "aquifer" in OFF: th, vals = th[:1], [-1.0, -1.0]
     return {"barrier": 0.0, "lava": 0.0, "surface_level": float(TOP), "fluid_level_spread": SPREAD,
             "fluid_level_floodedness": mc("interval_select", input=Y, thresholds=th, functions=vals),
             "exclusion": mc("sub", left=f"{NS}:nether/holes", right=HOLE_DRY)}
@@ -92,17 +113,41 @@ def shift_rule(rule, lava):
     walk(r); return r
 
 def surface_rule():
+    """The vanilla rule per layer. It is asked for every solid block of the column, and everything it can answer except
+    netherrack - which the block already is - needs one of three depth conditions (under a ceiling, under / on a floor),
+    so those are tested first: the 2,800 blocks of a column that are inside the rock cost three comparisons instead of
+    a biome lookup and a walk through the layers."""
     seq = json.loads((HERE / "material_rule.json").read_text())["sequence"]
     head, body = seq[:3], seq[3:]     # bedrock floor, bedrock roof, netherrack under the roof | the biome rules
     assert head[0] == "minecraft:bedrock_floor" and head[1] == "minecraft:bedrock_roof"
-    out = list(head)
+    if "surface" not in OLD: head, body = seq[:2], seq[2:]     # (netherrack under the roof changes nothing in the rock: behind the depth conditions too)
+    cond = lambda c, r: {"type": "minecraft:condition", "if_true": c, "then_run": r}
+    out = []
     for l in reversed(LAYERS):
         rule = {"type": "minecraft:sequence", "sequence": shift_rule(body, l["lava"])}
         if l["k"] > 0:
-            rule = {"type": "minecraft:condition", "then_run": rule, "if_true": {
-                "type": "minecraft:y_above", "anchor": {"absolute": l["bottom"]}, "surface_depth_multiplier": 0, "add_stone_depth": False}}
+            rule = cond({"type": "minecraft:y_above", "anchor": {"absolute": l["bottom"]}, "surface_depth_multiplier": 0, "add_stone_depth": False}, rule)
         out.append(rule)
-    return {"type": "minecraft:sequence", "sequence": out}
+    layers = {"type": "minecraft:sequence", "sequence": out}
+    if "surface" in OLD: return {"type": "minecraft:sequence", "sequence": head + out}, None
+    assert body[-1] == NETHERRACK and gates(body[:-1]) <= set(GATES), gates(body[:-1])
+    return {"type": "minecraft:sequence", "sequence": head + [cond(g, f"{NS}:nether_layers") for g in GATES]}, layers
+GATES = ["minecraft:under_ceiling", "minecraft:under_floor", "minecraft:on_floor"]
+NETHERRACK = {"type": "minecraft:block", "result_state": "minecraft:netherrack"}
+def gates(rules):
+    """the conditions that the rules need before they answer anything: every path to a block goes through one of them"""
+    found = set()
+    def walk(r, seen):
+        if isinstance(r, str): raise AssertionError(r)
+        if r["type"] == "minecraft:sequence":
+            for x in r["sequence"]: walk(x, seen)
+        elif r["type"] == "minecraft:condition":
+            walk(r["then_run"], seen | ({r["if_true"]} if isinstance(r["if_true"], str) else set()))
+        elif r != NETHERRACK:
+            hit = seen & set(GATES)
+            found.add(min(hit) if hit else "ungated: " + json.dumps(r))
+    for r in rules: walk(r, set())
+    return found
 
 def anchor(a, l):
     if "absolute" in a: return {"absolute": a["absolute"] - 32 + l["lava"]}
@@ -117,12 +162,15 @@ def per_layer(height):
 # count_on_every_layer (fungi, forest vegetation, deltas, basalt columns) walks down the whole column once per floor it
 # finds: with twelve layers that was a third of the generation time. Replaced by random heights in every layer, each
 # dropped onto the floor below it (at most 32 blocks; FLOOR_TRIES makes up for the attempts that find none).
+# Nearly every chunk has all five biomes somewhere in its column, so every chunk runs every feature and the biome filter
+# at the end of the placement throws four of five positions away: the same filter is also asked before the search for
+# the floor (a layer has one biome map from bottom to top, so both answers agree except on a biome border).
 FLOOR_TRIES = 12
 def on_floors(count):
     air = {"type": "minecraft:matching_block_tag", "tag": "minecraft:air"}
     return [mc("count", count=FLOOR_TRIES), mc("count", count=count), mc("in_square"),
             mc("height_range", height=mc("uniform", min_inclusive={"absolute": 32}, max_inclusive={"below_top": 8})),
-            mc("block_predicate_filter", predicate=air),
+            mc("block_predicate_filter", predicate=air)] + ([] if "features" in OLD else [mc("biome")]) + [
             mc("environment_scan", direction_of_search="down", max_steps=32, target_condition={"type": "minecraft:solid"}, allowed_search_condition=air),
             mc("offset", x=0, y=1, z=0)]
 def layered_feature(d):
@@ -132,7 +180,7 @@ def layered_feature(d):
         d["placement"] = on_floors(d["placement"][0]["count"]) + d["placement"][1:]
     for p in d["placement"]:
         if p["type"] == "minecraft:height_range": p["height"] = per_layer(p["height"])
-    d["placement"].insert(0, mc("count", count=len(LAYERS)))
+    d["placement"].insert(0, mc("count", count=0 if "features" in OFF else len(LAYERS)))
     return d
 
 def build(write, out_mods):
@@ -155,13 +203,15 @@ def build(write, out_mods):
         # the bottom of the world, like the Overworld of this pack: the game floods every cave below "sea level" with the
         # default fluid; the lava seas come from the aquifers above
         "sea_level": MIN_Y, "spawn_target": []})
-    write(f"data/{NS}/worldgen/material_rule/nether.json", surface_rule())
+    rule, per_layer_rule = surface_rule()
+    write(f"data/{NS}/worldgen/material_rule/nether.json", rule)
+    if per_layer_rule: write(f"data/{NS}/worldgen/material_rule/nether_layers.json", per_layer_rule)
     n = 0
     for f in sorted((HERE / "placed_feature").glob("*.json")):
         write(f"data/minecraft/worldgen/placed_feature/{f.name}", layered_feature(json.loads(f.read_text()))); n += 1
     # caves: the vanilla carver starts at y 0 and up
     cave = json.loads((HERE / "nether_cave.json").read_text())
-    cave["y"]["min_inclusive"] = {"above_bottom": 0}; cave["probability"] = CAVE_PROBABILITY
+    cave["y"]["min_inclusive"] = {"above_bottom": 0}; cave["probability"] = 0.0 if "carver" in OFF else CAVE_PROBABILITY
     write("data/minecraft/worldgen/carver/nether_cave.json", cave)
     # structures. Bastions (a jigsaw structure with a start height) and fossils go to a random layer; fortresses and
     # ruined portals have their heights in the game's code and stay in the layer around y 0. One layer therefore gets a
