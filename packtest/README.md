@@ -29,7 +29,7 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 | `pack` | every mod of `mods.tsv` + both data packs, a real client under Xvfb, then a restart | boot log, ores per island, oil, a Create line / diesel engine / reactor / gun / hypertube across the void, spawn, respawn, mobs, weather, portals, the look of the sky at three altitudes, screenshots |
 | `perf` | one fresh world per line of `perf.txt`: the pack built by an older commit (`@commit`) or with generator settings (`ISLES_OFF=caves` leaves a feature out) | generation time of the same land / void / stacked-tier / sea-basin regions, heap, tick times, a `/locate` that finds nothing; thread dumps while generating, summed up by step in the report |
 | `speed` | servers with subsets of the mods (`speed.txt`) | which mods change the generation time |
-| `nether` | Fabric API + The Isles (with `nethermods`: every mod and `datapack-mods`), then a client | the Nether: generation time and heap of 64 chunks, columns through all layers, blocks per layer, bedrock, structures per layer, views and mob counts in two layers, four portals (`nether-phase.sh`, `gen_nether.py`, screenshots `nether-NN.png`, `nether-stacks.txt`) |
+| `nether` | Fabric API + The Isles (with `nethermods`: every mod and `datapack-mods`), then a client; with `netherperf` first the variants of `nether-perf.txt` (time, heap, profile, block counts of two layers; `nperfonly`: only those - the two words have to be let through by the `case` of the workflow's phases step) | the Nether: generation time and heap of 64 chunks, columns through all layers, blocks per layer, bedrock, structures per layer, views and mob counts in two layers, four portals (`nether-phase.sh`, `gen_nether.py`, screenshots `nether-NN.png`, `nether-stacks.txt`) |
 | `netherbase` | the same server without The Isles | the vanilla Nether as reference for time, heap and block counts |
 | `bisect` | one fresh world per line of `bisect.txt` (island ids) | which island breaks generation |
 
@@ -345,7 +345,8 @@ vanilla reference (`netherbase`), 4-core runner.
   983, 1303, 1663). They are aquifers: `sea_level` has to be the bottom of the world (the game floods every cave below it),
   and an aquifer's surface can only be at 40n + 23, which is why the layer heights are multiples of 40.
 * **Biomes.** The five vanilla Nether biomes, a different map in every layer (the layer at y 0 has the vanilla map).
-  The surface rule is the vanilla one per layer, its heights moved with the lava.
+  The surface rule is the vanilla one per layer, its heights moved with the lava; it is only asked for the blocks under
+  a ceiling or a floor (everything else it could answer is netherrack, which the block already is).
 * **Scale and portals.** `coordinate_scale` 1: a portal comes out at the same x/y/z, the Nether under the map is as large
   as the map (one constant, `COORDINATE_SCALE`; with the vanilla 8 the map would be 1000 x 1000 blocks of Nether).
   Lowest island (M4, y -1351) -> Nether 1106 -1362 -3137; highest (K6, y 1374) -> Nether -2486 1374 -1285 (71 above that
@@ -353,22 +354,100 @@ vanilla reference (`netherbase`), 4-core runner.
   Nether 2000 1023 -1000 -> the game's platform in the void at the same place. Every arrival stood in a portal on obsidian.
 * **Ores, features.** Every Nether feature that picks a height gets the vanilla attempts per chunk in every layer. Per
   64x64 layer box: quartz 670..3,434 (vanilla Nether box 2,667), gold 276..1,151 (971), ancient debris 17..36 (25),
-  glowstone 14..161 (50), Gunsmithing sulfur ore 334..1,447 (`datapack-mods`; 1,515 in the vanilla Nether).
+  glowstone 14..161 (50). The sulfur ore of Create: Gunsmithing is switched off (`datapack-mods`): 0 in every layer.
 * **Structures.** Bastions and fossils go to a random layer (the grid of bastions/fortresses is 10 chunks instead of 27, so a
   layer has the vanilla number of bastions). Fortresses (y 48..70) and Nether ruined portals (y 32..100) have their
   heights in the game's code: they only exist in the layer at y -16..303, which is placed so that they stand above its
   lava as in vanilla.
 * **Mobs.** After 240 s around a player: 81 piglins, 34 hoglins, 17 striders, 11 zombified piglins, 1 ghast in the layer at
   y -16; 34 piglins, 10 hoglins, 10 striders, 3 zombified piglins, 2 ghasts, 2 skeletons, 1 enderman in the layer at y 944.
-* **Performance.** 64 chunks: 70.5 s with every mod (157.6 s with Fabric API only, before the feature placement was
-  changed) - the vanilla Nether takes 7.2 s. Heap with them loaded 0.8..1.3 GB (vanilla 0.19). What is left is terrain noise
-  and the surface rule, both proportional to the height. A portal or teleport into Nether that does not exist yet
-  generates about 16 chunks on the server thread: 41..48 s without the performance mods (the client timed out both
-  times), 23..30 s with them. Pre-generate the Nether around portals, or use fewer layers (`HEIGHTS`).
+* **Performance.** 64 chunks: 20.9 s with every mod (38.9 s before, the vanilla Nether 2.8 s), 46.1 s with Fabric API only
+  (115.0 s before, vanilla 4.3 s); a first trip through a portal: see "Nether generation speed" below.
 * **What data cannot do.** Fortresses and ruined portals in other layers; natural spawning picks a random height of the
   whole column (most attempts are far from the player; it works, the rate against vanilla is not measured); mobs placed at
   chunk generation only appear in the top layer; basalt columns do not rise out of the lava seas; caves carved below a
   lava surface stay dry until a block update.
+
+#### Nether generation speed
+
+Measured by the `netherperf` variants (`packtest/nether-perf.txt`, `nether-phase.sh`; run 469e9eb): one fresh world per
+variant, one after the other on the same 4-core runner with nothing else running. Timed: `forceload` of 8 x 8 chunks,
+then of 3 x 3 chunks 4,000 blocks away (what a first trip through a portal makes the server thread wait for), asked five
+times a second; live objects from the class histogram with the 64 chunks loaded; one thread dump a second. Two runs of
+the same variant differ by up to a tenth. The full `nether` job builds the client next to the server: its 64-chunk
+time is not comparable (37.4 s in the same run; the 70.5 s of the earlier text was such a number, 34.6..38.9 s here).
+
+| | 64 chunks | 9 chunks elsewhere (portal) | live objects |
+|---|---|---|---|
+| every mod: vanilla Nether | 2.8 s | 0.9 s | 277 MB |
+| every mod: before (commit 693f2b4) | 38.9 s | 12.6 s | 560 MB |
+| every mod: now | 20.9 s | 7.0 s | 562 MB |
+| Fabric API only: vanilla Nether | 4.3 s | 1.3 s | 169 MB |
+| Fabric API only: before | 115.0 s | 59.5 s | 523 MB |
+| Fabric API only: now | 46.1 s | 20.5 s | 525 MB |
+
+Where the time went before (thread dumps of the worker threads; Fabric API only / every mod): surface rule 50% / 42%,
+3D noise 27% / 13% (C2ME computes it in native code), aquifer 7% / 12%, features 3% / 22%, writing the blocks into the
+sections 4% / 5%, light 3% / 0%. What was changed (`tools/build_nether.py`; the blocks are the same - the four probe
+columns have the same lava runs as in the run before and 33 of their 48 air counts per layer are identical, the other
+15 differ by 1 to 16 blocks (vegetation and vines are not placed identically in two runs of one pack either); the block counts of two layer boxes are equal within what two
+runs of one pack differ - ores, glowstone, basalt, blackstone and magma to the block, netherrack within 34 of 750,000):
+
+1. **3D noise once.** The game computes every branch of an `interval_select` for every point, and each of the twelve
+   branches held the vanilla function with its own reference to `nether/base_3d_noise` (40 octaves): it was computed
+   twelve times per point. Now the layers only select the two fades (floor, ceiling: functions of y and the flat shaft
+   noise) and the noise is computed once. Alone: 115.0 -> 75.3 s (Fabric API only), 34.6 -> 26.0 s (every mod).
+2. **Surface rule behind its depth conditions.** The rule was asked for every solid block of the column (about 2,800 of
+   4,064): twelve height tests, a biome lookup and the vanilla rule down to its last line "netherrack". Everything else
+   it can answer needs `under_ceiling`, `under_floor` or `on_floor`; those three are now tested first and the rule
+   (`material_rule/nether_layers.json`) only runs behind them. Alone: 115.0 -> 91.0 s, 34.6 -> 29.1 s.
+3. **Floor features ask for the biome first.** Nearly every chunk has all five biomes somewhere in its column, so every
+   chunk runs every feature and the biome filter at the end threw four of five found floors away; the filter now also
+   stands before the search for the floor. 21.8 -> 20.9 s (every mod), 47.0 -> 46.1 s (Fabric API only): within the
+   noise of two runs. On a biome border a position can now fail the first of the two filters.
+
+What is left (now, Fabric API only / every mod): surface rule 26% / 31% (the game's loop over every block of the
+column and five conditions per solid block), writing the blocks 16% / 6%, aquifer 14% / 22%, 3D noise 13% / 6%,
+light 11% / 0%, features 10% / 31%, the other density functions 6% / 3%. Measured and not done:
+
+* `cell_size_y` 16 instead of 8 (`ISLES_NETHER_CELL_Y=16`): 46.1 -> 40.8 s with Fabric API only, with every mod 20.5 ->
+  18.2 s in one run and 20.9 -> 21.7 s in the other (nothing that can be told from the noise), and the caverns change shape
+  (the block counts of a layer move by a tenth, no glowstone in one of two boxes): the look is not the vanilla one.
+* No features at all: 20.5 -> 17.8 s and 20.9 -> 19.3 s in two runs with every mod, 46.1 -> 38.0 s with Fabric API only
+  (the twelve layers of ores, vegetation and deltas cost a tenth to a sixth); no cave carver: 20.1 and 23.0 s, 44.5 s
+  (nothing). The lava seas themselves cost nothing (`ISLES_NETHER_OFF=aquifer`: 22.8 s, 45.1 s); what costs is that the game, as soon as a world has aquifers, searches the twelve
+  nearest aquifer cells for every block that is not solid. Only a Nether without aquifers avoids that, and without them
+  there is one lava level for the whole height (`sea_level`).
+* Not reachable from a data pack: the loop over 4,064 blocks per column in terrain, surface rule, light and heightmaps;
+  the 254 sections per chunk in memory (a loaded chunk is about 5 MB of live objects, the vanilla Nether's 0.3 MB) and
+  on disk; the number of chunks a portal generates.
+
+**Fewer layers** (not applied; `ISLES_NETHER_LAYERS`, same total height, same seed and runner):
+
+| Layers | what changes | 64 chunks, every mod | portal (9 chunks) | live objects | 64 chunks, Fabric API only | portal | live objects |
+|---|---|---|---|---|---|---|---|
+| 12 (the pack) | layers 280..408 high, about 35 blocks of rock between | 20.9 s | 7.0 s | 562 MB | 46.1 s | 20.5 s | 525 MB |
+| 8 | taller layers (480..568), same rock between | 19.9 s | 6.8 s | 550 MB | 41.5 s | 19.8 s | 513 MB |
+| 6 | taller layers (640..688), same rock between | 19.7 s | 7.3 s | 541 MB | 40.0 s | 18.3 s | 507 MB |
+| 6, `ISLES_NETHER_CAVERN=320` | caverns as high as now (320), 320..368 blocks of solid netherrack between them | 18.3 s | 6.4 s | 539 MB | 33.0 s | 16.1 s | 502 MB |
+
+Fewer layers of the same total height hardly help (with every mod the differences are inside the noise of two runs; six
+layers with half of the height solid rock gain an eighth, a quarter without the performance mods): the cost is the
+height, not the number of layers.
+
+**Portals.** A portal whose other side has no portal yet makes the server thread (every player waits) look at the 33 x 33
+columns around the target: up to 3 x 3 chunks are generated completely, with their neighbours for features and light,
+and each column is then searched from the top of the dimension to the bottom. That is in the game's code
+(`PortalForcer.createPortal`); a data pack cannot make it fewer chunks, only make the chunks faster. The 9 chunks
+took 12.6 s before and 7.0 s now with every mod (59.5 -> 20.5 s with Fabric API only) on a server alone. With the test
+client (software rendering) on the same four cores, a real first trip through a portal on an island whose Nether did not
+exist froze the server thread for 14.8 s (23..30 s before, 41..48 s without the performance mods); the client stayed
+connected and arrived in a portal on obsidian.
+Where that is too long: generate the Nether around the place first - in the console
+`execute in minecraft:the_nether run forceload add <x-32> <z-32> <x+32> <z+32>` (5 x 5 chunks: about 8 to 10 s with
+every mod at the rate measured here), then `forceload remove` with the same numbers; the portal tests with a
+generated destination arrive without a wait. All Nether under the islands is 98,800 chunks: at the measured 3 chunks a second about 9 hours;
+the Nether under one island of radius 100 is 250 chunks, a minute and a half.
 
 ### Open
 
