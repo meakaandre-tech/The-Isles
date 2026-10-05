@@ -35,7 +35,8 @@ fn('nfeet', [f'execute if block ~ ~-1 ~ minecraft:{b} run say UNDER {b}' for b i
 
 BLOCKS = ['minecraft:netherrack', 'minecraft:lava', 'minecraft:bedrock', 'minecraft:nether_quartz_ore', 'minecraft:nether_gold_ore', 'minecraft:ancient_debris',
           'minecraft:glowstone', 'minecraft:soul_sand', 'minecraft:soul_soil', 'minecraft:basalt', 'minecraft:blackstone', 'minecraft:magma_block',
-          'minecraft:gravel', 'minecraft:crimson_nylium', 'minecraft:warped_nylium', 'cgs:sulfur_ore']
+          'minecraft:gravel', 'minecraft:crimson_nylium', 'minecraft:warped_nylium', 'minecraft:crimson_stem', 'minecraft:warped_stem',
+          'minecraft:crimson_roots', 'minecraft:nether_sprouts', 'cgs:sulfur_ore']
 def scan(c, tag, x0, y0, z0, x1, y1, z1, blocks, pre=N):
     for b in blocks:
         c += [f'say SCAN {tag} {b}', f'{pre}fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}',

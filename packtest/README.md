@@ -23,6 +23,8 @@ sheets of the screenshots. Start with `report.txt` (written by `packtest/tools/r
 | `baseline` | the same server without The Isles (vanilla generator) | reference for time and heap |
 | `pack` | every mod of `mods.tsv` + both data packs, a real client under Xvfb, then a restart | boot log, ores per island, oil, a Create line / diesel engine / reactor / gun / hypertube across the void, spawn, respawn, mobs, weather, portals, screenshots |
 | `speed` | servers with subsets of the mods (`speed.txt`) | which mods change the generation time |
+| `nether` | Fabric API + The Isles (with `nethermods`: every mod and `datapack-mods`), then a client | the Nether: generation time and heap of 64 chunks, columns through all layers, blocks per layer, bedrock, structures per layer, views and mob counts in two layers, four portals (`nether-phase.sh`, `gen_nether.py`, screenshots `nether-NN.png`, `nether-stacks.txt`) |
+| `netherbase` | the same server without The Isles | the vanilla Nether as reference for time, heap and block counts |
 | `bisect` | one fresh world per line of `bisect.txt` (island ids) | which island breaks generation |
 
 ## Files
