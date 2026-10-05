@@ -1,0 +1,4 @@
+FAIL
+- vanilla: build limit bottom-ok missing
+- vanilla: build limit top-ok missing
+- pack-restart: the Create Nuclear reactor is not assembled

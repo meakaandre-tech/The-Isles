@@ -1,0 +1,660 @@
+[10:20:04] [main/WARN] (FabricLoader/Knot) Class path entries reference missing files: /home/runner/work/The-Isles/The-Isles/packtest/client/build/classes/java/main, /home/runner/work/The-Isles/The-Isles/packtest/client/build/resources/main - the game may not load properly!
+[10:20:04] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 26.3 with Fabric Loader 0.19.5
+[10:20:04] [main/INFO] (FabricLoader/Mappings) Mappings not present!
+[10:20:04] [main/WARN] (FabricLoader/Resolution) Warnings were found!
+ - Mod 'Mielon's The Sift' (the_sift) 1.1.2 recommends version 4.13.0 or later of lambdynlights, which is missing!
+	 - You should install version 4.13.0 or later of lambdynlights for the optimal experience.
+[10:20:04] [main/INFO] (FabricLoader) Loading 131 mods:
+	- architectury 22.0.3
+	- c2me 0.4.2-alpha.0.89+26.3
+	   |-- c2me-base 0.4.2-alpha.0.89+26.3
+	   |-- c2me-client-uncapvd 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-chunkio-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-general-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-worldgen-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-worldgen-vanilla-bugs 0.4.2-alpha.0.89+26.3
+	   |-- c2me-notickvd 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-allocs 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-chunkio 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-math 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-natives-math 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-scheduling 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-worldgen-general 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-worldgen-vanilla 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunk-serializer 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunk-system 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunkio 0.4.2-alpha.0.89+26.3
+	   |-- c2me-server-utils 0.4.2-alpha.0.89+26.3
+	   |-- c2me-threading-lighting 0.4.2-alpha.0.89+26.3
+	   |-- com_github_ben-manes_caffeine_caffeine 3.2.1
+	   |-- com_ibm_async_asyncutil 0.1.0
+	   |-- io_reactivex_rxjava3_rxjava 3.1.12
+	   |-- mixinsquared 0.3.7-beta.1
+	   |-- net_objecthunter_exp4j 0.4.8
+	   |-- org_jctools_jctools-core 4.0.5
+	   \-- org_reactivestreams_reactive-streams 1.0.4
+	- cgs 1.4.9+26.3
+	- cloth-config 26.3.159
+	   \-- cloth-basic-math 0.6.1
+	- create 6.0.9-1
+	- create_hypertube 0.6.0+26.3
+	- createdieselgenerators 1.3.15+26.3
+	- createnuclear 1.3.2-beta.3+26.3
+	- dynamic_fps 3.11.10
+	   |-- dynamic_fps_common 3.11.10
+	   \-- net_lostluma_battery 2.1.0
+	- entityculling 1.11.2
+	   |-- transition 1.0.25
+	   \-- trender 1.0.17
+	- fabric-api 0.161.0+26.3
+	   |-- fabric-advancement-api-v1 1.0.0+38c7a2d55d
+	   |-- fabric-api-base 2.0.6+fcdff87f5d
+	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+	   |-- fabric-biome-api-v1 20.0.9+74ed1ea55d
+	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+	   |-- fabric-content-registries-v0 15.0.4+74ed1ea55d
+	   |-- fabric-convention-tags-v2 4.10.3+6b5b47fd5d
+	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+	   |-- fabric-creative-tab-api-v1 5.0.21+fcdff87f5d
+	   |-- fabric-data-attachment-api-v1 2.2.30+3434d6d95d
+	   |-- fabric-data-generation-api-v1 27.2.4+427eab975d
+	   |-- fabric-debug-api-v1 1.0.4+3434d6d95d
+	   |-- fabric-dimensions-v1 5.1.19+47f74c985d
+	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+	   |-- fabric-events-interaction-v0 5.3.6+3434d6d95d
+	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+	   |-- fabric-item-api-v1 14.7.0+cf6bc2db5d
+	   |-- fabric-key-mapping-api-v1 2.0.8+3434d6d95d
+	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+	   |-- fabric-loot-api-v3 4.0.8+4068fd645d
+	   |-- fabric-menu-api-v1 2.0.27+ed66f0a35d
+	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+	   |-- fabric-model-loading-api-v1 8.0.35+fcdff87f5d
+	   |-- fabric-networking-api-v1 6.3.8+fcdff87f5d
+	   |-- fabric-object-builder-api-v1 24.1.9+3434d6d95d
+	   |-- fabric-particles-v1 5.0.24+3434d6d95d
+	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+	   |-- fabric-recipe-api-v1 10.0.8+fcdff87f5d
+	   |-- fabric-registry-sync-v0 8.0.1+fcdff87f5d
+	   |-- fabric-renderer-api-v1 17.0.15+79385d0b5d
+	   |-- fabric-renderer-indigo 9.1.23+b9d63e335d
+	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+	   |-- fabric-rendering-v1 27.0.14+901a437c5d
+	   |-- fabric-resource-conditions-api-v1 6.1.5+3434d6d95d
+	   |-- fabric-resource-loader-v0 3.3.26+4fc5413f5d
+	   |-- fabric-resource-loader-v1 3.0.4+fcdff87f5d
+	   |-- fabric-screen-api-v1 5.2.4+48607d035d
+	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+	   |-- fabric-sound-api-v1 2.0.7+3434d6d95d
+	   |-- fabric-tag-api-v1 2.1.10+fcdff87f5d
+	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+	   \-- fabric-transitive-access-wideners-v1 8.1.16+52268a0e5d
+	- fabric-language-kotlin 1.14.1+kotlin.2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-reflect 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk7 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk8 2.4.20
+	   |-- org_jetbrains_kotlinx_atomicfu-jvm 0.33.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-jdk8 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-datetime-jvm 0.8.0
+	   |-- org_jetbrains_kotlinx_kotlinx-io-bytestring-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-io-core-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-core-jvm 1.11.0
+	   \-- org_jetbrains_kotlinx_kotlinx-serialization-json-jvm 1.11.0
+	- fabricloader 0.19.5
+	- farmersdelight 26.3-3.6.27+refabricated
+	- ferritecore 9.0.0
+	- forgeconfigapiport 26.3.1
+	   |-- com_electronwill_night-config_core 3.8.4
+	   \-- com_electronwill_night-config_toml 3.8.4
+	- fzzy_config 0.7.7+26.3
+	   |-- blue_endless_jankson 1.2.3
+	   |-- fabric-permissions-api-v0 0.7.0
+	   \-- net_peanuuutz_tomlkt_tomlkt-jvm 0.3.7
+	- geckolib 5.5.7
+	- immediatelyfast 1.17.1+26.3
+	- java 25
+	- krypton 0.3.2
+	   \-- com_velocitypowered_velocity-native 3.4.0-SNAPSHOT
+	- lithium 0.26.2+mc26.3
+	- midnightlib 1.9.3
+	- minecraft 26.3
+	- mixinextras 0.5.5
+	- modmenu 21.0.0
+	   |-- fabric-api-base 2.0.6+fcdff87f5d
+	   |-- fabric-key-mapping-api-v1 2.0.8+3434d6d95d
+	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+	   |-- fabric-resource-loader-v1 3.0.4+fcdff87f5d
+	   \-- fabric-screen-api-v1 5.2.4+48607d035d
+	- moreculling 1.9.0-beta.1
+	   \-- conditional-mixin 0.6.3
+	- ntgl 3.1.8+26.3
+	- placeholder-api 3.2.0+26.3
+	- puzzleslib 26.3.9
+	- respawninganimals 26.3.0
+	- smooth_steps 1.2.1
+	- sodium 0.9.3-alpha.1+mc26.3
+	- terrain_slabs 3.3.6
+	- the_sift 1.1.2
+	- untitledduckmod 1.8.0
+[10:20:04] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/5f66cc9f59b8efaa942155a3d5a30599bf6640dd/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[10:20:04] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.scheduling.mixin
+[10:20:05] [main/INFO] (C2ME Config Updater) Updating config from 0 to 1
+[10:20:05] [main/INFO] (C2ME Config Updater) Updating config from 1 to 2
+[10:20:05] [main/INFO] (C2ME Config Updater) Updating config from 2 to 3
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.threading.lighting.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.base.mixin
+[10:20:05] [main/INFO] (ModuleEntryPoint) CPU name: AMD EPYC 9V74 80-Core Processor
+[10:20:05] [main/INFO] (ModuleEntryPoint) Detected 2 available physical CPUs, 4 available logical CPUs
+[10:20:05] [main/INFO] (ModuleEntryPoint) Detected 2 available physical CPUs, 4 available logical CPUs
+[10:20:05] [main/INFO] (C2ME Config System) Global Executor Parallelism: 1 configured, 1 evaluated, 1 default evaluated
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.client.uncapvd.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.rewrites.chunk_serializer.mixin
+[10:20:05] [main/INFO] (C2ME Config System) Disabling config ioSystem.gcFreeChunkSerializer: Incompatible with architectury@22.0.3 (*) (defined in c2me)
+[10:20:05] [main/INFO] (C2ME Modules Manager) Disabling com.ishland.c2me.rewrites.chunk_serializer.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.rewrites.chunksystem.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.fixes.general.threading_issues.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.natives_math.mixin
+[10:20:05] [main/INFO] (NativeLoader) Attempting to call native library. If your game crashes right after this point, native acceleration may not be available for your system.
+[10:20:05] [main/INFO] (NativeLoader) Detected maximum supported ISA target: ICL_AVX512
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.worldgen.vanilla.mixin
+[10:20:05] [main/INFO] (Lithium) Loaded configuration file for Lithium: 170 options available, 0 override(s) found.
+[10:20:05] [main/WARN] (FabricLoader/Mixin) Reference map 'entityculling.refmap.mixins.json' for entityculling.mixins.json could not be read. If this is a development environment you can ignore this message
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.chunkio.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.worldgen.general.mixin
+[10:20:05] [main/INFO] (Sodium) Loaded configuration file for Sodium: 37 options available, 0 override(s) found
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.fixes.chunkio.threading_issues.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.allocs.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.rewrites.chunkio.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.server.utils.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.opts.math.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.fixes.worldgen.vanilla_bugs.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.fixes.worldgen.threading_issues.mixin
+[10:20:05] [main/INFO] (C2ME Modules Manager) Initializing com.ishland.c2me.notickvd.mixin
+[10:20:05] [main/WARN] (FabricLoader/Mixin) Error loading class: ca/spottedleaf/starlight/common/thread/SchedulingUtil (java.lang.ClassNotFoundException: ca/spottedleaf/starlight/common/thread/SchedulingUtil)
+[10:20:05] [main/WARN] (FabricLoader/Mixin) Error loading class: net/vulkanmod/config/option/Options (java.lang.ClassNotFoundException: net/vulkanmod/config/option/Options)
+[10:20:05] [main/WARN] (FabricLoader/Mixin) Error loading class: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks (java.lang.ClassNotFoundException: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks)
+[10:20:05] [main/WARN] (FabricLoader/Mixin) @Mixin target ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks was not found c2me-rewrites-chunk-system.mixins.json:scalablelux.MixinChunkSystemHooks from mod c2me-rewrites-chunk-system
+[10:20:06] [main/WARN] (FabricLoader/Mixin) Error loading class: net/irisshaders/iris/uniforms/WorldTimeUniforms (java.lang.ClassNotFoundException: net/irisshaders/iris/uniforms/WorldTimeUniforms)
+[10:20:06] [main/INFO] (Sodium-GraphicsAdapterProbe) Searching for graphics cards...
+[10:20:06] [main/WARN] (Sodium-GraphicsAdapterProbe) Could not find any graphics adapters! Probably the device is not on a bus we can probe, or there are no devices supporting 3D acceleration.
+[10:20:06] [main/WARN] (Sodium-Workarounds) Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
+[10:20:06] [main/WARN] (Sodium-Workarounds) This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
+[10:20:06] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[10:20:08] [Datafixer Bootstrap #0/INFO] (Minecraft) 307 Datafixer optimizations took 521 milliseconds
+[10:20:16] [Render thread/INFO] (Minecraft) Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[10:20:16] [Render thread/INFO] (Minecraft) Setting user: packtest
+[10:20:16] [Render thread/INFO] (terrain_slabs) Initializing Terrain Slabs mod...
+[10:20:16] [Render thread/INFO] (terrain_slabs) Registering Mod Blocks & Items for terrain_slabs
+[10:20:16] [Render thread/INFO] (terrain_slabs) Registering Mod Blocks & Items for terrain_slabs
+[10:20:16] [Render thread/INFO] (CreateNuclear) createnuclear initializing!
+[10:20:16] [Render thread/INFO] (CreateNuclear) Registering mod tags for createnuclear
+[10:20:16] [Render thread/INFO] (CreateNuclear) Registering ModBlocks for createnuclear
+[10:20:16] [Render thread/INFO] (Puzzles Lib) Constructing components for puzzleslib:common
+[10:20:17] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
+com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
+	at knot//com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:70)
+	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:168)
+	at knot//net.minecraft.client.Minecraft.lambda$new$1(Minecraft.java:451)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=ErrorResponse[path=/player/attributes, error=null, errorMessage=null, details=null]]
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.buildHttpException(MinecraftClient.java:170)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.readServiceResponse(MinecraftClient.java:147)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.getWithEtag(MinecraftClient.java:81)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:65)
+	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:118)
+	... 5 more
+[10:20:17] [Render thread/INFO] (FD ML Configs) Loaded config farmersdelight-common.json
+[10:20:17] [Render thread/INFO] (FD ML Configs) Loaded config farmersdelight-client.json
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: Failed to read config file: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/create/server.json
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: java.nio.file.NoSuchFileException: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/create/server.json
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:44)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.infrastructure.config.AllConfigs.register(AllConfigs.java:28)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.Create.onInitialize(Create.java:62)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:52)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:469)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[10:20:18] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:18] [Render thread/INFO] (KryptonSharedInitializer) Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
+[10:20:18] [Render thread/INFO] (the_sift) The Sift initialized.
+[10:20:18] [Render thread/INFO] (Puzzles Lib) Constructing components for respawninganimals:common
+[10:20:18] [Render thread/INFO] (Puzzles Lib) Dispatching loading event for config respawninganimals-common.toml
+[10:20:18] [Render thread/INFO] (Indigo) [Indigo] Different rendering plugin detected; not applying Indigo.
+[10:20:18] [Render thread/INFO] (Puzzles Lib) Constructing components for puzzleslib:client
+[10:20:18] [Render thread/INFO] (Mod Menu/Update Checker) Checking mod updates...
+[10:20:19] [Download-1/INFO] (Mod Menu/Update Checker) Update available for 'moreculling@1.9.0-beta.1', (-> 1.9.0)
+[10:20:19] [Download-1/INFO] (Mod Menu/Update Checker) Update available for 'terrain_slabs@3.3.6', (-> 3.4.0)
+[10:20:19] [Render thread/INFO] (ClientNetworkManagerImpl) Registering S2C receiver with id architectury:spawn_entity_packet
+[10:20:19] [Render thread/INFO] (fzzy_config) Loaded config fzzy_config:keybinds in 7ms
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: Failed to read config file: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/flywheel-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: java.nio.file.NoSuchFileException: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/flywheel-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.flywheel.impl.FabricFlwConfig.register(FabricFlwConfig.java:21)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.flywheel.impl.FlwImpl.init(FlwImpl.java:22)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.flywheel.impl.Flywheel.onInitializeClient(Flywheel.java:15)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.Create.onInitializeClient(Create.java:41)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:53)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:469)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: Failed to read config file: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/ponder-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: java.nio.file.NoSuchFileException: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/ponder-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.ponder.enums.PonderConfig.register(PonderConfig.java:12)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.ponder.Ponder.onInitializeClient(Ponder.java:29)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.Create.onInitializeClient(Create.java:42)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:53)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:469)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: Failed to read config file: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/vanillin-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: java.nio.file.NoSuchFileException: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/vanillin-client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.vanillin.VanillinConfig.register(VanillinConfig.java:115)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.vanillin.Vanillin.onInitializeClient(Vanillin.java:19)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.Create.onInitializeClient(Create.java:43)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:53)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:469)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: Failed to read config file: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/create/client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: java.nio.file.NoSuchFileException: /home/runner/work/The-Isles/The-Isles/packtest/client/run/config/create/client.json
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:44)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.infrastructure.config.AllConfigs.register(AllConfigs.java:15)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//com.zurrtum.create.client.Create.onInitializeClient(Create.java:54)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:53)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:469)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[10:20:20] [Render thread/INFO] (Minecraft) [STDERR]: 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:20] [Render thread/INFO] (KryptonClientInitializer) Krypton is now accelerating your Minecraft client's networking stack 🚀
+[10:20:20] [Render thread/INFO] (KryptonClientInitializer) Note that Krypton is most effective on servers, not the client.
+[10:20:20] [Render thread/INFO] (Puzzles Lib) Constructing components for respawninganimals:client
+[10:20:20] [Render thread/INFO] (Minecraft) [STDOUT]: [TRender] Initializing Client...
+[10:20:21] [Render thread/INFO] (Sodium) Setting exclusive fullscreen to true by default, as the user is not on Windows and the language cannot be guessed.
+[10:20:21] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.4.3-snapshot
+[10:20:21] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App name: Minecraft
+[10:20:21] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App version: 26.3
+[10:20:21] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: App ID: com.mojang.minecraft
+[10:20:21] [Render thread/INFO] (Minecraft) SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
+[10:20:21] [Render thread/INFO] (Minecraft) OpenGL debug message: id=1, source=SHADER COMPILER, type=ERROR, severity=HIGH, message='0:1(10): error: GLSL 4.60 is not supported. Supported versions are: 1.10, 1.20, 1.30, 1.40, 1.50, 3.30, 4.00, 4.10, 4.20, 4.30, 4.40, 4.50, 1.00 ES, 3.00 ES, 3.10 ES, and 3.20 ES'
+[10:20:21] [Render thread/INFO] (ImmediatelyFast) Initializing ImmediatelyFast 1.17.1+26.3 on llvmpipe (LLVM 20.1.2, 256 bits) (Mesa) with OpenGL 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4
+[10:20:21] [Render thread/INFO] (Minecraft) Using graphics backend OpenGL, using drivers: 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4
+[10:20:21] [Render thread/INFO] (Minecraft) Using graphics device: llvmpipe (LLVM 20.1.2, 256 bits) (Mesa)
+[10:20:21] [Render thread/INFO] (Minecraft) Using graphics device extensions: GL_ARB_multi_draw_indirect, GL_ARB_buffer_storage, GL_ARB_shader_draw_parameters, GL_ARB_base_instance, GL_KHR_debug, GL_ARB_draw_indirect, GL_ARB_clip_control, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
+[10:20:21] [Render thread/INFO] (Minecraft) Created window using SDL video driver: x11
+[10:20:22] [Download-1/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+[10:20:22] [Download-1/ERROR] (Minecraft) Failed to fetch Realms feature flags
+com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
+	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
+	at knot//com.mojang.realmsclient.client.RealmsClient.fetchFeatureFlags(RealmsClient.java:204)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+[10:20:22] [Render thread/ERROR] (Minecraft) Error while loading the narrator
+com.mojang.text2speech.Narrator$InitializeException: Failed to load library flite
+	at knot//com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:82)
+	at knot//com.mojang.text2speech.NarratorLinux.<init>(NarratorLinux.java:19)
+	at knot//com.mojang.text2speech.Narrator.getNarrator(Narrator.java:41)
+	at knot//net.minecraft.client.GameNarrator.<init>(GameNarrator.java:20)
+	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:740)
+	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+Caused by: java.lang.UnsatisfiedLinkError: Unable to load library 'flite':
+libflite.so: cannot open shared object file: No such file or directory
+libflite.so: cannot open shared object file: No such file or directory
+Native library (linux-x86-64/libflite.so) not found in resource path (/home/runner/work/The-Isles/The-Isles/packtest/client/build/classes/java/main:/home/runner/work/The-Isles/The-Isles/packtest/client/build/resources/main:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-loader/0.19.5/ff9e65cffca4a67f31523e1807fe0855940fcbfa/fabric-loader-0.19.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/9.10.1/ada2141c0cc52ee8f5c48cd5fa4ce0e794f22236/asm-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/9.10.1/8d49f14d51f632cb1d87c88d1ceaf50db0d8af1b/asm-analysis-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/9.10.1/4229e4c55fd8e01c23f9fe9884075cc628aacc50/asm-commons-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/9.10.1/e244332a17564c1d1572449399a842de35881be2/asm-tree-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/9.10.1/7bb9d450e8d4cbf9f9e04096c44bbfe7fba80b15/asm-util-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/5f66cc9f59b8efaa942155a3d5a30599bf6640dd/sponge-mixin-0.17.4+mixin.0.8.7.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-fabric/0.5.5/d1055b99c0ab08a8403fe2da3d79ca28e6340a76/mixinextras-fabric-0.5.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/dev-launch-injector/0.2.1+build.8/da8bef7e6e2f952da707f282bdb46882a0fce5e3/dev-launch-injector-0.2.1+build.8.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-log4j-util/1.0.2/ef0b3fb613356feb75a67d54f2fad6f03a006648/fabric-log4j-util-1.0.2.jar:/home/runner/.gradle/caches/modules-2/files-2.1/at.yawk.lz4/lz4-java/1.10.1/f541d7f910fe3d76f38f799c507c48cc81b12ecb/lz4-java-1.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.azure/azure-json/1.4.0/fcc1d354dbc3e0300e5276b1bf124d0247799cd8/azure-json-1.4.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.github.oshi/oshi-core/6.9.0/3224870731860cfcd7744581a05b559e94291e7/oshi-core-6.9.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.14.0/efc0e34ede4e3204eaefb84a00e55e8c86634382/gson-2.14.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.6.0-jre/c376b13067cc99a5774403530953f7b05a91e218/guava-33.6.0-jre.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/78.3/6a851a53bb1f25689fc418dcc8935b0d93580adf/icu4j-78.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/msal4j/1.24.1/c233f2d047b9755f7041adf21a858c680e4c9242/msal4j-1.24.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/10.0.77/add8754cda96cf0cd840441632875648836f8a71/authlib-10.0.77.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/blocklist/1.0.10/5c685c5ffa94c4cd39496c7184c1d122e515ecef/blocklist-1.0.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.3.11/3373d1e7bf00c8b99bed1ea4efb8c47344e4a887/brigadier-1.3.11.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/datafixerupper/10.0.21/b6b2ae770c02e0c1eb90f9985b151e9085a38d0b/datafixerupper-10.0.21.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/cc2ad81342001b4281c305a298d7f50332354058/jtracy-1.14.38.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/d2433300f8a4e99595d513546d19ecddc3eaa15e/jtracy-1.14.38-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/logging/1.7.12/351cea64a5233361327d8d54c44277041beed97f/logging-1.7.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/patchy/2.2.10/da05971b07cbb379d002cf7eaec6a2048211fefc/patchy-2.2.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/text2speech/1.19.12/2e517a75c79d34d32de2b5d68422150836c2133e/text2speech-1.19.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.22.0/6b3eb4beb7058c2a638f5f17bcb388649fd339dd/commons-codec-1.22.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.20.0/36f3474daec2849c149e877614e7f979b2082cd2/commons-io-2.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.16.Final/5397ef65dcb60670e0e0dba4854522873af3070/netty-buffer-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.16.Final/1a01d45a9efc228c6d747525848b065e0656b5f/netty-codec-base-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.16.Final/bdbbcfcdbe217b95c14a04df4fc5d31213d5c27c/netty-codec-compression-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.16.Final/b5e0715df90047ee5a0138c8f704f43c751009e4/netty-codec-http-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.16.Final/c2bc7fa5acfa2afc777e944d84f0aa65559cc81e/netty-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.16.Final/cc82873ae4b6d14effe480740ad838de09add70d/netty-handler-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.16.Final/fcea6d64273b59ab9127b68c16ae98af34642139/netty-resolver-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.2.16.Final/cf90c7b892e284ba9f1545dce170168369b3b9d6/netty-transport-classes-epoll-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.2.16.Final/fa2bcf8c71626510f6fae173f78182117b70f7a/netty-transport-classes-kqueue-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/eed34f3b37b4c46a0cbb49456ccc4e3bd7195e4c/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/439c24f5c27c220deb042b42e4048d606edeb78d/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.16.Final/3cf32390f1b80af890ac44aa0698c2ff58c2a4d7/netty-transport-native-unix-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.16.Final/ae87a3bec51d503475a19fbd718bf777f2fc06c6/netty-transport-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/8.5.18/a6cff377eecc19c2037bf31568a6d7106b50ba1f/fastutil-8.5.18.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.17.0/a4934c44d25a9d8c2ddf4203affd20330cb3426f/jna-platform-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.17.0/33d12735bef894440780fce64f9758d420c7bae2/jna-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/5.0.4/4fdac2fbe92dfad86aa6e9301736f6b4342a3f5c/jopt-simple-5.0.4.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.28.0/e482f2c7a88dac3c497e96aa420b6a769f59c8d7/commons-compress-1.28.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.20.0/65897b3e5731220962e659e001904af3c3cbeba9/commons-lang3-3.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.26.0/ad52af0ecf054a7e3f275a2e180ee06d9c490951/log4j-api-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.26.0/d267ca60b27ddb075e0b4e75e7875859717bf85f/log4j-core-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j2-impl/2.26.0/668c0f0e813d83f00a7182533aa658ec7e7a0a0d/log4j-slf4j2-impl-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.joml/joml/1.10.9/438e036486bad66b189bff385dd07dea4f74a146/joml-1.10.9.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/d2b12961d44f92860fb1ab501f9c69b7a2975236/lwjgl-freetype-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/38f27c9a0fbe000bfb38b295c32944d699e246e9/lwjgl-freetype-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/350f317eaf5295b1e53f6664ef5fdeeaaa7dcbf0/lwjgl-jemalloc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/ca21b4b4c6d223907de645a18436ef6f677a5d4f/lwjgl-jemalloc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/32b52cda5af6937a4e4bd321bdb83082025cb332/lwjgl-openal-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/7daa62f9f7b38b30e8a3d3bc7069e9b2e3cd52f0/lwjgl-openal-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/b81769ee48050f8c71e70839505f350bf9219d90/lwjgl-opengl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/ec6fb42167943e94f7f0b14707c1737653c4044b/lwjgl-opengl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/c02146735d6ff70d070c73532b435e5c893a346b/lwjgl-sdl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/6ed1b80b7c211a491612c70e43f27ba1f42cccd0/lwjgl-sdl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/ba9fbc8fc4d50b3e4b436cc958ddb4abdb05867c/lwjgl-shaderc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/37faa5824f75901f4961e56805aedf68e13cf8b/lwjgl-shaderc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/98e5b5ef5159100b26a169a9aed6c24e820e3eaa/lwjgl-spvc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/709eb01deec4bdafb7634b125a63fd8de172fc50/lwjgl-spvc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/cdce54785bd3758e44a81f345d6260774d921c78/lwjgl-stb-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/3878e44ce27c12791e570b5c8754ef3b68401dd3/lwjgl-stb-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/816a6ac87f1e447e5346ca0e7a1078353f51fbd6/lwjgl-vma-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/3a9a95d3e83f7fc49c6ed8d0e1c853b77662d90e/lwjgl-vma-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.4.3/ffdaf1898192059f059d66f9fa37e3debcac10e0/lwjgl-vulkan-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/7ab5265a73d8a959ed62332d546536ae6be2f0d5/lwjgl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/2800e134537db1a175eba41c430b1018eddc48f0/lwjgl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar:/home/runner/.gradle/caches/fabric-loom/minecraftMaven/net/minecraft/minecraft-merged-deobf/26.3/minecraft-merged-deobf-26.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-kqueue/4.2.16.Final/dd9d41b06355a6a1815d902ee087a693aab83755/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-kqueue/4.2.16.Final/ddb942cad6c0e978caa2215757512b36c5ffacec/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar)
+	at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:325)
+	at knot//com.sun.jna.NativeLibrary.getInstance(NativeLibrary.java:481)
+	at knot//com.sun.jna.NativeLibrary.getInstance(NativeLibrary.java:423)
+	at knot//com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:80)
+	... 9 more
+	Suppressed: java.lang.UnsatisfiedLinkError: libflite.so: cannot open shared object file: No such file or directory
+		at knot//com.sun.jna.Native.open(Native Method)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:213)
+		... 12 more
+	Suppressed: java.lang.UnsatisfiedLinkError: libflite.so: cannot open shared object file: No such file or directory
+		at knot//com.sun.jna.Native.open(Native Method)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:226)
+		... 12 more
+	Suppressed: java.io.IOException: Native library (linux-x86-64/libflite.so) not found in resource path (/home/runner/work/The-Isles/The-Isles/packtest/client/build/classes/java/main:/home/runner/work/The-Isles/The-Isles/packtest/client/build/resources/main:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-loader/0.19.5/ff9e65cffca4a67f31523e1807fe0855940fcbfa/fabric-loader-0.19.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/9.10.1/ada2141c0cc52ee8f5c48cd5fa4ce0e794f22236/asm-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/9.10.1/8d49f14d51f632cb1d87c88d1ceaf50db0d8af1b/asm-analysis-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/9.10.1/4229e4c55fd8e01c23f9fe9884075cc628aacc50/asm-commons-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/9.10.1/e244332a17564c1d1572449399a842de35881be2/asm-tree-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/9.10.1/7bb9d450e8d4cbf9f9e04096c44bbfe7fba80b15/asm-util-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/5f66cc9f59b8efaa942155a3d5a30599bf6640dd/sponge-mixin-0.17.4+mixin.0.8.7.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-fabric/0.5.5/d1055b99c0ab08a8403fe2da3d79ca28e6340a76/mixinextras-fabric-0.5.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/dev-launch-injector/0.2.1+build.8/da8bef7e6e2f952da707f282bdb46882a0fce5e3/dev-launch-injector-0.2.1+build.8.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-log4j-util/1.0.2/ef0b3fb613356feb75a67d54f2fad6f03a006648/fabric-log4j-util-1.0.2.jar:/home/runner/.gradle/caches/modules-2/files-2.1/at.yawk.lz4/lz4-java/1.10.1/f541d7f910fe3d76f38f799c507c48cc81b12ecb/lz4-java-1.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.azure/azure-json/1.4.0/fcc1d354dbc3e0300e5276b1bf124d0247799cd8/azure-json-1.4.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.github.oshi/oshi-core/6.9.0/3224870731860cfcd7744581a05b559e94291e7/oshi-core-6.9.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.14.0/efc0e34ede4e3204eaefb84a00e55e8c86634382/gson-2.14.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.6.0-jre/c376b13067cc99a5774403530953f7b05a91e218/guava-33.6.0-jre.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/78.3/6a851a53bb1f25689fc418dcc8935b0d93580adf/icu4j-78.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/msal4j/1.24.1/c233f2d047b9755f7041adf21a858c680e4c9242/msal4j-1.24.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/10.0.77/add8754cda96cf0cd840441632875648836f8a71/authlib-10.0.77.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/blocklist/1.0.10/5c685c5ffa94c4cd39496c7184c1d122e515ecef/blocklist-1.0.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.3.11/3373d1e7bf00c8b99bed1ea4efb8c47344e4a887/brigadier-1.3.11.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/datafixerupper/10.0.21/b6b2ae770c02e0c1eb90f9985b151e9085a38d0b/datafixerupper-10.0.21.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/cc2ad81342001b4281c305a298d7f50332354058/jtracy-1.14.38.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/d2433300f8a4e99595d513546d19ecddc3eaa15e/jtracy-1.14.38-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/logging/1.7.12/351cea64a5233361327d8d54c44277041beed97f/logging-1.7.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/patchy/2.2.10/da05971b07cbb379d002cf7eaec6a2048211fefc/patchy-2.2.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/text2speech/1.19.12/2e517a75c79d34d32de2b5d68422150836c2133e/text2speech-1.19.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.22.0/6b3eb4beb7058c2a638f5f17bcb388649fd339dd/commons-codec-1.22.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.20.0/36f3474daec2849c149e877614e7f979b2082cd2/commons-io-2.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.16.Final/5397ef65dcb60670e0e0dba4854522873af3070/netty-buffer-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.16.Final/1a01d45a9efc228c6d747525848b065e0656b5f/netty-codec-base-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.16.Final/bdbbcfcdbe217b95c14a04df4fc5d31213d5c27c/netty-codec-compression-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.16.Final/b5e0715df90047ee5a0138c8f704f43c751009e4/netty-codec-http-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.16.Final/c2bc7fa5acfa2afc777e944d84f0aa65559cc81e/netty-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.16.Final/cc82873ae4b6d14effe480740ad838de09add70d/netty-handler-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.16.Final/fcea6d64273b59ab9127b68c16ae98af34642139/netty-resolver-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.2.16.Final/cf90c7b892e284ba9f1545dce170168369b3b9d6/netty-transport-classes-epoll-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.2.16.Final/fa2bcf8c71626510f6fae173f78182117b70f7a/netty-transport-classes-kqueue-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/eed34f3b37b4c46a0cbb49456ccc4e3bd7195e4c/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/439c24f5c27c220deb042b42e4048d606edeb78d/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.16.Final/3cf32390f1b80af890ac44aa0698c2ff58c2a4d7/netty-transport-native-unix-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.16.Final/ae87a3bec51d503475a19fbd718bf777f2fc06c6/netty-transport-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/8.5.18/a6cff377eecc19c2037bf31568a6d7106b50ba1f/fastutil-8.5.18.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.17.0/a4934c44d25a9d8c2ddf4203affd20330cb3426f/jna-platform-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.17.0/33d12735bef894440780fce64f9758d420c7bae2/jna-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/5.0.4/4fdac2fbe92dfad86aa6e9301736f6b4342a3f5c/jopt-simple-5.0.4.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.28.0/e482f2c7a88dac3c497e96aa420b6a769f59c8d7/commons-compress-1.28.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.20.0/65897b3e5731220962e659e001904af3c3cbeba9/commons-lang3-3.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.26.0/ad52af0ecf054a7e3f275a2e180ee06d9c490951/log4j-api-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.26.0/d267ca60b27ddb075e0b4e75e7875859717bf85f/log4j-core-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j2-impl/2.26.0/668c0f0e813d83f00a7182533aa658ec7e7a0a0d/log4j-slf4j2-impl-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.joml/joml/1.10.9/438e036486bad66b189bff385dd07dea4f74a146/joml-1.10.9.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/d2b12961d44f92860fb1ab501f9c69b7a2975236/lwjgl-freetype-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/38f27c9a0fbe000bfb38b295c32944d699e246e9/lwjgl-freetype-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/350f317eaf5295b1e53f6664ef5fdeeaaa7dcbf0/lwjgl-jemalloc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/ca21b4b4c6d223907de645a18436ef6f677a5d4f/lwjgl-jemalloc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/32b52cda5af6937a4e4bd321bdb83082025cb332/lwjgl-openal-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/7daa62f9f7b38b30e8a3d3bc7069e9b2e3cd52f0/lwjgl-openal-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/b81769ee48050f8c71e70839505f350bf9219d90/lwjgl-opengl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/ec6fb42167943e94f7f0b14707c1737653c4044b/lwjgl-opengl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/c02146735d6ff70d070c73532b435e5c893a346b/lwjgl-sdl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/6ed1b80b7c211a491612c70e43f27ba1f42cccd0/lwjgl-sdl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/ba9fbc8fc4d50b3e4b436cc958ddb4abdb05867c/lwjgl-shaderc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/37faa5824f75901f4961e56805aedf68e13cf8b/lwjgl-shaderc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/98e5b5ef5159100b26a169a9aed6c24e820e3eaa/lwjgl-spvc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/709eb01deec4bdafb7634b125a63fd8de172fc50/lwjgl-spvc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/cdce54785bd3758e44a81f345d6260774d921c78/lwjgl-stb-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/3878e44ce27c12791e570b5c8754ef3b68401dd3/lwjgl-stb-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/816a6ac87f1e447e5346ca0e7a1078353f51fbd6/lwjgl-vma-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/3a9a95d3e83f7fc49c6ed8d0e1c853b77662d90e/lwjgl-vma-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.4.3/ffdaf1898192059f059d66f9fa37e3debcac10e0/lwjgl-vulkan-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/7ab5265a73d8a959ed62332d546536ae6be2f0d5/lwjgl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/2800e134537db1a175eba41c430b1018eddc48f0/lwjgl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar:/home/runner/.gradle/caches/fabric-loom/minecraftMaven/net/minecraft/minecraft-merged-deobf/26.3/minecraft-merged-deobf-26.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-kqueue/4.2.16.Final/dd9d41b06355a6a1815d902ee087a693aab83755/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-kqueue/4.2.16.Final/ddb942cad6c0e978caa2215757512b36c5ffacec/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar)
+		at knot//com.sun.jna.Native.extractFromResourcePath(Native.java:1141)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:297)
+		... 12 more
+[10:20:22] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, vanilla, c2me, cgs, cloth-config, conditional-mixin, create, create_hypertube, createdieselgenerators, createnuclear, dynamic_fps, dynamic_fps_common, entityculling, fabric-advancement-api-v1, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-language-kotlin, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-permission-api-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, farmersdelight, forgeconfigapiport, fzzy_config, immediatelyfast, krypton, lithium, midnightlib, modmenu, moreculling, ntgl, placeholder-api, respawninganimals, smooth_steps, sodium, terrain_slabs, the_sift, trender, untitledduckmod
+[10:20:22] [Worker-Main-2/WARN] (Minecraft) File cgs:sounds/gun/revolver/fire/fire_01.ogg does not exist, cannot add it to event cgs:gun.revolver.fire
+[10:20:22] [Worker-Main-2/WARN] (Minecraft) File cgs:sounds/gun/shotgun/fire/fire_03.ogg does not exist, cannot add it to event cgs:gun.shotgun.fire
+[10:20:22] [Worker-Main-2/WARN] (Minecraft) File ntgl:sounds/item/assault_rifle/cock.ogg does not exist, cannot add it to event ntgl:item.assault_rifle.cock
+[10:20:22] [Worker-Main-2/WARN] (Minecraft) File ntgl:sounds/item/bazooka/fire.ogg does not exist, cannot add it to event ntgl:item.bazooka.fire
+[10:20:22] [Render thread/WARN] (dynamic_fps) Dynamic FPS config missing or corrupted! Using defaults.
+[10:20:23] [Worker-Main-3/INFO] (Minecraft) Found unifont_all_no_pua-17.0.01.hex, loading
+[10:20:23] [Worker-Main-1/INFO] (Minecraft) Found unifont_pua-17.0.01.hex, loading
+[10:20:23] [Worker-Main-3/INFO] (Minecraft) Found unifont_jp_patch-17.0.01.hex, loading
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/blazegun.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) ntgl:geckolib/models/weapons/classic10mm.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) ntgl:geckolib/models/weapons/deathclaw_gauntlet.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/flintlock.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/frag_grenade.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/gatling.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/launcher.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/nailgun.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) ntgl:geckolib/models/weapons/pistol10mm.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) ntgl:geckolib/models/weapons/revolver.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:24] [Worker-Main-1/WARN] (GeckoLib) cgs:geckolib/models/weapons/shotgun.geo.json: Unknown geo model format version: '1.21.110'. This may not work correctly
+[10:20:25] [Render thread/INFO] (Sodium-GlSurface) Thread[#3,Render thread,5,main]
+[10:20:25] [Render thread/INFO] (Sodium-GlSurface) OpenGL Vendor: Mesa
+[10:20:25] [Render thread/INFO] (Sodium-GlSurface) OpenGL Renderer: llvmpipe (LLVM 20.1.2, 256 bits)
+[10:20:25] [Render thread/INFO] (Sodium-GlSurface) OpenGL Version: 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4
+[10:20:25] [Render thread/INFO] (moreculling) Cached all modded block culling states
+[10:20:25] [Render thread/INFO] (PonderIndex) Registering Ponder Scenes took 94.84 ms
+[10:20:25] [Render thread/INFO] (PonderIndex) Registering Ponder Tags took 4.338 ms
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_body:
+    nukacraft:item/power_armor/t45/t45_body
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/mini_nuke:
+    ntgl:guns/fatman/mini_nuke
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/silencer:
+    ntgl:item/silencer
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_helmet:
+    nukacraft:item/power_armor/t45/t45_helmet
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_left_arm:
+    nukacraft:item/power_armor/t45/t45_left_arm
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_right_leg:
+    nukacraft:item/power_armor/t45/t45_right_leg
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/shotshell:
+    ntgl:item/shotshell
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_right_arm:
+    nukacraft:item/power_armor/t45/t45_right_arm
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing textures in model ntgl:item/t45_left_leg:
+    nukacraft:item/power_armor/t45/t45_left_leg
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/hammer:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model create_hypertube:block/hypertube_entrance/cogwheel_hole:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/scout10mm:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/powdergun:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/revolver:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/pipepistol:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/piperevolver:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/gatling:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/flamer:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/classic10mm:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/pistol10mm:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model createnuclear:item/reactor_output:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/grenade:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/shotgun:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/fatman:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/deathclaw_gauntlet:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing texture references in model ntgl:item/minigun:
+    particle
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=0]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=1]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=2]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=3]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=4]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=5]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=6]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=7]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=8]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=9]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=10]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=11]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=12]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=13]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=14]'
+[10:20:27] [Worker-Main-1/WARN] (Minecraft) Missing model for variant: 'Block{the_sift:ichor}[level=15]'
+[10:20:27] [Render thread/ERROR] (Minecraft) Error starting SoundSystem. Turning off sounds & music
+java.lang.IllegalStateException: Failed to open OpenAL device
+	at knot//com.mojang.blaze3d.audio.Library.openDeviceOrFallback(Library.java:274)
+	at knot//com.mojang.blaze3d.audio.Library.init(Library.java:149)
+	at knot//net.minecraft.client.sounds.SoundEngine.loadLibrary(SoundEngine.java:121)
+	at knot//net.minecraft.client.sounds.SoundEngine.reload(SoundEngine.java:110)
+	at knot//net.minecraft.client.sounds.SoundManager.apply(SoundManager.java:122)
+	at knot//net.minecraft.client.sounds.SoundManager.apply(SoundManager.java:41)
+	at knot//net.minecraft.server.packs.resources.SimplePreparableReloadListener.lambda$reload$1(SimplePreparableReloadListener.java:15)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:739)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:503)
+	at knot//net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$prepareTasks$3(SimpleReloadInstance.java:59)
+	at knot//net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:173)
+	at knot//net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:23)
+	at knot//net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:147)
+	at knot//net.minecraft.util.thread.BlockableEventLoop.runAllTasks(BlockableEventLoop.java:127)
+	at knot//net.minecraft.client.Minecraft.runTick(Minecraft.java:1240)
+	at knot//net.minecraft.client.Minecraft.run(Minecraft.java:967)
+	at knot//net.minecraft.client.main.Main.main(Main.java:292)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/particles.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 4096x4096x4 minecraft:textures/atlas/blocks.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/items.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[10:20:27] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[10:20:28] [Render thread/INFO] (moreculling) 141247 cache(s) were cleared!
+[10:20:28] [Render thread/INFO] (flywheel/backend/shaders) Loaded 81 shader sources in 30.277 ms
+[10:20:28] [Render thread/INFO] (Create) Loaded 59 train hat configurations.
+[10:20:28] [Render thread/INFO] (GeckoLib) Loaded 47 models and 39 animations from resources
+[10:20:28] [Render thread/INFO] (Minecraft) Connecting to localhost, 25565
+[10:20:29] [Render thread/INFO] (Create) Created 13 recipes which will be injected into the game
+[10:20:30] [Render thread/INFO] (C2ME ClientExtNetworking) Joined server with c2me:ext_render_distance_v1 support
+[10:20:30] [Render thread/INFO] (CheckedThreadLocalRandom) Enforcing safe world random access
+[10:20:31] [Render thread/INFO] (ChunkBuilder) Started 1 worker threads
+[10:20:31] [Render thread/INFO] (flywheel) Started 1 worker threads
+[10:20:32] [Render thread/INFO] (Minecraft) Loaded 2 advancements
+[10:20:32] [Render thread/INFO] (C2ME ClientExtNetworking) Joined server with c2me:ext_render_distance_v1 support
+[10:20:32] [Render thread/INFO] (C2ME ClientExtNetworking) Changing view distance to 12 (play stage)
+[10:20:33] [Render thread/INFO] (C2ME ClientExtNetworking) Changing view distance to 12 (play stage)
+[10:20:33] [Render thread/INFO] (ChunkBuilder) Stopping worker threads
+[10:20:33] [Render thread/INFO] (ChunkBuilder) Started 1 worker threads
+[10:20:33] [Render thread/WARN] (Minecraft) Requested post effect does not exist: minecraft:end_of_frame
+[10:20:33] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[10:20:34] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[10:20:34] [Flywheel Task Executor #0/WARN] (Sodium-VertexConsumerTracker) Class com.zurrtum.create.client.flywheel.lib.model.part.VertexWriter does not support optimized vertex writing code paths, which may cause reduced rendering performance
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=2, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='10:1(27): warning: `flw_vertexPos' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=3, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='10:2(56): warning: `flw_vertexNormal' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=4, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='10:6(47): warning: `flw_vertexLight' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=5, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='0:24(10): warning: `_flw_uberFogIndex' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=6, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='0:37(10): warning: `_flw_uberCutoutIndex' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=7, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='19:73(6): warning: `flw_material' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=8, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='19:75(13): warning: `flw_material' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=9, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='19:115(6): warning: `flw_material' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) OpenGL debug message: id=10, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='19:121(6): warning: `flw_material' used uninitialized'
+[10:20:36] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 8 reached during a single frame. New capacity will be 16.
+[10:21:12] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] SECTION client
+[10:21:12] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] CHECK joined at
+[10:21:12] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] TOP grass_block
+[10:21:12] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME minecraft:plains
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] SECTION animals from generation
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated cow
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated sheep
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated pig
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated chicken
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated horse
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated donkey
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated rabbit
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated wolf
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated fox
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated frog
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated untitledduckmod:duck
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT generated untitledduckmod:goose
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Survival Mode
+[10:21:37] [Render thread/INFO] (Minecraft) [System] [CHAT] packtest was killed
+[10:21:46] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] CHECK respawned at
+[10:21:46] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] TOP grass_block
+[10:21:46] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME minecraft:plains
+[10:21:57] [Render thread/INFO] (Minecraft) [System] [CHAT] packtest fell out of the world
+[10:22:01] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] CHECK after the fall out of the world
+[10:22:01] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Spectator Mode
+[10:22:01] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] SECTION cave views
+[10:22:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave sinkhole from above
+[10:22:43] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave sinkhole from its rim
+[10:22:55] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside the shaft, looking down along the ramp
+[10:23:08] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave foot of the shaft
+[10:23:23] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave foot of the shaft, looking up
+[10:23:31] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave water landing SK2
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] CHECK water at the foot of the water landing sinkhole
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] AT air
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] TOP #logs
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME dwho:orichalc_highlands
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside 0 -60 0
+[10:24:02] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME dwho:bronze_sanctuary
+[10:24:33] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside 0 -180 0
+[10:24:33] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME dwho:dry_midlands
+[10:25:03] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside 0 -320 0
+[10:25:03] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME dwho:dry_midlands
+[10:25:35] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside 416 -100 -272
+[10:26:06] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside 416 -220 -272
+[10:26:06] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] BIOME dwho:shadow_woods
+[10:26:36] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] VIEW cave inside -300 -200 200
+[10:27:07] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Creative Mode
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] SECTION cave mobs
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave zombie
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave skeleton
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave creeper
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave spider
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave enderman
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave witch
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave slime
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave bat
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave cave_spider
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave glow_squid
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave cow
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave sheep
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave pig
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave chicken
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave armadillo
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave bogged
+[10:28:37] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave stray
+[10:28:38] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave drowned
+[10:28:38] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] COUNT cave axolotl
+[10:28:38] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Spectator Mode
+[10:28:58] [Render thread/INFO] (Minecraft) [System] [CHAT] Your game mode has been updated to Creative Mode
+[10:29:03] [Render thread/INFO] (Minecraft) [System] [CHAT] [Server] SECTION client end

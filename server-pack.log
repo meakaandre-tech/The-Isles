@@ -1,0 +1,766 @@
+Downloading Minecraft server
+Installing Fabric Loader 0.19.5(26.3) on the server
+Downloading required files
+Downloading library org.ow2.asm:asm:9.10.1
+Downloading library org.ow2.asm:asm-analysis:9.10.1
+Downloading library org.ow2.asm:asm-commons:9.10.1
+Downloading library org.ow2.asm:asm-tree:9.10.1
+Downloading library org.ow2.asm:asm-util:9.10.1
+Downloading library net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7
+Downloading library net.fabricmc:fabric-loader:0.19.5
+Generating server launch JAR
+Unpacking 26.3/server-26.3.jar (versions:26.3) to versions/26.3/server-26.3.jar
+Unpacking at/yawk/lz4/lz4-java/1.10.1/lz4-java-1.10.1.jar (libraries:at.yawk.lz4:lz4-java:1.10.1) to libraries/at/yawk/lz4/lz4-java/1.10.1/lz4-java-1.10.1.jar
+Unpacking com/azure/azure-json/1.4.0/azure-json-1.4.0.jar (libraries:com.azure:azure-json:1.4.0) to libraries/com/azure/azure-json/1.4.0/azure-json-1.4.0.jar
+Unpacking com/github/oshi/oshi-core/6.9.0/oshi-core-6.9.0.jar (libraries:com.github.oshi:oshi-core:6.9.0) to libraries/com/github/oshi/oshi-core/6.9.0/oshi-core-6.9.0.jar
+Unpacking com/google/code/gson/gson/2.14.0/gson-2.14.0.jar (libraries:com.google.code.gson:gson:2.14.0) to libraries/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar
+Unpacking com/google/guava/failureaccess/1.0.3/failureaccess-1.0.3.jar (libraries:com.google.guava:failureaccess:1.0.3) to libraries/com/google/guava/failureaccess/1.0.3/failureaccess-1.0.3.jar
+Unpacking com/google/guava/guava/33.6.0-jre/guava-33.6.0-jre.jar (libraries:com.google.guava:guava:33.6.0-jre) to libraries/com/google/guava/guava/33.6.0-jre/guava-33.6.0-jre.jar
+Unpacking com/microsoft/azure/msal4j/1.24.1/msal4j-1.24.1.jar (libraries:com.microsoft.azure:msal4j:1.24.1) to libraries/com/microsoft/azure/msal4j/1.24.1/msal4j-1.24.1.jar
+Unpacking com/mojang/authlib/10.0.77/authlib-10.0.77.jar (libraries:com.mojang:authlib:10.0.77) to libraries/com/mojang/authlib/10.0.77/authlib-10.0.77.jar
+Unpacking com/mojang/brigadier/1.3.11/brigadier-1.3.11.jar (libraries:com.mojang:brigadier:1.3.11) to libraries/com/mojang/brigadier/1.3.11/brigadier-1.3.11.jar
+Unpacking com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar (libraries:com.mojang:datafixerupper:10.0.21) to libraries/com/mojang/datafixerupper/10.0.21/datafixerupper-10.0.21.jar
+Unpacking com/mojang/jtracy/1.14.38/jtracy-1.14.38.jar (libraries:com.mojang:jtracy:1.14.38) to libraries/com/mojang/jtracy/1.14.38/jtracy-1.14.38.jar
+Unpacking com/mojang/logging/1.7.12/logging-1.7.12.jar (libraries:com.mojang:logging:1.7.12) to libraries/com/mojang/logging/1.7.12/logging-1.7.12.jar
+Unpacking commons-io/commons-io/2.20.0/commons-io-2.20.0.jar (libraries:commons-io:commons-io:2.20.0) to libraries/commons-io/commons-io/2.20.0/commons-io-2.20.0.jar
+Unpacking io/netty/netty-buffer/4.2.16.Final/netty-buffer-4.2.16.Final.jar (libraries:io.netty:netty-buffer:4.2.16.Final) to libraries/io/netty/netty-buffer/4.2.16.Final/netty-buffer-4.2.16.Final.jar
+Unpacking io/netty/netty-codec-base/4.2.16.Final/netty-codec-base-4.2.16.Final.jar (libraries:io.netty:netty-codec-base:4.2.16.Final) to libraries/io/netty/netty-codec-base/4.2.16.Final/netty-codec-base-4.2.16.Final.jar
+Unpacking io/netty/netty-codec-compression/4.2.16.Final/netty-codec-compression-4.2.16.Final.jar (libraries:io.netty:netty-codec-compression:4.2.16.Final) to libraries/io/netty/netty-codec-compression/4.2.16.Final/netty-codec-compression-4.2.16.Final.jar
+Unpacking io/netty/netty-codec-http/4.2.16.Final/netty-codec-http-4.2.16.Final.jar (libraries:io.netty:netty-codec-http:4.2.16.Final) to libraries/io/netty/netty-codec-http/4.2.16.Final/netty-codec-http-4.2.16.Final.jar
+Unpacking io/netty/netty-common/4.2.16.Final/netty-common-4.2.16.Final.jar (libraries:io.netty:netty-common:4.2.16.Final) to libraries/io/netty/netty-common/4.2.16.Final/netty-common-4.2.16.Final.jar
+Unpacking io/netty/netty-handler/4.2.16.Final/netty-handler-4.2.16.Final.jar (libraries:io.netty:netty-handler:4.2.16.Final) to libraries/io/netty/netty-handler/4.2.16.Final/netty-handler-4.2.16.Final.jar
+Unpacking io/netty/netty-resolver/4.2.16.Final/netty-resolver-4.2.16.Final.jar (libraries:io.netty:netty-resolver:4.2.16.Final) to libraries/io/netty/netty-resolver/4.2.16.Final/netty-resolver-4.2.16.Final.jar
+Unpacking io/netty/netty-transport/4.2.16.Final/netty-transport-4.2.16.Final.jar (libraries:io.netty:netty-transport:4.2.16.Final) to libraries/io/netty/netty-transport/4.2.16.Final/netty-transport-4.2.16.Final.jar
+Unpacking io/netty/netty-transport-classes-epoll/4.2.16.Final/netty-transport-classes-epoll-4.2.16.Final.jar (libraries:io.netty:netty-transport-classes-epoll:4.2.16.Final) to libraries/io/netty/netty-transport-classes-epoll/4.2.16.Final/netty-transport-classes-epoll-4.2.16.Final.jar
+Unpacking io/netty/netty-transport-classes-kqueue/4.2.16.Final/netty-transport-classes-kqueue-4.2.16.Final.jar (libraries:io.netty:netty-transport-classes-kqueue:4.2.16.Final) to libraries/io/netty/netty-transport-classes-kqueue/4.2.16.Final/netty-transport-classes-kqueue-4.2.16.Final.jar
+Unpacking io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.16.Final:linux-x86_64) to libraries/io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar
+Unpacking io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.16.Final:linux-aarch_64) to libraries/io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar
+Unpacking io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.16.Final:osx-x86_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar
+Unpacking io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.16.Final:osx-aarch_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar
+Unpacking io/netty/netty-transport-native-unix-common/4.2.16.Final/netty-transport-native-unix-common-4.2.16.Final.jar (libraries:io.netty:netty-transport-native-unix-common:4.2.16.Final) to libraries/io/netty/netty-transport-native-unix-common/4.2.16.Final/netty-transport-native-unix-common-4.2.16.Final.jar
+Unpacking it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar (libraries:it.unimi.dsi:fastutil:8.5.18) to libraries/it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar
+Unpacking net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar (libraries:net.java.dev.jna:jna:5.17.0) to libraries/net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar
+Unpacking net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar (libraries:net.java.dev.jna:jna-platform:5.17.0) to libraries/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar
+Unpacking net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar (libraries:net.sf.jopt-simple:jopt-simple:5.0.4) to libraries/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+Unpacking org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar (libraries:org.apache.commons:commons-lang3:3.20.0) to libraries/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar
+Unpacking org/apache/logging/log4j/log4j-api/2.26.0/log4j-api-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-api:2.26.0) to libraries/org/apache/logging/log4j/log4j-api/2.26.0/log4j-api-2.26.0.jar
+Unpacking org/apache/logging/log4j/log4j-core/2.26.0/log4j-core-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-core:2.26.0) to libraries/org/apache/logging/log4j/log4j-core/2.26.0/log4j-core-2.26.0.jar
+Unpacking org/apache/logging/log4j/log4j-slf4j2-impl/2.26.0/log4j-slf4j2-impl-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-slf4j2-impl:2.26.0) to libraries/org/apache/logging/log4j/log4j-slf4j2-impl/2.26.0/log4j-slf4j2-impl-2.26.0.jar
+Unpacking org/joml/joml/1.10.9/joml-1.10.9.jar (libraries:org.joml:joml:1.10.9) to libraries/org/joml/joml/1.10.9/joml-1.10.9.jar
+Unpacking org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar (libraries:org.jspecify:jspecify:1.0.0) to libraries/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar
+Unpacking org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar (libraries:org.slf4j:slf4j-api:2.0.17) to libraries/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
+Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
+[10:17:09] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.19.5
+[10:17:09] [main/INFO]: Mappings not present!
+[10:17:09] [main/WARN]: Warnings were found!
+ - Mod 'Mielon's The Sift' (the_sift) 1.1.2 recommends version 4.13.0 or later of lambdynlights, which is missing!
+	 - You should install version 4.13.0 or later of lambdynlights for the optimal experience.
+[10:17:09] [main/INFO]: Loading 116 mods:
+	- architectury 22.0.3
+	- c2me 0.4.2-alpha.0.89+26.3
+	   |-- c2me-base 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-chunkio-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-general-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-worldgen-threading-issues 0.4.2-alpha.0.89+26.3
+	   |-- c2me-fixes-worldgen-vanilla-bugs 0.4.2-alpha.0.89+26.3
+	   |-- c2me-notickvd 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-allocs 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-chunkio 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-math 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-natives-math 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-scheduling 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-worldgen-general 0.4.2-alpha.0.89+26.3
+	   |-- c2me-opts-worldgen-vanilla 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunk-serializer 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunk-system 0.4.2-alpha.0.89+26.3
+	   |-- c2me-rewrites-chunkio 0.4.2-alpha.0.89+26.3
+	   |-- c2me-server-utils 0.4.2-alpha.0.89+26.3
+	   |-- c2me-threading-lighting 0.4.2-alpha.0.89+26.3
+	   |-- com_github_ben-manes_caffeine_caffeine 3.2.1
+	   |-- com_ibm_async_asyncutil 0.1.0
+	   |-- io_reactivex_rxjava3_rxjava 3.1.12
+	   |-- mixinsquared 0.3.7-beta.1
+	   |-- net_objecthunter_exp4j 0.4.8
+	   |-- org_jctools_jctools-core 4.0.5
+	   \-- org_reactivestreams_reactive-streams 1.0.4
+	- cgs 1.4.9+26.3
+	- cloth-config 26.3.159
+	   \-- cloth-basic-math 0.6.1
+	- create 6.0.9-1
+	- create_hypertube 0.6.0+26.3
+	- createdieselgenerators 1.3.15+26.3
+	- createnuclear 1.3.2-beta.3+26.3
+	- entityculling 1.11.2
+	   |-- transition 1.0.25
+	   \-- trender 1.0.17
+	- fabric-api 0.161.0+26.3
+	   |-- fabric-advancement-api-v1 1.0.0+38c7a2d55d
+	   |-- fabric-api-base 2.0.6+fcdff87f5d
+	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+	   |-- fabric-biome-api-v1 20.0.9+74ed1ea55d
+	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+	   |-- fabric-content-registries-v0 15.0.4+74ed1ea55d
+	   |-- fabric-convention-tags-v2 4.10.3+6b5b47fd5d
+	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+	   |-- fabric-creative-tab-api-v1 5.0.21+fcdff87f5d
+	   |-- fabric-data-attachment-api-v1 2.2.30+3434d6d95d
+	   |-- fabric-data-generation-api-v1 27.2.4+427eab975d
+	   |-- fabric-debug-api-v1 1.0.4+3434d6d95d
+	   |-- fabric-dimensions-v1 5.1.19+47f74c985d
+	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+	   |-- fabric-events-interaction-v0 5.3.6+3434d6d95d
+	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+	   |-- fabric-item-api-v1 14.7.0+cf6bc2db5d
+	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+	   |-- fabric-loot-api-v3 4.0.8+4068fd645d
+	   |-- fabric-menu-api-v1 2.0.27+ed66f0a35d
+	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+	   |-- fabric-networking-api-v1 6.3.8+fcdff87f5d
+	   |-- fabric-object-builder-api-v1 24.1.9+3434d6d95d
+	   |-- fabric-particles-v1 5.0.24+3434d6d95d
+	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+	   |-- fabric-recipe-api-v1 10.0.8+fcdff87f5d
+	   |-- fabric-registry-sync-v0 8.0.1+fcdff87f5d
+	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+	   |-- fabric-resource-conditions-api-v1 6.1.5+3434d6d95d
+	   |-- fabric-resource-loader-v0 3.3.26+4fc5413f5d
+	   |-- fabric-resource-loader-v1 3.0.4+fcdff87f5d
+	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+	   |-- fabric-tag-api-v1 2.1.10+fcdff87f5d
+	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+	   \-- fabric-transitive-access-wideners-v1 8.1.16+52268a0e5d
+	- fabric-language-kotlin 1.14.1+kotlin.2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-reflect 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk7 2.4.20
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk8 2.4.20
+	   |-- org_jetbrains_kotlinx_atomicfu-jvm 0.33.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-jdk8 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-datetime-jvm 0.8.0
+	   |-- org_jetbrains_kotlinx_kotlinx-io-bytestring-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-io-core-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-core-jvm 1.11.0
+	   \-- org_jetbrains_kotlinx_kotlinx-serialization-json-jvm 1.11.0
+	- fabricloader 0.19.5
+	   \-- mixinextras 0.5.5
+	- farmersdelight 26.3-3.6.27+refabricated
+	- ferritecore 9.0.0
+	- forgeconfigapiport 26.3.1
+	   |-- com_electronwill_night-config_core 3.8.4
+	   \-- com_electronwill_night-config_toml 3.8.4
+	- fzzy_config 0.7.7+26.3
+	   |-- blue_endless_jankson 1.2.3
+	   |-- fabric-permissions-api-v0 0.7.0
+	   \-- net_peanuuutz_tomlkt_tomlkt-jvm 0.3.7
+	- geckolib 5.5.7
+	- java 25
+	- krypton 0.3.2
+	   \-- com_velocitypowered_velocity-native 3.4.0-SNAPSHOT
+	- lithium 0.26.2+mc26.3
+	- midnightlib 1.9.3
+	- minecraft 26.3
+	- ntgl 3.1.8+26.3
+	- packtest_debug 1.0.0
+	- placeholder-api 3.2.0+26.3
+	- puzzleslib 26.3.9
+	- respawninganimals 26.3.0
+	- smooth_steps 1.2.1
+	- terrain_slabs 3.3.6
+	- the_sift 1.1.2
+	- untitledduckmod 1.8.0
+[10:17:09] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/tmp/work/pack/libraries/net/fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[10:17:10] [main/INFO]: Initializing com.ishland.c2me.base.mixin
+[10:17:10] [main/INFO]: Updating config from 0 to 1
+[10:17:10] [main/INFO]: Updating config from 1 to 2
+[10:17:10] [main/INFO]: Updating config from 2 to 3
+[10:17:11] [main/INFO]: CPU name: AMD EPYC 9V74 80-Core Processor
+[10:17:11] [main/INFO]: Detected 2 available physical CPUs, 4 available logical CPUs
+[10:17:11] [main/INFO]: Detected 2 available physical CPUs, 4 available logical CPUs
+[10:17:11] [main/INFO]: Global Executor Parallelism: 2 configured, 2 evaluated, 2 default evaluated
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.fixes.chunkio.threading_issues.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.fixes.general.threading_issues.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.fixes.worldgen.threading_issues.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.fixes.worldgen.vanilla_bugs.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.notickvd.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.allocs.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.chunkio.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.math.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.natives_math.mixin
+[10:17:11] [main/INFO]: Attempting to call native library. If your game crashes right after this point, native acceleration may not be available for your system.
+[10:17:11] [main/INFO]: Detected maximum supported ISA target: ICL_AVX512
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.scheduling.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.worldgen.general.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.opts.worldgen.vanilla.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunk_serializer.mixin
+[10:17:11] [main/INFO]: Disabling config ioSystem.gcFreeChunkSerializer: Incompatible with architectury@22.0.3 (*) (defined in c2me)
+[10:17:11] [main/INFO]: Disabling com.ishland.c2me.rewrites.chunk_serializer.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunksystem.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.rewrites.chunkio.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.server.utils.mixin
+[10:17:11] [main/INFO]: Initializing com.ishland.c2me.threading.lighting.mixin
+[10:17:12] [main/WARN]: Reference map 'entityculling.refmap.mixins.json' for entityculling.mixins.json could not be read. If this is a development environment you can ignore this message
+[10:17:12] [main/INFO]: Loaded configuration file for Lithium: 170 options available, 0 override(s) found.
+[10:17:12] [main/WARN]: Error loading class: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks (java.lang.ClassNotFoundException: ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks)
+[10:17:12] [main/WARN]: @Mixin target ca/spottedleaf/starlight/common/integration/v0/ChunkSystemHooks was not found c2me-rewrites-chunk-system.mixins.json:scalablelux.MixinChunkSystemHooks from mod c2me-rewrites-chunk-system
+[10:17:12] [main/WARN]: Error loading class: ca/spottedleaf/starlight/common/thread/SchedulingUtil (java.lang.ClassNotFoundException: ca/spottedleaf/starlight/common/thread/SchedulingUtil)
+[10:17:13] [main/WARN]: Error loading class: net/minecraft/client/gui/screens/recipebook/GhostSlots (java.lang.ClassNotFoundException: net/minecraft/client/gui/screens/recipebook/GhostSlots)
+[10:17:13] [main/WARN]: @Mixin target net.minecraft.client.gui.screens.recipebook.GhostSlots was not found farmersdelight.mixins.json:refabricated.GhostSlotsInvoker from mod farmersdelight
+[10:17:13] [main/WARN]: Error loading class: net/minecraft/client/gui/GuiGraphicsExtractor (java.lang.ClassNotFoundException: net/minecraft/client/gui/GuiGraphicsExtractor)
+[10:17:13] [main/WARN]: @Mixin target net.minecraft.client.gui.GuiGraphicsExtractor was not found farmersdelight.mixins.json:refabricated.GuiGraphicsExtractorAccessor from mod farmersdelight
+[10:17:13] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/tmp/work/pack/libraries/org/joml/joml/1.10.9/joml-1.10.9.jar)
+WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[10:17:28] [main/INFO]: [STDERR]: Failed to read config file: /tmp/work/pack/./config/create/server.json
+[10:17:28] [main/INFO]: [STDERR]: java.nio.file.NoSuchFileException: ./config/create/server.json
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:213)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:244)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:357)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/java.nio.file.Files.newByteChannel(Files.java:399)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371)
+[10:17:28] [main/INFO]: [STDERR]: 	at java.base/java.nio.file.Files.newInputStream(Files.java:154)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//org.apache.commons.io.FileUtils.lambda$readFileToString$14(FileUtils.java:2768)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3204)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//org.apache.commons.io.IOUtils.toString(IOUtils.java:3179)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//org.apache.commons.io.FileUtils.readFileToString(FileUtils.java:2768)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.read(Builder.java:136)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.<init>(Builder.java:36)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:49)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.catnip.config.Builder.create(Builder.java:44)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.infrastructure.config.AllConfigs.register(AllConfigs.java:28)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//com.zurrtum.create.Create.onInitialize(Create.java:62)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.FabricLoaderImpl.invokeEntrypoints(FabricLoaderImpl.java:409)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.Hooks.startServer(Hooks.java:63)
+[10:17:28] [main/INFO]: [STDERR]: 	at knot//net.minecraft.server.Main.main(Main.java:114)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.loader.impl.launch.server.FabricServerLauncher.main(FabricServerLauncher.java:69)
+[10:17:28] [main/INFO]: [STDERR]: 	at net.fabricmc.installer.ServerLauncher.main(ServerLauncher.java:69)
+[10:17:28] [main/INFO]: createnuclear initializing!
+[10:17:28] [main/INFO]: Registering mod tags for createnuclear
+[10:17:28] [main/INFO]: Registering ModBlocks for createnuclear
+[10:17:28] [main/INFO]: Loaded config farmersdelight-common.json
+[10:17:29] [main/INFO]: Compression will use libdeflate (Linux x86_64), encryption will use OpenSSL 3.x.x (Linux x86_64)
+[10:17:29] [main/INFO]: Constructing components for puzzleslib:common
+[10:17:29] [main/INFO]: Constructing components for respawninganimals:common
+[10:17:29] [main/INFO]: Dispatching loading event for config respawninganimals-common.toml
+[10:17:29] [main/INFO]: Initializing Terrain Slabs mod...
+[10:17:29] [main/INFO]: Registering Mod Blocks & Items for terrain_slabs
+[10:17:29] [main/INFO]: Registering Mod Blocks & Items for terrain_slabs
+[10:17:29] [main/INFO]: The Sift initialized.
+[10:17:29] [main/INFO]: Krypton is now accelerating your Minecraft server's networking stack 🚀
+[10:17:30] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[10:17:30] [main/INFO]: Created 13 recipes which will be injected into the game
+[10:17:30] [main/INFO]: Found new data pack create:dynamic_data, loading it automatically
+[10:17:30] [main/INFO]: Found new data pack file/packtest-probes, loading it automatically
+[10:17:30] [main/INFO]: Found new data pack file/the-isles-mods.zip, loading it automatically
+[10:17:30] [main/INFO]: Found new data pack file/the-isles.zip, loading it automatically
+[10:17:31] [Worker-Main-2/INFO]: No existing world data, creating new world
+[10:17:33] [Worker-Main-2/INFO]: Loaded 3522 advancements
+[10:17:34] [main/INFO]: Applied 339 biome modifications to 93 of 93 new biomes in 21.22 ms
+[10:17:34] [Server thread/INFO]: Starting minecraft server version 26.3
+[10:17:34] [Server thread/INFO]: Loading properties
+[10:17:34] [Server thread/INFO]: Default game type: CREATIVE
+[10:17:34] [Server thread/INFO]: Generating keypair
+[10:17:34] [Server thread/INFO]: Starting Minecraft server on *:25565
+[10:17:34] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[10:17:34] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[10:17:34] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[10:17:34] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[10:17:34] [Server thread/INFO]: Preparing level "world"
+[10:17:34] [Server thread/INFO]: Enforcing safe world random access
+[10:17:35] [Server thread/INFO]: Using TheSpeedyObjectFactory without Unsafe
+[10:17:35] [Server thread/INFO]: Selecting global world spawn...
+[10:17:39] [Server thread/INFO]: Loading 0 persistent chunks...
+[10:17:39] [Server thread/INFO]: Preparing spawn area: 100%
+[10:17:39] [Server thread/INFO]: Time elapsed: 3997 ms
+[10:17:39] [Server thread/INFO]: Done (4.480s)! For help, type "help"
+[10:17:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[10:17:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[10:17:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/the_sift:the_sift
+[10:17:39] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[10:17:41] [Server thread/INFO]: [Not Secure] [Server] SECTION start
+[10:17:41] [Server thread/INFO]: System chat: Created new objective [pt]
+[10:17:41] [Server thread/INFO]: System chat: Game rule max_block_modifications is now set to 100000000
+[10:17:41] [Server thread/INFO]: System chat: Game rule respawn_radius is now set to 0
+[10:17:41] [Server thread/INFO]: System chat: The game is running normally
+[10:17:41] [Server thread/INFO]: System chat: Target tick rate: 20.0 per second.
+Average time per tick: 2.3ms (Target: 50.0ms)
+[10:17:41] [Server thread/INFO]: System chat: Percentiles: P50: 0.6ms P95: 2.3ms P99: 46.3ms. Sample: 100
+[10:17:41] [Server thread/INFO]: System chat: Game rule immediate_respawn is now set to true
+[10:17:42] [Server thread/INFO]: System chat: Set minecraft:overworld to time marker minecraft:noon
+[10:17:42] [Server thread/INFO]: System chat: Game rule advance_time is now set to false
+[10:17:42] [Server thread/INFO]: [Not Secure] [Server] SECTION spawn
+[10:17:46] [Server thread/INFO]: System chat: Marked 9 chunks in minecraft:overworld from [-1, -1] to [1, 1] to be force loaded
+[10:17:46] [Server thread/INFO]: System chat: Summoned new Marker
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] WORLDSPAWN
+[10:17:46] [Server thread/INFO]: System chat: Marker has the following entity data: [0.0d, 57.0d, 0.0d]
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] PROBE spawn centre 0 0
+[10:17:46] [Server thread/INFO]: System chat: Running function packtest:col
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] TOP grass_block
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] BIOME minecraft:plains
+[10:17:46] [Server thread/INFO]: System chat: y has 57 [pt]
+[10:17:46] [Server thread/INFO]: System chat: ws has 58 [pt]
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] SPAWNCOL
+[10:17:46] [Server thread/INFO]: System chat: Running function packtest:col
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] TOP grass_block
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] BIOME minecraft:plains
+[10:17:46] [Server thread/INFO]: System chat: y has 57 [pt]
+[10:17:46] [Server thread/INFO]: [Not Secure] [Server] SECTION nether ores
+[10:18:16] [Server thread/INFO]: System chat: Marked 16 chunks in minecraft:the_nether from [-1, -1] to [2, 2] to be force loaded
+[10:18:16] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 33991ms or 679 ticks behind
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:30] [Server thread/INFO]: [Not Secure] [Server] LOADED nether
+[10:18:31] [Server thread/INFO]: [Not Secure] [Server] SCAN nether minecraft:netherrack
+[10:18:33] [Server thread/INFO]: System chat: Successfully filled 738101 block(s)
+[10:18:34] [Server thread/INFO]: System chat: Successfully filled 738101 block(s)
+[10:18:34] [Server thread/INFO]: [Not Secure] [Server] SCAN nether cgs:sulfur_ore
+[10:18:34] [Server thread/INFO]: System chat: Successfully filled 888 block(s)
+[10:18:34] [Server thread/INFO]: System chat: Successfully filled 888 block(s)
+[10:18:34] [Server thread/INFO]: [Not Secure] [Server] SCAN nether minecraft:nether_quartz_ore
+[10:18:34] [Server thread/INFO]: System chat: Successfully filled 2299 block(s)
+[10:18:34] [Server thread/INFO]: System chat: Successfully filled 2299 block(s)
+[10:18:34] [Server thread/INFO]: [Not Secure] [Server] SCAN nether minecraft:nether_gold_ore
+[10:18:35] [Server thread/INFO]: System chat: Successfully filled 747 block(s)
+[10:18:35] [Server thread/INFO]: System chat: Successfully filled 747 block(s)
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] SCAN nether create:scoria
+[10:18:35] [Server thread/INFO]: System chat: Successfully filled 6141 block(s)
+[10:18:35] [Server thread/INFO]: System chat: Successfully filled 6141 block(s)
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] SCAN nether minecraft:bedrock
+[10:18:35] [Server thread/INFO]: System chat: No blocks were filled
+[10:18:35] [Server thread/INFO]: System chat: No blocks were filled
+[10:18:35] [Server thread/INFO]: System chat: Unmarked all force loaded chunks in minecraft:the_nether
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] SECTION oil
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL S1 plains +0
+[10:18:35] [Server thread/INFO]: System chat: There is 6,995,801mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL S1 plains +48
+[10:18:35] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL S1 plains +96
+[10:18:35] [Server thread/INFO]: System chat: There is 6,841,167mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL C1 desert +0
+[10:18:35] [Server thread/INFO]: System chat: There is 5,941,666mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL C1 desert +48
+[10:18:35] [Server thread/INFO]: System chat: There is 7,105,363mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL C1 desert +96
+[10:18:35] [Server thread/INFO]: System chat: There is 5,738,546mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL B1 savanna +0
+[10:18:35] [Server thread/INFO]: System chat: There is 6,030,829mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL B1 savanna +48
+[10:18:35] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:35] [Server thread/INFO]: [Not Secure] [Server] OIL B1 savanna +96
+[10:18:36] [Server thread/INFO]: System chat: There is 8,129,838mB of Oil in this Chunk.
+[10:18:36] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4702ms or 94 ticks behind
+[10:18:36] [Server thread/INFO]: [Not Secure] [Server] OIL C2 badlands +0
+[10:18:36] [Server thread/INFO]: System chat: There is 7,182,222mB of Oil in this Chunk.
+[10:18:36] [Server thread/INFO]: [Not Secure] [Server] OIL C2 badlands +48
+[10:18:36] [Server thread/INFO]: System chat: There is 5,536,907mB of Oil in this Chunk.
+[10:18:36] [Server thread/INFO]: [Not Secure] [Server] OIL C2 badlands +96
+[10:18:36] [Server thread/INFO]: System chat: There is 7,276,617mB of Oil in this Chunk.
+[10:18:36] [Server thread/INFO]: [Not Secure] [Server] OIL D1 deep_lukewarm_ocean +0
+[10:18:37] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:37] [Server thread/INFO]: [Not Secure] [Server] OIL D1 deep_lukewarm_ocean +48
+[10:18:37] [Server thread/INFO]: System chat: There is 7,296,563mB of Oil in this Chunk.
+[10:18:37] [Server thread/INFO]: [Not Secure] [Server] OIL D1 deep_lukewarm_ocean +96
+[10:18:37] [Server thread/INFO]: System chat: There is 4,950,307mB of Oil in this Chunk.
+[10:18:37] [Server thread/INFO]: [Not Secure] [Server] OIL K1 deep_ocean +0
+[10:18:37] [Server thread/INFO]: System chat: There is 6,211,195mB of Oil in this Chunk.
+[10:18:37] [Server thread/INFO]: [Not Secure] [Server] OIL K1 deep_ocean +48
+[10:18:38] [Server thread/INFO]: System chat: There is 4,247,467mB of Oil in this Chunk.
+[10:18:38] [Server thread/INFO]: [Not Secure] [Server] OIL K1 deep_ocean +96
+[10:18:38] [Server thread/INFO]: System chat: There is 6,984,417mB of Oil in this Chunk.
+[10:18:38] [Server thread/INFO]: [Not Secure] [Server] OIL T1 desert +0
+[10:18:38] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:38] [Server thread/INFO]: [Not Secure] [Server] OIL T1 desert +48
+[10:18:38] [Server thread/INFO]: System chat: There is 5,176,866mB of Oil in this Chunk.
+[10:18:38] [Server thread/INFO]: [Not Secure] [Server] OIL T1 desert +96
+[10:18:39] [Server thread/INFO]: System chat: There is 4,167,338mB of Oil in this Chunk.
+[10:18:39] [Server thread/INFO]: [Not Secure] [Server] OIL F1 dark_forest +0
+[10:18:39] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:39] [Server thread/INFO]: [Not Secure] [Server] OIL F1 dark_forest +48
+[10:18:39] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:39] [Server thread/INFO]: [Not Secure] [Server] OIL F1 dark_forest +96
+[10:18:39] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:39] [Server thread/INFO]: [Not Secure] [Server] OIL a1 taiga +0
+[10:18:40] [Server thread/INFO]: System chat: There is 4,832,823mB of Oil in this Chunk.
+[10:18:40] [Server thread/INFO]: [Not Secure] [Server] OIL a1 taiga +48
+[10:18:40] [Server thread/INFO]: System chat: There is 4,361,831mB of Oil in this Chunk.
+[10:18:40] [Server thread/INFO]: [Not Secure] [Server] OIL a1 taiga +96
+[10:18:40] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:40] [Server thread/INFO]: [Not Secure] [Server] OIL K2 mushroom_fields +0
+[10:18:40] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:40] [Server thread/INFO]: [Not Secure] [Server] OIL K2 mushroom_fields +48
+[10:18:41] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:41] [Server thread/INFO]: [Not Secure] [Server] OIL K2 mushroom_fields +96
+[10:18:41] [Server thread/INFO]: System chat: There is 0mB of Oil in this Chunk.
+[10:18:41] [Server thread/INFO]: [Not Secure] [Server] OIL locate-from-spawn
+[10:18:41] [Server thread/INFO]: System chat: There is oil in chunk 0 -1 with 4,118,785mB of oil.
+[10:18:41] [Server thread/INFO]: System chat: Marked 12 chunks in minecraft:overworld from [0, 0] to [3, 3] to be force loaded
+[10:18:42] [Server thread/INFO]: [Not Secure] [Server] LOADED bedrock-scan
+[10:18:42] [Server thread/INFO]: [Not Secure] [Server] LOADED bedrock-scan
+[10:18:43] [Server thread/INFO]: [Not Secure] [Server] SCAN S1-bedrock minecraft:bedrock
+[10:18:44] [Server thread/INFO]: System chat: No blocks were filled
+[10:18:44] [Server thread/INFO]: System chat: No blocks were filled
+[10:18:44] [Server thread/INFO]: System chat: Unmarked all force loaded chunks in minecraft:overworld
+[10:18:44] [Server thread/INFO]: [Not Secure] [Server] SECTION mods
+[10:18:50] [Server thread/INFO]: System chat: Marked 30 chunks in minecraft:overworld from [-213, -90] to [-208, -86] to be force loaded
+[10:18:51] [Server thread/INFO]: [Not Secure] [Server] LOADED platform
+[10:18:52] [Server thread/INFO]: System chat: Successfully filled 2275 block(s)
+[10:18:52] [Server thread/INFO]: System chat: No blocks were filled
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3392, 1280, -1411
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3391, 1280, -1411
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3390, 1280, -1411
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3389, 1280, -1411
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3389, 1281, -1411
+[10:18:52] [Server thread/INFO]: System chat: Changed the block at -3388, 1281, -1411
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3392, 1282, -1407
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3391, 1282, -1407
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3390, 1282, -1407
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3390, 1280, -1407
+[10:18:53] [Server thread/INFO]: System chat: Summoned new Iron Ingot
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3392, 1281, -1403
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3390, 1281, -1403
+[10:18:53] [Server thread/INFO]: System chat: Changed the block at -3391, 1281, -1403
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3379, 1281, -1409
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3378, 1281, -1409
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3377, 1281, -1409
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3377, 1281, -1408
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3376, 1281, -1410
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3376, 1281, -1409
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3376, 1281, -1408
+[10:18:54] [Server thread/INFO]: System chat: Changed the block at -3375, 1281, -1408
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1282, -1411
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1282, -1410
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1282, -1409
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1282, -1408
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1282, -1407
+[10:18:55] [Server thread/INFO]: System chat: Modified block data of -3376, 1281, -1410
+[10:18:55] [Server thread/INFO]: System chat: Changed the block at -3379, 1280, -1401
+[10:18:56] [Server thread/INFO]: System chat: Changed the block at -3375, 1281, -1401
+[10:18:56] [Server thread/INFO]: System chat: Changed the block at -3375, 1280, -1401
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 175 block(s)
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:56] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:57] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:57] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:57] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:57] [Server thread/INFO]: System chat: Successfully filled 5 block(s)
+[10:18:57] [Server thread/INFO]: System chat: Changed the block at -3368, 1283, -1409
+[10:18:57] [Server thread/INFO]: System chat: Changed the block at -3364, 1280, -1409
+[10:18:57] [Server thread/INFO]: System chat: Changed the block at -3370, 1281, -1409
+[10:18:57] [Server thread/INFO]: System chat: Changed the block at -3362, 1281, -1409
+[10:18:57] [Server thread/INFO]: System chat: Successfully filled 55 block(s)
+[10:18:58] [Server thread/INFO]: System chat: Summoned new Iron Golem
+[10:18:59] [Server thread/INFO]: System chat: Marked 16 chunks in minecraft:overworld from [68, -197] to [71, -194] to be force loaded
+[10:19:00] [Server thread/INFO]: [Not Secure] [Server] LOADED low
+[10:19:01] [Server thread/INFO]: System chat: Successfully filled 144 block(s)
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1114, -1320, -3126
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1115, -1320, -3126
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1116, -1320, -3126
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1114, -1319, -3122
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1116, -1319, -3122
+[10:19:01] [Server thread/INFO]: System chat: Changed the block at 1115, -1319, -3122
+[10:19:04] [Server thread/INFO]: System chat: Marked 30 chunks in minecraft:overworld from [-230, -73] to [-221, -71] to be force loaded
+[10:19:04] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2949ms or 58 ticks behind
+[10:19:05] [Server thread/INFO]: [Not Secure] [Server] LOADED tube
+[10:19:05] [Server thread/INFO]: [Not Secure] [Server] SECTION tube line: ground under the two ends, nothing under the middle
+[10:19:05] [Server thread/INFO]: [Not Secure] [Server] PROBE tube-K5 ground -3660 -1150
+[10:19:06] [Server thread/INFO]: System chat: Running function packtest:col
+[10:19:06] [Server thread/INFO]: [Not Secure] [Server] TOP stone
+[10:19:06] [Server thread/INFO]: [Not Secure] [Server] BIOME minecraft:stony_shore
+[10:19:06] [Server thread/INFO]: System chat: y has 1241 [pt]
+[10:19:06] [Server thread/INFO]: System chat: ws has 1241 [pt]
+[10:19:06] [Server thread/INFO]: [Not Secure] [Server] PROBE tube-gap void -3608 -1150
+[10:19:06] [Server thread/INFO]: System chat: Running function packtest:col
+[10:19:06] [Server thread/INFO]: [Not Secure] [Server] BIOME the_isles:void
+[10:19:06] [Server thread/INFO]: System chat: y has -2032 [pt]
+[10:19:06] [Server thread/INFO]: System chat: ws has -2032 [pt]
+[10:19:06] [Server thread/INFO]: [Not Secure] [Server] PROBE tube-K1 ground -3540 -1150
+[10:19:07] [Server thread/INFO]: System chat: Running function packtest:col
+[10:19:07] [Server thread/INFO]: [Not Secure] [Server] BIOME the_isles:void
+[10:19:07] [Server thread/INFO]: System chat: y has -2032 [pt]
+[10:19:07] [Server thread/INFO]: System chat: ws has -2032 [pt]
+[10:19:07] [Server thread/INFO]: System chat: Successfully filled 556 block(s)
+[10:19:07] [Server thread/INFO]: System chat: Changed the block at -3660, 1265, -1150
+[10:19:07] [Server thread/INFO]: System chat: Changed the block at -3660, 1265, -1149
+[10:19:07] [Server thread/INFO]: System chat: Changed the block at -3661, 1265, -1149
+[10:19:07] [Server thread/INFO]: System chat: Changed the block at -3540, 1265, -1150
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3540, 1265, -1149
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3539, 1265, -1149
+[10:19:08] [Server thread/INFO]: System chat: Successfully filled 16 block(s)
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3630, 1265, -1150
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3630, 1265, -1149
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3631, 1265, -1149
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3600, 1265, -1150
+[10:19:08] [Server thread/INFO]: System chat: Changed the block at -3600, 1265, -1149
+[10:19:09] [Server thread/INFO]: System chat: Changed the block at -3601, 1265, -1149
+[10:19:09] [Server thread/INFO]: System chat: Changed the block at -3570, 1265, -1150
+[10:19:09] [Server thread/INFO]: System chat: Changed the block at -3570, 1265, -1149
+[10:19:09] [Server thread/INFO]: System chat: Changed the block at -3571, 1265, -1149
+[10:19:09] [Server thread/INFO]: System chat: Marked 4 chunks in minecraft:overworld from [1, 1] to [2, 2] to be force loaded
+[10:19:09] [Server thread/INFO]: [Not Secure] [Server] LOADED portal
+[10:19:10] [Server thread/INFO]: System chat: Successfully filled 45 block(s)
+[10:19:10] [Server thread/INFO]: System chat: No blocks were filled
+[10:19:10] [Server thread/INFO]: System chat: Successfully filled 20 block(s)
+[10:19:10] [Server thread/INFO]: System chat: Successfully filled 6 block(s)
+[10:19:10] [Server thread/INFO]: System chat: Changed the block at 31, 101, 30
+[10:19:11] [Server thread/INFO]: [Not Secure] [Server] PORTAL overworld-lit
+[10:19:11] [Server thread/INFO]: System chat: Marked 9 chunks in minecraft:the_nether from [0, 0] to [2, 2] to be force loaded
+[10:19:12] [Server thread/INFO]: [Not Secure] [Server] LOADED nether-spawn-portal
+[10:19:34] [Server thread/INFO]: System chat: Marked 9 chunks in minecraft:the_nether from [74, -39] to [76, -37] to be force loaded
+[10:19:35] [Server thread/INFO]: [Not Secure] [Server] LOADED nether-portal
+[10:19:35] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 15865ms or 317 ticks behind
+[10:19:36] [Server thread/INFO]: System chat: Successfully filled 70 block(s)
+[10:19:36] [Server thread/INFO]: System chat: No blocks were filled
+[10:19:36] [Server thread/INFO]: System chat: Successfully filled 20 block(s)
+[10:19:36] [Server thread/INFO]: System chat: Successfully filled 6 block(s)
+[10:19:36] [Server thread/INFO]: System chat: Changed the block at 1201, 71, -600
+[10:19:36] [Server thread/INFO]: [Not Secure] [Server] PORTAL nether-lit
+[10:19:36] [Server thread/INFO]: System chat: The game is sprinting
+[10:19:37] [Server thread/INFO]: System chat: Sprint completed with 258 ticks per second, or 3.87 ms per tick
+[10:19:44] [Server thread/INFO]: [Not Secure] [Server] SECTION mods placed
+[10:19:45] [Server thread/INFO]: [Not Secure] [Server] CHECK create shaft speed
+[10:19:45] [Server thread/INFO]: System chat: -3388, 1281, -1411 has the following block data: -64.0f
+[10:19:45] [Server thread/INFO]: [Not Secure] [Server] CHECK create press depot
+[10:19:45] [Server thread/INFO]: System chat: -3390, 1280, -1407 has the following block data: {z: -1407, x: -3390, Inventory: [], id: "create:depot", y: 1280, components: {}, HeldItem: {InDirection: "down", Item: {id: "create:iron_sheet", count: 1}, Angle: 219, Offset: -0.08148148f, PrevPos: 0.5f, PrevOffset: -0.08148148f, InSegment: 0, Pos: 0.5f}}
+[10:19:45] [Server thread/INFO]: [Not Secure] [Server] CHECK contraptions-assembled
+[10:19:45] [Server thread/INFO]: [Not Secure] [Server] CHECK contraption count
+[10:19:45] [Server thread/INFO]: System chat: Test passed. Count: 2
+[10:19:45] [Server thread/INFO]: [Not Secure] [Server] CHECK diesel engine shaft speed
+[10:19:46] [Server thread/INFO]: System chat: -3379, 1282, -1411 has the following block data: -96.0f
+[10:19:46] [Server thread/INFO]: [Not Secure] [Server] CHECK diesel engine
+[10:19:46] [Server thread/INFO]: System chat: -3379, 1282, -1409 has the following block data: {z: -1409, x: -3379, Network: {Size: 5, AddedCapacity: 64.0f, Id: -928537575426814L, Stress: 0.0f, Capacity: 6144.0f}, Tanks: [{TankContent: {amount: 81000, id: "createdieselgenerators:diesel", components: {"create:fluid_max_capacity": 81000}}, Target: 1.0f, Value: 1.0f, Speed: 0.25f}], Upgrade: "createdieselgenerators:none", id: "createdieselgenerators:diesel_engine_tile_entity", Speed: -96.0f, y: 1282, ScrollValue: 0, components: {}, AnalogSignal: 0}
+[10:19:46] [Server thread/INFO]: [Not Secure] [Server] CHECK pumpjack hole on a pipe-less island
+[10:19:46] [Server thread/INFO]: System chat: -3379, 1280, -1401 has the following block data: {Started: 0b, z: -1401, x: -3379, Tanks: [{TankContent: {}, Target: 0.0f, Value: 0.0f, Speed: 0.25f}], id: "createdieselgenerators:pumpjack_hole_block_entity", OilAmount: 0, y: 1280, components: {}}
+[10:19:46] [Server thread/INFO]: [Not Secure] [Server] CHECK pumpjack hole on bedrock
+[10:19:46] [Server thread/INFO]: System chat: -3375, 1281, -1401 has the following block data: {Started: 0b, z: -1401, x: -3375, Tanks: [{TankContent: {}, Target: 0.0f, Value: 0.0f, Speed: 0.25f}], id: "createdieselgenerators:pumpjack_hole_block_entity", OilAmount: 0, y: 1281, components: {}}
+[10:19:46] [Server thread/INFO]: [Not Secure] [Server] CHECK low create shaft speed
+[10:19:47] [Server thread/INFO]: System chat: 1115, -1320, -3126 has the following block data: 64.0f
+[10:19:47] [Server thread/INFO]: System chat: The game is running normally
+[10:19:47] [Server thread/INFO]: System chat: Target tick rate: 20.0 per second.
+Average time per tick: 4.0ms (Target: 50.0ms)
+[10:19:47] [Server thread/INFO]: System chat: Percentiles: P50: 3.3ms P95: 10.7ms P99: 14.5ms. Sample: 100
+[10:19:47] [Server thread/INFO]: [Not Secure] [Server] SECTION end of server part
+[10:19:47] [Server thread/INFO]: [Not Secure] [Server] SECTION end pack
+[10:19:47] [Server thread/INFO]: [Not Secure] [Server] CHECK commands done
+[10:20:30] [Server thread/INFO]: packtest[/127.0.0.1:50354] logged in with entity id 220 at (0.5, 57.0, 0.5)
+[10:20:30] [Server thread/INFO]: System chat: packtest joined the game
+[10:21:12] [Server thread/INFO]: [Not Secure] [Server] SECTION client
+[10:21:12] [Server thread/INFO]: System chat: There are 1 of a max of 20 players online: packtest
+[10:21:12] [Server thread/INFO]: [Not Secure] [Server] CHECK joined at
+[10:21:12] [Server thread/INFO]: System chat: packtest has the following entity data: [0.5d, 57.0d, 0.5d]
+[10:21:12] [Server thread/INFO]: System chat: Running function packtest:col
+[10:21:12] [Server thread/INFO]: [Not Secure] [Server] TOP grass_block
+[10:21:12] [Server thread/INFO]: [Not Secure] [Server] BIOME minecraft:plains
+[10:21:12] [Server thread/INFO]: System chat: y has 57 [pt]
+[10:21:12] [Server thread/INFO]: System chat: packtest has the following entity data: "minecraft:overworld"
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] SECTION animals from generation
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated cow
+[10:21:37] [Server thread/INFO]: System chat: Test passed. Count: 4
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated sheep
+[10:21:37] [Server thread/INFO]: System chat: Test passed. Count: 2
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated pig
+[10:21:37] [Server thread/INFO]: System chat: Test passed. Count: 8
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated chicken
+[10:21:37] [Server thread/INFO]: System chat: Test passed. Count: 1
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated horse
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated donkey
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated rabbit
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated wolf
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated fox
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated frog
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated untitledduckmod:duck
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: [Not Secure] [Server] COUNT generated untitledduckmod:goose
+[10:21:37] [Server thread/INFO]: System chat: Test failed
+[10:21:37] [Server thread/INFO]: System chat: Set packtest's game mode to Survival Mode
+[10:21:37] [Server thread/INFO]: System chat: packtest was killed
+[10:21:37] [Server thread/INFO]: System chat: Killed packtest
+[10:21:46] [Server thread/INFO]: [Not Secure] [Server] CHECK respawned at
+[10:21:46] [Server thread/INFO]: System chat: packtest has the following entity data: [0.5d, 57.0d, 0.5d]
+[10:21:46] [Server thread/INFO]: System chat: Running function packtest:col
+[10:21:46] [Server thread/INFO]: [Not Secure] [Server] TOP grass_block
+[10:21:46] [Server thread/INFO]: [Not Secure] [Server] BIOME minecraft:plains
+[10:21:46] [Server thread/INFO]: System chat: y has 57 [pt]
+[10:21:46] [Server thread/INFO]: System chat: Teleported packtest to 1240.500000, -1900.000000, 0.500000
+[10:21:48] [Server thread/WARN]: packtest moved too quickly! 0.0,-10.806526110008917,0.0
+[10:21:48] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2073ms or 41 ticks behind
+[10:21:50] [Server thread/WARN]: packtest moved too quickly! 0.0,-10.806526110008917,0.0
+[10:21:57] [Server thread/INFO]: System chat: packtest fell out of the world
+[10:22:00] [Server thread/INFO]: [Not Secure] [Server] CHECK after the fall out of the world
+[10:22:00] [Server thread/INFO]: System chat: packtest has the following entity data: [0.5d, 57.0d, 0.5d]
+[10:22:00] [Server thread/INFO]: System chat: packtest has the following entity data: 20.0f
+[10:22:01] [Server thread/INFO]: System chat: Set minecraft:overworld to time marker minecraft:noon
+[10:22:01] [Server thread/INFO]: System chat: Game rule advance_time is already set to false
+[10:22:01] [Server thread/INFO]: System chat: Game rule spawn_monsters is now set to false
+[10:22:01] [Server thread/INFO]: System chat: Set packtest's game mode to Spectator Mode
+[10:22:01] [Server thread/INFO]: [Not Secure] [Server] SECTION cave views
+[10:22:01] [Server thread/INFO]: System chat: Clock minecraft:overworld is already at time marker minecraft:noon
+[10:22:02] [Server thread/INFO]: [Not Secure] [Server] VIEW cave sinkhole from above
+[10:22:02] [Server thread/INFO]: System chat: Teleported packtest to 140.500000, 150.000000, -89.500000
+[10:22:42] [Server thread/INFO]: [Not Secure] [Server] VIEW cave sinkhole from its rim
+[10:22:42] [Server thread/INFO]: System chat: Teleported packtest to 212.500000, 72.000000, -89.500000
+[10:22:55] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside the shaft, looking down along the ramp
+[10:22:55] [Server thread/INFO]: System chat: Teleported packtest to 186.500000, 30.000000, -89.500000
+[10:23:08] [Server thread/INFO]: [Not Secure] [Server] VIEW cave foot of the shaft
+[10:23:08] [Server thread/INFO]: System chat: Teleported packtest to 140.500000, -128.000000, -89.500000
+[10:23:23] [Server thread/INFO]: [Not Secure] [Server] VIEW cave foot of the shaft, looking up
+[10:23:23] [Server thread/INFO]: System chat: Teleported packtest to 160.500000, -130.000000, -89.500000
+[10:23:31] [Server thread/INFO]: [Not Secure] [Server] VIEW cave water landing SK2
+[10:23:31] [Server thread/INFO]: System chat: Teleported packtest to -649.500000, -60.000000, -299.500000
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] CHECK water at the foot of the water landing sinkhole
+[10:24:02] [Server thread/INFO]: System chat: Running function packtest:at
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] AT air
+[10:24:02] [Server thread/INFO]: System chat: Running function packtest:col
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] TOP #logs
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] BIOME dwho:orichalc_highlands
+[10:24:02] [Server thread/INFO]: System chat: y has -126 [pt]
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside 0 -60 0
+[10:24:02] [Server thread/INFO]: System chat: Teleported packtest to 0.500000, -60.000000, 0.500000
+[10:24:02] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:24:02] [Server thread/INFO]: [Not Secure] [Server] BIOME dwho:bronze_sanctuary
+[10:24:28] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:24:33] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:24:33] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside 0 -180 0
+[10:24:33] [Server thread/INFO]: System chat: Teleported packtest to 0.500000, -180.000000, 0.500000
+[10:24:33] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:24:33] [Server thread/INFO]: [Not Secure] [Server] BIOME dwho:dry_midlands
+[10:24:59] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:25:03] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:25:03] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside 0 -320 0
+[10:25:03] [Server thread/INFO]: System chat: Teleported packtest to 0.500000, -320.000000, 0.500000
+[10:25:03] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:25:03] [Server thread/INFO]: [Not Secure] [Server] BIOME dwho:dry_midlands
+[10:25:30] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:25:35] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:25:35] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside 416 -100 -272
+[10:25:35] [Server thread/INFO]: System chat: Teleported packtest to 416.500000, -100.000000, -271.500000
+[10:25:35] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:25:37] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2085ms or 41 ticks behind
+[10:26:01] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:26:05] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:26:05] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside 416 -220 -272
+[10:26:05] [Server thread/INFO]: System chat: Teleported packtest to 416.500000, -220.000000, -271.500000
+[10:26:05] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:26:05] [Server thread/INFO]: [Not Secure] [Server] BIOME dwho:shadow_woods
+[10:26:32] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:26:36] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:26:36] [Server thread/INFO]: [Not Secure] [Server] VIEW cave inside -300 -200 200
+[10:26:36] [Server thread/INFO]: System chat: Teleported packtest to -299.500000, -200.000000, 200.500000
+[10:26:36] [Server thread/INFO]: System chat: Running function packtest:biome
+[10:26:40] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3360ms or 67 ticks behind
+[10:27:02] [Server thread/INFO]: System chat: Applied effect Night Vision to packtest
+[10:27:07] [Server thread/INFO]: System chat: Removed every effect from packtest
+[10:27:07] [Server thread/INFO]: System chat: Set packtest's game mode to Creative Mode
+[10:27:07] [Server thread/INFO]: System chat: Teleported packtest to 140.500000, -132.000000, -89.500000
+[10:27:07] [Server thread/INFO]: System chat: Game rule spawn_monsters is now set to true
+[10:27:07] [Server thread/INFO]: System chat: The difficulty did not change; it is already set to Normal
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] SECTION cave mobs
+[10:28:37] [Server thread/INFO]: System chat: packtest has the following entity data: [140.5d, -132.0d, -89.5d]
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave zombie
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 25
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave skeleton
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 15
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave creeper
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 16
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave spider
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 11
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave enderman
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 1
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave witch
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave slime
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 1
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave bat
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 10
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave cave_spider
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave glow_squid
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave cow
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 4
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave sheep
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 8
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave pig
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 1
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave chicken
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 9
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave armadillo
+[10:28:37] [Server thread/INFO]: System chat: Test passed. Count: 1
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave bogged
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave stray
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave drowned
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:37] [Server thread/INFO]: [Not Secure] [Server] COUNT cave axolotl
+[10:28:37] [Server thread/INFO]: System chat: Test failed
+[10:28:38] [Server thread/INFO]: System chat: The game is running normally
+[10:28:38] [Server thread/INFO]: System chat: Target tick rate: 20.0 per second.
+Average time per tick: 18.5ms (Target: 50.0ms)
+[10:28:38] [Server thread/INFO]: System chat: Percentiles: P50: 15.3ms P95: 32.5ms P99: 133.9ms. Sample: 100
+[10:28:38] [Server thread/INFO]: System chat: Game rule spawn_monsters is now set to false
+[10:28:38] [Server thread/INFO]: System chat: Set packtest's game mode to Spectator Mode
+[10:28:38] [Server thread/INFO]: System chat: Teleported packtest to 0.500000, 90.000000, 0.500000
+[10:28:58] [Server thread/INFO]: System chat: Set packtest's game mode to Creative Mode
+[10:29:03] [Server thread/INFO]: [Not Secure] [Server] SECTION client end
+[10:29:03] [Server thread/INFO]: System chat: There are 1 of a max of 20 players online: packtest
+[10:29:03] [Server thread/INFO]: System chat: The game is running normally
+[10:29:03] [Server thread/INFO]: System chat: Target tick rate: 20.0 per second.
+Average time per tick: 10.7ms (Target: 50.0ms)
+[10:29:03] [Server thread/INFO]: System chat: Percentiles: P50: 10.8ms P95: 15.9ms P99: 20.5ms. Sample: 100
+[10:29:06] [Server thread/INFO]: packtest lost connection: Disconnected
+[10:29:06] [Server thread/INFO]: System chat: packtest left the game
+[10:29:12] [Server thread/INFO]: System chat: Stopping the server
+[10:29:12] [Server thread/INFO]: Stopping server
+[10:29:12] [Server thread/INFO]: Saving players
+[10:29:12] [Server thread/INFO]: Saving worlds
+[10:29:12] [Server thread/INFO]: ServerLevel[world]/minecraft:overworld: waiting for 3454 chunks to unload
+[10:29:12] [Server thread/INFO]: ServerLevel[world]/minecraft:the_nether: waiting for 1636 chunks to unload
+[10:29:14] [Server thread/INFO]: ServerLevel[world]/minecraft:overworld: waiting for 8 chunks to unload
+[10:29:14] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[10:29:15] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[10:29:15] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/the_sift:the_sift
+[10:29:15] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[10:29:15] [C2ME Storage #3/INFO]: Storage thread Thread[#66,C2ME Storage #3,5,main] stopped
+[10:29:15] [C2ME Storage #2/INFO]: Storage thread Thread[#65,C2ME Storage #2,5,main] stopped
+[10:29:15] [C2ME Storage #1/INFO]: Storage thread Thread[#64,C2ME Storage #1,5,main] stopped
+[10:29:15] [C2ME Storage #6/INFO]: Storage thread Thread[#72,C2ME Storage #6,5,main] stopped
+[10:29:15] [C2ME Storage #5/INFO]: Storage thread Thread[#71,C2ME Storage #5,5,main] stopped
+[10:29:15] [C2ME Storage #4/INFO]: Storage thread Thread[#70,C2ME Storage #4,5,main] stopped
+[10:29:15] [C2ME Storage #9/INFO]: Storage thread Thread[#75,C2ME Storage #9,5,main] stopped
+[10:29:15] [C2ME Storage #8/INFO]: Storage thread Thread[#74,C2ME Storage #8,5,main] stopped
+[10:29:15] [C2ME Storage #7/INFO]: Storage thread Thread[#73,C2ME Storage #7,5,main] stopped
+[10:29:15] [C2ME Storage #12/INFO]: Storage thread Thread[#78,C2ME Storage #12,5,main] stopped
+[10:29:15] [C2ME Storage #11/INFO]: Storage thread Thread[#77,C2ME Storage #11,5,main] stopped
+[10:29:15] [C2ME Storage #10/INFO]: Storage thread Thread[#76,C2ME Storage #10,5,main] stopped
+EXIT 0

@@ -1,0 +1,226 @@
+4
+               total        used        free      shared  buff/cache   available
+Mem:           15989        1057       12556          46        2745       14931
+sample islands: S1 S2 Sh4 P1 Pt2 Pt3 Q1 Qt2 Qt3 J1 Jt2 Jt3 D1 K1 K6 M4 T3 C1 E1 F1 H1 R1 T1 e1 M1 N1 I1 K2 L3 R2 S4 F2 H2 B1 L5 D2 K5 P3 E4
+244 pack commands, 201 script lines, 31 restart commands; shots: 24 script sleep: 452 s
+[10:16:39] mods: 1
+-rw-r--r-- 1 runner runner 181838 Oct  5 10:16 /tmp/work/server.jar
+[10:16:54] diagnostics mod built
+[10:16:54] vanilla: server start
+[10:17:14] server start took 20s: Done (4.053s)! For help, type "help"
+[10:17:42] poll ok after 27s: LOADED S1
+[10:18:02] poll ok after 17s: LOADED K1
+[10:18:21] poll ok after 15s: LOADED I1
+[10:18:33] poll ok after 9s: LOADED e1
+[10:18:43] poll ok after 6s: LOADED M4
+[10:18:53] poll ok after 7s: LOADED Pt3
+[10:19:07] poll ok after 10s: LOADED C1
+[10:19:19] poll ok after 8s: LOADED bio-C5
+[10:19:19] TIME BIOMEGEN-C5-desert-36-chunks 7.8 s
+[10:19:42] poll ok after 8s: LOADED bio-A6
+[10:19:42] TIME BIOMEGEN-A6-forest-36-chunks 7.8 s
+[10:20:04] poll ok after 6s: LOADED bio-T4
+[10:20:04] TIME BIOMEGEN-T4-badlands-36-chunks 6.8 s
+[10:20:28] poll ok after 8s: LOADED bio-d5
+[10:20:28] TIME BIOMEGEN-d5-warm_ocean-36-chunks 7.8 s
+[10:20:52] poll ok after 9s: LOADED bio-M5
+[10:20:52] TIME BIOMEGEN-M5-frozen_ocean-36-chunks 8.8 s
+[10:21:15] poll ok after 7s: LOADED bio-f2
+[10:21:15] TIME BIOMEGEN-f2-birch_forest-36-chunks 7.8 s
+[10:21:37] poll ok after 6s: LOADED bio-E5
+[10:21:37] TIME BIOMEGEN-E5-taiga-36-chunks 5.8 s
+[10:21:59] poll ok after 7s: LOADED bio-H7
+[10:21:59] TIME BIOMEGEN-H7-jungle-36-chunks 6.8 s
+[10:22:21] poll ok after 6s: LOADED bio-c4
+[10:22:21] TIME BIOMEGEN-c4-savanna-36-chunks 6.8 s
+[10:22:44] poll ok after 7s: LOADED bio-Q2
+[10:22:44] TIME BIOMEGEN-Q2-cherry_grove-36-chunks 6.8 s
+[10:23:05] poll ok after 6s: LOADED bio-n3
+[10:23:05] TIME BIOMEGEN-n3-swamp-36-chunks 5.8 s
+[10:23:28] poll ok after 7s: LOADED bio-R6
+[10:23:28] TIME BIOMEGEN-R6-mangrove_swamp-36-chunks 7.8 s
+[10:23:55] poll ok after 11s: LOADED wide-C5
+[10:24:58] poll ok after 36s: LOADED wide-A6
+[10:26:11] poll ok after 46s: LOADED wide-T4
+[10:27:21] poll ok after 43s: LOADED wide-d5
+[10:28:28] poll ok after 40s: LOADED wide-M5
+[10:29:40] poll ok after 45s: LOADED wide-f2
+[10:30:38] poll ok after 31s: LOADED wide-E5
+[10:31:34] poll ok after 30s: LOADED wide-c4
+[10:32:51] poll ok after 50s: LOADED wide-Q2
+[10:33:56] poll ok after 38s: LOADED wide-n3
+[10:34:35] TIME LOCATE-isles-stronghold/spawn 12.3 s
+[10:34:45] poll ok after 9s: LOADED loc
+[10:34:49] TIME LOCATE-isles-stronghold/K1 1.2 s
+[10:34:51] poll ok after 2s: LOADED loc
+[10:34:53] TIME LOCATE-isles-stronghold/T1 0.1 s
+[10:35:01] poll ok after 7s: LOADED loc
+[10:35:06] TIME LOCATE-village_plains/spawn 2.2 s
+[10:35:16] poll ok after 10s: LOADED loc
+[10:35:19] TIME LOCATE-village_plains/K1 1.2 s
+[10:35:24] poll ok after 5s: LOADED loc
+[10:35:27] TIME LOCATE-village_plains/T1 2.2 s
+[10:35:33] poll ok after 6s: LOADED loc
+[10:35:36] TIME LOCATE-trial_chambers/spawn 1.2 s
+[10:35:41] poll ok after 5s: LOADED loc
+[10:35:44] TIME LOCATE-trial_chambers/K1 1.2 s
+[10:35:52] poll ok after 8s: LOADED loc
+[10:35:54] TIME LOCATE-trial_chambers/T1 1.2 s
+[10:36:01] poll ok after 6s: LOADED loc
+[10:36:04] TIME LOCATE-ruined_portal/spawn 1.2 s
+[10:36:09] poll ok after 5s: LOADED loc
+[10:36:12] TIME LOCATE-ruined_portal/K1 1.2 s
+[10:36:16] poll ok after 4s: LOADED loc
+[10:36:18] TIME LOCATE-ruined_portal/T1 1.2 s
+[10:36:22] poll ok after 3s: LOADED loc
+[10:36:25] TIME LOCATE-pillager_outpost/spawn 1.2 s
+[10:36:33] poll ok after 8s: LOADED loc
+[10:36:36] TIME LOCATE-desert_pyramid/spawn 1.2 s
+[10:36:42] poll ok after 6s: LOADED loc
+[10:36:44] TIME LOCATE-shipwreck/spawn 1.2 s
+[10:36:50] poll ok after 5s: LOADED loc
+[10:36:53] TIME LOCATE-shipwreck/K1 1.2 s
+[10:37:00] poll ok after 7s: LOADED loc
+[10:37:03] TIME LOCATE-shipwreck/T1 1.2 s
+[10:37:09] poll ok after 6s: LOADED loc
+[10:37:11] TIME LOCATE-ocean_ruin_warm/spawn 1.2 s
+[10:37:18] poll ok after 6s: LOADED loc
+[10:37:21] TIME LOCATE-ocean_ruin_cold/spawn 1.2 s
+[10:37:26] poll ok after 5s: LOADED loc
+[10:37:30] TIME LOCATE-buried_treasure/spawn 2.2 s
+[10:37:31] TIME LOCATE-igloo/spawn 0.1 s
+[10:37:35] poll ok after 4s: LOADED loc
+[10:37:56] TIME LOCATE-jungle_pyramid/spawn 20.3 s
+[10:37:58] TIME LOCATE-swamp_hut/spawn 1.2 s
+[10:38:02] poll ok after 3s: LOADED loc
+[10:38:05] TIME LOCATE-trail_ruins/spawn 1.2 s
+[10:38:10] poll ok after 5s: LOADED loc
+[10:38:32] TIME LOCATE-village_desert/spawn 20.3 s
+[10:38:34] TIME LOCATE-ruined_portal_mountain/spawn 1.2 s
+[10:38:36] poll ok after 2s: LOADED loc
+[10:38:38] TIME LOCATE-ruined_portal_ocean/spawn 1.2 s
+[10:38:43] poll ok after 4s: LOADED loc
+[10:38:46] TIME LOCATE-stronghold/spawn 1.2 s
+[10:38:46] TIME LOCATE-mineshaft/spawn 0.2 s
+[10:38:47] TIME LOCATE-mineshaft_mesa/spawn 0.1 s
+[10:38:47] TIME LOCATE-monument/spawn 0.1 s
+[10:38:47] TIME LOCATE-mansion/spawn 0.1 s
+[10:38:47] TIME LOCATE-ancient_city/spawn 0.1 s
+[10:38:54] poll ok after 6s: LOADED floor-under-old-stronghold
+[10:39:10] poll ok after 15s: LOADED floor-under-old-mineshaft
+[10:39:18] TIME LOCATE-biome-jagged_peaks 4.2 s
+[10:39:19] TIME LOCATE-biome-mushroom_fields 1.2 s
+[10:39:19] TIME LOCATE-biome-void 0.1 s
+[10:39:42] HEAP before-land used 629726K 
+[10:40:01] poll ok after 18s: PREGEN land done
+[10:40:01] TIME PREGEN-land-256-chunks 18.1 s
+[10:40:03] HEAP with-land used 1750212K 
+[10:40:32] HEAP before-void used 630134K 
+[10:40:42] poll ok after 10s: PREGEN void done
+[10:40:42] TIME PREGEN-void-256-chunks 10.0 s
+[10:40:45] HEAP with-void used 907525K 
+[10:41:07] HEAP before-tiers used 629561K 
+[10:41:13] poll ok after 5s: PREGEN tiers done
+[10:41:13] TIME PREGEN-tiers-64-chunks 4.9 s
+[10:41:15] HEAP with-tiers used 812097K 
+[10:41:18] poll ok after 2s: LOADED col
+[10:41:20] poll ok after 2s: LOADED col
+[10:41:27] poll ok after 6s: LOADED col
+[10:41:33] poll ok after 6s: LOADED col
+[10:41:37] poll ok after 3s: LOADED col
+[10:41:42] poll ok after 5s: LOADED col
+[10:41:48] poll ok after 5s: LOADED col
+[10:41:53] poll ok after 5s: LOADED col
+[10:41:58] poll ok after 4s: LOADED col
+[10:42:02] poll ok after 4s: LOADED col
+[10:42:07] poll ok after 4s: LOADED col
+[10:42:11] poll ok after 4s: LOADED col
+[10:42:17] poll ok after 5s: LOADED sink-SK1
+[10:42:21] poll ok after 4s: LOADED sink-SK2
+[10:42:27] poll ok after 5s: LOADED sink-SK3
+[10:42:32] poll ok after 4s: LOADED sink-SK4
+[10:42:38] poll ok after 5s: LOADED sink-SK5
+[10:42:43] poll ok after 4s: LOADED sink-SK6
+[10:42:48] poll ok after 4s: LOADED ramp-SK1
+[10:42:57] poll ok after 8s: LOADED h-east
+[10:43:00] poll ok after 2s: LOADED h-east-deep
+[10:43:05] poll ok after 5s: LOADED box-centre
+[10:43:05] TIME CAVEGEN-centre-9-chunks 4.8 s
+[10:43:53] poll ok after 6s: LOADED box-mid
+[10:43:53] TIME CAVEGEN-mid-9-chunks 6.8 s
+[10:44:39] poll ok after 4s: LOADED box-outer
+[10:44:39] TIME CAVEGEN-outer-9-chunks 3.8 s
+[10:45:25] poll ok after 5s: LOADED floor-SK1
+[10:45:46] poll ok after 4s: LOADED floor-SK2
+[10:46:10] poll ok after 7s: LOADED floor-SK3
+[10:46:32] poll ok after 6s: LOADED floor-SK4
+[10:46:55] poll ok after 6s: LOADED floor-SK5
+[10:47:14] poll ok after 3s: LOADED floor-SK6
+[10:47:33] poll ok after 2s: LOADED scan-S1
+[10:47:51] poll ok after 10s: LOADED scan-B1
+[10:48:05] poll ok after 6s: LOADED scan-a1
+[10:48:20] poll ok after 7s: LOADED scan-T1
+[10:48:33] poll ok after 4s: LOADED scan-S2
+[10:48:44] vanilla: commands done
+[10:48:46] vanilla: stopped
+[10:16:39] mods: 1
+[10:16:54] diagnostics mod built
+[10:16:54] vanilla: server start
+[10:17:14] server start took 20s: Done (4.053s)! For help, type "help"
+[10:19:19] TIME BIOMEGEN-C5-desert-36-chunks 7.8 s
+[10:19:42] TIME BIOMEGEN-A6-forest-36-chunks 7.8 s
+[10:20:04] TIME BIOMEGEN-T4-badlands-36-chunks 6.8 s
+[10:20:28] TIME BIOMEGEN-d5-warm_ocean-36-chunks 7.8 s
+[10:20:52] TIME BIOMEGEN-M5-frozen_ocean-36-chunks 8.8 s
+[10:21:15] TIME BIOMEGEN-f2-birch_forest-36-chunks 7.8 s
+[10:21:37] TIME BIOMEGEN-E5-taiga-36-chunks 5.8 s
+[10:21:59] TIME BIOMEGEN-H7-jungle-36-chunks 6.8 s
+[10:22:21] TIME BIOMEGEN-c4-savanna-36-chunks 6.8 s
+[10:22:44] TIME BIOMEGEN-Q2-cherry_grove-36-chunks 6.8 s
+[10:23:05] TIME BIOMEGEN-n3-swamp-36-chunks 5.8 s
+[10:23:28] TIME BIOMEGEN-R6-mangrove_swamp-36-chunks 7.8 s
+[10:34:35] TIME LOCATE-isles-stronghold/spawn 12.3 s
+[10:34:49] TIME LOCATE-isles-stronghold/K1 1.2 s
+[10:34:53] TIME LOCATE-isles-stronghold/T1 0.1 s
+[10:35:06] TIME LOCATE-village_plains/spawn 2.2 s
+[10:35:19] TIME LOCATE-village_plains/K1 1.2 s
+[10:35:27] TIME LOCATE-village_plains/T1 2.2 s
+[10:35:36] TIME LOCATE-trial_chambers/spawn 1.2 s
+[10:35:44] TIME LOCATE-trial_chambers/K1 1.2 s
+[10:35:54] TIME LOCATE-trial_chambers/T1 1.2 s
+[10:36:04] TIME LOCATE-ruined_portal/spawn 1.2 s
+[10:36:12] TIME LOCATE-ruined_portal/K1 1.2 s
+[10:36:18] TIME LOCATE-ruined_portal/T1 1.2 s
+[10:36:25] TIME LOCATE-pillager_outpost/spawn 1.2 s
+[10:36:36] TIME LOCATE-desert_pyramid/spawn 1.2 s
+[10:36:44] TIME LOCATE-shipwreck/spawn 1.2 s
+[10:36:53] TIME LOCATE-shipwreck/K1 1.2 s
+[10:37:03] TIME LOCATE-shipwreck/T1 1.2 s
+[10:37:11] TIME LOCATE-ocean_ruin_warm/spawn 1.2 s
+[10:37:21] TIME LOCATE-ocean_ruin_cold/spawn 1.2 s
+[10:37:30] TIME LOCATE-buried_treasure/spawn 2.2 s
+[10:37:31] TIME LOCATE-igloo/spawn 0.1 s
+[10:37:56] TIME LOCATE-jungle_pyramid/spawn 20.3 s
+[10:37:58] TIME LOCATE-swamp_hut/spawn 1.2 s
+[10:38:05] TIME LOCATE-trail_ruins/spawn 1.2 s
+[10:38:32] TIME LOCATE-village_desert/spawn 20.3 s
+[10:38:34] TIME LOCATE-ruined_portal_mountain/spawn 1.2 s
+[10:38:38] TIME LOCATE-ruined_portal_ocean/spawn 1.2 s
+[10:38:46] TIME LOCATE-stronghold/spawn 1.2 s
+[10:38:46] TIME LOCATE-mineshaft/spawn 0.2 s
+[10:38:47] TIME LOCATE-mineshaft_mesa/spawn 0.1 s
+[10:38:47] TIME LOCATE-monument/spawn 0.1 s
+[10:38:47] TIME LOCATE-mansion/spawn 0.1 s
+[10:38:47] TIME LOCATE-ancient_city/spawn 0.1 s
+[10:39:18] TIME LOCATE-biome-jagged_peaks 4.2 s
+[10:39:19] TIME LOCATE-biome-mushroom_fields 1.2 s
+[10:39:19] TIME LOCATE-biome-void 0.1 s
+[10:39:42] HEAP before-land used 629726K 
+[10:40:01] TIME PREGEN-land-256-chunks 18.1 s
+[10:40:03] HEAP with-land used 1750212K 
+[10:40:32] HEAP before-void used 630134K 
+[10:40:42] TIME PREGEN-void-256-chunks 10.0 s
+[10:40:45] HEAP with-void used 907525K 
+[10:41:07] HEAP before-tiers used 629561K 
+[10:41:13] TIME PREGEN-tiers-64-chunks 4.9 s
+[10:48:46] end

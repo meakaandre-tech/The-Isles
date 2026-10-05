@@ -1,0 +1,1170 @@
+[10:16:49] mods: 32
+[10:17:06] diagnostics mod built
+[10:17:06] pack: server start
+[10:17:41] server start took 35s: Done (4.480s)! For help, type "help"
+[10:19:49] pack: commands done
+[10:19:49] pack: client start
+[10:20:32] pack: client joined
+[10:29:06] pack: client script done
+[10:29:16] pack: server stopped
+[10:29:36] server start took 20s: Done (0.567s)! For help, type "help"
+[10:30:16] pack: restart done
+[10:16:49] mods: 32
+[10:17:06] diagnostics mod built
+[10:17:06] pack: server start
+[10:17:41] server start took 35s: Done (4.480s)! For help, type "help"
+[10:19:49] pack: commands done
+[10:19:49] pack: client start
+[10:20:32] pack: client joined
+[10:29:06] pack: client script done
+[10:29:16] pack: server stopped
+[10:29:36] server start took 20s: Done (0.567s)! For help, type "help"
+[10:30:16] pack: restart done
+[10:30:16] end
+[10:16:49] mods: 1
+[10:17:03] diagnostics mod built
+[10:17:04] perf-vanilla: server start
+[10:17:24] server start took 20s: Done (3.295s)! For help, type "help"
+[10:17:47] HEAP before-land used 159973K 
+[10:18:02] TIME PREGEN-land-256-chunks 15.1 s
+[10:18:05] HEAP with-land used 894989K 
+[10:18:28] HEAP before-void used 185415K 
+[10:18:35] TIME PREGEN-void-256-chunks 6.9 s
+[10:18:37] HEAP with-void used 469340K 
+[10:19:00] HEAP before-tiers used 198799K 
+[10:19:07] TIME PREGEN-tiers-64-chunks 6.9 s
+[10:19:10] HEAP with-tiers used 381466K 
+[10:19:11] TIME LOCATE-mansion 0.2 s
+[10:19:22] TIME LOCATE-jungle_pyramid 11.2 s
+[10:19:39] perf-vanilla: done
+[10:19:43] perf-biomes: server start
+[10:20:03] server start took 20s: Done (3.215s)! For help, type "help"
+[10:20:26] HEAP before-land used 161174K 
+[10:20:41] TIME PREGEN-land-256-chunks 15.2 s
+[10:20:44] HEAP with-land used 1182175K 
+[10:21:07] HEAP before-void used 186095K 
+[10:21:14] TIME PREGEN-void-256-chunks 7.0 s
+[10:21:17] HEAP with-void used 469890K 
+[10:21:40] HEAP before-tiers used 200149K 
+[10:21:46] TIME PREGEN-tiers-64-chunks 5.9 s
+[10:21:48] HEAP with-tiers used 389576K 
+[10:21:49] TIME LOCATE-mansion 0.2 s
+[10:22:00] TIME LOCATE-jungle_pyramid 11.2 s
+[10:22:18] perf-biomes: done
+[10:22:22] perf-caves: server start
+[10:22:42] server start took 20s: Done (4.279s)! For help, type "help"
+[10:23:05] HEAP before-land used 161988K 
+[10:23:44] TIME PREGEN-land-256-chunks 39.4 s
+[10:23:47] HEAP with-land used 856390K 
+[10:24:10] HEAP before-void used 188025K 
+[10:24:20] TIME PREGEN-void-256-chunks 10.0 s
+[10:24:23] HEAP with-void used 472635K 
+[10:24:46] HEAP before-tiers used 201694K 
+[10:24:54] TIME PREGEN-tiers-64-chunks 8.0 s
+[10:24:56] HEAP with-tiers used 383338K 
+[10:24:57] TIME LOCATE-mansion 0.2 s
+[10:25:19] TIME LOCATE-jungle_pyramid 21.3 s
+[10:25:39] perf-caves: done
+[10:16:49] mods: 1
+[10:17:03] diagnostics mod built
+[10:17:04] perf-vanilla: server start
+[10:17:24] server start took 20s: Done (3.295s)! For help, type "help"
+[10:17:47] HEAP before-land used 159973K 
+[10:18:02] TIME PREGEN-land-256-chunks 15.1 s
+[10:18:05] HEAP with-land used 894989K 
+[10:18:28] HEAP before-void used 185415K 
+[10:18:35] TIME PREGEN-void-256-chunks 6.9 s
+[10:18:37] HEAP with-void used 469340K 
+[10:19:00] HEAP before-tiers used 198799K 
+[10:19:07] TIME PREGEN-tiers-64-chunks 6.9 s
+[10:19:10] HEAP with-tiers used 381466K 
+[10:19:11] TIME LOCATE-mansion 0.2 s
+[10:19:22] TIME LOCATE-jungle_pyramid 11.2 s
+[10:19:39] perf-vanilla: done
+[10:19:43] perf-biomes: server start
+[10:20:03] server start took 20s: Done (3.215s)! For help, type "help"
+[10:20:26] HEAP before-land used 161174K 
+[10:20:41] TIME PREGEN-land-256-chunks 15.2 s
+[10:20:44] HEAP with-land used 1182175K 
+[10:21:07] HEAP before-void used 186095K 
+[10:21:14] TIME PREGEN-void-256-chunks 7.0 s
+[10:21:17] HEAP with-void used 469890K 
+[10:21:40] HEAP before-tiers used 200149K 
+[10:21:46] TIME PREGEN-tiers-64-chunks 5.9 s
+[10:21:48] HEAP with-tiers used 389576K 
+[10:21:49] TIME LOCATE-mansion 0.2 s
+[10:22:00] TIME LOCATE-jungle_pyramid 11.2 s
+[10:22:18] perf-biomes: done
+[10:22:22] perf-caves: server start
+[10:22:42] server start took 20s: Done (4.279s)! For help, type "help"
+[10:23:05] HEAP before-land used 161988K 
+[10:23:44] TIME PREGEN-land-256-chunks 39.4 s
+[10:23:47] HEAP with-land used 856390K 
+[10:24:10] HEAP before-void used 188025K 
+[10:24:20] TIME PREGEN-void-256-chunks 10.0 s
+[10:24:23] HEAP with-void used 472635K 
+[10:24:46] HEAP before-tiers used 201694K 
+[10:24:54] TIME PREGEN-tiers-64-chunks 8.0 s
+[10:24:56] HEAP with-tiers used 383338K 
+[10:24:57] TIME LOCATE-mansion 0.2 s
+[10:25:19] TIME LOCATE-jungle_pyramid 21.3 s
+[10:25:39] perf-caves: done
+[10:25:43] end
+[10:16:39] mods: 1
+[10:16:54] diagnostics mod built
+[10:16:54] vanilla: server start
+[10:17:14] server start took 20s: Done (4.053s)! For help, type "help"
+[10:19:19] TIME BIOMEGEN-C5-desert-36-chunks 7.8 s
+[10:19:42] TIME BIOMEGEN-A6-forest-36-chunks 7.8 s
+[10:20:04] TIME BIOMEGEN-T4-badlands-36-chunks 6.8 s
+[10:20:28] TIME BIOMEGEN-d5-warm_ocean-36-chunks 7.8 s
+[10:20:52] TIME BIOMEGEN-M5-frozen_ocean-36-chunks 8.8 s
+[10:21:15] TIME BIOMEGEN-f2-birch_forest-36-chunks 7.8 s
+[10:21:37] TIME BIOMEGEN-E5-taiga-36-chunks 5.8 s
+[10:21:59] TIME BIOMEGEN-H7-jungle-36-chunks 6.8 s
+[10:22:21] TIME BIOMEGEN-c4-savanna-36-chunks 6.8 s
+[10:22:44] TIME BIOMEGEN-Q2-cherry_grove-36-chunks 6.8 s
+[10:23:05] TIME BIOMEGEN-n3-swamp-36-chunks 5.8 s
+[10:23:28] TIME BIOMEGEN-R6-mangrove_swamp-36-chunks 7.8 s
+[10:34:35] TIME LOCATE-isles-stronghold/spawn 12.3 s
+[10:34:49] TIME LOCATE-isles-stronghold/K1 1.2 s
+[10:34:53] TIME LOCATE-isles-stronghold/T1 0.1 s
+[10:35:06] TIME LOCATE-village_plains/spawn 2.2 s
+[10:35:19] TIME LOCATE-village_plains/K1 1.2 s
+[10:35:27] TIME LOCATE-village_plains/T1 2.2 s
+[10:35:36] TIME LOCATE-trial_chambers/spawn 1.2 s
+[10:35:44] TIME LOCATE-trial_chambers/K1 1.2 s
+[10:35:54] TIME LOCATE-trial_chambers/T1 1.2 s
+[10:36:04] TIME LOCATE-ruined_portal/spawn 1.2 s
+[10:36:12] TIME LOCATE-ruined_portal/K1 1.2 s
+[10:36:18] TIME LOCATE-ruined_portal/T1 1.2 s
+[10:36:25] TIME LOCATE-pillager_outpost/spawn 1.2 s
+[10:36:36] TIME LOCATE-desert_pyramid/spawn 1.2 s
+[10:36:44] TIME LOCATE-shipwreck/spawn 1.2 s
+[10:36:53] TIME LOCATE-shipwreck/K1 1.2 s
+[10:37:03] TIME LOCATE-shipwreck/T1 1.2 s
+[10:37:11] TIME LOCATE-ocean_ruin_warm/spawn 1.2 s
+[10:37:21] TIME LOCATE-ocean_ruin_cold/spawn 1.2 s
+[10:37:30] TIME LOCATE-buried_treasure/spawn 2.2 s
+[10:37:31] TIME LOCATE-igloo/spawn 0.1 s
+[10:37:56] TIME LOCATE-jungle_pyramid/spawn 20.3 s
+[10:37:58] TIME LOCATE-swamp_hut/spawn 1.2 s
+[10:38:05] TIME LOCATE-trail_ruins/spawn 1.2 s
+[10:38:32] TIME LOCATE-village_desert/spawn 20.3 s
+[10:38:34] TIME LOCATE-ruined_portal_mountain/spawn 1.2 s
+[10:38:38] TIME LOCATE-ruined_portal_ocean/spawn 1.2 s
+[10:38:46] TIME LOCATE-stronghold/spawn 1.2 s
+[10:38:46] TIME LOCATE-mineshaft/spawn 0.2 s
+[10:38:47] TIME LOCATE-mineshaft_mesa/spawn 0.1 s
+[10:38:47] TIME LOCATE-monument/spawn 0.1 s
+[10:38:47] TIME LOCATE-mansion/spawn 0.1 s
+[10:38:47] TIME LOCATE-ancient_city/spawn 0.1 s
+[10:39:18] TIME LOCATE-biome-jagged_peaks 4.2 s
+[10:39:19] TIME LOCATE-biome-mushroom_fields 1.2 s
+[10:39:19] TIME LOCATE-biome-void 0.1 s
+[10:39:42] HEAP before-land used 629726K 
+[10:40:01] TIME PREGEN-land-256-chunks 18.1 s
+[10:40:03] HEAP with-land used 1750212K 
+[10:40:32] HEAP before-void used 630134K 
+[10:40:42] TIME PREGEN-void-256-chunks 10.0 s
+[10:40:45] HEAP with-void used 907525K 
+[10:41:07] HEAP before-tiers used 629561K 
+[10:41:13] TIME PREGEN-tiers-64-chunks 4.9 s
+[10:41:15] HEAP with-tiers used 812097K 
+[10:43:05] TIME CAVEGEN-centre-9-chunks 4.8 s
+[10:43:53] TIME CAVEGEN-mid-9-chunks 6.8 s
+[10:44:39] TIME CAVEGEN-outer-9-chunks 3.8 s
+[10:48:44] vanilla: commands done
+[10:48:46] vanilla: stopped
+[10:16:39] mods: 1
+[10:16:54] diagnostics mod built
+[10:16:54] vanilla: server start
+[10:17:14] server start took 20s: Done (4.053s)! For help, type "help"
+[10:19:19] TIME BIOMEGEN-C5-desert-36-chunks 7.8 s
+[10:19:42] TIME BIOMEGEN-A6-forest-36-chunks 7.8 s
+[10:20:04] TIME BIOMEGEN-T4-badlands-36-chunks 6.8 s
+[10:20:28] TIME BIOMEGEN-d5-warm_ocean-36-chunks 7.8 s
+[10:20:52] TIME BIOMEGEN-M5-frozen_ocean-36-chunks 8.8 s
+[10:21:15] TIME BIOMEGEN-f2-birch_forest-36-chunks 7.8 s
+[10:21:37] TIME BIOMEGEN-E5-taiga-36-chunks 5.8 s
+[10:21:59] TIME BIOMEGEN-H7-jungle-36-chunks 6.8 s
+[10:22:21] TIME BIOMEGEN-c4-savanna-36-chunks 6.8 s
+[10:22:44] TIME BIOMEGEN-Q2-cherry_grove-36-chunks 6.8 s
+[10:23:05] TIME BIOMEGEN-n3-swamp-36-chunks 5.8 s
+[10:23:28] TIME BIOMEGEN-R6-mangrove_swamp-36-chunks 7.8 s
+[10:34:35] TIME LOCATE-isles-stronghold/spawn 12.3 s
+[10:34:49] TIME LOCATE-isles-stronghold/K1 1.2 s
+[10:34:53] TIME LOCATE-isles-stronghold/T1 0.1 s
+[10:35:06] TIME LOCATE-village_plains/spawn 2.2 s
+[10:35:19] TIME LOCATE-village_plains/K1 1.2 s
+[10:35:27] TIME LOCATE-village_plains/T1 2.2 s
+[10:35:36] TIME LOCATE-trial_chambers/spawn 1.2 s
+[10:35:44] TIME LOCATE-trial_chambers/K1 1.2 s
+[10:35:54] TIME LOCATE-trial_chambers/T1 1.2 s
+[10:36:04] TIME LOCATE-ruined_portal/spawn 1.2 s
+[10:36:12] TIME LOCATE-ruined_portal/K1 1.2 s
+[10:36:18] TIME LOCATE-ruined_portal/T1 1.2 s
+[10:36:25] TIME LOCATE-pillager_outpost/spawn 1.2 s
+[10:36:36] TIME LOCATE-desert_pyramid/spawn 1.2 s
+[10:36:44] TIME LOCATE-shipwreck/spawn 1.2 s
+[10:36:53] TIME LOCATE-shipwreck/K1 1.2 s
+[10:37:03] TIME LOCATE-shipwreck/T1 1.2 s
+[10:37:11] TIME LOCATE-ocean_ruin_warm/spawn 1.2 s
+[10:37:21] TIME LOCATE-ocean_ruin_cold/spawn 1.2 s
+[10:37:30] TIME LOCATE-buried_treasure/spawn 2.2 s
+[10:37:31] TIME LOCATE-igloo/spawn 0.1 s
+[10:37:56] TIME LOCATE-jungle_pyramid/spawn 20.3 s
+[10:37:58] TIME LOCATE-swamp_hut/spawn 1.2 s
+[10:38:05] TIME LOCATE-trail_ruins/spawn 1.2 s
+[10:38:32] TIME LOCATE-village_desert/spawn 20.3 s
+[10:38:34] TIME LOCATE-ruined_portal_mountain/spawn 1.2 s
+[10:38:38] TIME LOCATE-ruined_portal_ocean/spawn 1.2 s
+[10:38:46] TIME LOCATE-stronghold/spawn 1.2 s
+[10:38:46] TIME LOCATE-mineshaft/spawn 0.2 s
+[10:38:47] TIME LOCATE-mineshaft_mesa/spawn 0.1 s
+[10:38:47] TIME LOCATE-monument/spawn 0.1 s
+[10:38:47] TIME LOCATE-mansion/spawn 0.1 s
+[10:38:47] TIME LOCATE-ancient_city/spawn 0.1 s
+[10:39:18] TIME LOCATE-biome-jagged_peaks 4.2 s
+[10:39:19] TIME LOCATE-biome-mushroom_fields 1.2 s
+[10:39:19] TIME LOCATE-biome-void 0.1 s
+[10:39:42] HEAP before-land used 629726K 
+[10:40:01] TIME PREGEN-land-256-chunks 18.1 s
+[10:40:03] HEAP with-land used 1750212K 
+[10:40:32] HEAP before-void used 630134K 
+[10:40:42] TIME PREGEN-void-256-chunks 10.0 s
+[10:40:45] HEAP with-void used 907525K 
+[10:41:07] HEAP before-tiers used 629561K 
+[10:41:13] TIME PREGEN-tiers-64-chunks 4.9 s
+[10:48:46] end
+build:   geophilic also ships, not used: birch_forest desert flower_forest forest old_growth_birch_forest windswept_forest wooded_badlands
+build:   geophilic: 23 biomes, 122 islands: bamboo_jungle(4) beach(11) cherry_grove(8) dark_forest(4) grove(5) jungle(7) meadow(9) old_growth_pine_taiga(4) old_growth_spruce_taiga(3) pale_garden(3) plains(11) savanna(6) savanna_plateau(4) snowy_plains(5) snowy_taiga(3) sparse_jungle(4) stony_shore(3) sunflower_plains(5) swamp(7) taiga(6) windswept_gravelly_hills(2) windswept_hills(4) windswept_savanna(4)
+build:   overrealm: 17 biomes, 91 islands: badlands(14) birch_forest(7) cold_ocean(8) deep_cold_ocean(2) deep_frozen_ocean(1) deep_lukewarm_ocean(2) deep_ocean(1) desert(10) flower_forest(4) forest(7) frozen_ocean(2) lukewarm_ocean(5) ocean(4) old_growth_birch_forest(5) warm_ocean(8) windswept_forest(4) wooded_badlands(7)
+build:   vanilla: 8 biomes, 27 islands: frozen_peaks(3) ice_spikes(2) jagged_peaks(4) mangrove_swamp(6) mushroom_fields(1) snowy_beach(3) snowy_slopes(5) stony_peaks(3)
+build: -rw-r--r-- 1 runner runner    4349 Oct  5 10:16 /tmp/the-isles-mods-tested.zip
+build: -rw-r--r-- 1 runner runner 1231853 Oct  5 10:16 /tmp/the-isles-tested.zip
+build: 240 islands, 48 biomes, 1134 files -> /home/runner/work/The-Isles/The-Isles/datapack
+build: 240 islands, 48 biomes, 2399 files -> /home/runner/work/The-Isles/The-Isles/build/the-isles
+build: 32 of 48 biomes get a constant climate
+build: WARNING: the committed data packs differ from the generator output
+build: biome -> provider (islands)
+build: birch_forest (overrealm): taken out orealm:spring/ocean_caves
+build: cave biomes with a constant climate and the colours of the vanilla biome of the same temperature/downfall: black_sea (0.5/0.5: cold_ocean), bronze_sanctuary (0.5/0.8: cherry_grove), crystal_caves (0.8/0.4: beach), grimstone_grotto (0.8/0.9: mangrove_swamp), honeycomb_caves (0.8/0.4: beach), ice_floes (0.5/0.5: cold_ocean), mushroom_caves (0.9/1: mushroom_fields), ocean (0.5/0.5: cold_ocean), shadow_woods (0.7/0.8: dark_forest), the_bramble (0.95/0.9: bamboo_jungle)
+build: cave seas: water up to y -338 in 4 slabs from y -401
+build: cold_ocean (overrealm): taken out orealm:iceberg/cold_ocean orealm:spring/ocean_caves
+build: deep_cold_ocean (overrealm): taken out orealm:spring/ocean_caves
+build: deep_frozen_ocean (overrealm): taken out orealm:iceberg/frozen_ocean orealm:spring/ocean_caves orealm:sequence/jellyfish
+build: deep_lukewarm_ocean (overrealm): taken out orealm:spring/ocean_caves
+build: deep_ocean (overrealm): taken out orealm:spring/ocean_caves
+build: dwarfhollow (dwarfhollow-v0.1-by-kanokarob.zip): 107 features, 119 placed features, 15 biomes, 48 tags converted; 25 x patch unfolded, 73 x count_on_every_layer replaced
+build: dwarfhollow: no public download (https://www.patreon.com/posts/dwarfhollow-135712745); put your copy (*dwarfhollow*) into vendor/
+build: eroded_badlands -> badlands on 6 islands
+build: flower_forest (overrealm): taken out orealm:spring/ocean_caves
+build: forest (overrealm): taken out orealm:spring/ocean_caves
+build: frozen_ocean (overrealm): taken out orealm:iceberg/frozen_ocean orealm:spring/ocean_caves
+build: geophilic (Geophilic_v3.7.dp.zip): 302 files copied, 0 fixed-height placements moved under the island surface
+build: geophilic: Geophilic_v3.7.dp.zip (1114215 bytes)
+build: layer 0: 196 islands
+build: layer 1: 41 islands
+build: layer 2: 3 islands
+build: lukewarm_ocean (overrealm): taken out orealm:spring/ocean_caves
+build: nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+build: ocean (overrealm): taken out orealm:spring/ocean_caves
+build: old_growth_birch_forest (overrealm): taken out orealm:spring/ocean_caves
+build: overrealm (overrealm-v0.3.1-by-kanokarob-26.3.zip): 640 files copied, 63 fixed-height placements moved under the island surface
+build: overrealm: no public download (https://www.patreon.com/posts/overrealm-data-148060790); put your copy (*overrealm*) into vendor/
+build: pack under test: build/the-isles
+build: sinkhole SK1 (spiral_ledge): radius 60, down to y -150, spiral ramp
+build: sinkhole SK2 (water_landing): radius 35, down to y -120
+build: sinkhole SK3 (water_landing): radius 40, down to y -120
+build: sinkhole SK4 (sheer_drop): radius 30, down to y -110
+build: sinkhole SK5 (sheer_drop): radius 30, down to y -110
+build: sinkhole SK6 (sheer_drop): radius 25, down to y -110
+build: structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+build: structure ancient_city: 60 blocks under the island surface
+build: structure mansion: off
+build: structure mineshaft: off
+build: structure mineshaft_mesa: off
+build: structure monument: off
+build: structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+build: structure ruined_portal: on or half in the island surface
+build: structure ruined_portal_desert: on or half in the island surface
+build: structure ruined_portal_jungle: on or half in the island surface
+build: structure ruined_portal_mountain: on or half in the island surface
+build: structure ruined_portal_ocean: on or half in the island surface
+build: structure ruined_portal_swamp: on or half in the island surface
+build: structure stronghold: off
+build: structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+build: structure trial_chambers: 32..48 blocks under the island surface
+build: structure village_desert: surface (as in vanilla), not at the bottom of the world
+build: structure village_plains: surface (as in vanilla), not at the bottom of the world
+build: structure village_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure village_snowy: surface (as in vanilla), not at the bottom of the world
+build: structure village_taiga: surface (as in vanilla), not at the bottom of the world
+build: vendor: asked for 'overrealm dwarfhollow' with key a00e5a849d7c508ecd32a281, waiting 240s
+build: vendor: asked for 'overrealm dwarfhollow' with key ef9a2069767640dafce29e6a, waiting 240s
+build: vendor: received Geophilic_v3.7.dp.zip dwarfhollow-v0.1-by-kanokarob.zip overrealm-v0.3.1-by-kanokarob-26.3.zip 
+build: warm_ocean (overrealm): taken out orealm:spring/ocean_caves
+build: windswept_forest (overrealm): taken out orealm:spring/ocean_caves
+build: with provider biomes -> /home/runner/work/The-Isles/The-Isles/build/the-isles.zip (for your own worlds; not to be redistributed)
+build: wooded_badlands (overrealm): taken out orealm:spring/ocean_caves
+build: 
+
+================ vanilla ================
+boot: Done (4.053s)! For help, type "help"
+ERROR/WARN lines: 0
+
+probe                x     z  ground   surf  expected        biome                         top            verdict
+S1                   0     0      57     58  S1 64           minecraft:plains              grass_block    ok
+S1                 600     0      56     56  S1 64           minecraft:plains              stone          ok
+S1                1240     0   -2032  -2032  void -2032      the_isles:void                ?              ok
+S1                   0  1204   -2032  -2032  void -2032      the_isles:void                ?              ok
+K1               -3372 -1397    1187   1187  K1 1250         minecraft:deep_ocean          other          ok
+K1               -3212 -1397    1184   1184  K1 1250         minecraft:deep_ocean          other          ok
+K1               -3012 -1397   -2032  -2032  void -2032      the_isles:void                ?              ok
+K1               -3372 -1073   -2032  -2032  void -2032      the_isles:void                ?              ok
+I1               -1397  3372    -366   -366  I1 -300         minecraft:warm_ocean          sand           ok
+I1               -1257  3372    -323   -314  I1 -300         minecraft:warm_ocean          sand           ok
+I1               -1077  3372   -2032  -2032  void -2032      the_isles:void                ?              ok
+I1               -1397  3656   -2032  -2032  void -2032      the_isles:void                ?              ok
+e1               -2200 -2900     207    208  e1 210          minecraft:snowy_plains        grass_block +snow ok
+e1               -2050 -2900     201    202  e1 210          minecraft:snowy_plains        grass_block +snow ok
+e1               -1860 -2900   -2032  -2032  void -2032      the_isles:void                ?              ok
+e1               -2200 -2596     189    189  void -2032      the_isles:void                grass_block    ok (ragged rim)
+M4                1114 -3126   -1351  -1350  M4 -1350        minecraft:snowy_beach         sand +snow     ok
+M4                1140 -3126   -1351  -1350  M4 -1350        minecraft:snowy_beach         sand +snow     ok
+M4                1206 -3126   -2032  -2032  void -2032      the_isles:void                ?              ok
+M4                1114 -3070   -2032  -2032  void -2032      the_isles:void                ?              ok
+Pt3               3376 -3364    1233   1234  Pt3 1283        minecraft:frozen_peaks        snow_block +snow ok
+Pt3               3430 -3364    1215   1216  Pt3 1283        minecraft:frozen_peaks        snow_block +snow ok
+Pt3               3524 -3364     664    664  P1 700          minecraft:stony_peaks         stone          ok
+Pt3               3376 -3252     610    610  P1 700          minecraft:stony_peaks         stone          ok
+C1               -1150  1992     330    330  C1 334          minecraft:desert              other          ok
+C1               -1000  1992     324    324  C1 334          minecraft:desert              coarse_dirt    ok
+C1                -810  1992   -2032  -2032  void -2032      the_isles:void                ?              ok
+C1               -1150  2296   -2032  -2032  void -2032      the_isles:void                ?              ok
+C5               -1976  2043     292    293  C5 298          minecraft:desert              coarse_dirt    ok
+A6                2145   511    -177   -175  A6 -182         minecraft:forest              #logs          ok
+T4               -2695  3763   -1032  -1032  T4 -1000        minecraft:badlands            sand           ok
+d5                -192  2648     963    971  d5 996          minecraft:warm_ocean          sand           ok
+M5                 835 -3151   -1311  -1310  M5 -1274        minecraft:frozen_ocean        tuff +snow     ok
+f2                3163   341    -524   -523  f2 -516         minecraft:birch_forest        grass_block    ok
+E5                -692 -1898     372    379  E5 380          minecraft:taiga               grass_block    ok
+H7                1892  3445     422    422  H7 438          minecraft:jungle              grass_block    ok
+c4                2759  2959    -723   -722  c4 -716         minecraft:savanna             grass_block    ok
+Q2               -3110 -3154     256    256  Q2 270          minecraft:cherry_grove        grass_block    ok
+n3                3232  2331    -114   -114  n3 -112         minecraft:swamp               grass_block    ok
+R6                3473  2967     544    560  R6 544          minecraft:mangrove_swamp      grass_block    ok
+=isles-stronghold/spawn  -544  -288      51     52  S1 64           minecraft:plains              grass_block    in an island
+=isles-stronghold/K1  -544  -288      51     52  S1 64           minecraft:plains              grass_block    in an island
+=isles-stronghold/T1    80   608      58     63  S1 64           minecraft:plains              grass_block    in an island
+=village_plains/spawn   368   304      56     58  S1 64           minecraft:plains              grass_block    in an island
+=village_plains/K1 -3776  -160    -533   -532  rim i1          minecraft:plains              grass_block    in an island
+=village_plains/T1  -944   320      50     51  rim S1          minecraft:plains              grass_block    in an island
+=trial_chambers/spawn    32     0      61     61  S1 64           minecraft:plains              grass_block    in an island
+=trial_chambers/K1 -3600 -1424    1269   1269  rim K1          minecraft:deep_ocean          other          in an island
+=trial_chambers/T1 -3600  3440    -910   -909  T1 -900         minecraft:desert              sand           in an island
+=ruined_portal/spawn   384    48      56     56  S1 64           minecraft:plains              other          in an island
+=ruined_portal/K1 -3696  -288    -528   -528  i1 -520         minecraft:plains              grass_block    in an island
+=ruined_portal/T1 -1088   272      47     47  rim S1          minecraft:plains              other          in an island
+=pillager_outpost/spawn  -768     0      53     53  S1 64           minecraft:plains              grass_block    in an island
+=desert_pyramid/spawn -2784  2400     194    194  rim l1          minecraft:desert              sandstone      in an island
+=shipwreck/spawn -1344  1040     885    885  g1 900          minecraft:deep_lukewarm_ocean sand           in an island
+=shipwreck/K1    -3456 -1488    1182   1191  K1 1250         minecraft:deep_ocean          other          in an island
+=shipwreck/T1    -2240  3072    -427   -418  I7 -384         minecraft:warm_ocean          sand           in an island
+=ocean_ruin_warm/spawn -1440  1072     839    839  g1 900          minecraft:deep_lukewarm_ocean sand           in an island
+=ocean_ruin_cold/spawn -2464 -1232    1374   1374  K6 1402         minecraft:ocean               sand           in an island
+=igloo/spawn     -3392 -2736     219    220  Q4 266          minecraft:snowy_slopes        snow_block +snow in an island
+=swamp_hut/spawn  3600  3440     589    598  rim R1          minecraft:swamp               grass_block    in an island
+=trail_ruins/spawn -1568 -2144     201    201  E3 228          minecraft:old_growth_spruce_taigapodzol         in an island
+=ruined_portal_mountain/spawn -3088 -3056     245    253  Q2 270          minecraft:cherry_grove        grass_block    in an island
+=ruined_portal_ocean/spawn -1872   960     872    872  g5 880          minecraft:lukewarm_ocean      other          in an island
+
+snow layer on the ground: 8 of 52 probes; in biomes that do not snow in vanilla: none
+
+-- blocks inside 64x64 columns (SCAN)
+   SCANBOX on-C5 desert y 215..358, 96x96 columns
+      logs 16, leaves 269, flowers 168, short_grass 11, bush 575, cactus 174, dead_bush 91, leaf_litter 23, coarse_dirt 5049, bone_block 97, chest 2, granite 38113, tuff 2182, terracotta 19, sandstone 166320
+      none of: tall_grass fern moss_block moss_carpet cobblestone mossy_cobblestone podzol snow water lava coral_blocks sponge wet_sponge magma_block spawner packed_ice ice calcite kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-C5 desert y -9..111 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-A6 forest y -252..-122, 96x96 columns
+      logs 9484, leaves 31052, flowers 38, short_grass 12, fern 679, bush 293, leaf_litter 851, cobblestone 74, mossy_cobblestone 33, coarse_dirt 1571, podzol 1654, chest 1, granite 30362, tuff 82, terracotta 78
+      none of: tall_grass cactus dead_bush moss_block moss_carpet snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner packed_ice ice calcite sandstone kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-A6 forest y -463..-343 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-T4 badlands y -1077..-940, 96x96 columns
+      short_grass 1320, bush 70, dead_bush 24, granite 19793, terracotta 289, sandstone 11427
+      none of: logs leaves flowers tall_grass fern cactus leaf_litter moss_block moss_carpet cobblestone mossy_cobblestone coarse_dirt podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite tuff kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-T4 badlands y -1295..-1175 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-d5 warm_ocean y 931..1056, 96x96 columns
+      logs 3437, leaves 9660, granite 13903, sandstone 26725
+      none of: flowers short_grass tall_grass fern bush cactus dead_bush leaf_litter moss_block moss_carpet cobblestone mossy_cobblestone coarse_dirt podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite tuff terracotta kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-d5 warm_ocean y 725..845 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-M5 frozen_ocean y -1345..-1214, 96x96 columns
+      logs 172, leaves 1596, moss_block 4, snow 8663, chest 1, packed_ice 24, granite 12788, tuff 57767, sandstone 872
+      none of: flowers short_grass tall_grass fern bush cactus dead_bush leaf_litter moss_carpet cobblestone mossy_cobblestone coarse_dirt podzol water lava coral_blocks sponge wet_sponge bone_block magma_block spawner ice calcite terracotta kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-M5 frozen_ocean y -1557..-1437 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-f2 birch_forest y -589..-456, 96x96 columns
+      logs 10570, leaves 17662, flowers 892, short_grass 3581, tall_grass 523, fern 463, leaf_litter 76, coarse_dirt 836, granite 34331, calcite 512, pumpkin 26
+      none of: bush cactus dead_bush moss_block moss_carpet cobblestone mossy_cobblestone podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice tuff terracotta sandstone kelp_plant seagrass sugar_cane
+   SCANBOX under-f2 birch_forest y -802..-682 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-E5 taiga y 307..440, 96x96 columns
+      logs 2084, leaves 20928, flowers 69, short_grass 1730, tall_grass 54, fern 684, moss_carpet 21, cobblestone 94, podzol 1246, granite 33363, tuff 278, pumpkin 5
+      none of: bush cactus dead_bush leaf_litter moss_block mossy_cobblestone coarse_dirt snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite terracotta sandstone kelp_plant seagrass sugar_cane
+   SCANBOX under-E5 taiga y 94..214 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-H7 jungle y 356..498, 96x96 columns
+      logs 7085, leaves 23131, flowers 42, short_grass 1253, tall_grass 29, fern 510, moss_carpet 33, cobblestone 106, granite 33603, tuff 3, pumpkin 1
+      none of: bush cactus dead_bush leaf_litter moss_block mossy_cobblestone coarse_dirt podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite terracotta sandstone kelp_plant seagrass sugar_cane
+   SCANBOX under-H7 jungle y 133..253 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-c4 savanna y -788..-656, 96x96 columns
+      logs 425, leaves 2326, flowers 65, short_grass 2516, tall_grass 99, coarse_dirt 2523, granite 37364, tuff 130
+      none of: fern bush cactus dead_bush leaf_litter moss_block moss_carpet cobblestone mossy_cobblestone podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite terracotta sandstone kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-c4 savanna y -1000..-880 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-Q2 cherry_grove y 183..330, 96x96 columns
+      logs 1538, leaves 19960, flowers 2218, short_grass 2368, tall_grass 54, moss_carpet 31, cobblestone 279, podzol 264, water 74, granite 36055, tuff 1118
+      none of: fern bush cactus dead_bush leaf_litter moss_block mossy_cobblestone coarse_dirt snow lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite terracotta sandstone kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-Q2 cherry_grove y -44..76 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-n3 swamp y -173..-52, 96x96 columns
+      logs 1372, leaves 9278, flowers 87, short_grass 2087, tall_grass 102, dead_bush 27, moss_carpet 262, bone_block 32, granite 24227, pumpkin 5
+      none of: fern bush cactus leaf_litter moss_block cobblestone mossy_cobblestone coarse_dirt podzol snow water lava coral_blocks sponge wet_sponge magma_block spawner chest packed_ice ice calcite tuff terracotta sandstone kelp_plant seagrass sugar_cane
+   SCANBOX under-n3 swamp y -375..-255 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX on-R6 mangrove_swamp y 446..604, 96x96 columns
+      logs 2911, leaves 44718, short_grass 1009, dead_bush 24, moss_carpet 942, granite 38344, tuff 20401
+      none of: flowers tall_grass fern bush cactus leaf_litter moss_block cobblestone mossy_cobblestone coarse_dirt podzol snow water lava coral_blocks sponge wet_sponge bone_block magma_block spawner chest packed_ice ice calcite terracotta sandstone kelp_plant seagrass pumpkin sugar_cane
+   SCANBOX under-R6 mangrove_swamp y 207..327 (in the open under the island)
+      
+      none of: logs leaves base_stone_overworld dirt sand terracotta ice water lava sandstone coral_blocks cobblestone mossy_cobblestone bone_block packed_ice gravel deepslate tuff obsidian magma_block kelp_plant
+   SCANBOX below-C5 desert y -49..111, whole footprint, volume 14011025
+      air 14011025
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-A6 forest y -503..-343, whole footprint, volume 18068225
+      air 18068225
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-T4 badlands y -1335..-1175, whole footprint, volume 17426801
+      air 17426801
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-d5 warm_ocean y 685..845, whole footprint, volume 15174089
+      air 15174089
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-M5 frozen_ocean y -1597..-1437, whole footprint, volume 18941489
+      water 11, air 18941478
+      none of: lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-f2 birch_forest y -842..-682, whole footprint, volume 13261409
+      air 13261409
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-E5 taiga y 54..214, whole footprint, volume 10469025
+      air 10469025
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-c4 savanna y -1040..-880, whole footprint, volume 20062049
+      air 20062049
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-Q2 cherry_grove y -84..76, whole footprint, volume 16383521
+      air 16383521
+      none of: water lava vine cave_vines cave_vines_plant pointed_dripstone logs leaves mangrove_roots hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp base_stone_overworld dirt sand sandstone terracotta gravel ice
+   SCANBOX below-n3 swamp y -415..-255, whole footprint, volume 8296169
+      vine 34, leaves 10, mangrove_roots 4, base_stone_overworld 44, air 8296002
+      none of: water lava cave_vines cave_vines_plant pointed_dripstone logs hanging_roots glow_lichen fences cobweb snow powder_snow kelp_plant kelp dirt sand sandstone terracotta gravel ice
+   floor-under-old-stronghold
+      
+      none of: stone_bricks iron_bars
+   floor-under-old-mineshaft
+      
+      none of: oak_planks rail
+   M5-world-bottom-64
+      
+      none of: packed_ice blue_ice snow_block ice
+   e3-below-the-island-y50..116
+      packed_ice 27
+      none of: 
+   e3-on-the-island
+      packed_ice 6786
+      none of: 
+   SCANBOX cave-centre-sea 48x48 columns at 64 64, y -395..-339, volume 131328
+      air 71814, water 1312, grass_block 9, deepslate 22567, basalt 357, gravel 216, coal_ore 18, iron_ore 4, gold_ore 5, redstone_ore 21, lapis_ore 10, diamond_ore 48, deepslate_iron_ore 13, deepslate_diamond_ore 162, stone 33785
+      none of: lava light mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block tuff sculk prismarine logs leaves flowers short_grass red_mushroom_block brown_mushroom_block copper_ore emerald_ore spawner chest
+   SCANBOX cave-centre-high 48x48 columns at 64 64, y -150..-12, volume 320256
+      air 7050, lava 88, light 222, grass_block 1246, deepslate 367, tuff 681, sculk 80, gravel 4051, logs 89, leaves 683, coal_ore 3680, iron_ore 4476, copper_ore 3628, lapis_ore 15, deepslate_iron_ore 21, stone 286603
+      none of: water mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block basalt prismarine flowers short_grass red_mushroom_block brown_mushroom_block gold_ore redstone_ore diamond_ore emerald_ore deepslate_diamond_ore spawner chest
+   SCANBOX cave-centre-mid 48x48 columns at 64 64, y -290..-151, volume 322560
+      air 36476, grass_block 1919, deepslate 171072, tuff 1145, sculk 1948, prismarine 160, gravel 2616, logs 900, leaves 3619, coal_ore 398, iron_ore 429, copper_ore 1177, gold_ore 24, redstone_ore 3, lapis_ore 51, deepslate_iron_ore 1098, deepslate_diamond_ore 162, stone 78030
+      none of: water lava light mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block basalt flowers short_grass red_mushroom_block brown_mushroom_block diamond_ore emerald_ore spawner chest
+   SCANBOX cave-centre-low 48x48 columns at 64 64, y -395..-291, volume 241920
+      air 16244, water 271, grass_block 4, deepslate 65096, tuff 195, basalt 44, sculk 78, gravel 650, coal_ore 14, iron_ore 4, gold_ore 33, redstone_ore 17, lapis_ore 10, deepslate_iron_ore 363, deepslate_diamond_ore 56, stone 25542
+      none of: lava light mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block prismarine logs leaves flowers short_grass red_mushroom_block brown_mushroom_block copper_ore diamond_ore emerald_ore spawner chest
+   SCANBOX cave-mid-sea 48x48 columns at 416 -272, y -395..-339, volume 131328
+      air 120202, water 512, grass_block 28, deepslate 1783, gravel 169, gold_ore 3, lapis_ore 2, diamond_ore 1, deepslate_iron_ore 2, deepslate_diamond_ore 13, stone 8410
+      none of: lava light mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block tuff basalt sculk prismarine logs leaves flowers short_grass red_mushroom_block brown_mushroom_block coal_ore iron_ore copper_ore redstone_ore emerald_ore spawner chest
+   SCANBOX cave-mid-high 48x48 columns at 416 -272, y -150..-12, volume 320256
+      air 40519, water 1, light 753, grass_block 4170, deepslate 1098, tuff 1623, sculk 25, gravel 3864, logs 735, leaves 5794, coal_ore 2825, iron_ore 3698, copper_ore 3211, gold_ore 6, lapis_ore 13, deepslate_iron_ore 118, stone 232529
+      none of: lava mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block basalt prismarine flowers short_grass red_mushroom_block brown_mushroom_block redstone_ore diamond_ore emerald_ore deepslate_diamond_ore spawner chest
+   SCANBOX cave-mid-mid 48x48 columns at 416 -272, y -290..-151, volume 322560
+      air 53202, grass_block 981, calcite 820, deepslate 80156, tuff 954, sculk 1219, gravel 2364, logs 315, leaves 1202, coal_ore 702, iron_ore 581, copper_ore 1433, gold_ore 114, redstone_ore 52, lapis_ore 86, diamond_ore 5, deepslate_iron_ore 567, deepslate_diamond_ore 73, spawner 1, chest 2, stone 168694
+      none of: water lava light mycelium mud moss_block sand packed_ice blue_ice snow_block amethyst_block honeycomb_block dripstone_block basalt prismarine flowers short_grass red_mushroom_block brown_mushroom_block emerald_ore
+   SCANBOX cave-mid-low 48x48 columns at 416 -272, y -395..-291, volume 241920
+      air 83635, water 69, grass_block 391, deepslate 6227, sculk 235, gravel 107, logs 119, leaves 563, coal_ore 6, iron_ore 3, gold_ore 19, redstone_ore 4, lapis_ore 7, diamond_ore 5, deepslate_iron_ore 31, deepslate_diamond_ore 4, stone 17278
+      none of: lava light mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block tuff basalt prismarine flowers short_grass red_mushroom_block brown_mushroom_block copper_ore emerald_ore spawner chest
+   SCANBOX cave-outer-sea 48x48 columns at -784 368, y -395..-339, volume 131328
+      air 131328
+      none of: water lava light grass_block mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block deepslate tuff basalt sculk prismarine gravel logs leaves flowers short_grass red_mushroom_block brown_mushroom_block coal_ore iron_ore copper_ore gold_ore redstone_ore lapis_ore diamond_ore emerald_ore deepslate_iron_ore deepslate_diamond_ore spawner chest stone
+   SCANBOX cave-outer-high 48x48 columns at -784 368, y -150..-12, volume 320256
+      air 59420, light 692, grass_block 3006, sand 58, deepslate 815, tuff 1063, gravel 2572, logs 493, leaves 3601, coal_ore 2309, iron_ore 3901, copper_ore 2466, lapis_ore 6, deepslate_iron_ore 22, stone 224570
+      none of: water lava mycelium mud moss_block packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block basalt sculk prismarine flowers short_grass red_mushroom_block brown_mushroom_block gold_ore redstone_ore diamond_ore emerald_ore deepslate_diamond_ore spawner chest
+   SCANBOX cave-outer-mid 48x48 columns at -784 368, y -290..-151, volume 322560
+      air 270468, gravel 2, coal_ore 65, iron_ore 22, copper_ore 67, lapis_ore 4, stone 50330
+      none of: water lava light grass_block mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block deepslate tuff basalt sculk prismarine logs leaves flowers short_grass red_mushroom_block brown_mushroom_block gold_ore redstone_ore diamond_ore emerald_ore deepslate_iron_ore deepslate_diamond_ore spawner chest
+   SCANBOX cave-outer-low 48x48 columns at -784 368, y -395..-291, volume 241920
+      air 110592
+      none of: water lava light grass_block mycelium mud moss_block sand packed_ice blue_ice snow_block calcite amethyst_block honeycomb_block dripstone_block deepslate tuff basalt sculk prismarine gravel logs leaves flowers short_grass red_mushroom_block brown_mushroom_block coal_ore iron_ore copper_ore gold_ore redstone_ore lapis_ore diamond_ore emerald_ore deepslate_iron_ore deepslate_diamond_ore spawner chest stone
+   SCANBOX floor-SK1 spiral_ledge y -160..-90 in the shaft
+      grass_block 2606, logs 3210
+      none of: water ice snow
+   SCANBOX floor-SK2 water_landing y -160..-90 in the shaft
+      water 1178, ice 12, grass_block 3630, logs 1663
+      none of: snow
+   SCANBOX floor-SK3 water_landing y -160..-90 in the shaft
+      water 2711, ice 3, grass_block 7130, logs 3433
+      none of: snow
+   SCANBOX floor-SK4 sheer_drop y -160..-90 in the shaft
+      water 4, ice 2, grass_block 5776, logs 1925
+      none of: snow
+   SCANBOX floor-SK5 sheer_drop y -160..-90 in the shaft
+      water 12, grass_block 3169, logs 337
+      none of: ice snow
+   SCANBOX floor-SK6 sheer_drop y -160..-90 in the shaft
+      water 1, ice 1, grass_block 2620, logs 616
+      none of: snow
+   SCANBOX S1 plains y -556..74
+      stone 898183, deepslate 521959, dirt 59333, gravel 21117, granite 12844, diorite 13959, andesite 12386, tuff 10478, coal_ore 6481, iron_ore 8227, copper_ore 7925, gold_ore 214, redstone_ore 144, lapis_ore 409, diamond_ore 180, deepslate_iron_ore 2876, deepslate_diamond_ore 1253, deepslate_redstone_ore 2530, water 4881, lava 81
+      none of: emerald_ore
+   SCANBOX B1 savanna y 22..254
+      stone 447119, dirt 15486, gravel 8897, granite 19986, diorite 19312, andesite 20600, tuff 19274, coal_ore 2259, iron_ore 5757, copper_ore 1492, gold_ore 478, redstone_ore 701, lapis_ore 466, diamond_ore 471
+      none of: deepslate emerald_ore deepslate_iron_ore deepslate_diamond_ore deepslate_redstone_ore water lava
+   SCANBOX a1 taiga y 577..910
+      stone 746134, dirt 14363, gravel 8539, granite 16044, diorite 18055, andesite 17817, tuff 20039, coal_ore 2797, iron_ore 1355, copper_ore 1506, gold_ore 499, redstone_ore 698, lapis_ore 488, diamond_ore 512
+      none of: deepslate emerald_ore deepslate_diamond_ore deepslate_redstone_ore water lava
+      no answer: minecraft:deepslate_iron_ore
+   SCANBOX T1 desert y -1267..-890
+      stone 954299, dirt 14647, gravel 8489, granite 17270, diorite 15621, andesite 17913, tuff 21110, coal_ore 1470, iron_ore 1269, copper_ore 1368, gold_ore 471, redstone_ore 690, lapis_ore 437, diamond_ore 460, deepslate_iron_ore 4, deepslate_diamond_ore 44, deepslate_redstone_ore 49
+      none of: deepslate emerald_ore water lava
+   SCANBOX S2 sunflower_plains y -100..26
+      stone 151342, dirt 11136, gravel 2276, granite 13782, diorite 14375, andesite 15569, coal_ore 1494, iron_ore 710, copper_ore 1066, gold_ore 32, redstone_ore 5, lapis_ore 116, diamond_ore 4
+      none of: deepslate tuff emerald_ore deepslate_iron_ore deepslate_diamond_ore deepslate_redstone_ore water lava
+
+-- structures (vanilla): /locate, the ground there, the structure's marker blocks from 130 below to 70 above that ground (5x5 chunks), in the rest of those columns, and of all of them in the lowest 200 layers of the world
+   structure/from                            found at  island  ground   near elsewhere  floor locate s  verdict
+   isles-stronghold/spawn                   -544 -288     Sh2      51     12         0      0     12.3  ok
+   isles-stronghold/K1                      -544 -288     Sh2      51     12         0      0      1.2  ok
+   isles-stronghold/T1                         80 608      S1      58     12         0      0      0.1  ok
+   village_plains/spawn                       368 304      S1      56      4         0      0      2.2  ok
+   village_plains/K1                       -3776 -160      i1    -533      6         0      0      1.2  ok
+   village_plains/T1                         -944 320      S1      50      7         0      0      2.2  ok
+   trial_chambers/spawn                          32 0      S1      61  36039         0      0      1.2  ok
+   trial_chambers/K1                      -3600 -1424      K1    1269  47948         0      0      1.2  ok
+   trial_chambers/T1                       -3600 3440      T1    -910  22078         0      0      1.2  ok
+   ruined_portal/spawn                         384 48      S1      56      8      2513      0      1.2  ok (reaches more than 130 below / 70 above the ground at its start)
+   ruined_portal/K1                        -3696 -288      i1    -528     14         0      0      1.2  ok
+   ruined_portal/T1                         -1088 272      S1      47     12         0      0      1.2  ok
+   pillager_outpost/spawn                      -768 0      S1      53    347         0      0      1.2  ok
+   desert_pyramid/spawn                    -2784 2400      l1     194     62         0      0      1.2  ok
+   shipwreck/spawn                         -1344 1040      g1     885    233         0      0      1.2  ok
+   shipwreck/K1                           -3456 -1488      K1    1182    356         0      0      1.2  ok
+   shipwreck/T1                            -2240 3072      I7    -427    244         0      0      1.2  ok
+   ocean_ruin_warm/spawn                   -1440 1072      g1     839    224         0      0      1.2  ok
+   ocean_ruin_cold/spawn                  -2464 -1232      K6    1374      9         0      0      1.2  ok
+   buried_treasure/spawn                            -                                              2.2  not found
+   igloo/spawn                            -3392 -2736      Q4     219      1         0      0      0.1  ok
+   jungle_pyramid/spawn                             -                                             20.3  not found
+   swamp_hut/spawn                          3600 3440      R1     589     84         0      0      1.2  ok
+   trail_ruins/spawn                      -1568 -2144      E3     201    104         0      0      1.2  ok
+   village_desert/spawn                             -                                             20.3  not found
+   ruined_portal_mountain/spawn           -3088 -3056      Q2     245     11         0      0      1.2  ok
+   ruined_portal_ocean/spawn                -1872 960      g5     872     15         0      0      1.2  ok
+   stronghold/spawn                                 -                                              1.2  off, as generated
+   mineshaft/spawn                                  -                                              0.2  off, as generated
+   mineshaft_mesa/spawn                             -                                              0.1  off, as generated
+   monument/spawn                                   -                                              0.1  off, as generated
+   mansion/spawn                                    -                                              0.1  off, as generated
+   ancient_city/spawn                               -                                              0.1  off, as generated
+   isles-stronghold/spawn y-of-the-frames minecraft:structure_void: No blocks were filled | No blocks were filled | Successfully filled 12 block(s) | No blocks were filled | No blocks were filled | No blocks were filled
+   isles-stronghold/K1 y-of-the-frames minecraft:structure_void: No blocks were filled | No blocks were filled | Successfully filled 12 block(s) | No blocks were filled | No blocks were filled | No blocks were filled
+   isles-stronghold/T1 y-of-the-frames minecraft:structure_void: No blocks were filled | No blocks were filled | No blocks were filled | Successfully filled 12 block(s) | No blocks were filled | No blocks were filled
+   floor-under-old-stronghold y-2032..-1872 minecraft:stone_bricks: No blocks were filled
+   floor-under-old-stronghold y-2032..-1872 minecraft:iron_bars: No blocks were filled
+   floor-under-old-mineshaft y-2032..-1872 minecraft:oak_planks: No blocks were filled
+   floor-under-old-mineshaft y-2032..-1872 minecraft:rail: No blocks were filled
+
+-- cave world: lines through the spawn island (open stretches; V: blocks below y 90, H: blocks east of the start)
+   col         0 0 from 90            ground y   56, underside y  -478, rock over the first cavern   98, rock under the last  298, 5 caverns, 32 open blocks; open at y 38..38 30..30 -50..-42 -140..-128 -178..-176
+   col         300 0 from 90          ground y   72, underside y  -456, rock over the first cavern  212, rock under the last  308, 3 caverns, 14 open blocks; open at y 70..70 60..62 -146..-140
+   col         -300 200 from 90       ground y   60, underside y  -422, rock over the first cavern   84, rock under the last   84, 9 caverns, 40 open blocks; open at y -24..-24 -72..-72 -94..-94 -102..-98 -108..-108 -176..-164 -186..-180 -224..-224 -336..-336
+   col         200 -400 from 90       ground y   52, underside y  -368, rock over the first cavern  112, rock under the last  286, 2 caverns, 14 open blocks; open at y -68..-60 -80..-78
+   col         600 100 from 90        ground y   52, underside y  -290, rock over the first cavern   84, rock under the last  160, 3 caverns, 44 open blocks; open at y -32..-32 -80..-78 -128..-92
+   col         -650 450 from 90       ground y   52, underside y  -204, rock over the first cavern  164, rock under the last   90, 2 caverns, 6 open blocks; open at y 34..36 -112..-112
+   col         850 -300 from 90       ground y   48, underside y  -128, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   col         -900 -500 from 90      ground y   60, underside y   -44, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   col         1000 300 from 90       ground y   50, underside y   -78, rock over the first cavern   80, rock under the last   44, 1 caverns, 4 open blocks; open at y -32..-30
+   col         0 1050 from 90         ground y   44, underside y   -32, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   col         -1080 0 from 90        ground y   44, underside y    30, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   col         560 -900 from 90       ground y   48, underside y   -44, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   sink-SK1    140 -90 from 90        ground y -152, underside y  -430, rock over the first cavern   30, rock under the last  244, 1 caverns, 4 open blocks; open at y -184..-182
+   sink-SK2    -650 -300 from 90      ground y -136, underside y  -266, rock over the first cavern   48, rock under the last   80, 1 caverns, 2 open blocks; open at y -184..-184
+   sink-SK3    520 450 from 90        ground y -130, underside y  -258, rock over the first cavern    2, rock under the last   62, 4 caverns, 8 open blocks; open at y -132..-132 -142..-142 -146..-146 -194..-194
+   sink-SK4    -200 700 from 90       ground y -112, underside y  -264, rock over the first cavern    2, rock under the last  114, 3 caverns, 10 open blocks; open at y -116..-114 -124..-124 -148..-146
+   sink-SK5    700 -500 from 90       ground y -130, underside y  -174, rock over the first cavern None, rock under the last None, 0 caverns, 0 open blocks; open at y 
+   sink-SK6    -750 350 from 90       ground y -120, underside y  -176, rock over the first cavern    2, rock under the last   44, 1 caverns, 10 open blocks; open at y -130..-122
+   ramp-SK1    196 -84 from 90        ground y   58, underside y  -426, rock over the first cavern   78, rock under the last  258, 7 caverns, 164 open blocks; open at y 28..52 -12..14 -44..-20 -82..-58 -116..-92 -148..-130 -166..-156
+   east        800 -60 0              open stretches (blocks east) 0..46 200..418; rock between the last cavern and the void: 152
+   east-deep   800 -160 0             open stretches (blocks east) 4..4 38..56 86..104 110..116 148..418; rock between the last cavern and the void: 30
+   biomes col          plains | plains | dh:bronze_sanctuary | dh:bronze_sanctuary | dh:bronze_sanctuary | dh:dry_midlands | dh:dry_midlands | dh:dry_midlands | dh:dry_midlands | dh:dry_midlands | dh:black_sea | dh:black_sea
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:black_sea | dh:black_sea
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:floral_grove | dh:floral_grove | dh:floral_grove | dh:floral_grove | dh:floral_grove | dh:black_sea | plains
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | plains | plains
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | plains | plains | plains | plains
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:floral_grove | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | dh:orichalc_highlands | plains | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes col          plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains | plains
+   biomes sink-SK1     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:shadow_woods | dh:ocean | plains
+   biomes sink-SK2     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | plains | plains | plains | plains | plains
+   biomes sink-SK3     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | plains | plains | plains | plains | plains
+   biomes sink-SK4     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | dh:shadow_woods | dh:shadow_woods | plains | plains | plains | plains | plains
+   biomes sink-SK5     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | plains | plains | plains | plains | plains | plains | plains
+   biomes sink-SK6     plains | plains | dh:orichalc_highlands | dh:orichalc_highlands | dh:orichalc_highlands | plains | plains | plains | plains | plains | plains | plains
+   biomes ramp-SK1     plains | plains | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:honeycomb_caves | dh:ocean | plains
+
+-- BODY
+   S1                                 AT stone | AT air
+   K1                                 AT stone | AT air
+   I1                                 AT stone | AT air
+   e1                                 AT stone | AT air
+   M4                                 AT stone | AT air
+   Pt3                                AT stone | AT air
+   C1                                 AT stone | AT air
+
+-- MID
+   S1 -136                            AT air | BIOME dwho:bronze_sanctuary | TOPBIOMEOK S1
+   K1 1178                            AT stone | BIOME minecraft:deep_ocean | TOPBIOMEOK K1 | Can't keep up! Is the server overloaded? Running 8694ms or 173 ticks behind
+   I1 -373                            AT stone | BIOME minecraft:warm_ocean | TOPBIOMEOK I1
+   e1 117                             AT stone | BIOME minecraft:snowy_plains | TOPBIOMEOK e1 | Can't keep up! Is the server overloaded? Running 3367ms or 67 ticks behind
+   M4 -1363                           AT stone | BIOME minecraft:snowy_beach | TOPBIOMEOK M4
+   Pt3 1217                           AT stone | BIOME minecraft:frozen_peaks | TOPBIOMEOK Pt3 | Can't keep up! Is the server overloaded? Running 5501ms or 110 ticks behind
+   C1 255                             AT stone | BIOME minecraft:desert | TOPBIOMEOK C1
+
+-- COUNT
+   cow                                Test passed. Count: 41
+   sheep                              Test passed. Count: 21
+   pig                                Test passed. Count: 37
+   chicken                            Test passed. Count: 25
+   horse                              Test passed. Count: 15
+   rabbit                             Test failed
+   wolf                               Test failed
+   fox                                Test failed
+   llama                              Test failed
+   goat                               Test failed
+   frog                               Test failed
+   parrot                             Test failed
+   panda                              Test failed
+   camel                              Test failed
+   armadillo                          Test failed
+   polar_bear                         Test failed
+   donkey                             Test failed
+   mooshroom                          Test failed
+   turtle                             Test failed
+   ocelot                             Test failed
+   cat                                Test failed
+
+-- LOCATE
+   isles-stronghold/spawn             The nearest the_isles:stronghold is at [-544, ~, -288] (615 blocks away) | Locating element the_isles:stronghold took 32 ms | Can't keep up! Is the server overloaded? Running 17626ms or 352 ticks behind
+   isles-stronghold/K1                The nearest the_isles:stronghold is at [-544, ~, -288] (3037 blocks away) | Locating element the_isles:stronghold took 617 ms
+   isles-stronghold/T1                The nearest the_isles:stronghold is at [80, ~, 608] (4433 blocks away) | Locating element the_isles:stronghold took 17 ms | Can't keep up! Is the server overloaded? Running 5836ms or 116 ticks behind
+   village_plains/spawn               The nearest minecraft:village_plains is at [368, ~, 304] (477 blocks away) | Locating element minecraft:village_plains took 1148 ms
+   village_plains/K1                  The nearest minecraft:village_plains is at [-3776, ~, -160] (1301 blocks away) | Locating element minecraft:village_plains took 216 ms | Can't keep up! Is the server overloaded? Running 3293ms or 65 ticks behind
+   village_plains/T1                  The nearest minecraft:village_plains is at [-944, ~, 320] (3911 blocks away) | Locating element minecraft:village_plains took 692 ms
+   trial_chambers/spawn               The nearest minecraft:trial_chambers is at [32, ~, 0] (32 blocks away) | Locating element minecraft:trial_chambers took 0 ms
+   trial_chambers/K1                  The nearest minecraft:trial_chambers is at [-3600, ~, -1424] (229 blocks away) | Locating element minecraft:trial_chambers took 68 ms | Can't keep up! Is the server overloaded? Running 4709ms or 94 ticks behind
+   trial_chambers/T1                  The nearest minecraft:trial_chambers is at [-3600, ~, 3440] (228 blocks away) | Locating element minecraft:trial_chambers took 61 ms
+   ruined_portal/spawn                The nearest minecraft:ruined_portal is at [384, ~, 48] (386 blocks away) | Locating element minecraft:ruined_portal took 0 ms | Can't keep up! Is the server overloaded? Running 2996ms or 59 ticks behind
+   ruined_portal/K1                   The nearest minecraft:ruined_portal is at [-3696, ~, -288] (1155 blocks away) | Locating element minecraft:ruined_portal took 138 ms
+   ruined_portal/T1                   The nearest minecraft:ruined_portal is at [-1088, ~, 272] (3861 blocks away) | Locating element minecraft:ruined_portal took 809 ms
+   pillager_outpost/spawn             The nearest minecraft:pillager_outpost is at [-768, ~, 0] (768 blocks away) | Locating element minecraft:pillager_outpost took 100 ms | Can't keep up! Is the server overloaded? Running 4787ms or 95 ticks behind
+   desert_pyramid/spawn               The nearest minecraft:desert_pyramid is at [-2784, ~, 2400] (3675 blocks away) | Locating element minecraft:desert_pyramid took 103 ms
+   shipwreck/spawn                    The nearest minecraft:shipwreck is at [-1344, ~, 1040] (1699 blocks away) | Locating element minecraft:shipwreck took 26 ms | Can't keep up! Is the server overloaded? Running 3277ms or 65 ticks behind
+   shipwreck/K1                       The nearest minecraft:shipwreck is at [-3456, ~, -1488] (123 blocks away) | Locating element minecraft:shipwreck took 0 ms
+   shipwreck/T1                       The nearest minecraft:shipwreck is at [-2240, ~, 3072] (1180 blocks away) | Locating element minecraft:shipwreck took 34 ms | Can't keep up! Is the server overloaded? Running 3076ms or 61 ticks behind
+   ocean_ruin_warm/spawn              The nearest minecraft:ocean_ruin_warm is at [-1440, ~, 1072] (1795 blocks away) | Locating element minecraft:ocean_ruin_warm took 32 ms
+   ocean_ruin_cold/spawn              The nearest minecraft:ocean_ruin_cold is at [-2464, ~, -1232] (2754 blocks away) | Locating element minecraft:ocean_ruin_cold took 91 ms | Can't keep up! Is the server overloaded? Running 2936ms or 58 ticks behind
+   buried_treasure/spawn              Could not find a structure of type "minecraft:buried_treasure" nearby | y has 1374 [pt] | ws has 1374 [pt]
+   igloo/spawn                        The nearest minecraft:igloo is at [-3392, ~, -2736] (4357 blocks away) | Locating element minecraft:igloo took 74 ms
+   jungle_pyramid/spawn               Could not find a structure of type "minecraft:jungle_pyramid" nearby | Can't keep up! Is the server overloaded? Running 16783ms or 335 ticks behind | y has 219 [pt] | ws has 220 [pt]
+   swamp_hut/spawn                    The nearest minecraft:swamp_hut is at [3600, ~, 3440] (4979 blocks away) | Locating element minecraft:swamp_hut took 93 ms
+   trail_ruins/spawn                  The nearest minecraft:trail_ruins is at [-1568, ~, -2144] (2656 blocks away) | Locating element minecraft:trail_ruins took 47 ms
+   village_desert/spawn               Could not find a structure of type "minecraft:village_desert" nearby | Can't keep up! Is the server overloaded? Running 20381ms or 407 ticks behind | y has 201 [pt] | ws has 201 [pt]
+   ruined_portal_mountain/spawn       The nearest minecraft:ruined_portal_mountain is at [-3088, ~, -3056] (4344 blocks away) | Locating element minecraft:ruined_portal_mountain took 563 ms
+   ruined_portal_ocean/spawn          The nearest minecraft:ruined_portal_ocean is at [-1872, ~, 960] (2103 blocks away) | Locating element minecraft:ruined_portal_ocean took 257 ms
+   stronghold/spawn                   Could not find a structure of type "minecraft:stronghold" nearby
+   mineshaft/spawn                    Could not find a structure of type "minecraft:mineshaft" nearby
+   mineshaft_mesa/spawn               Could not find a structure of type "minecraft:mineshaft_mesa" nearby
+   monument/spawn                     Could not find a structure of type "minecraft:monument" nearby
+   mansion/spawn                      Could not find a structure of type "minecraft:mansion" nearby
+   ancient_city/spawn                 Could not find a structure of type "minecraft:ancient_city" nearby | Can't keep up! Is the server overloaded? Running 4867ms or 97 ticks behind
+   biome minecraft:jagged_peaks       The nearest minecraft:jagged_peaks is at [3136, 761, -3136] (4490 blocks away) | Locating element minecraft:jagged_peaks took 740 ms | Can't keep up! Is the server overloaded? Running 4554ms or 91 ticks behind
+   biome minecraft:mushroom_fields    The nearest minecraft:mushroom_fields is at [-2720, 57, -1056] (2917 blocks away) | Locating element minecraft:mushroom_fields took 913 ms
+   biome the_isles:void               The nearest the_isles:void is at [0, -1543, 0] (1600 blocks away) | Locating element the_isles:void took 0 ms
+
+-- CHECK
+   commands done                      Stopping the server | Stopping server | Saving players | Saving worlds | Saving chunks for level 'ServerLevel[world]'/minecraft:overworld | Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether | Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+
+-- other
+    [10:17:14]  SECTION start
+    [10:17:14]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 9.9ms (Target: 50.0ms)
+    [10:17:14]  Percentiles: P50: 0.0ms P95: 47.7ms P99: 82.1ms. Sample: 100
+    [10:17:14]  SECTION islands
+    [10:19:11]  SECTION biomes
+    [10:34:34]  SECTION structures
+    [10:39:42]  PREGEN land start 256
+    [10:40:00]  PREGEN land done 256
+    [10:40:03]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 11.2ms (Target: 50.0ms)
+    [10:40:03]  Percentiles: P50: 7.4ms P95: 33.1ms P99: 47.2ms. Sample: 100
+    [10:40:04]  SECTION animals
+    [10:40:32]  PREGEN void start 256
+    [10:40:41]  PREGEN void done 256
+    [10:40:45]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 1.8ms (Target: 50.0ms)
+    [10:40:45]  Percentiles: P50: 0.7ms P95: 6.2ms P99: 33.6ms. Sample: 100
+    [10:41:07]  PREGEN tiers start 64
+    [10:41:12]  PREGEN tiers done 64
+    [10:41:15]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 32.2ms (Target: 50.0ms)
+    [10:41:15]  Percentiles: P50: 0.7ms P95: 4.0ms P99: 3103.9ms. Sample: 100
+    [10:41:16]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 32.6ms (Target: 50.0ms)
+    [10:41:16]  Percentiles: P50: 0.7ms P95: 6.3ms P99: 3103.9ms. Sample: 100
+    [10:41:16]  SECTION caves
+    [10:47:31]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 1.6ms (Target: 50.0ms)
+    [10:47:31]  Percentiles: P50: 0.4ms P95: 8.8ms P99: 27.2ms. Sample: 100
+    [10:47:31]  SECTION end vanilla
+    [10:47:31]  SECTION ores
+    [10:48:42]  SECTION end vanilla-ores
+
+================ pack ================
+boot: Done (4.480s)! For help, type "help"
+ERROR/WARN lines: 1
+    [10:17:09] [main/WARN]: Warnings were found!
+
+probe                x     z  ground   surf  expected        biome                         top            verdict
+spawn                0     0      57     58  S1 64           minecraft:plains              grass_block    ok
+tube-K5          -3660 -1150    1241   1241  rim K5          minecraft:stony_shore         stone          ok
+tube-gap         -3608 -1150   -2032  -2032  void -2032      the_isles:void                ?              ok
+tube-K1          -3540 -1150   -2032  -2032  rim K1          the_isles:void                ?              ok
+
+snow layer on the ground: 0 of 2 probes; in biomes that do not snow in vanilla: none
+
+-- blocks inside 64x64 columns (SCAN)
+   nether
+      netherrack 738101, sulfur_ore 888, nether_quartz_ore 2299, nether_gold_ore 747, scoria 6141
+      none of: bedrock
+   S1-bedrock
+      
+      none of: bedrock
+
+-- COUNT
+   generated cow                      Test passed. Count: 4
+   generated sheep                    Test passed. Count: 2
+   generated pig                      Test passed. Count: 8
+   generated chicken                  Test passed. Count: 1
+   generated horse                    Test failed
+   generated donkey                   Test failed
+   generated rabbit                   Test failed
+   generated wolf                     Test failed
+   generated fox                      Test failed
+   generated frog                     Test failed
+   generated untitledduckmod:duck     Test failed
+   generated untitledduckmod:goose    Test failed | Set packtest's game mode to Survival Mode | packtest was killed | Killed packtest
+   cave zombie                        Test passed. Count: 25
+   cave skeleton                      Test passed. Count: 15
+   cave creeper                       Test passed. Count: 16
+   cave spider                        Test passed. Count: 11
+   cave enderman                      Test passed. Count: 1
+   cave witch                         Test failed
+   cave slime                         Test passed. Count: 1
+   cave bat                           Test passed. Count: 10
+   cave cave_spider                   Test failed
+   cave glow_squid                    Test failed
+   cave cow                           Test passed. Count: 4
+   cave sheep                         Test passed. Count: 8
+   cave pig                           Test passed. Count: 1
+   cave chicken                       Test passed. Count: 9
+   cave armadillo                     Test passed. Count: 1
+   cave bogged                        Test failed
+   cave stray                         Test failed
+   cave drowned                       Test failed
+   cave axolotl                       Test failed | The game is running normally | Target tick rate: 20.0 per second. | Percentiles: P50: 15.3ms P95: 32.5ms P99: 133.9ms. Sample: 100 | Game rule spawn_monsters is now set to false | Set packtest's game mode to Spectator Mode
+
+-- OIL
+   S1 plains +0                       There is 6,995,801mB of Oil in this Chunk.
+   S1 plains +48                      There is 0mB of Oil in this Chunk.
+   S1 plains +96                      There is 6,841,167mB of Oil in this Chunk.
+   C1 desert +0                       There is 5,941,666mB of Oil in this Chunk.
+   C1 desert +48                      There is 7,105,363mB of Oil in this Chunk.
+   C1 desert +96                      There is 5,738,546mB of Oil in this Chunk.
+   B1 savanna +0                      There is 6,030,829mB of Oil in this Chunk.
+   B1 savanna +48                     There is 0mB of Oil in this Chunk.
+   B1 savanna +96                     There is 8,129,838mB of Oil in this Chunk. | Can't keep up! Is the server overloaded? Running 4702ms or 94 ticks behind
+   C2 badlands +0                     There is 7,182,222mB of Oil in this Chunk.
+   C2 badlands +48                    There is 5,536,907mB of Oil in this Chunk.
+   C2 badlands +96                    There is 7,276,617mB of Oil in this Chunk.
+   D1 deep_lukewarm_ocean +0          There is 0mB of Oil in this Chunk.
+   D1 deep_lukewarm_ocean +48         There is 7,296,563mB of Oil in this Chunk.
+   D1 deep_lukewarm_ocean +96         There is 4,950,307mB of Oil in this Chunk.
+   K1 deep_ocean +0                   There is 6,211,195mB of Oil in this Chunk.
+   K1 deep_ocean +48                  There is 4,247,467mB of Oil in this Chunk.
+   K1 deep_ocean +96                  There is 6,984,417mB of Oil in this Chunk.
+   T1 desert +0                       There is 0mB of Oil in this Chunk.
+   T1 desert +48                      There is 5,176,866mB of Oil in this Chunk.
+   T1 desert +96                      There is 4,167,338mB of Oil in this Chunk.
+   F1 dark_forest +0                  There is 0mB of Oil in this Chunk.
+   F1 dark_forest +48                 There is 0mB of Oil in this Chunk.
+   F1 dark_forest +96                 There is 0mB of Oil in this Chunk.
+   a1 taiga +0                        There is 4,832,823mB of Oil in this Chunk.
+   a1 taiga +48                       There is 4,361,831mB of Oil in this Chunk.
+   a1 taiga +96                       There is 0mB of Oil in this Chunk.
+   K2 mushroom_fields +0              There is 0mB of Oil in this Chunk.
+   K2 mushroom_fields +48             There is 0mB of Oil in this Chunk.
+   K2 mushroom_fields +96             There is 0mB of Oil in this Chunk.
+   locate-from-spawn                  There is oil in chunk 0 -1 with 4,118,785mB of oil.
+
+-- CHECK
+   create shaft speed                 -3388, 1281, -1411 has the following block data: -64.0f
+   create press depot                 -3390, 1280, -1407 has the following block data: {z: -1407, x: -3390, Inventory: [], id: "create:depot", y: 1280, components: {}, HeldItem: {InDirection: "down", Item: {id: "create:iron_sheet", count: 1}, Angle: 219, Offset: -0.08148148f, PrevPos: 0.5f, PrevOffset: -0.08148148f, InSegment: 0, Pos: 0.5f}}
+   contraptions-assembled             
+   contraption count                  Test passed. Count: 2
+   diesel engine shaft speed          -3379, 1282, -1411 has the following block data: -96.0f
+   diesel engine                      -3379, 1282, -1409 has the following block data: {z: -1409, x: -3379, Network: {Size: 5, AddedCapacity: 64.0f, Id: -928537575426814L, Stress: 0.0f, Capacity: 6144.0f}, Tanks: [{TankContent: {amount: 81000, id: "createdieselgenerators:diesel", components: {"create:fluid_max_capacity": 81000}}, Target: 1.0f, Value: 1.0f, Speed: 0.25f}], Upgrade: "createdieselgenerators:none", id: "createdieselgenerators:diesel_engine_t
+   pumpjack hole on a pipe-less island -3379, 1280, -1401 has the following block data: {Started: 0b, z: -1401, x: -3379, Tanks: [{TankContent: {}, Target: 0.0f, Value: 0.0f, Speed: 0.25f}], id: "createdieselgenerators:pumpjack_hole_block_entity", OilAmount: 0, y: 1280, components: {}}
+   pumpjack hole on bedrock           -3375, 1281, -1401 has the following block data: {Started: 0b, z: -1401, x: -3375, Tanks: [{TankContent: {}, Target: 0.0f, Value: 0.0f, Speed: 0.25f}], id: "createdieselgenerators:pumpjack_hole_block_entity", OilAmount: 0, y: 1281, components: {}}
+   low create shaft speed             1115, -1320, -3126 has the following block data: 64.0f | The game is running normally | Target tick rate: 20.0 per second. | Percentiles: P50: 3.3ms P95: 10.7ms P99: 14.5ms. Sample: 100
+   commands done                      packtest[/127.0.0.1:50354] logged in with entity id 220 at (0.5, 57.0, 0.5) | packtest joined the game
+   joined at                          packtest has the following entity data: [0.5d, 57.0d, 0.5d] | TOP grass_block | BIOME minecraft:plains | y has 57 [pt] | packtest has the following entity data: "minecraft:overworld"
+   respawned at                       packtest has the following entity data: [0.5d, 57.0d, 0.5d] | TOP grass_block | BIOME minecraft:plains | y has 57 [pt] | Teleported packtest to 1240.500000, -1900.000000, 0.500000 | packtest moved too quickly! 0.0,-10.806526110008917,0.0 | Can't keep up! Is the server overloaded? Running 2073ms or 41 ticks behind | packtest moved too quickly! 0.0,-10.806526110008917,0.0 | packtest fell out of the world
+   after the fall out of the world    packtest has the following entity data: [0.5d, 57.0d, 0.5d] | packtest has the following entity data: 20.0f | Set minecraft:overworld to time marker minecraft:noon | Game rule advance_time is already set to false | Game rule spawn_monsters is now set to false | Set packtest's game mode to Spectator Mode
+   water at the foot of the water landing sinkhole AT air | TOP #logs | BIOME dwho:orichalc_highlands | y has -126 [pt]
+
+-- WORLDSPAWN
+   WORLDSPAWN                         Marker has the following entity data: [0.0d, 57.0d, 0.0d]
+
+-- VIEW
+   cave sinkhole from above           Teleported packtest to 140.500000, 150.000000, -89.500000
+   cave sinkhole from its rim         Teleported packtest to 212.500000, 72.000000, -89.500000
+   cave inside the shaft, looking down along the ramp Teleported packtest to 186.500000, 30.000000, -89.500000
+   cave foot of the shaft             Teleported packtest to 140.500000, -128.000000, -89.500000
+   cave foot of the shaft, looking up Teleported packtest to 160.500000, -130.000000, -89.500000
+   cave water landing SK2             Teleported packtest to -649.500000, -60.000000, -299.500000
+   cave inside 0 -60 0                Teleported packtest to 0.500000, -60.000000, 0.500000 | BIOME dwho:bronze_sanctuary | Applied effect Night Vision to packtest | Removed every effect from packtest
+   cave inside 0 -180 0               Teleported packtest to 0.500000, -180.000000, 0.500000 | BIOME dwho:dry_midlands | Applied effect Night Vision to packtest | Removed every effect from packtest
+   cave inside 0 -320 0               Teleported packtest to 0.500000, -320.000000, 0.500000 | BIOME dwho:dry_midlands | Applied effect Night Vision to packtest | Removed every effect from packtest
+   cave inside 416 -100 -272          Teleported packtest to 416.500000, -100.000000, -271.500000 | Can't keep up! Is the server overloaded? Running 2085ms or 41 ticks behind | Applied effect Night Vision to packtest | Removed every effect from packtest
+   cave inside 416 -220 -272          Teleported packtest to 416.500000, -220.000000, -271.500000 | BIOME dwho:shadow_woods | Applied effect Night Vision to packtest | Removed every effect from packtest
+   cave inside -300 -200 200          Teleported packtest to -299.500000, -200.000000, 200.500000 | Can't keep up! Is the server overloaded? Running 3360ms or 67 ticks behind | Applied effect Night Vision to packtest | Removed every effect from packtest | Set packtest's game mode to Creative Mode | Teleported packtest to 140.500000, -132.000000, -89.500000
+
+-- other
+    [10:17:41]  SECTION start
+    [10:17:41]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 2.3ms (Target: 50.0ms)
+    [10:17:41]  Percentiles: P50: 0.6ms P95: 2.3ms P99: 46.3ms. Sample: 100
+    [10:17:42]  SECTION spawn
+    [10:17:46]  SECTION nether ores
+    [10:18:35]  SECTION oil
+    [10:18:44]  SECTION mods
+    [10:19:05]  SECTION tube line: ground under the two ends, nothing under the middle
+    [10:19:11]  PORTAL overworld-lit
+    [10:19:36]  PORTAL nether-lit
+    [10:19:44]  SECTION mods placed
+    [10:19:47]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 4.0ms (Target: 50.0ms)
+    [10:19:47]  Percentiles: P50: 3.3ms P95: 10.7ms P99: 14.5ms. Sample: 100
+    [10:19:47]  SECTION end of server part
+    [10:19:47]  SECTION end pack
+    [10:21:12]  SECTION client
+    [10:21:37]  SECTION animals from generation
+    [10:22:01]  SECTION cave views
+    [10:28:37]  SECTION cave mobs
+    [10:28:38]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 18.5ms (Target: 50.0ms)
+    [10:28:38]  Percentiles: P50: 15.3ms P95: 32.5ms P99: 133.9ms. Sample: 100
+    [10:29:03]  SECTION client end
+    [10:29:03]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 10.7ms (Target: 50.0ms)
+    [10:29:03]  Percentiles: P50: 10.8ms P95: 15.9ms P99: 20.5ms. Sample: 100
+
+================ pack-restart ================
+boot: Done (0.567s)! For help, type "help"
+ERROR/WARN lines: 1
+    [10:29:17] [main/WARN]: Warnings were found!
+
+-- CHECK
+   create shaft speed                 -3388, 1281, -1411 has the following block data: -64.0f
+   create press depot                 -3390, 1280, -1407 has the following block data: {z: -1407, x: -3390, Inventory: [], id: "create:depot", y: 1280, components: {}, HeldItem: {InDirection: "down", Item: {id: "create:iron_sheet", count: 1}, Angle: 219, Offset: -0.08148148f, PrevPos: 0.5f, PrevOffset: -0.08148148f, InSegment: 0, Pos: 0.5f}}
+   contraption count                  Test passed. Count: 2
+   diesel engine shaft speed          -3379, 1282, -1411 has the following block data: -96.0f
+   reactor controller                 The target block is not a block entity
+   low create shaft speed             1115, -1320, -3126 has the following block data: 64.0f
+   tube connections                   -3660, 1265, -1150 has the following block data: {Connection_version: 1} | -3630, 1265, -1150 has the following block data: {ConnectionOne_version: 1, ConnectionTwo_version: 1} | -3600, 1265, -1150 has the following block data: {ConnectionOne_version: 1, ConnectionTwo_version: 1} | -3570, 1265, -1150 has the following block data: {ConnectionOne_version: 1, ConnectionTwo_version: 1} | -3540, 1265, -1150 has the following block data: {Connection_version: 1} | Summoned new Villager
+   villager ride end                  Villager has the following entity data: [-3660.5d, 1265.0d, -1149.5d] | PORTAL overworld-lit
+   commands done                      Stopping the server | Stopping server | Saving players | Saving worlds | ServerLevel[world]/minecraft:overworld: waiting for 3454 chunks to unload | ServerLevel[world]/minecraft:the_nether: waiting for 1682 chunks to unload | Saving chunks for level 'ServerLevel[world]'/minecraft:overworld | Saving chunks for level 'ServerLevel[world]'/the_sift:the_sift | Saving chunks for level 'ServerLevel[world]'/minecraft:the_end | Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+
+-- WORLDSPAWN
+   WORLDSPAWN                         Marker has the following entity data: [0.0d, 57.0d, 0.0d] | The game is running normally | Target tick rate: 20.0 per second. | Percentiles: P50: 2.2ms P95: 3.0ms P99: 5.2ms. Sample: 100
+
+-- other
+    [10:29:36]  SECTION restart
+    [10:30:06]  PORTAL overworld-lit
+    [10:30:06]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 2.3ms (Target: 50.0ms)
+    [10:30:06]  Percentiles: P50: 2.2ms P95: 3.0ms P99: 5.2ms. Sample: 100
+    [10:30:06]  SECTION end pack-restart
+
+================ perf: pack variants (seconds; heap in MB after a full collection) ================
+   variant                      land-256       void-256       tiers-64 LOCATE-mansion LOCATE-jungle_ heap with-land heap with-void heap before-la   tick P50/P95/P99 after land
+   vanilla                          15.1            6.9            6.9            0.2           11.2            874            458            156   P50: 17.8ms P95: 55.1ms P99: 80.5ms
+   biomes                           15.2            7.0            5.9            0.2           11.2           1154            459            157   P50: 15.3ms P95: 65.7ms P99: 423.8ms
+   caves                            39.4           10.0            8.0            0.2           21.3            836            462            158   P50: 13.7ms P95: 40.6ms P99: 494.5ms
+
+-- prof-perf-biomes-land.txt: 36 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      9  25%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      8  22%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      7  19%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      6  16%  net.minecraft.world.level.chunk.PalettedContainer.get
+      4  11%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      3   8%  net.minecraft.world.level.levelgen.synth.PerlinNoise.addToVolume
+      2   5%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      2   5%  net.minecraft.world.level.levelgen.densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume
+      1   2%  net.minecraft.nbt.NbtOps$$Lambda/0x0000000059240fe8.accept
+      1   2%  net.minecraft.world.level.chunk.storage.SerializableChunkData.parse
+      1   2%  net.minecraft.resources.Identifier.isValidNamespace
+      1   2%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      1   2%  net.minecraft.world.level.levelgen.densityfunction.op.BinaryFunction$AddSampler.sampleVolume
+      1   2%  STEP net.minecraft.world.level.lighting.BlockLightEngine.propagateLightSources
+
+-- prof-perf-biomes-tiers.txt: 15 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      4  26%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      3  20%  net.minecraft.world.level.chunk.PalettedContainer.pack
+      3  20%  STEP net.minecraft.world.level.levelgen.structure.StructureCheck.canCreateStructure
+      2  13%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      2  13%  net.minecraft.world.level.levelgen.material.MaterialSystem.buildSurface
+      2  13%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      1   6%  net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement.sortBySelectionPriority
+      1   6%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateStructureStarts
+      1   6%  net.minecraft.world.level.levelgen.densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume
+      1   6%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      1   6%  net.minecraft.util.SimpleBitStorage.getAll
+      1   6%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      1   6%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      1   6%  net.minecraft.world.level.levelgen.densityfunction.generator.GradientFunction$GradientSampler.sampleVolume
+
+-- prof-perf-biomes-void.txt: 20 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      7  35%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      4  20%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      4  20%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      3  15%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      2  10%  net.minecraft.world.level.biome.MultiNoiseBiomeSource.parameters
+      1   5%  net.minecraft.world.level.levelgen.densityfunction.generator.DistanceToPointFunction$Sampler.sampleVolume
+      1   5%  net.minecraft.world.level.biome.Climate$ParameterList.findValueIndex
+      1   5%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateBiomes
+      1   5%  net.minecraft.world.level.chunk.PalettedContainer$$Lambda/0x00000000591b6e20.accept
+      1   5%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      1   5%  net.minecraft.world.level.biome.Climate$RTree.search
+      1   5%  net.minecraft.world.level.chunk.PalettedContainer.pack
+      1   5%  net.minecraft.world.level.chunk.PalettedContainer.reencodeContents
+      1   5%  net.minecraft.util.CrudeIncrementalIntIdentityHashBiMap.grow
+
+-- prof-perf-caves-land.txt: 35 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+     14  40%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      7  20%  net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyYCondition.test
+      6  17%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      6  17%  net.minecraft.world.level.biome.BiomeManager.getBiome
+      6  17%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      5  14%  net.minecraft.world.level.levelgen.synth.PerlinNoise.addToVolume
+      4  11%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      2   5%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      1   2%  net.minecraft.world.level.chunk.storage.SerializableChunkData.lambda$parse$3
+      1   2%  net.minecraft.world.level.chunk.storage.SerializableChunkData.lambda$parse$5
+      1   2%  net.minecraft.nbt.NbtOps.getStringValue
+      1   2%  net.minecraft.world.level.LevelHeightAccessor.getMinSectionY
+      1   2%  net.minecraft.world.level.levelgen.densityfunction.op.SliceFunction$XzSampler.sampleVolume
+      1   2%  net.minecraft.world.level.levelgen.feature.MultifaceGrowthFeature.getShuffledDirectionsExcept
+
+-- prof-perf-caves-tiers.txt: 21 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      8  38%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      4  19%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      3  14%  net.minecraft.world.level.levelgen.synth.PerlinNoise.addToVolume
+      2   9%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      2   9%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      2   9%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      2   9%  net.minecraft.world.level.chunk.PalettedContainer.pack
+      1   4%  net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape.lambda$join$2
+      1   4%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateStructureStarts
+      1   4%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      1   4%  net.minecraft.world.level.levelgen.densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume
+      1   4%  net.minecraft.world.level.levelgen.material.MaterialSystem.buildSurface
+      1   4%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      1   4%  net.minecraft.world.level.chunk.PalettedContainer$$Lambda/0x000000007f1b8730.accept
+
+-- prof-perf-caves-void.txt: 26 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+     14  53%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      5  19%  net.minecraft.world.level.levelgen.synth.PerlinNoise.addToVolume
+      4  15%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      4  15%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      2   7%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      2   7%  net.minecraft.world.level.chunk.PalettedContainer.reencodeContents
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.op.SliceFunction$XzSampler.sampleVolume
+      1   3%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateStructureStarts
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume
+      1   3%  net.minecraft.world.level.biome.Climate$RTree.search
+      1   3%  net.minecraft.world.level.chunk.PalettedContainer$$Lambda/0x000000007f1b8730.accept
+      1   3%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      1   3%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+
+-- prof-perf-vanilla-land.txt: 37 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+     13  35%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      6  16%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      6  16%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      6  16%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      5  13%  net.minecraft.world.level.levelgen.material.rule.ConditionRule.lambda$compile$0
+      4  10%  net.minecraft.world.level.levelgen.densityfunction.op.InterpolatedFunction$Sampler.fillCell
+      3   8%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      2   5%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      2   5%  net.minecraft.world.level.biome.Climate$ParameterList.findValueIndex
+      1   2%  net.minecraft.world.level.chunk.storage.SerializableChunkData.lambda$parse$3
+      1   2%  net.minecraft.world.level.chunk.storage.SerializableChunkData.parse
+      1   2%  net.minecraft.world.ticks.SavedTick.filterTickListForChunk
+      1   2%  net.minecraft.world.level.chunk.storage.SectionStorage.get
+      1   2%  net.minecraft.server.level.WorldGenRegion.getBlockState
+
+-- prof-perf-vanilla-tiers.txt: 22 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      5  22%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      5  22%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      4  18%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      3  13%  net.minecraft.world.level.levelgen.material.MaterialSystem.buildSurface
+      2   9%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      2   9%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      2   9%  net.minecraft.world.level.levelgen.material.rule.ConditionRule.lambda$compile$0
+      2   9%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      1   4%  net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement.sortBySelectionPriority
+      1   4%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateStructureStarts
+      1   4%  net.minecraft.util.SimpleBitStorage.getAll
+      1   4%  net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool.tryTakeBest
+      1   4%  net.minecraft.world.attribute.EnvironmentAttributeSystem.addBiomeLayer
+      1   4%  net.minecraft.nbt.CompoundTag.put
+
+-- prof-perf-vanilla-void.txt: 20 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      8  40%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      7  35%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      3  15%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      3  15%  net.minecraft.world.level.chunk.PalettedContainer.pack
+      2  10%  net.minecraft.world.level.biome.Climate$ParameterList.findValueIndex
+      1   5%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateBiomes
+      1   5%  net.minecraft.world.level.levelgen.densityfunction.generator.DistanceToPointFunction$Sampler.sampleVolume
+      1   5%  net.minecraft.world.level.levelgen.densityfunction.op.ClampFunction$Sampler.sampleVolume
+      1   5%  net.minecraft.world.level.biome.Climate$RTree.search
+      1   5%  net.minecraft.world.level.chunk.Configuration$Simple.createPalette
+      1   5%  net.minecraft.util.SimpleBitStorage.getAll
+      1   5%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+
+-- prof-vanilla-land.txt: 35 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+     15  42%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      8  22%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      6  17%  net.minecraft.world.level.biome.BiomeManager.getBiome
+      6  17%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateFeatures
+      3   8%  net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyYCondition.test
+      3   8%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      2   5%  net.minecraft.world.level.levelgen.material.rule.ConditionRule.lambda$compile$0
+      2   5%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      2   5%  net.minecraft.world.level.levelgen.material.MaterialSystem.buildSurface
+      2   5%  net.minecraft.world.level.LevelReader.getChunk
+      1   2%  net.minecraft.core.MappedRegistry.get
+      1   2%  net.minecraft.util.SimpleBitStorage.getAll
+      1   2%  net.minecraft.nbt.NbtOps.createList
+      1   2%  net.minecraft.world.level.levelgen.feature.OreFeature.doPlace
+
+-- prof-vanilla-tiers.txt: 14 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+      2  14%  net.minecraft.resources.Identifier.isValidNamespace
+      2  14%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      1   7%  net.minecraft.world.level.chunk.storage.SerializableChunkData.lambda$parse$3
+      1   7%  net.minecraft.world.level.chunk.ChunkAccess.replaceMissingSections
+      1   7%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      1   7%  net.minecraft.util.SimpleBitStorage.getAll
+      1   7%  net.minecraft.world.level.chunk.PalettedContainer.getAndSet
+      1   7%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      1   7%  net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool.tryTakeBest
+      1   7%  net.minecraft.world.level.levelgen.densityfunction.generator.GradientFunction$GradientSampler.sampleVolume
+      1   7%  net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyYCondition.test
+      1   7%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      1   7%  net.minecraft.util.thread.BlockableEventLoop.pollTask
+      1   7%  net.minecraft.world.entity.EntitySelector.pushableBy
+
+-- prof-vanilla-void.txt: 27 running worker/server thread samples; innermost game frame, and the generation step it belongs to
+     14  51%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      6  22%  net.minecraft.world.level.levelgen.synth.PerlinNoise.addToVolume
+      4  14%  net.minecraft.world.level.biome.Climate$RTree.search
+      4  14%  net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.doFill
+      3  11%  net.minecraft.util.thread.BlockableEventLoop.waitForTasks
+      3  11%  net.minecraft.world.level.chunk.PalettedContainer.pack
+      2   7%  net.minecraft.world.level.levelgen.densityfunction.op.SliceFunction$XzSampler.sampleVolume
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.op.BinaryFunction$SubSampler.sampleVolume
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.op.BinaryFunction$MinSampler.sampleVolume
+      1   3%  net.minecraft.world.level.levelgen.material.rule.SequenceRule.compile
+      1   3%  STEP net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator.buildSurface
+      1   3%  net.minecraft.world.level.levelgen.densityfunction.DensityBuffer.fill
+      1   3%  net.minecraft.world.attribute.EnvironmentAttributeSystem.addBiomeLayer
+      1   3%  STEP net.minecraft.world.level.chunk.status.ChunkStatusTasks.generateStructureReferences
+
+================ verdict ================
+FAIL
+  - vanilla: build limit bottom-ok missing
+  - vanilla: build limit top-ok missing
+  - pack-restart: the Create Nuclear reactor is not assembled
