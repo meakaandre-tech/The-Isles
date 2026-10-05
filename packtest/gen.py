@@ -335,7 +335,8 @@ def box(c, tag, x0, y0, z0, x1, y1, z1, blocks, note=''):
     c += [f'say SCANBOX {tag} {x0} {y0} {z0} .. {x1} {y1} {z1} volume {(x1 - x0 + 1) * (y1 - y0 + 1) * (z1 - z0 + 1)} {note}']
     for b in blocks: c += [f'say SCAN {tag} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}']
 def load(c, tag, x0, z0, x1, z1, wait=420):
-    c += ['forceload remove all', f'forceload add {x0} {z0} {x1} {z1}',
+    ncx = x1 // 16 - x0 // 16 + 1; rows = max(1, 256 // ncx)     # (one forceload takes 256 chunks at most)
+    c += ['forceload remove all'] + [f'forceload add {x0} {cz * 16} {x1} {min(cz + rows - 1, z1 // 16) * 16 + 15}' for cz in range(z0 // 16, z1 // 16 + 1, rows)] + [
           f'#poll {wait} execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {(x0 + x1) // 2} 0 {(z0 + z1) // 2} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} run say LOADED {tag} ## LOADED {tag}']
 SEA_SAMPLE = ['d5', 'M5', 'N4', 'D4', 'K3', 'I4']
 SEA_BLOCKS = ['minecraft:kelp', 'minecraft:kelp_plant', 'minecraft:seagrass', 'minecraft:tall_seagrass', '#minecraft:coral_blocks', '#minecraft:corals', 'minecraft:sea_pickle',
@@ -362,7 +363,7 @@ def terrain_probes():
                   f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:potent_sulfur[potent_sulfur_state={st}] replace minecraft:barrier']
         if n == 0: c += [f'say ERUPTION watch {k}', '#time ERUPTION', f'#poll 400 execute positioned {x} {y} {z} run function packtest:erupt ## ERUPTING', '#time']
         box(c, f'geyser-{k}', x - 12, y - 10, z - 12, x + 12, y + 6, z + 12,
-            ['minecraft:potent_sulfur', 'minecraft:magma_block', 'minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:sulfur_spike', 'minecraft:water', 'minecraft:tuff', 'minecraft:granite'])
+            ['minecraft:sulfur_spike', 'minecraft:potent_sulfur', 'minecraft:magma_block', 'minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:water', 'minecraft:ice', 'minecraft:light', 'minecraft:tuff', 'minecraft:granite'])   # (spikes first: they break when the sulfur under them goes)
     # --- sulfur caves: the pocket under five geysers
     for p in POCKETS[:25:5]:
         x, z, k, ch = p['x'], p['z'], p['island'], p['chamber']
@@ -370,7 +371,7 @@ def terrain_probes():
         c += [f'say POCKET {k} chamber {ch["x"]} {ch["y"]} {ch["z"]}', f'execute if biome {ch["x"]} {ch["y"]} {ch["z"]} minecraft:sulfur_caves run say POCKETBIOME {k} ok',
               f'execute if block {ch["x"]} {ch["y"]} {ch["z"]} #minecraft:air run say POCKETCHAMBER {k} open']
         box(c, f'pocket-{k}', x - 44, p['y_min'] - 4, z - 44, x + 44, p['y_max'] + 4, z + 44,
-            ['minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:sulfur_spike', 'minecraft:potent_sulfur', 'minecraft:water', 'minecraft:lava', '#minecraft:air',
+            ['minecraft:sulfur_spike', 'minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:potent_sulfur', 'minecraft:water', 'minecraft:lava', '#minecraft:air',
              'minecraft:stone', 'minecraft:grass_block', 'minecraft:dirt'])
         box(c, f'pocket-above-{k}', x - 44, p['y_max'] + 12, z - 44, x + 44, p['y_max'] + 16, z + 44, ['minecraft:sulfur', 'minecraft:cinnabar'], '(over the pocket: none)')
     # --- seas
