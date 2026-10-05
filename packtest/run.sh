@@ -11,6 +11,15 @@ set +e
 root=$PWD; P=$root/packtest; out=/tmp/ci; W=/tmp/work
 mkdir -p $out $W; exec > >(tee $out/run.txt) 2>&1
 ts() { echo "[$(date +%H:%M:%S)] $*"; }
+# progress: every 3 minutes the logs so far are pushed to the ci-logs branch (the workflow pushes the final state)
+snapshot() {
+  for d in $W/*/; do n=$(basename $d); [ -f $d/server.log ] && cp $d/server.log $out/server-$n.log; [ -f $d/server2.log ] && cp $d/server2.log $out/server2-$n.log; done 2>/dev/null
+  echo "${GITHUB_SHA} (running, $(date +%H:%M:%S))" > $out/commit.txt
+  rm -rf /tmp/ci-snap && cp -r $out /tmp/ci-snap && cd /tmp/ci-snap && git init -q -b ci-logs && git config user.name "github-actions" \
+    && git config user.email "actions@users.noreply.github.com" && git add -A && git commit -q -m "Pack test for ${GITHUB_SHA} (in progress)" \
+    && git push -q -f "$PUSH_URL" ci-logs
+}
+if [ -n "$PUSH_URL" ]; then (while sleep 180; do (snapshot) >/dev/null 2>&1; done) & SNAP=$!; fi
 phases=$(cat $P/phases 2>/dev/null || echo "vanilla")
 has() { echo " $phases " | grep -q " $1 "; }
 nproc; free -m | head -2
@@ -130,4 +139,5 @@ has pack && source $P/pack-phase.sh
 cd $root
 python3 $P/tools/report.py $out > $out/report.txt 2>&1
 head -60 $out/report.txt
+[ -n "$SNAP" ] && kill $SNAP 2>/dev/null
 ts "end"

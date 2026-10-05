@@ -5,7 +5,10 @@ sha=$(git rev-parse --short=7 HEAD); end=$(( $(date +%s) + ${1:-560} )); o=${2:-
 while :; do
   st=$(gh api "repos/meakaandre-tech/The-Isles/actions/runs?per_page=5" --jq "[.workflow_runs[] | select(.head_branch==\"pack-test\")][0] | \"\(.status) \(.conclusion) \(.head_sha[0:7])\"")
   case "$st" in completed*$sha) break;; esac
-  [ $(date +%s) -ge $end ] && { echo "still running: $st"; exit 1; }
+  if [ $(date +%s) -ge $end ]; then   # still running: show the snapshot the run pushed
+    echo "still running: $st"; git fetch -q origin ci-logs && { rm -rf $o; mkdir -p $o; git archive FETCH_HEAD | tar -x -C $o; cat $o/commit.txt; grep '^\[' $o/run.txt | tail -${3:-12}; }
+    exit 1
+  fi
   sleep 20
 done
 echo "$st"

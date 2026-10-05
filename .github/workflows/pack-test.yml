@@ -34,6 +34,8 @@ jobs:
       - name: Run the tests
         continue-on-error: true
         shell: bash
+        env:
+          PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: bash packtest/run.sh
       - name: Publish logs and screenshots to the ci-logs branch
         if: always()
