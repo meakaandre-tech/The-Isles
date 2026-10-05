@@ -252,6 +252,9 @@ def main():
     write("data/minecraft/worldgen/placed_feature/ice_spike.json", {"feature": "minecraft:ice_spike", "placement": [
         mc("count", count=3), mc("in_square"), mc("heightmap", heightmap="MOTION_BLOCKING"),
         mc("block_predicate_filter", predicate={"type": "minecraft:all_of", "predicates": under}), mc("biome")]})
+    # Snow and ice: freeze_top_layer has no placement but a biome check, which the game makes at the bottom of the chunk -
+    # the void biome now. Without the check the feature still decides column by column from the biome at the surface.
+    write("data/minecraft/worldgen/placed_feature/freeze_top_layer.json", {"feature": "minecraft:freeze_top_layer", "placement": []})
     # --- ores follow the island surface
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
