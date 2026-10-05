@@ -37,7 +37,7 @@
     "type": "minecraft:mul",
     "left": {
      "type": "minecraft:sub",
-     "left": 0.42,
+     "left": 0.5,
      "right": {
       "type": "minecraft:noise",
       "noise": "the_isles:hollow_c",

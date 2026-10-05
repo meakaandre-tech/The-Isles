@@ -10,8 +10,9 @@ sea floor. What keeps it tight is the shape (basin_shape): a rim ring that is so
 round, and the sea's biome only inside that ring - the ring itself and the margin past the rim are a shore biome, which
 has no sea feature.
 
-Caves. Noise caves in the terrain's own function, per layer of islands like everything else: a zone ROOF under the
-surface, FLOOR above the underside and SIDE in from the rim; the roof opens where the 2D entrance noise is high.
+Caves. Noise caves in the terrain's own function, per layer of islands like everything else: a zone under the island's
+lowest ground (cave_top), FLOOR above the underside and SIDE in from the rim; where the 2D entrance noise is high the
+zone comes up through the ground.
 
 Surfaces. The vanilla surface rule tests fixed heights for the badlands (63, 74, 97, 256) and builds its terracotta
 bands from a table that ends at y -192; both are replaced per island (surface()).
@@ -90,16 +91,23 @@ def seas(bp, islands):
 
 # ---------------------------------------------------------------------------------------------------------- caves
 FLOOR, SIDE, FADE = 16, 20, 10.0     # rock above the underside, in from the rim; the carving fades out over FADE blocks
-TUNNEL, CAVERN = 0.085, 0.42         # tunnels where two noises are both this close to 0, caverns where a third is above this
-ENTRANCE = 0.62                      # the roof opens where the entrance noise is above this
-def surface_margin(bp, i):
-    """the surface rule runs this far under the island's surface (see surface_level)"""
-    return round(12 + 0.3 * min(bp.RELIEF.get(layout_biome(i), bp.DEFAULT_RELIEF), 0.5 * i["thickness"]))
-def cave_roof(bp, i): return surface_margin(bp, i) + 10
+TUNNEL, CAVERN = 0.085, 0.5         # tunnels where two noises are both this close to 0, caverns where a third is above this
+ENTRANCE = 0.62                      # the caves come up through the ground where the entrance noise is above this
+def surface_floor(bp, i):
+    """The surface rule runs above this height in the island's columns (the router's chunk_surface_level; the rule starts
+    about 5 blocks lower): 24 blocks under the lowest ground the island's relief can have. One number per island: the game
+    computes the level for 256 columns of every chunk at once and nothing is skipped, so anything that follows the real
+    surface (a sum over all islands) costs every chunk, void included - measured: 40% more generation time."""
+    low = i["y_top"] - (basin_shape(i)["depth"] if is_basin(i) else min(bp.RELIEF.get(layout_biome(i), bp.DEFAULT_RELIEF), 0.5 * i["thickness"]))
+    return round(low - 24)
+def cave_top(bp, i):
+    """the caves of an island start under this height (and 12 blocks under the ground where that is lower): below the layers
+    the surface rule works on, so cave floors stay stone"""
+    return surface_floor(bp, i) - 12
 def has_caves(i, nocave=()): return "caves" not in OFF and i["layer"] == "main" and not is_basin(i) and i["id"] not in nocave
 def cave_noise(bp):
     """-> the name of the cave density (below 0: open), shared by all layers"""
-    for n, octave in (("hollow_a", -6), ("hollow_b", -6), ("hollow_c", -7), ("entrance", -7)):
+    for n, octave in (("hollow_a", -6), ("hollow_b", -6), ("hollow_c", -6), ("entrance", -7)):
         bp.write(f"data/{bp.NS}/worldgen/noise/{n}.json", {"base_octave": octave, "octave_count": 1})
     n3 = lambda n, y: bp.mc("noise", noise=bp.ref(n), xz_scale=1.0, y_scale=y)
     tunnel = bp.mul(bp.sub(bp.dmax(bp.mc("abs", input=n3("hollow_a", 1.6)), bp.mc("abs", input=n3("hollow_b", 1.6))), TUNNEL), 10.0)
@@ -109,10 +117,23 @@ def cave_noise(bp):
              bp.mc("cache", input=bp.flat(bp.clamp(bp.mul(bp.sub(bp.mc("noise", noise=bp.ref("entrance"), xz_scale=1.0, y_scale=0.0), ENTRANCE), 8.0), 0, 1))))
     return bp.ref("hollow/noise")
 
+def springs(bp):
+    """The game's water and lava springs pick a height of the whole world and open wherever one side of the rock is free: in
+    an island's underside or rim that is a stream into the void (water was counted under M5 and f2). Here they are placed by
+    depth under the surface and only with rock 10 blocks to every side and 10 and 18 blocks below - in cave walls well
+    inside the island."""
+    mc = bp.mc
+    rock = mc("block_predicate_filter", predicate=mc("all_of", predicates=[
+        mc("matching_block_tag", tag="minecraft:base_stone_overworld", offset=o) for o in ([10, 0, 0], [-10, 0, 0], [0, 0, 10], [0, 0, -10], [0, -10, 0], [0, -18, 0])]))
+    for name, feature, count, d0, d1 in (("spring_water", "minecraft:spring_water", 12, 8, 128), ("spring_lava", "minecraft:spring_lava_overworld", 3, 40, 128)):
+        bp.write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": feature, "placement":
+                 [mc("count", count=count), mc("in_square")] + bp.depth_mods(d0, d1) + [rock, mc("biome")]})
+
 # ---------------------------------------------------------------------------------------------------------- sulfur
 POCKET_R, POCKET_TOP, POCKET_BOTTOM = 40, 14, 46     # the sulfur caves under a geyser: radius, and depth under the geyser's ground
 CHAMBER_R, CHAMBER_H = 12, 5                         # the cavern in the middle of the pocket (always open)
 WARMTH = 13                                          # light over a geyser's pool where water freezes (see sulfur)
+GEYSER_SIZES = ("sulfur_spring_small_", "sulfur_spring_medium_")   # the vanilla spring templates used
 PAD_R = 14                                           # the ground is level this far around a geyser
 def flag_big(layout):
     """writes "geyser": true/false into every island of the layout (once; the owner edits the flags afterwards)"""
@@ -155,7 +176,13 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     # the geyser: the vanilla sulfur spring on the ground at the fixed place (under a tier too: no heightmap)
     # (down to the ground through whatever a tree of the chunk next door hangs over it: a start in leaves found no ground)
     tree = mc("any_of", predicates=[mc("matching_block_tag", tag="minecraft:leaves"), mc("matching_block_tag", tag="minecraft:logs")])
-    bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser.json", {"feature": "minecraft:sulfur_spring", "placement": [
+    # The vanilla feature picks one of ten templates by weight; here only the small and medium ones (weights as in vanilla):
+    # in the test the two geysers that were missing of 25 fit the share of the large ones, which never appeared.
+    spring = json.loads((HERE / "vanilla_feature" / "sulfur_spring.json").read_text())
+    spring["features"] = [e for e in spring["features"] if any(k in json.dumps(e) for k in GEYSER_SIZES)]
+    assert spring["type"] == "minecraft:weighted_random_selector" and len(spring["features"]) == len(GEYSER_SIZES)
+    bp.write(f"data/{bp.NS}/worldgen/feature/geyser.json", spring)
+    bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser.json", {"feature": bp.ref("geyser"), "placement": [
         mc("fixed_placement", positions=[[g["x"], g["y"] + 8, g["z"]] for i, g in sites]),
         mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("all_of", predicates=[mc("solid"), mc("not", predicate=tree)]),
            allowed_search_condition=mc("any_of", predicates=[air, tree, mc("replaceable")])),

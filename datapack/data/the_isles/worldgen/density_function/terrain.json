@@ -97,11 +97,7 @@
           "type": "minecraft:min",
           "left": {
            "type": "minecraft:sub",
-           "left": {
-            "type": "minecraft:sub",
-            "left": "the_isles:layer/0_surface",
-            "right": "the_isles:layer/0_roof"
-           },
+           "left": "the_isles:layer/0_ctop",
            "right": "minecraft:y"
           },
           "right": {
@@ -192,11 +188,7 @@
           "type": "minecraft:min",
           "left": {
            "type": "minecraft:sub",
-           "left": {
-            "type": "minecraft:sub",
-            "left": "the_isles:layer/1_surface",
-            "right": "the_isles:layer/1_roof"
-           },
+           "left": "the_isles:layer/1_ctop",
            "right": "minecraft:y"
           },
           "right": {

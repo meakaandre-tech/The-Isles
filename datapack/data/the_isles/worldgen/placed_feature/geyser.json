@@ -1,5 +1,5 @@
 {
- "feature": "minecraft:sulfur_spring",
+ "feature": "the_isles:geyser",
  "placement": [
   {
    "type": "minecraft:fixed_placement",

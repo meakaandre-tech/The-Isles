@@ -236,14 +236,18 @@ def terrain(islands, nocave=()):
         # the surface where the entrance noise is high. Islands without caves have no flat field at all.
         caved = [i for i in group if bt.has_caves(i, nocave)]
         pockets = [i for i in caved if i.get("geyser_at")]
-        # (the chamber of the sulfur caves under a geyser: how near its axis a column is; the roof is thin there)
+        # (the chamber of the sulfur caves under a geyser: how near its axis a column is; the cave zone reaches up to it there)
         near = lambda i: clamp(mul(sub(bt.CHAMBER_R, mc("distance_to_point", metric="euclidean", point=[i["geyser_at"]["x"], 0, i["geyser_at"]["z"]])), 1 / 6), 0, 1)
-        def roof(i):
-            r = bt.cave_roof(sys.modules[__name__], i)
-            out = sub(r, mul(ref("hollow/entrance"), r + 16))
-            return sub(out, mul(near(i), r - 16)) if i.get("geyser_at") else out
+        def ctop(i):
+            """the top of an island's cave zone: under the height cave_top and 12 blocks under the ground; 16 blocks above the
+            ground where the entrance noise is high"""
+            S_i = f[i["key"]][1]
+            base = dmin(sub(S_i, 12), float(bt.cave_top(sys.modules[__name__], i)))
+            out = add(base, mul(ref("hollow/entrance"), sub(add(S_i, 16), base)))
+            if i.get("geyser_at"): out = dmax(out, add(mul(near(i), add(sub(S_i, 16), 100000.0)), -100000.0))
+            return out
         if caved:
-            fields["roof"] = tree(add, [mul(f[i["key"]][0], roof(i) if bt.has_caves(i, nocave) else 10000.0) for i in group])
+            fields["ctop"] = tree(add, [mul(f[i["key"]][0], ctop(i) if bt.has_caves(i, nocave) else -100000.0) for i in group])
         if pockets:
             fields["pnear"] = tree(add, [mul(f[i["key"]][0], near(i)) for i in pockets])
             fields["py"] = tree(add, [mul(f[i["key"]][0], bt.pocket(i["geyser_at"])["chamber"]["y"]) for i in pockets])
@@ -253,7 +257,7 @@ def terrain(islands, nocave=()):
         solid = dmin(dmin(mul(sub(S, Y), 1 / 8), mul(sub(Y, B), 1 / 12)), E)
         part = clamp(add(solid, mul(0.55, RAG)), -1, 1)
         if caved:
-            inner = dmin(dmin(sub(sub(S, ref(f"layer/{n}_roof")), Y), sub(sub(Y, B), bt.FLOOR)), sub(mul(E, 12.0), bt.SIDE))
+            inner = dmin(dmin(sub(ref(f"layer/{n}_ctop"), Y), sub(sub(Y, B), bt.FLOOR)), sub(mul(E, 12.0), bt.SIDE))
             cave = hollow
             if pockets:
                 band = clamp(mul(sub(bt.CHAMBER_H + 3, mc("abs", input=sub(Y, ref(f"layer/{n}_py")))), 1 / 3), 0, 1)
@@ -261,15 +265,10 @@ def terrain(islands, nocave=()):
             part = dmin(part, add(cave, mul(3.2, sub(1, clamp(mul(inner, 1 / bt.FADE), 0, 1)))))   # >= 1.7 (no effect) outside the zone
         parts.append(part)
         print(f"layer {n}: {len(group)} islands, {len(caved)} with caves")
-    # The lowest height at which the surface rule runs (the router's chunk_surface_level): the surface of the lowest island of
-    # the column less a margin for its relief; far below everything where there is no island. Through the grid: the game asks
-    # for it column by column, and a lookup then only computes the islands of its own cell (as one sum over all islands it
-    # cost every chunk 40% more time, void included).
-    def level(hit):
-        if not hit: return float(MIN_Y - 64)
-        low = tree(dmin, [add(mul(v[0], sub(v[1], bt.surface_margin(sys.modules[__name__], i))), mul(sub(1, v[0]), 100000.0)) for i, v in levels if i in hit])
-        return choice(low, -50000, 50000, low, float(MIN_Y - 64))
-    write(f"data/{NS}/worldgen/density_function/surface_level.json", flat(grid(islands, level)))
+    # The height above which the surface rule runs (the router's chunk_surface_level): one number per island, the lowest of
+    # the islands of a column, far below everything where there is none (see build_terrain.surface_floor).
+    low = tree(dmin, [choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, float(bt.surface_floor(sys.modules[__name__], i)), 100000.0) for i, v in levels])
+    write(f"data/{NS}/worldgen/density_function/surface_level.json", flat(choice(low, -50000, 50000, low, float(MIN_Y - 64))))
     return tree(dmax, parts)
 
 def grid(islands, leaf):
@@ -674,8 +673,8 @@ def build(src):
     near_surface = {"type": "minecraft:stone_depth", "offset": SURFACE_RULE_DEPTH, "add_surface_depth": True,
                     "secondary_depth_range": 0, "surface_type": "floor"}
     # With caves inside the islands the rule must not run on cave floors (grass, sand, terracotta in the dark): it only runs
-    # above the "preliminary surface" of the column, which the router gets from the layers' flat fields: the surface of the
-    # column's lowest island less a margin for the relief (the game interpolates it over 16 blocks). Caves start below it.
+    # above the "preliminary surface" of the column, which the router gets as one height per island, under the lowest ground
+    # of its relief (terrain(), build_terrain.surface_floor). Caves start below it.
     sulfur_biome, sulfur_rule = bt.sulfur(me, islands, layout)
     write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": ([caves.surface_rule()] if caves else []) +
         ([sulfur_rule] if sulfur_rule else []) + [
@@ -684,6 +683,7 @@ def build(src):
     bt.surface(me, islands)
     if sulfur_biome: write(bfile(SULFUR), sulfur_biome)
     sea_features = bt.seas(me, islands)
+    bt.springs(me)
     # the game's cave carvers tunnel through anything, undersides and sea floors included: off (the caves are in the terrain)
     for f in sorted((Path(__file__).parent / "vanilla_carver").glob("*.json")):
         write(f"data/minecraft/worldgen/carver/{f.name}", {**json.loads(f.read_text()), "probability": 0.0})
