@@ -26,6 +26,9 @@ nscript() { # $1 = script file (cmd/sleep/shot)
 ts "nether: server start with $(ls mods | wc -l) mods"
 start_server server.log
 if grep -q 'Done (' server.log; then
+  # a poor man's profiler for the generation: 40 thread dumps, 4 s apart, top frames of the busy worker threads counted
+  (for i in $(seq 1 40); do sleep 4; pid=$(pgrep -f 'server.jar' | head -1); [ -n "$pid" ] && jstack $pid 2>/dev/null; done > $W/nether-stacks.raw
+   python3 $P/tools/stacks.py $W/nether-stacks.raw > $out/nether-stacks.txt 2>&1) &
   feed $W/gen/commands-nether.txt server.log; finish_feed server.log
   ts "nether: commands done"; cp server.log $out/server-nether.log
   if [ ! -f $P/server-only ] && ! grep -q '^EXIT' server.log; then
