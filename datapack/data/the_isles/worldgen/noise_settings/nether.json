@@ -95,25 +95,25 @@
       "left": {
        "type": "minecraft:blend_density",
        "input": {
-        "type": "minecraft:interval_select",
-        "input": "minecraft:y",
-        "thresholds": [
-         -1656,
-         -1336,
-         -1056,
-         -696,
-         -376,
-         -16,
-         304,
-         664,
-         944,
-         1264,
-         1624
-        ],
-        "functions": [
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+        "type": "minecraft:lerp",
+        "alpha": {
+         "type": "minecraft:interval_select",
+         "input": "minecraft:y",
+         "thresholds": [
+          -1656,
+          -1336,
+          -1056,
+          -696,
+          -376,
+          -16,
+          304,
+          664,
+          944,
+          1264,
+          1624
+         ],
+         "functions": [
+          {
            "type": "minecraft:gradient",
            "axis": "y",
            "from_coordinate": -2016,
@@ -121,44 +121,7 @@
            "to_coordinate": -1984,
            "to_value": 1.0
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -1680,
-             "from_value": 1.0,
-             "to_coordinate": -1656,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -186,44 +149,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -1360,
-             "from_value": 1.0,
-             "to_coordinate": -1336,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -251,44 +177,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -1080,
-             "from_value": 1.0,
-             "to_coordinate": -1056,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -316,44 +205,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -720,
-             "from_value": 1.0,
-             "to_coordinate": -696,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -381,44 +233,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -400,
-             "from_value": 1.0,
-             "to_coordinate": -376,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -446,44 +261,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": -40,
-             "from_value": 1.0,
-             "to_coordinate": -16,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -511,44 +289,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": 280,
-             "from_value": 1.0,
-             "to_coordinate": 304,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -576,44 +317,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": 640,
-             "from_value": 1.0,
-             "to_coordinate": 664,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -641,44 +345,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": 920,
-             "from_value": 1.0,
-             "to_coordinate": 944,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -706,44 +373,7 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
-            "type": "minecraft:max",
-            "left": {
-             "type": "minecraft:gradient",
-             "axis": "y",
-             "from_coordinate": 1240,
-             "from_value": 1.0,
-             "to_coordinate": 1264,
-             "to_value": 0.0
-            },
-            "right": {
-             "type": "minecraft:cache",
-             "input": {
-              "type": "minecraft:clamp",
-              "input": {
-               "type": "minecraft:mul",
-               "left": {
-                "type": "minecraft:sub",
-                "left": "the_isles:nether/holes",
-                "right": 0.55
-               },
-               "right": 8.0
-              },
-              "min": 0.0,
-              "max": 1.0
-             }
-            }
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
+          {
            "type": "minecraft:max",
            "left": {
             "type": "minecraft:gradient",
@@ -771,10 +401,337 @@
             }
            }
           },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
+          {
+           "type": "minecraft:max",
+           "left": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "from_coordinate": 1624,
+            "from_value": 0.0,
+            "to_coordinate": 1656,
+            "to_value": 1.0
+           },
+           "right": {
+            "type": "minecraft:cache",
+            "input": {
+             "type": "minecraft:clamp",
+             "input": {
+              "type": "minecraft:mul",
+              "left": {
+               "type": "minecraft:sub",
+               "left": "the_isles:nether/holes",
+               "right": 0.55
+              },
+              "right": 8.0
+             },
+             "min": 0.0,
+             "max": 1.0
+            }
+           }
+          }
+         ]
+        },
+        "first": 2.5,
+        "second": {
+         "type": "minecraft:lerp",
+         "alpha": {
+          "type": "minecraft:interval_select",
+          "input": "minecraft:y",
+          "thresholds": [
+           -1656,
+           -1336,
+           -1056,
+           -696,
+           -376,
+           -16,
+           304,
+           664,
+           944,
+           1264,
+           1624
+          ],
+          "functions": [
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -1680,
+             "from_value": 1.0,
+             "to_coordinate": -1656,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -1360,
+             "from_value": 1.0,
+             "to_coordinate": -1336,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -1080,
+             "from_value": 1.0,
+             "to_coordinate": -1056,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -720,
+             "from_value": 1.0,
+             "to_coordinate": -696,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -400,
+             "from_value": 1.0,
+             "to_coordinate": -376,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": -40,
+             "from_value": 1.0,
+             "to_coordinate": -16,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": 280,
+             "from_value": 1.0,
+             "to_coordinate": 304,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": 640,
+             "from_value": 1.0,
+             "to_coordinate": 664,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": 920,
+             "from_value": 1.0,
+             "to_coordinate": 944,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
+            "type": "minecraft:max",
+            "left": {
+             "type": "minecraft:gradient",
+             "axis": "y",
+             "from_coordinate": 1240,
+             "from_value": 1.0,
+             "to_coordinate": 1264,
+             "to_value": 0.0
+            },
+            "right": {
+             "type": "minecraft:cache",
+             "input": {
+              "type": "minecraft:clamp",
+              "input": {
+               "type": "minecraft:mul",
+               "left": {
+                "type": "minecraft:sub",
+                "left": "the_isles:nether/holes",
+                "right": 0.55
+               },
+               "right": 8.0
+              },
+              "min": 0.0,
+              "max": 1.0
+             }
+            }
+           },
+           {
             "type": "minecraft:max",
             "left": {
              "type": "minecraft:gradient",
@@ -802,56 +759,19 @@
              }
             }
            },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         },
-         {
-          "type": "minecraft:lerp",
-          "alpha": {
-           "type": "minecraft:max",
-           "left": {
-            "type": "minecraft:gradient",
-            "axis": "y",
-            "from_coordinate": 1624,
-            "from_value": 0.0,
-            "to_coordinate": 1656,
-            "to_value": 1.0
-           },
-           "right": {
-            "type": "minecraft:cache",
-            "input": {
-             "type": "minecraft:clamp",
-             "input": {
-              "type": "minecraft:mul",
-              "left": {
-               "type": "minecraft:sub",
-               "left": "the_isles:nether/holes",
-               "right": 0.55
-              },
-              "right": 8.0
-             },
-             "min": 0.0,
-             "max": 1.0
-            }
-           }
-          },
-          "first": 2.5,
-          "second": {
-           "type": "minecraft:lerp",
-           "alpha": {
+           {
             "type": "minecraft:gradient",
             "axis": "y",
             "from_coordinate": 2008,
             "from_value": 1.0,
             "to_coordinate": 2032,
             "to_value": 0.0
-           },
-           "first": 0.9375,
-           "second": "minecraft:nether/base_3d_noise"
-          }
-         }
-        ]
+           }
+          ]
+         },
+         "first": 0.9375,
+         "second": "minecraft:nether/base_3d_noise"
+        }
        }
       },
       "right": 0.64
