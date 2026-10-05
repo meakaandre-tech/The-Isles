@@ -26,6 +26,11 @@ RELIEF = {"jagged_peaks": 190, "frozen_peaks": 160, "stony_peaks": 130, "snowy_s
           "plains": 12, "sunflower_plains": 12, "swamp": 5, "mangrove_swamp": 5, "beach": 4, "snowy_beach": 4,
           "stony_shore": 16, "mushroom_fields": 18, "snowy_plains": 10, "ice_spikes": 10}
 DEFAULT_RELIEF = 18
+# Biomes the game treats specially by id, replaced in the generated pack (the layout keeps its own names).
+# eroded_badlands: the surface builder raises stone pillars from the ground up to y 64..90 wherever the column's ground
+# is lower (MaterialSystem.erodedBadlandsExtension, not data driven) - on a floating island that is a pillar up to
+# 1,100 blocks tall, and in the empty columns of the biome footprint a stone column down to the bottom of the world.
+BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
 
 def mc(t, **kw): return {"type": f"minecraft:{t}", **kw}
 def add(a, b): return mc("add", left=a, right=b)
@@ -55,7 +60,7 @@ def dist_fn(i):
 def island_density(i):
     R, top, t = i["radius"], i["y_top"], i["thickness"]
     basin = i["kind"] == "basin"
-    amp = 0 if basin else min(RELIEF.get(i["biome"], DEFAULT_RELIEF), 0.5 * t)
+    amp = 0 if basin else min(RELIEF.get(i.get("layout_biome", i["biome"]), DEFAULT_RELIEF), 0.5 * t)   # the shape follows the layout biome
     shrink = max(0.05, min(0.2, 40 / R + 0.04))
     d = ref(f"dist/{i['key']}")
     # e: 1 at the centre, 0 at the (noise-warped) rim, negative outside. The rim never passes R.
@@ -96,7 +101,11 @@ def grid(islands, leaf):
 def main():
     layout = json.loads((ROOT / "layout" / "islands.json").read_text())
     islands = layout["islands"]
-    for n, i in enumerate(islands): i["key"] = f"{n:03d}_{i['id'].lower()}"
+    for n, i in enumerate(islands):
+        i["key"] = f"{n:03d}_{i['id'].lower()}"
+        if i["biome"] in BIOME_SUBSTITUTE: i["layout_biome"], i["biome"] = i["biome"], BIOME_SUBSTITUTE[i["biome"]]
+    for a, b in BIOME_SUBSTITUTE.items():
+        print(f"{a} -> {b} on {sum(1 for i in islands if i.get('layout_biome') == a)} islands")
     if OUT.exists(): shutil.rmtree(OUT)
 
     biomes = sorted({i["biome"] for i in islands})
