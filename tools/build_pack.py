@@ -629,11 +629,6 @@ def build(src):
                 levels.append((below["y_top"] + t["y_bottom"]) / 2); below = t
             val = mc("interval_select", input=Y, thresholds=levels,
                      functions=[code[i["biome"]] - VOID] + [code[t["biome"]] - VOID for t in stack])
-        if i.get("geyser_at"):   # the pocket of sulfur caves under the geyser: a cylinder
-            pk = bt.pocket(i["geyser_at"])
-            write(f"data/{NS}/worldgen/density_function/dist/pocket_{i['key']}.json",
-                  flat(mc("distance_to_point", metric="euclidean", point=[pk["x"], 0, pk["z"]])))
-            val = choice(Y, pk["y_min"], pk["y_max"], choice(ref(f"dist/pocket_{i['key']}"), 0, pk["radius"], code[SULFUR] - VOID, val), val)
         if stack: return choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, val, 0)
         if bt.is_basin(i):
             # A sea basin: the sea's biome only inside the rim ring; the ring and the margin past the rim are a shore biome.
@@ -645,17 +640,26 @@ def build(src):
         # column inside the biome is a place where a structure can start with nothing under it.
         return choice(ref(f"edge/{i['key']}"), -BIOME_MARGIN / i["radius"], 2, val, 0)
     def has_stack(i): return i["id"] == i["cluster"] + "1" and i["cluster"] in tiers
-    def flat_biome(i): return not has_stack(i) and not i.get("geyser_at")   # one biome at every height of the column
     # one flat slice for the islands with one biome (through the grid: a single lookup, as /locate does, only computes its
     # own cell), and the three stacks, whose biome changes with the height
     # Below the lowest island everything is void biome: a structure that starts over an empty column gets the bottom of
     # the world as its height, and with the island's biome there it would be built on the world floor (igloos, treasure).
     floor = min(i["y_bottom"] for i in islands) - 64
-    write(f"data/{NS}/worldgen/density_function/biome_code.json", add(VOID, mul(choice(Y, floor, 100000, 1, 0), tree(add,
-          [flat(grid([i for i in mains if flat_biome(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0)),
-           # the islands with sulfur caves under their geyser: the same lookup, by height
-           grid([i for i in mains if not flat_biome(i) and not has_stack(i)] or mains[:1], lambda hit: tree(add, [biome_term(i) for i in hit if not flat_biome(i)]) if [i for i in hit if not flat_biome(i)] else 0)]
-          + [biome_term(i) for i in mains if has_stack(i)]))))
+    base = tree(add, [flat(grid([i for i in mains if not has_stack(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0))]
+                     + [biome_term(i) for i in mains if has_stack(i)])
+    # The pockets of sulfur caves under the geysers (cylinders): which columns are in one and at which height its middle is
+    # are flat fields; per point there is only the test of the height. (The game fills a chunk's biomes for all its points
+    # at once and computes every branch: with the pockets as branches by height of the lookup above, every chunk took a
+    # quarter longer to generate, void included.)
+    pk = [bt.pocket(i["geyser_at"]) for i in mains if i.get("geyser_at")]
+    if pk:
+        inside = lambda p: choice(mc("distance_to_point", metric="euclidean", point=[p["x"], 0, p["z"]]), 0, p["radius"], 1, 0)
+        write(f"data/{NS}/worldgen/density_function/pocket/inside.json", flat(tree(add, [inside(p) for p in pk])))
+        write(f"data/{NS}/worldgen/density_function/pocket/middle.json", flat(tree(add, [mul(inside(p), (p["y_min"] + p["y_max"]) / 2) for p in pk])))
+        half = (pk[0]["y_max"] - pk[0]["y_min"]) / 2
+        q = mul(ref("pocket/inside"), clamp(mul(sub(half, mc("abs", input=sub(Y, ref("pocket/middle")))), 1000.0), 0, 1))
+        base = add(mul(sub(1, q), base), mul(q, code[SULFUR] - VOID))
+    write(f"data/{NS}/worldgen/density_function/biome_code.json", add(VOID, mul(choice(Y, floor, 100000, 1, 0), base)))
 
     # --- noise settings, surface rule, dimension
     final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
