@@ -47,3 +47,32 @@ sheets of the screenshots. Start with `report.txt` (written by `packtest/tools/r
 * 1,500 force-loaded chunks of this height do not fit in a 5 GB heap; the probes drop their tickets per island.
 * The headless client needs `SDL_VIDEO_FORCE_EGL=1` (Xvfb has no sRGB GLX visual) and Mesa's EGL packages.
 * Screenshots come from software rendering (llvmpipe); frame rates there say nothing about a real GPU.
+
+## Findings so far (26.3, October 2026)
+
+Fixed in the generator (each its own commit on `pack-test`):
+
+| Finding | Evidence | Fix |
+|---|---|---|
+| Chunk generation dies in badlands below y -192; the server hangs | `ArrayIndexOutOfBoundsException` in `MaterialSystem.getBand`, J cluster never loads | the vanilla surface rule only runs 48 blocks deep |
+| `eroded_badlands` raises stone pillars from the ground up to y 64..90 | ground at y 74 in the footprint of T4 (top y -1000), y 65 on J2 (top y -460) | the generator uses `badlands` there |
+| The whole world is snow-covered, rain falls as snow | snow layer on the spawn plains at y 57; screenshots | rainy biomes are written with a temperature that survives the altitude, colours pinned |
+| Ores only in the vanilla height band | zinc, lead, uranium and diamonds only in the spawn island; coal only above y 500 | ore placement by depth under the island surface; `datapack-mods` for the mod ores |
+| Ice spikes hang down to y 50 from island rims | screenshot of e3; 322 packed ice blocks under it after a first, weaker fix | spikes only where the nine columns under them have rock |
+| Icebergs at the bottom of the world | they are built at the generator's sea level (y -2032) | switched off |
+
+Open (see `known.txt` and the report of the run):
+
+* Structures the game puts at fixed heights or at its sea level: trial chambers at y -40..-20 in a shell of rock
+  wherever an island's biome column is (one hangs 280 blocks over I1), strongholds and mineshafts in the lowest 100
+  layers of the world (4,709 stone bricks, 2,204 planks counted there, none elsewhere). There is no usable way
+  into the End. Limiting the biome to a band around each island removes most of this but makes failed structure
+  searches ten times slower (commits "an island's biome only surrounds the island" and its revert).
+* Create Diesel Generators: a pumpjack needs a pipe down to a block tagged `createdieselgenerators:oil_deposit`
+  (bedrock); The Isles has no bedrock. Oil amounts per chunk are there (6 to 8 million mB in plains, desert, savanna,
+  badlands and ocean islands).
+* Below y 63 the lower half of the sky is black (the client's horizon is hard-coded for non-flat worlds); clouds
+  stay at y 192; a Nether portal lit under an empty column makes a portal with a 4-block platform in the void.
+* `/locate` (and explorer maps) for a structure that exists nowhere blocks the server for about 16 s.
+* A loaded chunk costs about three times the memory of a vanilla one (4,064 blocks of sections and light);
+  empty chunks cost almost as much to generate as land.
