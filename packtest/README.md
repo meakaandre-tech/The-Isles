@@ -71,7 +71,7 @@ Fixed in the generator (each its own commit on `pack-test`):
 | Ice spikes hang down to y 50 from island rims | screenshot of e3; 322 packed ice blocks under it after a first, weaker fix | spikes only where the nine columns under them have rock |
 | Icebergs at the bottom of the world | they are built at the generator's sea level (y -2032) | switched off |
 | Structures at fixed heights: trial chambers at y -40..-20 in rock shells in mid-air, strongholds and mineshafts in the lowest 100 layers, no way into the End | 4,709 stone bricks and 2,204 planks counted on the world floor, none elsewhere | see "Structures" below |
-| Structures start over empty columns of an island's biome (an igloo and a treasure were located over the void) | `/locate` answers with ground at y -2032 | the biome follows the island's rim (24 blocks past it), and the 500 layers under the lowest island are void biome, so a start that falls to the bottom of the world is rejected |
+| Structures start over empty columns of an island's biome (an igloo and a treasure were located over the void) | `/locate` answers with ground at y -2032 | the biome follows the island's rim (24 blocks past it), and the 500 layers under the lowest island are void biome, so a start that falls to the bottom of the world is rejected; `freeze_top_layer` (snow, ice) lost its biome check, which the game makes at the bottom of the chunk |
 | Below y 63 the lower half of the sky is black | screenshots at y 0 and y -1500 | the whole sky is drawn in the fog colour (`sky_fog_end_distance` 3) |
 | Every chunk pays for all 240 islands; void costs as much as land | thread dumps: 60-80% of the generation in the terrain function; 256 void chunks 21 s | terrain from flat per-layer fields: 256 land chunks 32 s -> 15 s, void 21 s -> 7 s, three stacked tiers (64 chunks) 13 s -> 6-7 s, same heights at every probe |
 
@@ -115,15 +115,19 @@ counted near the surface, elsewhere in the columns and in the lowest 200 layers.
 Same runner, same seed, Fabric API only (perf phase, `packtest/perf.txt`); seconds until every chunk of the region is
 loaded, polled once a second:
 
-| Pack | 256 chunks of land | 256 chunks of void | 64 chunks, 3 stacked tiers | `/locate` that finds nothing |
-|---|---|---|---|---|
-| before (commit 3d88f92) | 32.3 | 21.2 | 13.0 | 16-18 (mansion, jungle temple) |
-| now | 15.2 | 7.0 | 6.9 | 0.2 (structures that are off), 10 (jungle temple) |
-| now, terrain only computed in the layers that hold islands (`ISLES_TRIM_NOISE=1`) | 15.2 | 7.0 | 6.0 | 11 |
-| the old generator with 8-block cells (`ISLES_CELL_XZ=8`) | 25.3 | 13.2 | - | - |
+| Pack | 256 chunks of land | 256 chunks of void | 64 chunks, 3 stacked tiers | `/locate` that finds nothing | tick P50 with the land loaded |
+|---|---|---|---|---|---|
+| before (commit 3d88f92) | 22.1 | 16.0 | 9.9 | 16.2 (mansion), 14.2 (jungle temple) | 10.6 ms |
+| now | 11.0 | 4.9 | 4.9 | 0.2 (a structure that is off), 8.2 (jungle temple) | 5.1 ms |
+| now, terrain only computed in the layers that hold islands (`ISLES_TRIM_NOISE=1`) | 10.0 | 4.9 | 4.9 | 8.2 | 6.3 ms |
+| now, 8-block cells (`ISLES_CELL_XZ=8`) | 10.0 | 4.9 | 4.9 | 8.2 | 5.7 ms |
+
+(Run bc71477. Two earlier runs on slower runners: 32.3 / 21.2 / 13.0 before, 15.2 / 7.0 / 6.9 now. In the thread dumps the
+terrain function went from 60-80% of the samples to about 40%, what is left is the game's own loop over the 4,064
+layers. The P99 tick time is the tick of the `forceload` itself and says nothing.)
 
 The two switches are not used: after the flat fields they gain nothing that can be measured, and the second one makes
-the terrain coarser. Heap after a full collection with the 256 land chunks loaded was between 520 and 820 MB in all
+the terrain coarser. Heap after a full collection with the 256 land chunks loaded was between 510 and 820 MB in all
 variants (the difference between two runs of the same pack is as large as between packs): a loaded chunk still costs
 about three times a vanilla one, because of the 254 sections of height.
 

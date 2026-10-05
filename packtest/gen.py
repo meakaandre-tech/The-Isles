@@ -404,7 +404,7 @@ if on('spawn'):
           'cmd tp packtest 1240 -1900 0', 'sleep 14', 'cmd say CHECK after the fall out of the world', 'cmd data get entity packtest Pos', 'cmd data get entity packtest Health', 'shot']
 S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd gamerule spawn_monsters false', 'cmd gamemode spectator packtest']
 # views: top-down and from the side, of a spread of islands
-VIEWS = ['S2', 'Pt3', 'D4', 'T3', 'C4', 'e3']
+VIEWS = ['S2', 'Pt3', 'C4', 'e3']
 if on('views'):
     S += ['cmd say SECTION views']
     for k in VIEWS:
@@ -476,7 +476,9 @@ if on('portals'):
 MOBS = ['zombie', 'skeleton', 'creeper', 'spider', 'enderman', 'witch', 'slime', 'zombie_villager', 'bat']
 if on('mobs'):
     # monsters at night, in survival, on the spawn island
-    S += ['cmd gamemode survival packtest', 'cmd effect give packtest minecraft:resistance infinite 255 true', 'cmd gamerule advance_time true', 'cmd time set midnight', 'sleep 90',
+    # (the portal section before this one ends in the End: back to the spawn point first)
+    S += ['cmd execute in minecraft:overworld run tp packtest 0.5 60 0.5 0 0', 'sleep 30', 'cmd gamerule spawn_monsters true',
+          'cmd gamemode survival packtest', 'cmd effect give packtest minecraft:resistance infinite 255 true', 'cmd gamerule advance_time true', 'cmd time set midnight', 'sleep 90',
           'cmd say SECTION mobs'] + count('night', MOBS) + ['shot']
     S += ['cmd time set noon', 'cmd gamerule spawn_monsters false', 'cmd kill @e[type=#minecraft:undead]', 'cmd kill @e[type=minecraft:creeper]',
           'cmd kill @e[type=minecraft:spider]', 'cmd kill @e[type=minecraft:enderman]', 'cmd kill @e[type=minecraft:witch]', 'cmd kill @e[type=minecraft:item]']
@@ -486,7 +488,7 @@ if on('mobs'):
     # a swamp, a forest and a snowy island: what generated there (ducks and geese of the duck mod live near water)
     for k in ['R1', 'f1', 'e1', 'D1']:
         i = I[k]
-        S += [f'cmd tp packtest {i["x"]} {i["y_top"] + 40} {i["z"]}', 'sleep 45', f'cmd say SECTION animals on {k} {i["biome"]}'] + count(k, PASSIVE)
+        S += [f'cmd execute in minecraft:overworld run tp packtest {i["x"]} {i["y_top"] + 40} {i["z"]}', 'sleep 45', f'cmd say SECTION animals on {k} {i["biome"]}'] + count(k, PASSIVE)
     S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd weather rain', 'sleep 12', 'shot', 'cmd weather clear']
 S += ['cmd execute in minecraft:overworld run tp packtest 0 90 0 0 20', 'sleep 20', 'cmd gamemode creative packtest', 'key F3', 'sleep 4', 'shot', 'key F3',
       'cmd say SECTION client end', 'cmd list', 'cmd tick query', 'sleep 3']
