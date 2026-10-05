@@ -104,7 +104,7 @@ jobs:
         run: |
           mkdir -p /tmp/ci
           for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf /tmp/parts/ci-nether; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
-          cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null; cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null | sort -u > /tmp/ci/build.txt
+          cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null || true; (cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null || true) | sort -u > /tmp/ci/build.txt
           # the release only holds The Isles' own files: built here without any provider (vanilla biomes)
           ISLES_PROVIDERS=none python3 tools/build_pack.py > /dev/null
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
