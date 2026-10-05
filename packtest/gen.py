@@ -243,7 +243,11 @@ VEG = ['#minecraft:logs', '#minecraft:leaves', '#minecraft:flowers', 'minecraft:
        'minecraft:tuff', '#minecraft:terracotta', 'minecraft:sandstone', 'minecraft:kelp_plant', 'minecraft:seagrass', 'minecraft:pumpkin', 'minecraft:sugar_cane']
 UNDER = ['#minecraft:logs', '#minecraft:leaves', '#minecraft:base_stone_overworld', '#minecraft:dirt', '#minecraft:sand', '#minecraft:terracotta', '#minecraft:ice',
          'minecraft:water', 'minecraft:lava', 'minecraft:sandstone', '#minecraft:coral_blocks', 'minecraft:cobblestone', 'minecraft:mossy_cobblestone', 'minecraft:bone_block',
-         'minecraft:packed_ice', 'minecraft:gravel']
+         'minecraft:packed_ice', 'minecraft:gravel', 'minecraft:deepslate', 'minecraft:tuff', 'minecraft:obsidian', 'minecraft:magma_block', 'minecraft:kelp_plant']
+WIDE = ['minecraft:water', 'minecraft:lava', 'minecraft:vine', 'minecraft:cave_vines', 'minecraft:cave_vines_plant', 'minecraft:pointed_dripstone', '#minecraft:logs',
+        '#minecraft:leaves', 'minecraft:mangrove_roots', 'minecraft:hanging_roots', 'minecraft:glow_lichen', '#minecraft:fences', 'minecraft:cobweb', 'minecraft:snow',
+        'minecraft:powder_snow', 'minecraft:kelp_plant', 'minecraft:kelp', '#minecraft:base_stone_overworld', '#minecraft:dirt', '#minecraft:sand', 'minecraft:sandstone',
+        '#minecraft:terracotta', 'minecraft:gravel', '#minecraft:ice']
 def biome_scans():
     """96x96 columns around the centre of each island: blocks from the upper part of the body to 60 above the top, and (must be nothing)
     in a box 40 to 160 under the island's bottom. The counts replace the blocks (tags cannot be put back): run last."""
@@ -253,11 +257,22 @@ def biome_scans():
         lo, hi = i['y_top'] - int(min(0.5 * i['thickness'], 120)) - 10, i['y_top'] + 60
         c += [f'forceload add {x0} {z0} {x1} {z1}', f'#time BIOMEGEN-{k}-{i["biome"]}-36-chunks',
               f'#poll 300 execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} if loaded {i["x"]} 0 {i["z"]} run say LOADED bio-{k} ## LOADED bio-{k}', '#time']
-        probe(c, f'{k} centre', i['x'], i['z'], i['biome'])
+        probe(c, f'{k} bio', i['x'], i['z'], i['biome'])
         c += [f'say SCANBOX on-{k} {i["biome"]} y {lo}..{hi}, 96x96 columns']
         for b in VEG: c += [f'say SCAN on-{k} {b}', f'fill {x0} {lo} {z0} {x1} {hi} {z1} minecraft:structure_void replace {b}']
         c += [f'say SCANBOX under-{k} {i["biome"]} y {i["y_bottom"] - 160}..{i["y_bottom"] - 40} (in the open under the island)']
         for b in UNDER: c += [f'say SCAN under-{k} {b}', f'fill {x0} {i["y_bottom"] - 160} {z0} {x1} {i["y_bottom"] - 40} {z1} minecraft:structure_void replace {b}']
+        c += ['forceload remove all']
+    # under the whole footprint of the smaller ones, 40 to 200 blocks below the bottom: fluids and plants that hang or fall out of an
+    # island, and everything that is not air (the volume minus the air blocks counted)
+    for k in BIOME_SAMPLE:
+        i = I[k]; R = i['radius'] + 12
+        if i['radius'] > 170: continue
+        x0, z0, x1, z1 = i['x'] - R, i['z'] - R, i['x'] + R, i['z'] + R; y0, y1 = i['y_bottom'] - 200, i['y_bottom'] - 40
+        c += [f'forceload add {x0} {z0} {x1} {z1}',
+              f'#poll 400 execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} if loaded {i["x"]} 0 {i["z"]} run say LOADED wide-{k} ## LOADED wide-{k}',
+              '#sleep 20', f'say SCANBOX below-{k} {i["biome"]} y {y0}..{y1}, whole footprint, volume {(x1 - x0 + 1) * (z1 - z0 + 1) * (y1 - y0 + 1)}']
+        for b in WIDE + ['minecraft:air']: c += [f'say SCAN below-{k} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}']
         c += ['forceload remove all']
     return c
 
