@@ -1,6 +1,7 @@
 name: Pack test
-# Boots Minecraft 26.3 (Fabric) with The Isles: first a server with only Fabric API and the data pack, then the
-# whole mod pack with a real client. Logs and screenshots go to the ci-logs branch, the tested zip to a release.
+# Boots Minecraft 26.3 (Fabric) with The Isles: a server with only Fabric API and the data pack, the whole mod pack
+# with a real client, and generation timings of pack variants - one job each, side by side. A last job puts the logs
+# together, writes the report, pushes everything to the ci-logs branch and publishes the tested zips as a release.
 # See packtest/README.md.
 on:
   push:
@@ -9,20 +10,38 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: pack-test
+  group: pack-test-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [vanilla, pack, perf]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Phases of this job (packtest/phases)
+        id: ph
+        shell: bash
+        run: |
+          want=""
+          for w in $(cat packtest/phases); do
+            case "${{ matrix.part }}:$w" in vanilla:vanilla|vanilla:baseline|vanilla:bisect|pack:pack|pack:speed|perf:perf) want="$want $w";; esac
+          done
+          echo "phases=${want# }" >> "$GITHUB_OUTPUT"; echo "phases: ${want}"
       - uses: actions/setup-java@v4
+        if: steps.ph.outputs.phases != ''
         with:
           distribution: temurin
           java-version: 25
       - uses: gradle/actions/setup-gradle@v4
+        if: steps.ph.outputs.phases != '' && matrix.part == 'pack'
       - name: Rebuild the data pack from the layout and zip it
+        if: steps.ph.outputs.phases != ''
         shell: bash
         run: |
           mkdir -p /tmp/ci
@@ -33,16 +52,48 @@ jobs:
           (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
           ls -l /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip | tee -a /tmp/ci/build.txt
       - name: Run the tests
+        if: steps.ph.outputs.phases != ''
         continue-on-error: true
         shell: bash
         env:
           PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+          PHASES: ${{ steps.ph.outputs.phases }}
+          LOGS_BRANCH: ci-logs-${{ matrix.part }}
         run: bash packtest/run.sh
-      - name: Publish logs and screenshots to the ci-logs branch
-        if: always()
+      - name: Keep the logs for the report job
+        if: always() && steps.ph.outputs.phases != ''
+        shell: bash
+        run: |
+          cd /tmp/ci && mv run.txt run-${{ matrix.part }}.txt 2>/dev/null; mv build.txt build-${{ matrix.part }}.txt 2>/dev/null
+          rm -f report.txt verdict.txt commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.ph.outputs.phases != ''
+        with:
+          name: ci-${{ matrix.part }}
+          path: /tmp/ci
+          retention-days: 3
+  report:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: /tmp/parts
+          pattern: ci-*
+      - name: Report, logs to the ci-logs branch
         shell: bash
         run: |
           mkdir -p /tmp/ci
+          for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
+          cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null; cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null | sort -u > /tmp/ci/build.txt
+          python3 tools/build_pack.py > /dev/null
+          (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
+          (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
+          python3 packtest/tools/report.py /tmp/ci > /tmp/ci/report.txt 2>&1
+          head -80 /tmp/ci/report.txt; cat /tmp/ci/verdict.txt
           echo "${GITHUB_SHA}" > /tmp/ci/commit.txt
           cd /tmp/ci
           git init -q -b ci-logs
@@ -51,12 +102,11 @@ jobs:
           git add -A && git commit -q -m "Pack test for ${GITHUB_SHA}"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs
       - name: Publish the tested data pack
-        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          # only when the run says so: packtest/run.sh writes /tmp/ci/verdict.txt, first line PASS or FAIL
+          # only when the run says so: packtest/publish exists and the report's verdict (first line of verdict.txt) is PASS
           if [ -f packtest/publish ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
             gh release delete pack-test-latest -y --cleanup-tag -R "${{ github.repository }}" || true
             sleep 3

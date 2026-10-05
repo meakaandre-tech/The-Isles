@@ -65,6 +65,88 @@ def parse_tagged(name, start):
         elif cur is not None and t.startswith('Server thread') and not m.startswith(('Running function', 'Executed ', 'Marked ', 'Unmarked ')): res[cur].append(m)
     return res
 
+def filled(v):
+    """blocks changed by the fill commands answered in v (None: no answer)"""
+    n, seen = 0, False
+    for x in v:
+        m = re.search(r'filled (\d+) block', x)
+        if m: n += int(m.group(1)); seen = True
+        elif 'No blocks' in x: seen = True
+    return n if seen else None
+
+def structure_table(name, log, probes, scans):
+    """/locate results with what stands there: ground of the column, the structure's blocks near the ground and anywhere else in the columns"""
+    loc = parse_tagged(log, 'LOCATE')
+    rows = [k for k in loc if '@' in k]
+    if not rows: return
+    took = {m.group(1): m.group(2) for l in lines('run.txt') for m in [re.search(r'TIME LOCATE-(\S+) ([\d.]+) s', l)] if m} if name == 'vanilla' else {}
+    pr = {p['tag'][1:]: p for p in probes if p['kind'] == 'structure'}
+    print(f'\n-- structures ({name}): /locate from three places, the ground there, the structure\'s blocks within 100 below..60 above the ground and in the rest of the columns')
+    print(f'   {"structure@from":<34}{"found at":>16}{"island":>8}{"ground":>8}{"near":>7}{"elsewhere":>10}{"locate s":>9}  verdict')
+    for k in rows:
+        ans = ' | '.join(loc[k]); m = re.search(r'is at \[(-?\d+), [^,]+, (-?\d+)\]', ans)
+        off = k.split('@')[0] in ('stronghold', 'mineshaft', 'mineshaft_mesa', 'monument', 'mansion', 'ancient_city')
+        if not m:
+            verdict = 'off, as generated' if off and 'ould not find' in ans else 'not found' if 'ould not find' in ans else 'NO ANSWER: ' + ans[:60]
+            if 'NO ANSWER' in verdict or (k.startswith('isles-stronghold') and not off): fails.append(f'{name}: structure {k}: {verdict}')
+            print(f'   {k:<34}{"-":>16}{"":>8}{"":>8}{"":>7}{"":>10}{took.get(k, ""):>9}  {verdict}'); continue
+        x, z = int(m.group(1)), int(m.group(2)); p = pr.get(k, {}); y = p.get('y')
+        cov = covering(x, z); near = filled(scans.get(k + ' near', [])) if any(q.startswith(k + ' near') for q in scans) else None
+        nk = [q for q in scans if q.startswith(k + ' near')]; ek = [q for q in scans if q.startswith(k + ' elsewhere')]
+        near = filled(scans[nk[0]]) if nk else None; else_ = filled(scans[ek[0]]) if ek else None
+        verdict = 'ok'
+        if off: verdict = 'FAIL: the generator switches this off'
+        elif y is None: verdict = 'no probe'
+        elif y == MIN_Y: verdict = 'FAIL: starts over the void'
+        elif else_: verdict = f'FAIL: {else_} blocks outside the island band'
+        elif near == 0: verdict = 'ok (none of its marker blocks near)'
+        if 'FAIL' in verdict: fails.append(f'{name}: structure {k} at {x} {z}: {verdict}')
+        isl = max(cov, key=lambda i: i['y_top'])['id'] if cov else '-'
+        print(f'   {k:<34}{f"{x} {z}":>16}{isl:>8}{str(y):>8}{str(near):>7}{str(else_):>10}{took.get(k, ""):>9}  {verdict}')
+    for k, v in scans.items():
+        if 'y-of-the-frames' in k or k.startswith('floor-under'): print(f'   {k}: {" | ".join(x[:60] for x in v)}')
+        if k.startswith('floor-under') and filled(v): fails.append(f'{name}: {k}: {filled(v)} blocks on the world floor')
+
+def phase_times():
+    """run.txt -> {phase: [(label, value)]} for the TIME and HEAP lines"""
+    res, cur = {}, None
+    for l in lines('run.txt'):
+        m = re.search(r'\] (\S+): server start', l)
+        if m: cur = m.group(1); res.setdefault(cur, [])
+        m = re.search(r'\] TIME (\S+) ([\d.]+) s', l)
+        if m and cur: res[cur].append((m.group(1), float(m.group(2))))
+        m = re.search(r'\] HEAP (\S+) used (\d+)K', l)
+        if m and cur: res[cur].append(('heap ' + m.group(1), round(int(m.group(2)) / 1024)))
+    return res
+
+def perf_report():
+    """the perf phase: one row per pack variant; and where the chunk workers spend their time (thread dumps while generating)"""
+    t = phase_times(); names = [n for n in t if n.startswith('perf-')]
+    if names:
+        cols = ['PREGEN-land-256-chunks', 'PREGEN-void-256-chunks', 'PREGEN-tiers-64-chunks', 'LOCATE-mansion', 'LOCATE-jungle_pyramid', 'heap with-land', 'heap with-void', 'heap before-land']
+        print('\n================ perf: pack variants (seconds; heap in MB after a full collection) ================')
+        print(f'   {"variant":<22}' + ''.join(f'{c.replace("PREGEN-", "").replace("-chunks", "")[:14]:>15}' for c in cols) + '   tick P50/P95/P99 after land')
+        for n in names:
+            d = dict(t[n]); pc = [m.group(1) for l in lines(f'server-{n}.log') for m in [re.search(r'Percentiles: (.*?)\. Sample', l)] if m]
+            print(f'   {n[5:]:<22}' + ''.join(f'{str(d.get(c, "-")):>15}' for c in cols) + '   ' + (pc[1] if len(pc) > 1 else '-'))
+    for f in sorted(os.listdir(D)):
+        if not (f.startswith('prof-') and f.endswith('.txt')): continue
+        from collections import Counter
+        top, mid, n = Counter(), Counter(), 0
+        for block in open(f'{D}/{f}', errors='replace').read().split('\n\n'):
+            ls = block.split('\n')
+            if not ls or not re.match(r'"(Worker-Main|Server thread)', ls[0]): continue
+            fr = [x.strip()[3:].split('(')[0] for x in ls if x.strip().startswith('at ')]
+            if not fr or 'RUNNABLE' not in block or fr[0].startswith(('jdk.internal.misc.Unsafe.park', 'java.lang.Thread.sleep')): continue
+            n += 1; top[fr[0]] += 1
+            mc_ = [x for x in fr if x.startswith('net.minecraft.')]
+            if mc_: mid[mc_[0]] += 1
+            for x in fr:
+                if re.search(r'ChunkStatusTasks\.|NoiseBasedChunkGenerator\.(doFill|buildSurface|applyCarvers|createStructures|createReferences|applyBiomeDecoration|fillFromNoise|createBiomes|populateBiomes|doCreateBiomes)|LightEngine|ThreadedLevelLightEngine\.|StructureCheck|findNearestMapStructure', x): mid['STEP ' + x] += 1; break
+        if n:
+            print(f'\n-- {f}: {n} running worker/server thread samples; innermost game frame, and the generation step it belongs to')
+            for k, v in mid.most_common(14): print(f'   {v:>4} {100 * v // n:>3}%  {k[-110:]}')
+
 def server_report(name, isles=True):
     log = f'server-{name}.log'; ls = lines(log)
     if not ls: return
@@ -83,14 +165,14 @@ def server_report(name, isles=True):
             y, b = p.get('y'), p.get('biome', '?')
             cov = covering(p['x'], p['z']); core = covering(p['x'], p['z'], 0.7)
             verdict, exp = 'ok', ''
-            if p['kind'] in ('void', 'outside', 'rim') and not cov:
+            if y is None: verdict = 'FAIL no answer'
+            elif p['kind'] in ('void', 'outside', 'rim') and not cov:
                 exp = f'void {MIN_Y}'
                 own = I.get(p['tag'])   # the rim point is 4 blocks outside the radius: the rag noise can still put a block there
                 if y != MIN_Y and p['kind'] == 'rim' and own and own['y_bottom'] - 40 <= y <= own['y_top'] + 40: verdict = 'ok (ragged rim)'
                 elif y != MIN_Y: verdict = 'FAIL not empty'
                 elif b != 'the_isles:void' and p['kind'] != 'rim': verdict = 'FAIL biome'   # the biome footprint is 8 blocks wider than the radius
             elif p['kind'] == 'structure' and not cov: verdict = 'IN THE VOID' if y == MIN_Y else 'outside every island footprint, on something'
-            elif y is None: verdict = 'FAIL no answer'
             else:
                 ranges = [(i, top_range(i)) for i in cov]
                 hit = [i for i, (lo, hi) in ranges if lo <= y <= hi]
@@ -119,6 +201,7 @@ def server_report(name, isles=True):
     if scans:   # blocks per island: "SCAN <island> <block>" followed by the fill answers
         table = {}
         for k, v in scans.items():
+            if '@' in k.split(' ')[0]: continue   # structure scans: see structure_table
             isl, block = k.split(' ', 1)
             m = re.search(r'filled (\d+) block', v[0]) if v else None
             table.setdefault(isl, {})[block] = int(m.group(1)) if m else (0 if v and 'No blocks' in v[0] else None)
@@ -129,6 +212,7 @@ def server_report(name, isles=True):
             print('      ' + ', '.join(f'{b.split(":")[1]} {n}' for b, n in d.items() if n))
             print('      none of: ' + ' '.join(b.split(':')[1] for b, n in d.items() if n == 0))
             if any(n is None for n in d.values()): print('      no answer: ' + ' '.join(b for b, n in d.items() if n is None))
+    structure_table(name, log, probes, scans)
     for start in ('BODY', 'MID', 'COUNT', 'LOCATE', 'DIMCOUNT', 'OIL', 'CHECK', 'WORLDSPAWN', 'VIEW'):
         d = parse_tagged(log, start)
         if d:
@@ -139,7 +223,7 @@ def server_report(name, isles=True):
         t, m = msg(l)
         if re.match(r'(LIMIT|PREGEN|PORTAL|CHURN|SECTION) ', m) or re.search(r'Average time per tick|P50|P95|P99|Target tick rate|Sample: ', m): print('   ', l[:11], m[:200])
     if isles:
-        want = {i for i in json.load(open(f'{D}/gen.json'))['sample']} if os.path.exists(f'{D}/gen.json') else set()
+        want = {p['tag'] for p in probes if p['kind'] == 'centre' and p['tag'] in I}   # the islands this phase probed
         ok = {msg(l)[1].split()[1] for l in ls if msg(l)[1].startswith('TOPBIOMEOK ')}
         if want and want - ok and name in ('vanilla', 'pack'):
             fails.append(f'{name}: biome above the island is not the layout biome on {sorted(want - ok)}')
@@ -154,6 +238,7 @@ for n in range(20): server_report(f'bisect-{n}')
 server_report('pack')
 if os.path.exists(f'{D}/server2-pack.log'): os.replace(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log')
 server_report('pack-restart')
+perf_report()
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
 # packtest/known.txt: regexes of failures that are known findings (reported, not fixed); they do not fail the run
