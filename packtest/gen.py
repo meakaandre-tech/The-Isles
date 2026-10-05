@@ -269,7 +269,8 @@ def biome_scans():
         i = I[k]; R = i['radius'] + 12
         if i['radius'] > 170: continue
         x0, z0, x1, z1 = i['x'] - R, i['z'] - R, i['x'] + R, i['z'] + R; y0, y1 = i['y_bottom'] - 200, i['y_bottom'] - 40
-        c += [f'forceload add {x0} {z0} {x1} {z1}',
+        # (forceload takes 256 chunks at most per command: strips of 8 chunks)
+        c += [f'forceload add {x} {z0} {min(x + 127, x1)} {z1}' for x in range(x0 // 16 * 16, x1 + 1, 128)] + [
               f'#poll 400 execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} if loaded {i["x"]} 0 {i["z"]} run say LOADED wide-{k} ## LOADED wide-{k}',
               '#sleep 20', f'say SCANBOX below-{k} {i["biome"]} y {y0}..{y1}, whole footprint, volume {(x1 - x0 + 1) * (z1 - z0 + 1) * (y1 - y0 + 1)}']
         for b in WIDE + ['minecraft:air']: c += [f'say SCAN below-{k} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}']
@@ -282,11 +283,12 @@ def write(name, lines):
 # vanilla = Fabric API + The Isles only; baseline = the same server without The Isles (vanilla generator), timing only
 QUICK_SAMPLE = ['S1', 'K1', 'I1', 'e1', 'M4', 'Pt3', 'C1']
 write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUICK_SAMPLE) if on('islands-few') else [])
+      + (biome_scans() if on('biomes') else [])      # (they replace the blocks they count, on islands nothing else looks at)
       + (void_probes() if on('void') else []) + (limits() if on('limits') else [])
       + (structures() if on('structures') else [])
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
       + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
-      + ['tick query'] + (churn() if on('churn') else []) + (biome_scans() if on('biomes') else []))
+      + ['tick query'] + (churn() if on('churn') else []))
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
 write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER)

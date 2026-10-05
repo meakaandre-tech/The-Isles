@@ -19,7 +19,7 @@ snapshot() {
     && git config user.email "actions@users.noreply.github.com" && git add -A && git commit -q -m "Pack test for ${GITHUB_SHA} (in progress)" \
     && git push -q -f "$PUSH_URL" "HEAD:${LOGS_BRANCH:-ci-logs}"
 }
-if [ -n "$PUSH_URL" ]; then (while sleep 180; do (snapshot) >/dev/null 2>&1; done) & SNAP=$!; fi
+if [ -n "$PUSH_URL" ]; then (sleep 50; (snapshot) >/dev/null 2>&1; while sleep 180; do (snapshot) >/dev/null 2>&1; done) & SNAP=$!; fi
 phases=${PHASES:-$(cat $P/phases 2>/dev/null || echo "vanilla")}   # the workflow runs one job per phase group (PHASES)
 has() { echo " $phases " | grep -q " $1 "; }
 nproc; free -m | head -2
