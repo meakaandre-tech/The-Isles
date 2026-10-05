@@ -193,7 +193,8 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     potent = lambda dy: mc("matching_blocks", blocks="minecraft:potent_sulfur", offset=[0, dy, 0])
     bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser_warmth.json", {
         "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:light", "properties": {"level": str(WARMTH), "waterlogged": "false"}}},
-        "placement": [mc("fixed_placement", positions=[[g["x"] - 8, g["y"] - 8, g["z"] - 8] for g in cold]), mc("cuboid", xz_size=15, y_size=12),
+        # (from the geyser's own position: the feature then runs with the geyser's chunk, after the geyser)
+        "placement": [mc("fixed_placement", positions=[[g["x"], g["y"], g["z"]] for g in cold]), mc("offset", x=-8, y=-8, z=-8), mc("cuboid", xz_size=15, y_size=12),
                       mc("block_predicate_filter", predicate=mc("all_of", predicates=[air, mc("matching_blocks", blocks="minecraft:water", offset=[0, -1, 0]),
                                                                                       mc("any_of", predicates=[potent(-2), potent(-3)])]))]})
     # the vanilla features of the biome pick heights of the whole world: here a depth under the island's surface (the pockets
