@@ -32,6 +32,15 @@ DEFAULT_RELIEF = 18
 # is lower (MaterialSystem.erodedBadlandsExtension, not data driven) - on a floating island that is a pillar up to
 # 1,100 blocks tall, and in the empty columns of the biome footprint a stone column down to the bottom of the world.
 BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
+# ... but only for islands that reach below y 64: an island whose ground is all above the pillar height is safe once
+# its biome no longer covers the empty columns around it (BIOME_ABOVE / BIOME_BELOW).
+def pack_biome(i):
+    return BIOME_SUBSTITUTE.get(i["biome"], i["biome"]) if i["y_bottom"] < 64 else i["biome"]
+# An island's biome reaches this far above its top (or the top of an islet floating over it) and below its bottom;
+# the rest of the column is the void biome. A whole-column biome makes the game build things for it far away from
+# the island: what it puts at fixed heights (trial chambers at y -40..-20, cased in rock: one hung 280 blocks over the
+# warm ocean basin I1) or at "sea level", here the bottom of the world (strongholds, mineshafts, monuments, icebergs).
+BIOME_ABOVE, BIOME_BELOW = 192, 64
 
 # Ores. The vanilla ore features pick an absolute height (or one counted from the bottom of the world, 2,000 blocks
 # below anything), so most islands get none and no island gets diamonds. The pack replaces their placement by a
@@ -157,9 +166,9 @@ def main():
     islands = layout["islands"]
     for n, i in enumerate(islands):
         i["key"] = f"{n:03d}_{i['id'].lower()}"
-        if i["biome"] in BIOME_SUBSTITUTE: i["layout_biome"], i["biome"] = i["biome"], BIOME_SUBSTITUTE[i["biome"]]
+        if pack_biome(i) != i["biome"]: i["layout_biome"], i["biome"] = i["biome"], pack_biome(i)
     for a, b in BIOME_SUBSTITUTE.items():
-        print(f"{a} -> {b} on {sum(1 for i in islands if i.get('layout_biome') == a)} islands")
+        print(f"{a} -> {b} on {' '.join(i['id'] for i in islands if i.get('layout_biome') == a)}")
     if OUT.exists(): shutil.rmtree(OUT)
 
     biomes = sorted({i["biome"] for i in islands})
@@ -184,20 +193,20 @@ def main():
     write(f"data/{NS}/worldgen/density_function/terrain.json",
           grid(islands, lambda hit: fold(dmax, [ref(f"island/{i['key']}") for i in hit]) if hit else -1))
 
-    # --- biome code: one main island per column; stacked tiers switch biome by height
+    # --- biome code: one main island per column; stacked tiers switch biome by height; void above and below
     mains = [i for i in islands if i["layer"] == "main"]
     tiers = {}
     for i in islands:
         if i["layer"] == "tier": tiers.setdefault(i["cluster"], []).append(i)
     def biome_term(i):
-        val = code[i["biome"]] - VOID
         stack = sorted(tiers.get(i["cluster"], []), key=lambda t: t["y_bottom"]) if i["id"] == i["cluster"] + "1" else []
-        if stack:
-            levels, below = [], i
-            for t in stack:
-                levels.append((below["y_top"] + t["y_bottom"]) / 2); below = t
-            val = mc("interval_select", input=Y, thresholds=levels,
-                     functions=[code[i["biome"]] - VOID] + [code[t["biome"]] - VOID for t in stack])
+        over = [h for h in islands if h["layer"] == "high" and h["cluster"] == i["cluster"]
+                and math.hypot(h["x"] - i["x"], h["z"] - i["z"]) < i["radius"] + h["radius"]]   # islets floating over this island
+        levels, vals, below = [i["y_bottom"] - BIOME_BELOW], [0, code[i["biome"]] - VOID], i
+        for t in stack:
+            levels.append((below["y_top"] + t["y_bottom"]) / 2); vals.append(code[t["biome"]] - VOID); below = t
+        levels.append(max(m["y_top"] for m in [i] + stack + over) + BIOME_ABOVE); vals.append(0)
+        val = mc("interval_select", input=Y, thresholds=levels, functions=vals)
         return choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, val, 0)
     write(f"data/{NS}/worldgen/density_function/biome_code.json",
           add(VOID, grid(mains, lambda hit: fold(add, [biome_term(i) for i in hit]) if hit else 0)))
@@ -243,10 +252,6 @@ def main():
     write("data/minecraft/worldgen/placed_feature/ice_spike.json", {"feature": "minecraft:ice_spike", "placement": [
         mc("count", count=3), mc("in_square"), mc("heightmap", heightmap="MOTION_BLOCKING"),
         mc("block_predicate_filter", predicate={"type": "minecraft:all_of", "predicates": under}), mc("biome")]})
-    # Icebergs are built at the generator's sea level, which here is the bottom of the world: under the frozen ocean
-    # islands they would float at y -2032. Off until those islands hold water.
-    for name in ("iceberg_packed", "iceberg_blue"):
-        write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": f"minecraft:{name}", "placement": [mc("count", count=0)]})
     # --- ores follow the island surface
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
