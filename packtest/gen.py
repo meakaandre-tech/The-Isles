@@ -142,6 +142,7 @@ def pregen(name, cx0, cz0, cx1, cz1, wait=900, after=()):
 REG_LAND = (20, -8, 35, 7)       # 16x16 chunks inside the spawn island (600 blocks of rock under them)
 p = I['P1']; REG_TIER = (p['x'] // 16 - 4, p['z'] // 16 - 4, p['x'] // 16 + 3, p['z'] // 16 + 3)   # 8x8 chunks through three stacked tiers
 v = void_points()[0]; REG_VOID = (v[0] // 16 - 8, v[1] // 16 - 8, v[0] // 16 + 7, v[1] // 16 + 7)
+b = I['d1']; REG_BASIN = (b['x'] // 16 - 4, b['z'] // 16 - 4, b['x'] // 16 + 3, b['z'] // 16 + 3)   # 8x8 chunks in the middle of a sea basin
 
 HEAD = ['say SECTION start', 'scoreboard objectives add pt dummy', 'gamerule max_block_modifications 100000000', 'gamerule respawn_radius 0', 'tick query']
 ANIMALS = ['cow', 'sheep', 'pig', 'chicken', 'horse', 'rabbit', 'wolf', 'fox', 'llama', 'goat', 'frog', 'parrot', 'panda', 'camel', 'armadillo',
@@ -327,6 +328,119 @@ def cave_probes():
         c += ['forceload remove all']
     return c + ['tick query']
 
+# ------------------------------------------------------------------ terrain: seas, caves, surfaces, geysers, sulfur caves
+import build_pack as _bp, build_terrain as _bt
+def box(c, tag, x0, y0, z0, x1, y1, z1, blocks, note=''):
+    """SCAN lines: how many of each block are in a box (the blocks are replaced by what counts them)"""
+    c += [f'say SCANBOX {tag} {x0} {y0} {z0} .. {x1} {y1} {z1} volume {(x1 - x0 + 1) * (y1 - y0 + 1) * (z1 - z0 + 1)} {note}']
+    for b in blocks: c += [f'say SCAN {tag} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}']
+def load(c, tag, x0, z0, x1, z1, wait=420):
+    c += ['forceload remove all', f'forceload add {x0} {z0} {x1} {z1}',
+          f'#poll {wait} execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {(x0 + x1) // 2} 0 {(z0 + z1) // 2} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} run say LOADED {tag} ## LOADED {tag}']
+SEA_SAMPLE = ['d5', 'M5', 'N4', 'D4', 'K3', 'I4']
+SEA_BLOCKS = ['minecraft:kelp', 'minecraft:kelp_plant', 'minecraft:seagrass', 'minecraft:tall_seagrass', '#minecraft:coral_blocks', '#minecraft:corals', 'minecraft:sea_pickle',
+              'minecraft:sand', 'minecraft:gravel', 'minecraft:clay', 'minecraft:grass_block', 'minecraft:dirt', 'minecraft:ice', 'minecraft:packed_ice', 'minecraft:magma_block']
+CAVE_SAMPLE = [k for k in ['S1', 'C1', 'E1', 'H1', 'T1', 'R1', 'A1', 'S2', 'C2'] if k in I and I[k]['layer'] == 'main' and I[k]['kind'] == 'land']
+GEYSERS = json.load(open(ROOT + '/layout/geysers.json'))['geysers'] if os.path.exists(ROOT + '/layout/geysers.json') else []
+POCKETS = json.load(open(ROOT + '/layout/sulfur_caves.json'))['sulfur_caves'] if os.path.exists(ROOT + '/layout/sulfur_caves.json') else []
+RAW = {i['id']: i for i in json.load(open(ROOT + '/layout/islands.json'))['islands']}     # (with the layout's own biome names)
+def relief(i): return min(_bp.RELIEF.get(RAW[i['id']]['biome'], _bp.DEFAULT_RELIEF), 0.5 * i['thickness'])
+def terrain_probes():
+    c = ['say SECTION terrain']
+    # --- geysers: every one at its place in layout/geysers.json; the first is watched until it erupts
+    fn('erupt', [f'execute if block ~{dx} ~{dy} ~{dz} minecraft:potent_sulfur[potent_sulfur_state=erupting] run say ERUPTING {dx} {dy} {dz}'
+                 for dx in range(-9, 10) for dy in range(-8, 5) for dz in range(-9, 10)])
+    fn('potent', [f'execute if block ~{dx} ~{dy} ~{dz} minecraft:potent_sulfur run say POTENT {dx} {dy} {dz}'
+                  for dx in range(-9, 10) for dy in range(-8, 5) for dz in range(-9, 10)])
+    for n, g in enumerate(GEYSERS):
+        x, y, z, k = g['x'], g['y'], g['z'], g['island']
+        load(c, f'geyser-{k}', x - 24, z - 24, x + 24, z + 24, 240)
+        c += [f'say GEYSER {k} {x} {y} {z}', f'execute positioned {x} 0 {z} run function packtest:col', 'scoreboard players get y pt',
+              f'execute positioned {x} {y} {z} run function packtest:potent']
+        for st in ('dormant', 'erupting', 'wet', 'dry', 'continuous'):
+            c += [f'say SCAN geyser-{k} potent_sulfur[{st}]', f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:barrier replace minecraft:potent_sulfur[potent_sulfur_state={st}]',
+                  f'fill {x - 12} {y - 10} {z - 12} {x + 12} {y + 6} {z + 12} minecraft:potent_sulfur[potent_sulfur_state={st}] replace minecraft:barrier']
+        if n == 0: c += [f'say ERUPTION watch {k}', '#time ERUPTION', f'#poll 400 execute positioned {x} {y} {z} run function packtest:erupt ## ERUPTING', '#time']
+        box(c, f'geyser-{k}', x - 12, y - 10, z - 12, x + 12, y + 6, z + 12,
+            ['minecraft:potent_sulfur', 'minecraft:magma_block', 'minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:sulfur_spike', 'minecraft:water', 'minecraft:tuff', 'minecraft:granite'])
+    # --- sulfur caves: the pocket under five geysers
+    for p in POCKETS[:25:5]:
+        x, z, k, ch = p['x'], p['z'], p['island'], p['chamber']
+        load(c, f'pocket-{k}', x - 56, z - 56, x + 56, z + 56, 300)
+        c += [f'say POCKET {k} chamber {ch["x"]} {ch["y"]} {ch["z"]}', f'execute if biome {ch["x"]} {ch["y"]} {ch["z"]} minecraft:sulfur_caves run say POCKETBIOME {k} ok',
+              f'execute if block {ch["x"]} {ch["y"]} {ch["z"]} #minecraft:air run say POCKETCHAMBER {k} open']
+        box(c, f'pocket-{k}', x - 44, p['y_min'] - 4, z - 44, x + 44, p['y_max'] + 4, z + 44,
+            ['minecraft:sulfur', 'minecraft:cinnabar', 'minecraft:sulfur_spike', 'minecraft:potent_sulfur', 'minecraft:water', 'minecraft:lava', '#minecraft:air',
+             'minecraft:stone', 'minecraft:grass_block', 'minecraft:dirt'])
+        box(c, f'pocket-above-{k}', x - 44, p['y_max'] + 12, z - 44, x + 44, p['y_max'] + 16, z + 44, ['minecraft:sulfur', 'minecraft:cinnabar'], '(over the pocket: none)')
+    # --- seas
+    for k in SEA_SAMPLE:
+        i = I[k]; x, z, R = i['x'], i['z'], i['radius']; s = _bt.basin_shape(i); w, d = s['water'], s['depth']
+        load(c, f'sea-{k}', x - R - 24, z - R - 24, x + R + 24, z + R + 24)
+        c += ['#sleep 20', f'say SEA {k} {i["biome"]} water level {w} depth {d} top {i["y_top"]}']
+        probe(c, f'{k} sea-centre', x, z)
+        c += [f'execute if block {x} {w} {z} minecraft:water run say SEATOP {k} water', f'execute if block {x} {w} {z} minecraft:ice run say SEATOP {k} ice',
+              f'execute if block {x} {w + 1} {z} #minecraft:air run say SEAABOVE {k} air', f'execute if biome {x} {w - 2} {z} minecraft:{i["biome"]} run say SEABIOME {k} ok']
+        box(c, f'sea-life-{k}', x - R, w - d - 14, z - R, x + R, w + 2, z + R, SEA_BLOCKS, '(the sea: before its water is counted)')
+        box(c, f'sea-{k}', x - R - 24, w - d - 14, z - R - 24, x + R + 24, w, z + R + 24, ['minecraft:water', 'minecraft:ice'], '(the sea: floor to water level)')
+        box(c, f'sea-over-{k}', x - R - 24, w + 1, z - R - 24, x + R + 24, w + 40, z + R + 24, ['minecraft:water'], '(above the water level: none)')
+        box(c, f'sea-under-{k}', x - R - 24, i['y_bottom'] - 220, z - R - 24, x + R + 24, w - d - 15, z + R + 24, ['minecraft:water'], '(under the sea floor and under the island: none)')
+    # (a second pass with fresh chunks is not needed: the corners of the square around the round island lie outside its rim)
+    for k in SEA_SAMPLE[:3]:
+        i = I[k]; x, z, R = i['x'], i['z'], i['radius']; s = _bt.basin_shape(i); w, d = s['water'], s['depth']; q = int(0.78 * R)
+        load(c, f'searim-{k}', x - R - 24, z - R - 24, x + R + 24, z + R + 24)
+        for n, (sx, sz) in enumerate(((1, 1), (1, -1), (-1, 1), (-1, -1))):
+            x0, x1 = sorted((x + sx * q, x + sx * (R + 24))); z0, z1 = sorted((z + sz * q, z + sz * (R + 24)))
+            box(c, f'sea-outside-{k}-{n}', x0, i['y_bottom'] - 60, z0, x1, w + 2, z1, ['minecraft:water'], '(outside the rim: none)')
+        # the water does not move: a block update at the shore line and at the rim, then the same counts
+        c += [f'setblock {x} {w + 1} {z} minecraft:stone', f'setblock {x} {w + 1} {z} minecraft:air', '#sleep 30']
+        box(c, f'sea-again-{k}', x - R - 24, i['y_bottom'] - 220, z - R - 24, x + R + 24, w - d - 15, z + R + 24, ['minecraft:water'], '(under the island after 30 s: none)')
+    # --- caves
+    for k in CAVE_SAMPLE:
+        i = I[k]; x, z, R, top, t = i['x'], i['z'], i['radius'], i['y_top'], i['thickness']
+        roof = _bt.cave_roof(_bp, RAW[k]); amp = relief(i)
+        ox = 200 if k == 'S1' else 0     # (not through the spawn point)
+        load(c, f'cave-{k}', x + ox - 80, z - 80, x + ox + 80, z + 80, 300)
+        y1 = int(top - amp - 10 - roof - 4); y0 = int(max(y1 - 110, top - 0.55 * t))
+        if y1 - y0 >= 16:
+            box(c, f'cave-{k}', x + ox - 64, y0, z - 64, x + ox + 63, y1, z + 63, ['minecraft:air', 'minecraft:cave_air', 'minecraft:water', 'minecraft:lava', 'minecraft:grass_block', 'minecraft:dirt',
+                '#minecraft:coal_ores', '#minecraft:iron_ores', '#minecraft:copper_ores', '#minecraft:diamond_ores'], f'(the body of {k}: thickness {t}, cave roof {roof})')
+        for n, (dx, dz) in enumerate(((0, 0), (40, 0), (-40, 0), (0, 40), (0, -40), (60, 60), (-60, -60), (60, -60), (-60, 60))):
+            c += [f'say VPROFILE cave-{k}-{n} {x + ox + dx} {z + dz}', f'execute positioned {x + ox + dx} 0 {z + dz} positioned over world_surface run function packtest:vprofile']
+        if amp <= 20:   # entrances: air in the roof shell (2..24 blocks under the ground), on a grid of 6 blocks over the middle of the island
+            r = int(min(0.55 * R, 150)) // 6 * 6; ye = int(top - amp - 12)
+            fn(f'ent_{k.lower()}', [f'execute if block {x + ox + dx} {ye} {z + dz} #minecraft:air run say ENT {dx} {dz}' for dx in range(-r, r + 1, 6) for dz in range(-r, r + 1, 6) if math.hypot(dx, dz) <= r])
+            load(c, f'ent-{k}', x + ox - r, z - r, x + ox + r, z + r, 400)
+            c += [f'say ENTGRID {k} y {ye} radius {r} step 6', f'function packtest:ent_{k.lower()}', f'say ENTGRID {k} end']
+    # the pack's End portal rooms (30 blocks under the ground of the spawn island) are whole
+    c += ['say LOCATE isles-stronghold/caves', 'execute positioned 0 0 0 run locate structure the_isles:stronghold', '#wait 180 ## is at \\[|Could not find|could not find|ERROR|Unknown|There is no structure', '#loc',
+          'forceload remove all', 'forceload add {X0} {Z0} {X1} {Z1}', '#poll 240 execute if loaded {X0} 0 {Z0} if loaded {X1} 0 {Z1} if loaded {LX} 0 {LZ} run say LOADED loc ## LOADED loc',
+          'say SCAN portalroom minecraft:end_portal_frame', 'fill {X0} -40 {Z0} {X1} 60 {Z1} minecraft:structure_void replace minecraft:end_portal_frame',
+          'say SCAN portalroom minecraft:stone_bricks', 'fill {X0} -40 {Z0} {X1} 60 {Z1} minecraft:structure_void replace minecraft:stone_bricks']
+    # --- surfaces: the terracotta bands of the mesa stack at the same heights on every tier, the snow line of a windswept island
+    P = _bt.BAND_PERIOD
+    for k in ['J1', 'Jt2', 'Jt3'] + [i['id'] for i in L['islands'] if i['biome'] in ('badlands', 'wooded_badlands') and i['y_top'] > 100][:1]:
+        i = I[k]; x, z, top = i['x'], i['z'], i['y_top']; a = int(relief(i)); far = 0 if k == 'J1' else 0
+        ox = int(0.6 * i['radius']) if k in ('J1', 'Jt2') else 0     # (the lower tiers: beside the tier above)
+        load(c, f'bands-{k}', x + ox - 48, z - 48, x + ox + 48, z + 48, 300)
+        box(c, f'bands-{k}', x + ox - 48, top - a - 30, z - 48, x + ox + 48, top + 4, z + 48, ['minecraft:terracotta', 'minecraft:orange_terracotta', 'minecraft:yellow_terracotta',
+            'minecraft:brown_terracotta', 'minecraft:red_terracotta', 'minecraft:white_terracotta', 'minecraft:light_gray_terracotta', 'minecraft:red_sand', 'minecraft:grass_block', 'minecraft:coarse_dirt', 'minecraft:stone'])
+        load(c, f'bands2-{k}', x + ox - 48, z - 48, x + ox + 48, z + 48, 300)   # (the same chunks are not generated again: counts by layer need fresh ones)
+    for k in ['J1', 'Jt2', 'Jt3']:
+        i = I[k]; x, z, top = i['x'], i['z'], i['y_top']; a = int(relief(i)); ox = int(0.6 * i['radius']) + 100 if k in ('J1', 'Jt2') else 40
+        ox = min(ox, int(0.8 * i['radius']) - 20)
+        load(c, f'layers-{k}', x - ox - 30, z - 30, x - ox + 30, z + 30, 300)
+        for y in range(top - a // 2 - 8, top - a // 2 + 4):
+            c += [f'say LAYER {k} y {y} pattern {P[y % len(P)]}'] + [l for col in ('terracotta', 'orange_terracotta', 'yellow_terracotta', 'brown_terracotta', 'red_terracotta', 'white_terracotta', 'light_gray_terracotta')
+                  for l in (f'say SCAN layer-{k}-{y} minecraft:{col}', f'fill {x - ox - 30} {y} {z - 30} {x - ox + 30} {y} {z + 30} minecraft:structure_void replace minecraft:{col}')]
+    for k in [i['id'] for i in L['islands'] if i['biome'] in _bt.SNOW_CAPS][:2] + ['Pt2', 'Qt3']:
+        i = I[k]; x, z, top = i['x'], i['z'], i['y_top']; a = relief(i); line = round(top - _bt.SNOW_CAPS.get(i['biome'], 0.4) * a)
+        r = min(64, int(0.7 * i['radius']))
+        load(c, f'snow-{k}', x - r, z - r, x + r, z + r, 300)
+        box(c, f'snow-high-{k}', x - r, line + 6, z - r, x + r, top + 6, z + r, ['minecraft:snow_block', 'minecraft:snow', 'minecraft:grass_block', 'minecraft:stone', 'minecraft:gravel'], f'({i["biome"]}: above the snow line {line}, top {top})')
+        box(c, f'snow-low-{k}', x - r, int(top - a - 12), z - r, x + r, line - 8, z + r, ['minecraft:snow_block', 'minecraft:snow', 'minecraft:grass_block', 'minecraft:stone', 'minecraft:gravel'], '(below the snow line)')
+    return c + ['forceload remove all']
+
 def write(name, lines):
     open(f'{OUT}/commands-{name}.txt', 'w').write('\n'.join(lines + [f'say SECTION end {name}']) + '\n')
 
@@ -339,10 +453,11 @@ write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUI
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
       + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
       + ['tick query'] + (churn() if on('churn') else [])
-      + (cave_probes() if CAVE_BIOMES and on('caves') else []))    # (last: they replace what they count inside the spawn island)
+      + (cave_probes() if CAVE_BIOMES and on('caves') else [])    # (last: they replace what they count inside the spawn island)
+      + (terrain_probes() if on('terrain') else []))
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
-write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER)
+write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) + pregen('basin', *REG_BASIN)
       + ['say LOCATE mansion', '#time LOCATE-mansion', 'locate structure minecraft:mansion', '#wait 180 ## is at \\[|Could not find', '#time',
          'say LOCATE jungle_pyramid', '#time LOCATE-jungle_pyramid', 'locate structure minecraft:jungle_pyramid', '#wait 180 ## is at \\[|Could not find', '#time', 'tick query',
          # the cave world's sea storey under the middle of the spawn island: water and air in 48x48 columns (variants with its seas)

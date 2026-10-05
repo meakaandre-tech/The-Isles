@@ -1,3 +1,7 @@
 # name, then how the pack is built: "@commit" = the generator of that commit, or settings of tools/build_pack.py
-vanilla ISLES_PROVIDERS=none
-biomes ISLES_PROVIDERS=geophilic
+before @693f2b4
+now ISLES_PROVIDERS=none
+nocaves ISLES_PROVIDERS=none ISLES_OFF=caves
+noseas ISLES_PROVIDERS=none ISLES_OFF=seas
+nosulfur ISLES_PROVIDERS=none ISLES_OFF=sulfur
+nosurface ISLES_PROVIDERS=none ISLES_OFF=surface
