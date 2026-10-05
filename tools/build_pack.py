@@ -5,12 +5,15 @@ Every island in the layout becomes a set of flat (x/z) density functions; per la
 one function turns them into terrain (see terrain()). Biomes are assigned per island through the multi-noise
 "temperature" input, which carries a per-island code.
 """
-import json, math, os, shutil, sys
+import fnmatch, json, math, os, shutil, sys, zipfile
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import providers as prov
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "datapack"
+OUT = ROOT / "datapack"            # the pack with vanilla biomes: committed, released
 OUT_MODS = ROOT / "datapack-mods"
+BUILD = ROOT / "build"             # the pack with the biomes of the providers in vendor/: never committed (see README)
 NS = "the_isles"
 MIN_Y, HEIGHT = -2032, 4064
 # Generation cost (measured by packtest's perf phase, see packtest/README.md). The environment variables are for those
@@ -81,8 +84,11 @@ MOD_ORES = [("create", "zinc_ore", "create:zinc_ore", 8, 0, 128, "create:config_
 # the vanilla values (tools/vanilla_biome_colors.json, read off the vanilla colormaps at each biome's own
 # temperature and downfall). Biomes that snow in vanilla are left alone. Input: tools/vanilla_biome/ (26.3).
 WARM = 5.5
-def climate_biome(name):
-    d = json.loads((Path(__file__).parent / "vanilla_biome" / f"{name}.json").read_text())
+def vanilla_biome(name): return json.loads((Path(__file__).parent / "vanilla_biome" / f"{name}.json").read_text())
+def climate_biome(name, d=None):
+    """the biome file with a climate that does not depend on the altitude, or None when nothing has to change; d: a
+    provider's version of the biome (default: the vanilla one)"""
+    d = d or vanilla_biome(name)
     if not d["has_precipitation"] or d["temperature"] < 0.15 or d.get("temperature_modifier") == "frozen": return None
     grass, foliage, dry = json.loads((Path(__file__).parent / "vanilla_biome_colors.json").read_text())[name]
     eff = d.setdefault("effects", {})
@@ -91,16 +97,19 @@ def climate_biome(name):
     return d
 
 def mc(t, **kw): return {"type": f"minecraft:{t}", **kw}
-def ore_placement(feature, count, d0, d1, last):
-    """count attempts per chunk, each (d0 + 16 * Binomial(n, 1/2) + 0..15) blocks under the top block of its column, at most d1"""
+def depth_mods(d0, d1):
+    """placement modifiers that move a position (d0 + 16 * Binomial(n, 1/2) + 0..15) blocks under the top block of its column, at most d1"""
     down = lambda y: mc("offset", x=0, y=y, z=0)
-    mods = [mc("rarity_filter", chance=-count) if isinstance(count, int) and count < 0 else mc("count", count=count),
-            mc("in_square"), mc("heightmap", heightmap="OCEAN_FLOOR_WG")]
+    mods = [mc("heightmap", heightmap="OCEAN_FLOOR_WG")]
     base = d0 + 1                        # the heightmap is the first free block above the ground
     while base > 0:
         mods.append(down(-min(16, base))); base -= 16
     mods += [mc("randomly_selected", placements=[down(0), down(-16)])] * max(0, round((d1 - d0) / 16) - 1)
-    mods += [down({"type": "minecraft:uniform", "min_inclusive": -15, "max_inclusive": 0}), {"type": last}]
+    return mods + [down({"type": "minecraft:uniform", "min_inclusive": -15, "max_inclusive": 0})]
+def ore_placement(feature, count, d0, d1, last):
+    """count attempts per chunk, each at a depth of depth_mods(d0, d1)"""
+    mods = [mc("rarity_filter", chance=-count) if isinstance(count, int) and count < 0 else mc("count", count=count),
+            mc("in_square")] + depth_mods(d0, d1) + [{"type": last}]
     return {"feature": feature, "placement": mods}
 def add(a, b): return mc("add", left=a, right=b)
 def sub(a, b): return mc("sub", left=a, right=b)
@@ -306,7 +315,157 @@ def noise_range(islands):
     lo = max(MIN_Y, lo // 16 * 16); hi = min(MIN_Y + HEIGHT, -(-hi // 16) * 16)
     return {"height": hi - lo, "min_y": lo}
 
+# ---------------------------------------------------------------------------------------------------------------------
+# Biome packs ("providers", tools/providers.py). Geophilic and Overrealm replace vanilla biome files; installed on top of
+# The Isles they would undo the climate fix below (the world would be snow-covered again) and bring features that pick
+# absolute heights. So the generator reads their files from vendor/ and writes the final biome files itself:
+#   * per vanilla biome of the layout, the first provider of layout/biome_sources.json that ships it is used,
+#   * that biome file gets the same treatment as a vanilla one (climate, pinned colours),
+#   * the provider's own namespaces, tags and replaced vanilla features are copied, and every placement in them that
+#     picks an absolute height is rewritten to a depth under the island surface (island_placement),
+#   * what is built at the generator's sea level (icebergs: the bottom of the world here) is taken out of the biomes.
+VANILLA_MIN, VANILLA_TOP, VANILLA_GROUND, MAX_DEPTH = -64, 319, 64, 128
+SEA_LEVEL_FEATURES = {"minecraft:iceberg"}                                  # feature types built at the sea level
+SEA_LEVEL_IDS = {"minecraft:iceberg_packed", "minecraft:iceberg_blue"}      # the vanilla features of those types
+# a provider's files under data/minecraft/ that The Isles has to own; they are left out (and listed by the build)
+OWNED = ("dimension/", "dimension_type/", "worldgen/noise_settings/", "worldgen/density_function/", "worldgen/world_preset/",
+         "worldgen/multi_noise_biome_source_parameter_list/", "worldgen/structure/", "worldgen/structure_set/", "worldgen/biome/",
+         "worldgen/material_rule/")
+LEGACY = ("worldgen/configured_feature/", "tags/worldgen/configured_feature/", "worldgen/biome_overlays/")   # not read by 26.3
+
+def vanilla_y(anchor):
+    if "absolute" in anchor: return anchor["absolute"]
+    if "above_bottom" in anchor: return VANILLA_MIN + anchor["above_bottom"]
+    if "below_top" in anchor: return VANILLA_TOP - anchor["below_top"]
+def height_span(h):
+    """lowest and highest vanilla y of a height provider, None when it is not understood"""
+    if not isinstance(h, dict): return None
+    if "min_inclusive" in h and "max_inclusive" in h:
+        lo, hi = vanilla_y(h["min_inclusive"]), vanilla_y(h["max_inclusive"])
+        return None if lo is None or hi is None else (lo, hi)
+    if "distribution" in h:
+        spans = [height_span(e["data"]) for e in h["distribution"]]
+        return None if None in spans else (min(s[0] for s in spans), max(s[1] for s in spans))
+    y = vanilla_y(h.get("value", h))
+    return None if y is None else (y, y)
+ROCK_BELOW = mc("block_predicate_filter", predicate=mc("any_of", predicates=[
+    mc("matching_block_tag", tag="minecraft:base_stone_overworld", offset=[0, -k, 0]) for k in (1, 2, 3, 4, 6, 8, 10, 12, 14, 16)]))
+def island_placement(obj, log):
+    """Rewrites, in place and at any depth of obj, every placement list with a height_range: a height y of the vanilla
+    world becomes (64 - y) blocks under the island surface (at most MAX_DEPTH; the distribution becomes roughly uniform),
+    like the pack's ores. The position must have rock within 16 blocks under it: a thin island ends above the depth asked
+    for, and nothing may be placed in the open under it."""
+    if isinstance(obj, list):
+        for v in obj: island_placement(v, log)
+    elif isinstance(obj, dict):
+        pl = obj.get("placement")
+        if "feature" in obj and isinstance(pl, list):
+            out = []
+            for m in pl:
+                span = height_span(m.get("height")) if m.get("type") == "minecraft:height_range" else None
+                if m.get("type") == "minecraft:height_range" and span is None: log["not understood"] = log.get("not understood", 0) + 1
+                if span is None: out.append(m); continue
+                d0 = min(MAX_DEPTH - 16, max(0, VANILLA_GROUND - span[1])); d1 = min(MAX_DEPTH, max(d0 + 16, VANILLA_GROUND - span[0]))
+                out += depth_mods(d0, d1) + [ROCK_BELOW]; log["moved"] = log.get("moved", 0) + 1
+            obj["placement"] = out
+        for v in obj.values(): island_placement(v, log)
+
+class Sources:
+    """which pack every biome comes from: layout/biome_sources.json and the providers found in vendor/"""
+    def __init__(self, packs):
+        cfg = json.loads((ROOT / "layout" / "biome_sources.json").read_text())
+        self.order, self.overrides, self.drop = cfg["order"], cfg.get("biomes", {}), cfg.get("drop_features", [])
+        self.packs = {k: v for k, v in packs.items() if v.biomes()}
+        self.has = {k: set(v.biomes()) for k, v in self.packs.items()}
+        self.warnings = []
+        for pid in self.order:
+            if pid != "vanilla" and pid not in prov.manifest(): self.warnings.append(f"'{pid}' in the order is not in layout/providers.json")
+            elif pid != "vanilla" and pid not in self.packs: self.warnings.append(f"{pid} is not in vendor/: its biomes fall through to the next provider")
+        for pid, p in self.packs.items():
+            if not p.supports: self.warnings.append(f"{pid} ({p.path.name}) is for pack format {p.format[0]}..{p.format[1]}, not {prov.FORMAT}")
+            elif not p.tested: self.warnings.append(f"{pid} ({p.path.name}) is not the version this was tested with ({p.meta.get('version')})")
+    def of(self, biome):
+        want = self.overrides.get(f"minecraft:{biome}", self.overrides.get(biome))
+        if want is not None:
+            if want == "vanilla" or biome in self.has.get(want, ()): return want
+            self.warnings.append(f"{biome}: {want} asked for in biome_sources.json but it does not ship that biome (or is not in vendor/)")
+        for pid in self.order:
+            if pid == "vanilla" or biome in self.has.get(pid, ()): return pid
+        return "vanilla"
+    def lookup(self, pid, kind, name):
+        """a worldgen file of a provider by id, None when it is not the provider's"""
+        ns, path = name.split(":", 1) if ":" in name else ("minecraft", name)
+        return self.packs[pid].json(f"data/{ns}/worldgen/{kind}/{path}.json")
+    def at_sea_level(self, pid, placed, seen=None):
+        """does this placed feature (or anything it selects from) build at the generator's sea level"""
+        seen = seen if seen is not None else set()
+        def walk(o):
+            if isinstance(o, str):
+                if o in SEA_LEVEL_IDS: return True
+                if o in seen or ":" not in o: return False
+                seen.add(o)
+                return any(walk(d) for d in (self.lookup(pid, "placed_feature", o), self.lookup(pid, "feature", o)) if d is not None)
+            if isinstance(o, dict): return o.get("type") in SEA_LEVEL_FEATURES or any(walk(v) for v in o.values())
+            if isinstance(o, list): return any(walk(v) for v in o)
+            return False
+        return walk(placed)
+    def biome(self, pid, name):
+        """the provider's biome file without the features that cannot work here -> (file, [features taken out])"""
+        d = self.packs[pid].json(f"data/minecraft/worldgen/biome/{name}.json"); gone = []
+        for step in d["features"]:
+            for f in list(step):
+                if any(fnmatch.fnmatch(f, pat) for pat in self.drop) or (not f.startswith("minecraft:") and self.at_sea_level(pid, f)):
+                    step.remove(f); gone.append(f)
+        return d, gone
+    def copy(self, used):
+        """the providers' own content into the pack (lowest priority first, so the first of the order wins a shared file)"""
+        log = {}
+        for pid in [p for p in reversed(self.order) if p in used and p in self.packs]:
+            n = skipped = 0; moved = {}
+            for rel, data in sorted(self.packs[pid].files.items()):
+                ns, sub = rel.split("/", 2)[1:]
+                if any(sub.startswith(x) for x in LEGACY): continue
+                if ns == "minecraft" and any(sub.startswith(x) for x in OWNED):
+                    if not sub.startswith("worldgen/biome/"): skipped += 1; self.warnings.append(f"{pid} ships {rel}: left out (The Isles owns it)")
+                    continue
+                p = OUT / rel; p.parent.mkdir(parents=True, exist_ok=True)
+                if rel.endswith(".json"):
+                    try: d = json.loads(data)
+                    except ValueError: self.warnings.append(f"{pid}: {rel} is not valid JSON, left out"); continue
+                    if sub.startswith(("worldgen/placed_feature/", "worldgen/feature/")): island_placement(d, moved)
+                    if sub.startswith("tags/") and p.exists():   # two providers add to the same tag
+                        old = json.loads(p.read_text())
+                        if not d.get("replace"): d["values"] = old["values"] + [v for v in d["values"] if v not in old["values"]]
+                    p.write_text(json.dumps(d, indent=1) + "\n")
+                else: p.write_bytes(data)
+                n += 1
+            log[pid] = (n, moved)
+        return log
+
+def pack_zip(src, dst):
+    """a zip of a pack folder that does not change when its files do not"""
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as z:
+        for f in sorted(p for p in src.rglob("*") if p.is_file()):
+            z.writestr(zipfile.ZipInfo(f.relative_to(src).as_posix(), (2026, 1, 1, 0, 0, 0)), f.read_bytes(), zipfile.ZIP_DEFLATED)
+
 def main():
+    """datapack/ with the vanilla biomes, then - when vendor/ holds a provider - build/the-isles/ with theirs"""
+    global OUT
+    build(None)
+    shutil.rmtree(BUILD, ignore_errors=True)
+    want = os.environ.get("ISLES_PROVIDERS")   # none | a comma-separated list | unset: everything in vendor/
+    packs = {} if want == "none" else prov.load(set(want.split(",")) if want else None)
+    src = Sources(packs)
+    if not src.packs:
+        print("no biome provider in vendor/ (or ISLES_PROVIDERS=none): vanilla biomes only"); return
+    OUT = BUILD / "the-isles"
+    try: build(src)
+    finally: OUT = ROOT / "datapack"
+    pack_zip(BUILD / "the-isles", BUILD / "the-isles.zip"); pack_zip(OUT_MODS, BUILD / "the-isles-mods.zip")
+    print(f"with provider biomes -> {BUILD / 'the-isles.zip'} (for your own worlds; not to be redistributed)")
+
+def build(src):
     layout = json.loads((ROOT / "layout" / "islands.json").read_text())
     islands = layout["islands"]
     for n, i in enumerate(islands):
@@ -317,12 +476,19 @@ def main():
     if OUT.exists(): shutil.rmtree(OUT)
 
     biomes = sorted({i["biome"] for i in islands})
+    source = {b: src.of(b) if src else "vanilla" for b in biomes}
+    used = sorted(set(source.values()) - {"vanilla"})
+    if src:   # the providers' own files first: whatever the generator writes after this replaces theirs
+        for pid, (n, moved) in src.copy(used).items():
+            print(f"{pid} ({src.packs[pid].path.name}): {n} files copied, {moved.get('moved', 0)} fixed-height placements moved under the island surface"
+                  + (f", {moved['not understood']} height ranges NOT understood" if moved.get("not understood") else ""))
     code = {b: round(-1.8 + 0.07 * k, 4) for k, b in enumerate(biomes, 1)}
     VOID = -1.8
     assert max(code.values()) < 1.95
 
-    write("pack.mcmeta", {"pack": {"description": "The Isles - hand-placed floating island world", "pack_format": 121,
-                                   "min_format": [121, 0], "max_format": [121, 0]}})
+    credit = "".join(f"\n{src.packs[p].meta['name']} biomes by {src.packs[p].meta['author']}" for p in used)
+    write("pack.mcmeta", {"pack": {"description": "The Isles - hand-placed floating island world" + (credit + "\nown use only, not for redistribution" if used else ""),
+                                   "pack_format": 121, "min_format": [121, 0], "max_format": [121, 0]}})
     # --- noises
     for name, octave, count in [("edge", -7, 3), ("relief", -7, 4), ("under", -5, 3), ("rag", -5, 3)]:
         write(f"data/{NS}/worldgen/noise/{name}.json", {"base_octave": octave, "octave_count": count})
@@ -399,8 +565,28 @@ def main():
                               "minecraft:visual/cloud_height": CLOUD_HEIGHT})
     write("data/minecraft/dimension_type/overworld.json", dim)
     # --- no snow line: rainy biomes stay rainy at any altitude
-    warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
+    warm = []
+    for b in biomes:
+        d, gone = src.biome(source[b], b) if source[b] != "vanilla" else (None, [])
+        if d is not None:
+            v = vanilla_biome(b)
+            odd = (d["temperature"], d["downfall"]) != (v["temperature"], v["downfall"]) and not {"grass_color", "foliage_color"} <= set(d.get("effects", {}))
+            if gone: print(f"{b} ({source[b]}): taken out {' '.join(gone)}")
+        c = climate_biome(b, d)
+        if c and d and odd: src.warnings.append(f"{b} ({source[b]}): temperature/downfall differ from vanilla and the colours are not set; the vanilla colours are pinned")
+        if c: warm.append(b)
+        if c or d: write(f"data/minecraft/worldgen/biome/{b}.json", c or d)
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
+    if src:
+        n = {b: sum(1 for i in islands if i["biome"] == b) for b in biomes}
+        print("biome -> provider (islands)")
+        for pid in src.order:
+            mine = [b for b in biomes if source[b] == pid]
+            print(f"  {pid}: {len(mine)} biomes, {sum(n[b] for b in mine)} islands: " + " ".join(f"{b}({n[b]})" for b in mine))
+        for pid, has in src.has.items():
+            lost = sorted(b for b in has & set(biomes) if source[b] != pid)
+            if lost: print(f"  {pid} also ships, not used: {' '.join(lost)}")
+        for w in src.warnings: print(f"WARNING: {w}")
     # Snow and ice: freeze_top_layer has no placement but a biome check, which the game makes at the bottom of the chunk -
     # void biome there (see biome_code). Without the check the feature still decides column by column from the biome at
     # the surface.

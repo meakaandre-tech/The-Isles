@@ -63,8 +63,7 @@
    "radius": 1200,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 225758,
-   "overrealm": false
+   "shape_seed": 225758
   },
   {
    "id": "S2",
@@ -80,8 +79,7 @@
    "radius": 123,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 479626,
-   "overrealm": false
+   "shape_seed": 479626
   },
   {
    "id": "S3",
@@ -97,8 +95,7 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 399766,
-   "overrealm": false
+   "shape_seed": 399766
   },
   {
    "id": "S4",
@@ -114,8 +111,7 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 973287,
-   "overrealm": false
+   "shape_seed": 973287
   },
   {
    "id": "S5",
@@ -131,8 +127,7 @@
    "radius": 139,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 72783,
-   "overrealm": false
+   "shape_seed": 72783
   },
   {
    "id": "S6",
@@ -148,8 +143,7 @@
    "radius": 184,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 631010,
-   "overrealm": false
+   "shape_seed": 631010
   },
   {
    "id": "S7",
@@ -165,8 +159,7 @@
    "radius": 192,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 201742,
-   "overrealm": false
+   "shape_seed": 201742
   },
   {
    "id": "S8",
@@ -182,8 +175,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 534239,
-   "overrealm": false
+   "shape_seed": 534239
   },
   {
    "id": "S9",
@@ -199,8 +191,7 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 811178,
-   "overrealm": false
+   "shape_seed": 811178
   },
   {
    "id": "S10",
@@ -216,8 +207,7 @@
    "radius": 123,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 744972,
-   "overrealm": false
+   "shape_seed": 744972
   },
   {
    "id": "S11",
@@ -233,8 +223,7 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 432210,
-   "overrealm": false
+   "shape_seed": 432210
   },
   {
    "id": "S12",
@@ -250,8 +239,7 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 149103,
-   "overrealm": false
+   "shape_seed": 149103
   },
   {
    "id": "A1",
@@ -267,8 +255,7 @@
    "radius": 280,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 615206,
-   "overrealm": true
+   "shape_seed": 615206
   },
   {
    "id": "A2",
@@ -284,8 +271,7 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 132332,
-   "overrealm": true
+   "shape_seed": 132332
   },
   {
    "id": "A3",
@@ -301,8 +287,7 @@
    "radius": 97,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 921458,
-   "overrealm": true
+   "shape_seed": 921458
   },
   {
    "id": "A4",
@@ -318,8 +303,7 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 515736,
-   "overrealm": true
+   "shape_seed": 515736
   },
   {
    "id": "A5",
@@ -335,8 +319,7 @@
    "radius": 145,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 884603,
-   "overrealm": true
+   "shape_seed": 884603
   },
   {
    "id": "A6",
@@ -352,8 +335,7 @@
    "radius": 155,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 246735,
-   "overrealm": true
+   "shape_seed": 246735
   },
   {
    "id": "A7",
@@ -369,8 +351,7 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 434450,
-   "overrealm": true
+   "shape_seed": 434450
   },
   {
    "id": "B1",
@@ -386,8 +367,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 145951,
-   "overrealm": false
+   "shape_seed": 145951
   },
   {
    "id": "B2",
@@ -403,8 +383,7 @@
    "radius": 49,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 333920,
-   "overrealm": false
+   "shape_seed": 333920
   },
   {
    "id": "B3",
@@ -420,8 +399,7 @@
    "radius": 121,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 369999,
-   "overrealm": false
+   "shape_seed": 369999
   },
   {
    "id": "B4",
@@ -437,8 +415,7 @@
    "radius": 131,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 684840,
-   "overrealm": false
+   "shape_seed": 684840
   },
   {
    "id": "B5",
@@ -454,8 +431,7 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 874794,
-   "overrealm": false
+   "shape_seed": 874794
   },
   {
    "id": "B6",
@@ -471,8 +447,7 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 480502,
-   "overrealm": false
+   "shape_seed": 480502
   },
   {
    "id": "B7",
@@ -488,8 +463,7 @@
    "radius": 40,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 535144,
-   "overrealm": false
+   "shape_seed": 535144
   },
   {
    "id": "C1",
@@ -505,8 +479,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 948629,
-   "overrealm": true
+   "shape_seed": 948629
   },
   {
    "id": "C2",
@@ -522,8 +495,7 @@
    "radius": 146,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 870602,
-   "overrealm": true
+   "shape_seed": 870602
   },
   {
    "id": "C3",
@@ -539,8 +511,7 @@
    "radius": 205,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 128342,
-   "overrealm": true
+   "shape_seed": 128342
   },
   {
    "id": "C4",
@@ -556,8 +527,7 @@
    "radius": 87,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 434207,
-   "overrealm": true
+   "shape_seed": 434207
   },
   {
    "id": "C5",
@@ -573,8 +543,7 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 399113,
-   "overrealm": true
+   "shape_seed": 399113
   },
   {
    "id": "C6",
@@ -590,8 +559,7 @@
    "radius": 50,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 758578,
-   "overrealm": true
+   "shape_seed": 758578
   },
   {
    "id": "C7",
@@ -607,8 +575,7 @@
    "radius": 88,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 383245,
-   "overrealm": true
+   "shape_seed": 383245
   },
   {
    "id": "D1",
@@ -624,8 +591,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 393689,
-   "overrealm": true
+   "shape_seed": 393689
   },
   {
    "id": "D2",
@@ -641,8 +607,7 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 703515,
-   "overrealm": false
+   "shape_seed": 703515
   },
   {
    "id": "D3",
@@ -658,8 +623,7 @@
    "radius": 201,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 370009,
-   "overrealm": true
+   "shape_seed": 370009
   },
   {
    "id": "D4",
@@ -675,8 +639,7 @@
    "radius": 95,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 468222,
-   "overrealm": true
+   "shape_seed": 468222
   },
   {
    "id": "D5",
@@ -692,8 +655,7 @@
    "radius": 42,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 11719,
-   "overrealm": false
+   "shape_seed": 11719
   },
   {
    "id": "D6",
@@ -709,8 +671,7 @@
    "radius": 134,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 802656,
-   "overrealm": true
+   "shape_seed": 802656
   },
   {
    "id": "D7",
@@ -726,8 +687,7 @@
    "radius": 134,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 246465,
-   "overrealm": true
+   "shape_seed": 246465
   },
   {
    "id": "E1",
@@ -743,8 +703,7 @@
    "radius": 280,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 658625,
-   "overrealm": false
+   "shape_seed": 658625
   },
   {
    "id": "E2",
@@ -760,8 +719,7 @@
    "radius": 47,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 423485,
-   "overrealm": false
+   "shape_seed": 423485
   },
   {
    "id": "E3",
@@ -777,8 +735,7 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 993296,
-   "overrealm": false
+   "shape_seed": 993296
   },
   {
    "id": "E4",
@@ -794,8 +751,7 @@
    "radius": 68,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 870858,
-   "overrealm": false
+   "shape_seed": 870858
   },
   {
    "id": "E5",
@@ -811,8 +767,7 @@
    "radius": 115,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 450351,
-   "overrealm": false
+   "shape_seed": 450351
   },
   {
    "id": "E6",
@@ -828,8 +783,7 @@
    "radius": 202,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 935171,
-   "overrealm": false
+   "shape_seed": 935171
   },
   {
    "id": "E7",
@@ -845,8 +799,7 @@
    "radius": 58,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 390331,
-   "overrealm": false
+   "shape_seed": 390331
   },
   {
    "id": "F1",
@@ -862,8 +815,7 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 830267,
-   "overrealm": false
+   "shape_seed": 830267
   },
   {
    "id": "F2",
@@ -879,8 +831,7 @@
    "radius": 51,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 722524,
-   "overrealm": false
+   "shape_seed": 722524
   },
   {
    "id": "F3",
@@ -896,8 +847,7 @@
    "radius": 171,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 313479,
-   "overrealm": false
+   "shape_seed": 313479
   },
   {
    "id": "F4",
@@ -913,8 +863,7 @@
    "radius": 150,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 822615,
-   "overrealm": false
+   "shape_seed": 822615
   },
   {
    "id": "F5",
@@ -930,8 +879,7 @@
    "radius": 158,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 936993,
-   "overrealm": false
+   "shape_seed": 936993
   },
   {
    "id": "F6",
@@ -947,8 +895,7 @@
    "radius": 140,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 379345,
-   "overrealm": false
+   "shape_seed": 379345
   },
   {
    "id": "G1",
@@ -964,8 +911,7 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 586262,
-   "overrealm": true
+   "shape_seed": 586262
   },
   {
    "id": "G2",
@@ -981,8 +927,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 45504,
-   "overrealm": true
+   "shape_seed": 45504
   },
   {
    "id": "G3",
@@ -998,8 +943,7 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 542241,
-   "overrealm": true
+   "shape_seed": 542241
   },
   {
    "id": "G4",
@@ -1015,8 +959,7 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 460246,
-   "overrealm": true
+   "shape_seed": 460246
   },
   {
    "id": "G5",
@@ -1032,8 +975,7 @@
    "radius": 137,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 947211,
-   "overrealm": true
+   "shape_seed": 947211
   },
   {
    "id": "G6",
@@ -1049,8 +991,7 @@
    "radius": 120,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 531894,
-   "overrealm": true
+   "shape_seed": 531894
   },
   {
    "id": "G7",
@@ -1066,8 +1007,7 @@
    "radius": 196,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 121060,
-   "overrealm": true
+   "shape_seed": 121060
   },
   {
    "id": "H1",
@@ -1083,8 +1023,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 945022,
-   "overrealm": false
+   "shape_seed": 945022
   },
   {
    "id": "H2",
@@ -1100,8 +1039,7 @@
    "radius": 75,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 974664,
-   "overrealm": false
+   "shape_seed": 974664
   },
   {
    "id": "H3",
@@ -1117,8 +1055,7 @@
    "radius": 174,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 941317,
-   "overrealm": false
+   "shape_seed": 941317
   },
   {
    "id": "H4",
@@ -1134,8 +1071,7 @@
    "radius": 93,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 370074,
-   "overrealm": false
+   "shape_seed": 370074
   },
   {
    "id": "H5",
@@ -1151,8 +1087,7 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 749541,
-   "overrealm": false
+   "shape_seed": 749541
   },
   {
    "id": "H6",
@@ -1168,8 +1103,7 @@
    "radius": 202,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 410178,
-   "overrealm": false
+   "shape_seed": 410178
   },
   {
    "id": "H7",
@@ -1185,8 +1119,7 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 542548,
-   "overrealm": false
+   "shape_seed": 542548
   },
   {
    "id": "I1",
@@ -1202,8 +1135,7 @@
    "radius": 280,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 853465,
-   "overrealm": true
+   "shape_seed": 853465
   },
   {
    "id": "I2",
@@ -1219,8 +1151,7 @@
    "radius": 67,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 772653,
-   "overrealm": false
+   "shape_seed": 772653
   },
   {
    "id": "I3",
@@ -1236,8 +1167,7 @@
    "radius": 79,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 599511,
-   "overrealm": false
+   "shape_seed": 599511
   },
   {
    "id": "I4",
@@ -1253,8 +1183,7 @@
    "radius": 99,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 132954,
-   "overrealm": true
+   "shape_seed": 132954
   },
   {
    "id": "I5",
@@ -1270,8 +1199,7 @@
    "radius": 187,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 117641,
-   "overrealm": true
+   "shape_seed": 117641
   },
   {
    "id": "I6",
@@ -1287,8 +1215,7 @@
    "radius": 113,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 328547,
-   "overrealm": true
+   "shape_seed": 328547
   },
   {
    "id": "I7",
@@ -1304,8 +1231,7 @@
    "radius": 196,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 310956,
-   "overrealm": true
+   "shape_seed": 310956
   },
   {
    "id": "J1",
@@ -1321,8 +1247,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 965151,
-   "overrealm": true
+   "shape_seed": 965151
   },
   {
    "id": "J2",
@@ -1338,8 +1263,7 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 366221,
-   "overrealm": true
+   "shape_seed": 366221
   },
   {
    "id": "J3",
@@ -1355,8 +1279,7 @@
    "radius": 116,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 78950,
-   "overrealm": true
+   "shape_seed": 78950
   },
   {
    "id": "J4",
@@ -1372,8 +1295,7 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 103973,
-   "overrealm": true
+   "shape_seed": 103973
   },
   {
    "id": "J5",
@@ -1389,8 +1311,7 @@
    "radius": 85,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 119173,
-   "overrealm": true
+   "shape_seed": 119173
   },
   {
    "id": "J6",
@@ -1406,8 +1327,7 @@
    "radius": 183,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 502993,
-   "overrealm": true
+   "shape_seed": 502993
   },
   {
    "id": "J7",
@@ -1423,8 +1343,7 @@
    "radius": 141,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 743371,
-   "overrealm": true
+   "shape_seed": 743371
   },
   {
    "id": "K1",
@@ -1440,8 +1359,7 @@
    "radius": 320,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 658152,
-   "overrealm": true
+   "shape_seed": 658152
   },
   {
    "id": "K2",
@@ -1457,8 +1375,7 @@
    "radius": 208,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 56918,
-   "overrealm": false
+   "shape_seed": 56918
   },
   {
    "id": "K3",
@@ -1474,8 +1391,7 @@
    "radius": 101,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 716092,
-   "overrealm": true
+   "shape_seed": 716092
   },
   {
    "id": "K4",
@@ -1491,8 +1407,7 @@
    "radius": 111,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 575754,
-   "overrealm": true
+   "shape_seed": 575754
   },
   {
    "id": "K5",
@@ -1508,8 +1423,7 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 44506,
-   "overrealm": false
+   "shape_seed": 44506
   },
   {
    "id": "K6",
@@ -1525,8 +1439,7 @@
    "radius": 143,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 347930,
-   "overrealm": true
+   "shape_seed": 347930
   },
   {
    "id": "K7",
@@ -1542,8 +1455,7 @@
    "radius": 95,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 348888,
-   "overrealm": true
+   "shape_seed": 348888
   },
   {
    "id": "L1",
@@ -1559,8 +1471,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 495285,
-   "overrealm": false
+   "shape_seed": 495285
   },
   {
    "id": "L2",
@@ -1576,8 +1487,7 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 879637,
-   "overrealm": false
+   "shape_seed": 879637
   },
   {
    "id": "L3",
@@ -1593,8 +1503,7 @@
    "radius": 79,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 83421,
-   "overrealm": false
+   "shape_seed": 83421
   },
   {
    "id": "L4",
@@ -1610,8 +1519,7 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 958339,
-   "overrealm": false
+   "shape_seed": 958339
   },
   {
    "id": "L5",
@@ -1627,8 +1535,7 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 318762,
-   "overrealm": false
+   "shape_seed": 318762
   },
   {
    "id": "L6",
@@ -1644,8 +1551,7 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 263172,
-   "overrealm": false
+   "shape_seed": 263172
   },
   {
    "id": "L7",
@@ -1661,8 +1567,7 @@
    "radius": 197,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 354083,
-   "overrealm": false
+   "shape_seed": 354083
   },
   {
    "id": "M1",
@@ -1678,8 +1583,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 910961,
-   "overrealm": true
+   "shape_seed": 910961
   },
   {
    "id": "M2",
@@ -1695,8 +1599,7 @@
    "radius": 203,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 518723,
-   "overrealm": true
+   "shape_seed": 518723
   },
   {
    "id": "M3",
@@ -1712,8 +1615,7 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 707135,
-   "overrealm": false
+   "shape_seed": 707135
   },
   {
    "id": "M4",
@@ -1729,8 +1631,7 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 961004,
-   "overrealm": false
+   "shape_seed": 961004
   },
   {
    "id": "M5",
@@ -1746,8 +1647,7 @@
    "radius": 159,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 207092,
-   "overrealm": true
+   "shape_seed": 207092
   },
   {
    "id": "M6",
@@ -1763,8 +1663,7 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 960952,
-   "overrealm": false
+   "shape_seed": 960952
   },
   {
    "id": "N1",
@@ -1780,8 +1679,7 @@
    "radius": 260,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 175427,
-   "overrealm": true
+   "shape_seed": 175427
   },
   {
    "id": "N2",
@@ -1797,8 +1695,7 @@
    "radius": 151,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 363212,
-   "overrealm": true
+   "shape_seed": 363212
   },
   {
    "id": "N3",
@@ -1814,8 +1711,7 @@
    "radius": 67,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 253021,
-   "overrealm": false
+   "shape_seed": 253021
   },
   {
    "id": "N4",
@@ -1831,8 +1727,7 @@
    "radius": 132,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 957287,
-   "overrealm": true
+   "shape_seed": 957287
   },
   {
    "id": "N5",
@@ -1848,8 +1743,7 @@
    "radius": 181,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 430624,
-   "overrealm": true
+   "shape_seed": 430624
   },
   {
    "id": "N6",
@@ -1865,8 +1759,7 @@
    "radius": 105,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 550720,
-   "overrealm": true
+   "shape_seed": 550720
   },
   {
    "id": "P1",
@@ -1882,8 +1775,7 @@
    "radius": 340,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 924969,
-   "overrealm": false
+   "shape_seed": 924969
   },
   {
    "id": "P2",
@@ -1899,8 +1791,7 @@
    "radius": 127,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 980839,
-   "overrealm": false
+   "shape_seed": 980839
   },
   {
    "id": "P3",
@@ -1916,8 +1807,7 @@
    "radius": 115,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 301345,
-   "overrealm": false
+   "shape_seed": 301345
   },
   {
    "id": "P4",
@@ -1933,8 +1823,7 @@
    "radius": 161,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 83198,
-   "overrealm": false
+   "shape_seed": 83198
   },
   {
    "id": "P5",
@@ -1950,8 +1839,7 @@
    "radius": 86,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 910978,
-   "overrealm": false
+   "shape_seed": 910978
   },
   {
    "id": "P6",
@@ -1967,8 +1855,7 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 646902,
-   "overrealm": false
+   "shape_seed": 646902
   },
   {
    "id": "Q1",
@@ -1984,8 +1871,7 @@
    "radius": 230,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 711307,
-   "overrealm": false
+   "shape_seed": 711307
   },
   {
    "id": "Q2",
@@ -2001,8 +1887,7 @@
    "radius": 147,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 465980,
-   "overrealm": false
+   "shape_seed": 465980
   },
   {
    "id": "Q3",
@@ -2018,8 +1903,7 @@
    "radius": 97,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 331970,
-   "overrealm": false
+   "shape_seed": 331970
   },
   {
    "id": "Q4",
@@ -2035,8 +1919,7 @@
    "radius": 117,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 969754,
-   "overrealm": false
+   "shape_seed": 969754
   },
   {
    "id": "Q5",
@@ -2052,8 +1935,7 @@
    "radius": 91,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 438087,
-   "overrealm": false
+   "shape_seed": 438087
   },
   {
    "id": "Q6",
@@ -2069,8 +1951,7 @@
    "radius": 207,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 958619,
-   "overrealm": false
+   "shape_seed": 958619
   },
   {
    "id": "R1",
@@ -2086,8 +1967,7 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 786616,
-   "overrealm": false
+   "shape_seed": 786616
   },
   {
    "id": "R2",
@@ -2103,8 +1983,7 @@
    "radius": 49,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 985034,
-   "overrealm": false
+   "shape_seed": 985034
   },
   {
    "id": "R3",
@@ -2120,8 +1999,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 905101,
-   "overrealm": false
+   "shape_seed": 905101
   },
   {
    "id": "R4",
@@ -2137,8 +2015,7 @@
    "radius": 191,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 62036,
-   "overrealm": false
+   "shape_seed": 62036
   },
   {
    "id": "R5",
@@ -2154,8 +2031,7 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 683609,
-   "overrealm": false
+   "shape_seed": 683609
   },
   {
    "id": "R6",
@@ -2171,8 +2047,7 @@
    "radius": 175,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 431170,
-   "overrealm": false
+   "shape_seed": 431170
   },
   {
    "id": "T1",
@@ -2188,8 +2063,7 @@
    "radius": 340,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 152296,
-   "overrealm": true
+   "shape_seed": 152296
   },
   {
    "id": "T2",
@@ -2205,8 +2079,7 @@
    "radius": 85,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 347553,
-   "overrealm": true
+   "shape_seed": 347553
   },
   {
    "id": "T3",
@@ -2222,8 +2095,7 @@
    "radius": 147,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 502739,
-   "overrealm": true
+   "shape_seed": 502739
   },
   {
    "id": "T4",
@@ -2239,8 +2111,7 @@
    "radius": 152,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 383371,
-   "overrealm": true
+   "shape_seed": 383371
   },
   {
    "id": "T5",
@@ -2256,8 +2127,7 @@
    "radius": 99,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 289598,
-   "overrealm": true
+   "shape_seed": 289598
   },
   {
    "id": "T6",
@@ -2273,8 +2143,7 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 340381,
-   "overrealm": true
+   "shape_seed": 340381
   },
   {
    "id": "a1",
@@ -2290,8 +2159,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 660605,
-   "overrealm": false
+   "shape_seed": 660605
   },
   {
    "id": "a2",
@@ -2307,8 +2175,7 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 934836,
-   "overrealm": false
+   "shape_seed": 934836
   },
   {
    "id": "a3",
@@ -2324,8 +2191,7 @@
    "radius": 150,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 196175,
-   "overrealm": false
+   "shape_seed": 196175
   },
   {
    "id": "a4",
@@ -2341,8 +2207,7 @@
    "radius": 169,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 820445,
-   "overrealm": false
+   "shape_seed": 820445
   },
   {
    "id": "a5",
@@ -2358,8 +2223,7 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 362579,
-   "overrealm": false
+   "shape_seed": 362579
   },
   {
    "id": "a6",
@@ -2375,8 +2239,7 @@
    "radius": 138,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 666592,
-   "overrealm": false
+   "shape_seed": 666592
   },
   {
    "id": "b1",
@@ -2392,8 +2255,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 431205,
-   "overrealm": true
+   "shape_seed": 431205
   },
   {
    "id": "b2",
@@ -2409,8 +2271,7 @@
    "radius": 94,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 284260,
-   "overrealm": true
+   "shape_seed": 284260
   },
   {
    "id": "b3",
@@ -2426,8 +2287,7 @@
    "radius": 93,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 199575,
-   "overrealm": true
+   "shape_seed": 199575
   },
   {
    "id": "b4",
@@ -2443,8 +2303,7 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 548271,
-   "overrealm": false
+   "shape_seed": 548271
   },
   {
    "id": "b5",
@@ -2460,8 +2319,7 @@
    "radius": 168,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 18458,
-   "overrealm": true
+   "shape_seed": 18458
   },
   {
    "id": "b6",
@@ -2477,8 +2335,7 @@
    "radius": 136,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 200073,
-   "overrealm": true
+   "shape_seed": 200073
   },
   {
    "id": "c1",
@@ -2494,8 +2351,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 110383,
-   "overrealm": false
+   "shape_seed": 110383
   },
   {
    "id": "c2",
@@ -2511,8 +2367,7 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 994069,
-   "overrealm": false
+   "shape_seed": 994069
   },
   {
    "id": "c3",
@@ -2528,8 +2383,7 @@
    "radius": 142,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 726476,
-   "overrealm": false
+   "shape_seed": 726476
   },
   {
    "id": "c4",
@@ -2545,8 +2399,7 @@
    "radius": 164,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 606143,
-   "overrealm": false
+   "shape_seed": 606143
   },
   {
    "id": "c5",
@@ -2562,8 +2415,7 @@
    "radius": 73,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 981128,
-   "overrealm": false
+   "shape_seed": 981128
   },
   {
    "id": "c6",
@@ -2579,8 +2431,7 @@
    "radius": 145,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 528860,
-   "overrealm": false
+   "shape_seed": 528860
   },
   {
    "id": "d1",
@@ -2596,8 +2447,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 230725,
-   "overrealm": true
+   "shape_seed": 230725
   },
   {
    "id": "d2",
@@ -2613,8 +2463,7 @@
    "radius": 123,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 449092,
-   "overrealm": true
+   "shape_seed": 449092
   },
   {
    "id": "d3",
@@ -2630,8 +2479,7 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 698321,
-   "overrealm": false
+   "shape_seed": 698321
   },
   {
    "id": "d4",
@@ -2647,8 +2495,7 @@
    "radius": 86,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 444096,
-   "overrealm": false
+   "shape_seed": 444096
   },
   {
    "id": "d5",
@@ -2664,8 +2511,7 @@
    "radius": 141,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 174306,
-   "overrealm": true
+   "shape_seed": 174306
   },
   {
    "id": "d6",
@@ -2681,8 +2527,7 @@
    "radius": 89,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 431621,
-   "overrealm": false
+   "shape_seed": 431621
   },
   {
    "id": "e1",
@@ -2698,8 +2543,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 989099,
-   "overrealm": false
+   "shape_seed": 989099
   },
   {
    "id": "e2",
@@ -2715,8 +2559,7 @@
    "radius": 112,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 380812,
-   "overrealm": false
+   "shape_seed": 380812
   },
   {
    "id": "e3",
@@ -2732,8 +2575,7 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 323119,
-   "overrealm": false
+   "shape_seed": 323119
   },
   {
    "id": "e4",
@@ -2749,8 +2591,7 @@
    "radius": 209,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 178865,
-   "overrealm": false
+   "shape_seed": 178865
   },
   {
    "id": "e5",
@@ -2766,8 +2607,7 @@
    "radius": 106,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 630756,
-   "overrealm": false
+   "shape_seed": 630756
   },
   {
    "id": "e6",
@@ -2783,8 +2623,7 @@
    "radius": 41,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 472090,
-   "overrealm": false
+   "shape_seed": 472090
   },
   {
    "id": "f1",
@@ -2800,8 +2639,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 678056,
-   "overrealm": true
+   "shape_seed": 678056
   },
   {
    "id": "f2",
@@ -2817,8 +2655,7 @@
    "radius": 131,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 985863,
-   "overrealm": true
+   "shape_seed": 985863
   },
   {
    "id": "f3",
@@ -2834,8 +2671,7 @@
    "radius": 81,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 13935,
-   "overrealm": true
+   "shape_seed": 13935
   },
   {
    "id": "f4",
@@ -2851,8 +2687,7 @@
    "radius": 60,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 305206,
-   "overrealm": true
+   "shape_seed": 305206
   },
   {
    "id": "f5",
@@ -2868,8 +2703,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 813067,
-   "overrealm": true
+   "shape_seed": 813067
   },
   {
    "id": "f6",
@@ -2885,8 +2719,7 @@
    "radius": 53,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 252644,
-   "overrealm": true
+   "shape_seed": 252644
   },
   {
    "id": "g1",
@@ -2902,8 +2735,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 604402,
-   "overrealm": true
+   "shape_seed": 604402
   },
   {
    "id": "g2",
@@ -2919,8 +2751,7 @@
    "radius": 84,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 892044,
-   "overrealm": false
+   "shape_seed": 892044
   },
   {
    "id": "g3",
@@ -2936,8 +2767,7 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 658987,
-   "overrealm": false
+   "shape_seed": 658987
   },
   {
    "id": "g4",
@@ -2953,8 +2783,7 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 469569,
-   "overrealm": false
+   "shape_seed": 469569
   },
   {
    "id": "g5",
@@ -2970,8 +2799,7 @@
    "radius": 196,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 624944,
-   "overrealm": true
+   "shape_seed": 624944
   },
   {
    "id": "g6",
@@ -2987,8 +2815,7 @@
    "radius": 46,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 344981,
-   "overrealm": false
+   "shape_seed": 344981
   },
   {
    "id": "h1",
@@ -3004,8 +2831,7 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 835645,
-   "overrealm": false
+   "shape_seed": 835645
   },
   {
    "id": "h2",
@@ -3021,8 +2847,7 @@
    "radius": 138,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 312444,
-   "overrealm": false
+   "shape_seed": 312444
   },
   {
    "id": "h3",
@@ -3038,8 +2863,7 @@
    "radius": 87,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 839592,
-   "overrealm": false
+   "shape_seed": 839592
   },
   {
    "id": "h4",
@@ -3055,8 +2879,7 @@
    "radius": 66,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 236756,
-   "overrealm": false
+   "shape_seed": 236756
   },
   {
    "id": "h5",
@@ -3072,8 +2895,7 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 205713,
-   "overrealm": false
+   "shape_seed": 205713
   },
   {
    "id": "h6",
@@ -3089,8 +2911,7 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 9052,
-   "overrealm": false
+   "shape_seed": 9052
   },
   {
    "id": "i1",
@@ -3106,8 +2927,7 @@
    "radius": 284,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 479796,
-   "overrealm": false
+   "shape_seed": 479796
   },
   {
    "id": "i2",
@@ -3123,8 +2943,7 @@
    "radius": 56,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 801984,
-   "overrealm": false
+   "shape_seed": 801984
   },
   {
    "id": "i3",
@@ -3140,8 +2959,7 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 161919,
-   "overrealm": false
+   "shape_seed": 161919
   },
   {
    "id": "i4",
@@ -3157,8 +2975,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 872678,
-   "overrealm": false
+   "shape_seed": 872678
   },
   {
    "id": "i5",
@@ -3174,8 +2991,7 @@
    "radius": 56,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 244873,
-   "overrealm": false
+   "shape_seed": 244873
   },
   {
    "id": "i6",
@@ -3191,8 +3007,7 @@
    "radius": 130,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 512927,
-   "overrealm": false
+   "shape_seed": 512927
   },
   {
    "id": "j1",
@@ -3208,8 +3023,7 @@
    "radius": 274,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 814116,
-   "overrealm": true
+   "shape_seed": 814116
   },
   {
    "id": "j2",
@@ -3225,8 +3039,7 @@
    "radius": 162,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 184973,
-   "overrealm": true
+   "shape_seed": 184973
   },
   {
    "id": "j3",
@@ -3242,8 +3055,7 @@
    "radius": 69,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 410286,
-   "overrealm": true
+   "shape_seed": 410286
   },
   {
    "id": "j4",
@@ -3259,8 +3071,7 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 859500,
-   "overrealm": true
+   "shape_seed": 859500
   },
   {
    "id": "j5",
@@ -3276,8 +3087,7 @@
    "radius": 40,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 450137,
-   "overrealm": true
+   "shape_seed": 450137
   },
   {
    "id": "j6",
@@ -3293,8 +3103,7 @@
    "radius": 58,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 691638,
-   "overrealm": true
+   "shape_seed": 691638
   },
   {
    "id": "k1",
@@ -3310,8 +3119,7 @@
    "radius": 258,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 643873,
-   "overrealm": false
+   "shape_seed": 643873
   },
   {
    "id": "k2",
@@ -3327,8 +3135,7 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 730107,
-   "overrealm": false
+   "shape_seed": 730107
   },
   {
    "id": "k3",
@@ -3344,8 +3151,7 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 478859,
-   "overrealm": false
+   "shape_seed": 478859
   },
   {
    "id": "k4",
@@ -3361,8 +3167,7 @@
    "radius": 47,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 945867,
-   "overrealm": false
+   "shape_seed": 945867
   },
   {
    "id": "k5",
@@ -3378,8 +3183,7 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 180847,
-   "overrealm": false
+   "shape_seed": 180847
   },
   {
    "id": "k6",
@@ -3395,8 +3199,7 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 391355,
-   "overrealm": false
+   "shape_seed": 391355
   },
   {
    "id": "l1",
@@ -3412,8 +3215,7 @@
    "radius": 244,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 291459,
-   "overrealm": true
+   "shape_seed": 291459
   },
   {
    "id": "l2",
@@ -3429,8 +3231,7 @@
    "radius": 180,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 749682,
-   "overrealm": true
+   "shape_seed": 749682
   },
   {
    "id": "l3",
@@ -3446,8 +3247,7 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 508429,
-   "overrealm": true
+   "shape_seed": 508429
   },
   {
    "id": "l4",
@@ -3463,8 +3263,7 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 927817,
-   "overrealm": true
+   "shape_seed": 927817
   },
   {
    "id": "l5",
@@ -3480,8 +3279,7 @@
    "radius": 60,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 253204,
-   "overrealm": true
+   "shape_seed": 253204
   },
   {
    "id": "l6",
@@ -3497,8 +3295,7 @@
    "radius": 46,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 524600,
-   "overrealm": true
+   "shape_seed": 524600
   },
   {
    "id": "m1",
@@ -3514,8 +3311,7 @@
    "radius": 236,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 458238,
-   "overrealm": false
+   "shape_seed": 458238
   },
   {
    "id": "m2",
@@ -3531,8 +3327,7 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 46395,
-   "overrealm": false
+   "shape_seed": 46395
   },
   {
    "id": "m3",
@@ -3548,8 +3343,7 @@
    "radius": 96,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 940481,
-   "overrealm": false
+   "shape_seed": 940481
   },
   {
    "id": "m4",
@@ -3565,8 +3359,7 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 72940,
-   "overrealm": false
+   "shape_seed": 72940
   },
   {
    "id": "m5",
@@ -3582,8 +3375,7 @@
    "radius": 82,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 991292,
-   "overrealm": false
+   "shape_seed": 991292
   },
   {
    "id": "m6",
@@ -3599,8 +3391,7 @@
    "radius": 128,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 429534,
-   "overrealm": false
+   "shape_seed": 429534
   },
   {
    "id": "n1",
@@ -3616,8 +3407,7 @@
    "radius": 236,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 157657,
-   "overrealm": false
+   "shape_seed": 157657
   },
   {
    "id": "n2",
@@ -3633,8 +3423,7 @@
    "radius": 80,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 305194,
-   "overrealm": false
+   "shape_seed": 305194
   },
   {
    "id": "n3",
@@ -3650,8 +3439,7 @@
    "radius": 101,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 494393,
-   "overrealm": false
+   "shape_seed": 494393
   },
   {
    "id": "n4",
@@ -3667,8 +3455,7 @@
    "radius": 94,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 15824,
-   "overrealm": false
+   "shape_seed": 15824
   },
   {
    "id": "n5",
@@ -3684,8 +3471,7 @@
    "radius": 43,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 163262,
-   "overrealm": false
+   "shape_seed": 163262
   },
   {
    "id": "n6",
@@ -3701,8 +3487,7 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 709863,
-   "overrealm": false
+   "shape_seed": 709863
   },
   {
    "id": "Sh1",
@@ -3718,8 +3503,7 @@
    "radius": 42,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 126964,
-   "overrealm": false
+   "shape_seed": 126964
   },
   {
    "id": "Sh2",
@@ -3735,8 +3519,7 @@
    "radius": 45,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 307462,
-   "overrealm": false
+   "shape_seed": 307462
   },
   {
    "id": "Sh3",
@@ -3752,8 +3535,7 @@
    "radius": 31,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 337419,
-   "overrealm": false
+   "shape_seed": 337419
   },
   {
    "id": "Sh4",
@@ -3769,8 +3551,7 @@
    "radius": 27,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 664142,
-   "overrealm": false
+   "shape_seed": 664142
   },
   {
    "id": "Sh5",
@@ -3786,8 +3567,7 @@
    "radius": 38,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 563341,
-   "overrealm": false
+   "shape_seed": 563341
   },
   {
    "id": "Ch6",
@@ -3803,8 +3583,7 @@
    "radius": 41,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 986355,
-   "overrealm": true
+   "shape_seed": 986355
   },
   {
    "id": "Eh7",
@@ -3820,8 +3599,7 @@
    "radius": 32,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 161318,
-   "overrealm": false
+   "shape_seed": 161318
   },
   {
    "id": "Fh8",
@@ -3837,8 +3615,7 @@
    "radius": 28,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 692223,
-   "overrealm": false
+   "shape_seed": 692223
   },
   {
    "id": "Hh9",
@@ -3854,8 +3631,7 @@
    "radius": 38,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 778851,
-   "overrealm": false
+   "shape_seed": 778851
   },
   {
    "id": "Rh11",
@@ -3871,8 +3647,7 @@
    "radius": 29,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 213886,
-   "overrealm": false
+   "shape_seed": 213886
   },
   {
    "id": "Th12",
@@ -3888,8 +3663,7 @@
    "radius": 24,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 652451,
-   "overrealm": true
+   "shape_seed": 652451
   },
   {
    "id": "ah13",
@@ -3905,8 +3679,7 @@
    "radius": 27,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 118950,
-   "overrealm": false
+   "shape_seed": 118950
   },
   {
    "id": "ch14",
@@ -3922,8 +3695,7 @@
    "radius": 22,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 264026,
-   "overrealm": false
+   "shape_seed": 264026
   },
   {
    "id": "eh15",
@@ -3939,8 +3711,7 @@
    "radius": 36,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 616554,
-   "overrealm": false
+   "shape_seed": 616554
   },
   {
    "id": "fh16",
@@ -3956,8 +3727,7 @@
    "radius": 40,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 663525,
-   "overrealm": true
+   "shape_seed": 663525
   },
   {
    "id": "hh17",
@@ -3973,8 +3743,7 @@
    "radius": 35,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 402857,
-   "overrealm": false
+   "shape_seed": 402857
   },
   {
    "id": "ih18",
@@ -3990,8 +3759,7 @@
    "radius": 22,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 685079,
-   "overrealm": false
+   "shape_seed": 685079
   },
   {
    "id": "kh19",
@@ -4007,8 +3775,7 @@
    "radius": 37,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 293364,
-   "overrealm": false
+   "shape_seed": 293364
   },
   {
    "id": "lh20",
@@ -4024,8 +3791,7 @@
    "radius": 30,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 212899,
-   "overrealm": true
+   "shape_seed": 212899
   },
   {
    "id": "Pt2",
@@ -4041,8 +3807,7 @@
    "radius": 210,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 623608,
-   "overrealm": false
+   "shape_seed": 623608
   },
   {
    "id": "Pt3",
@@ -4058,8 +3823,7 @@
    "radius": 108,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 536033,
-   "overrealm": false
+   "shape_seed": 536033
   },
   {
    "id": "Qt2",
@@ -4075,8 +3839,7 @@
    "radius": 138,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 604382,
-   "overrealm": false
+   "shape_seed": 604382
   },
   {
    "id": "Qt3",
@@ -4092,8 +3855,7 @@
    "radius": 69,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 950466,
-   "overrealm": false
+   "shape_seed": 950466
   },
   {
    "id": "Jt2",
@@ -4109,8 +3871,7 @@
    "radius": 156,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 901736,
-   "overrealm": true
+   "shape_seed": 901736
   },
   {
    "id": "Jt3",
@@ -4126,8 +3887,7 @@
    "radius": 78,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 153256,
-   "overrealm": true
+   "shape_seed": 153256
   }
  ]
 }

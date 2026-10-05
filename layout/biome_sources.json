@@ -1,0 +1,8 @@
+{
+  "_": "Which pack each vanilla biome of the layout is generated from. 'order': the first provider in this list that ships the biome for 26.3 wins ('vanilla' always has it), so a newer Overrealm that covers more biomes takes them over from Geophilic by itself. 'biomes': exceptions, e.g. {\"minecraft:taiga\": \"vanilla\"}. 'drop_features': placed features (fnmatch patterns) taken out of the provider biomes because they cannot work on the islands. See README.md, 'Biome packs'.",
+  "order": ["overrealm", "geophilic", "vanilla"],
+  "biomes": {},
+  "drop_features": [
+    "orealm:sequence/jellyfish"
+  ]
+}

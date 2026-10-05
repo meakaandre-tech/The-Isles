@@ -1,0 +1,26 @@
+{
+  "_": "Third-party packs tools/build_pack.py can use (see tools/providers.py and README.md). They are not part of this repository and may not be redistributed; 'file' is the name pattern looked for in vendor/, 'sha256' the version this was tested with.",
+  "providers": {
+    "overrealm": {
+      "name": "Overrealm", "author": "kanokarob", "what": "Overworld Makeover: reworked forests, deserts, badlands and oceans",
+      "page": "https://www.patreon.com/posts/overrealm-data-148060790",
+      "licence": "no licence in the pack; the author's terms for his packs forbid redistribution, in whole or in part, modified or not (personal modification is allowed)",
+      "file": "*overrealm*", "url": null,
+      "version": "0.3.1 (26.3)", "sha256": "cc4d05ec7eb3b95f4aa09c8e5af766499ea538ed9b5ead2298bfe8cf20fd726e"
+    },
+    "geophilic": {
+      "name": "Geophilic", "author": "bebebea_loste", "what": "biome overhaul of the vanilla Overworld biomes",
+      "page": "https://modrinth.com/datapack/geophilic",
+      "licence": "All Rights Reserved",
+      "file": "*geophilic*", "url": "https://cdn.modrinth.com/data/hl5OLM95/versions/SVRy1ecx/Geophilic%20v3.7.dp.zip",
+      "version": "3.7", "sha256": "4834f8c098ba89aa443d22ad270cb8ff9303a3b165336c8d6e659bacbc473a85"
+    },
+    "dwarfhollow": {
+      "name": "Dwarfhollow", "author": "kanokarob", "what": "Cavernous World: a cave dimension (used inside the spawn island)",
+      "page": "https://www.patreon.com/posts/dwarfhollow-135712745",
+      "licence": "no licence in the pack; the author's terms for his packs forbid redistribution, in whole or in part, modified or not (personal modification is allowed)",
+      "file": "*dwarfhollow*", "url": null,
+      "version": "0.1 (pack format 81)", "sha256": "6fd236321d853aca85e97acfc9c20a8b8452db080866c0069e1bef634b6dfff5"
+    }
+  }
+}
