@@ -18,7 +18,7 @@ and with the Create mod pack it is made for); the test, its findings and what is
 | Done | Not yet |
 |---|---|
 | Island terrain from the layout | Water in the sea-basin islands (they generate as dry bowls) |
-| One biome per island, tiers switch biome by height | Water in the cave world's seas |
+| One biome per island, tiers switch biome by height | |
 | Cave world inside the spawn island, and its sinkholes (with Dwarfhollow, see below) | |
 | Max world height | Cave systems and deepslate inside islands |
 | Ores follow the surface of each island (depth instead of absolute height) | Surface rules that depend on fixed heights (badlands bands below y 63) |
@@ -112,7 +112,7 @@ ores, geodes, trees and ground cover. In The Isles:
 | Shell | at least 56 blocks of rock under the surface (the portal rooms, 30 blocks down, stay in rock), 32 above the underside, 28 in from the rim; the carving fades out over 12 more blocks. The game's cave carvers are off in the cave biomes (they tunnel through anything) |
 | Biomes | Dwarfhollow's own biome list and climate noises inside that zone; the pack's ores are filtered by biome, so inside it there are only Dwarfhollow's ores (and the mods', through `datapack-mods` and the biome tags) |
 | Entrances | the six sinkholes of `layout/islands.json`: shafts from the surface down to y -110..-150 that open into a cavern. SK1 (radius 60, 140 blocks from the spawn point) has a ramp winding down its wall, one turn per 36 blocks; SK2 and SK3 ("water landing") have water on their floor; SK4-SK6 are sheer drops |
-| Seas | dry for now: the game can only keep water there with aquifers, which this world does not use (not tried yet, see `packtest/README.md`) |
+| Seas | water up to Dwarfhollow's sea level (y -338) wherever the cave world reaches that deep. It is placed block by block inside the zone, like a feature: the world's own sea level has to stay at the bottom of the world, and aquifers made every chunk five times slower |
 | Left out of Dwarfhollow | its dimension and dimension type, its noise settings (terrain and surface rule are rebuilt here), and its functions, predicates and entity tag: they only move the world spawn and respawning players under its bedrock ceiling |
 
 Its files are for pack format 81 (Minecraft 1.21.5); `tools/convert81.py` converts features, biomes and the surface rule to

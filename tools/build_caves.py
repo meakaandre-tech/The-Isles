@@ -24,7 +24,7 @@ above y 183, midlands down to y -9, seas below (sea level -6). Here it is the in
 Left out: its dimension and dimension type (the Overworld stays The Isles'), its noise settings, and its functions,
 predicates and entity tag (they only move the world spawn and respawning players under its bedrock ceiling).
 """
-import copy, json, math
+import copy, json, math, os
 import convert81
 
 NSD = "dwho"
@@ -35,6 +35,7 @@ FADE = 12.0
 LAYER_TRIES = 12        # attempts per unit of a count_on_every_layer count
 SINK_BOTTOM = {"spiral_ledge": -150, "water_landing": -120, "sheer_drop": -110}   # where a shaft ends (the cave world's highlands)
 RAMP_PITCH, RAMP_WIDTH, RAMP_THICK, SECTORS = 36, 8, 12, 12
+CELL_XZ, CELL_Y = int(os.environ.get("ISLES_CAVE_CELL_XZ", 8)), int(os.environ.get("ISLES_CAVE_CELL_Y", 8))   # grid of the cave density (Dwarfhollow's own: 4, 8)
 CHAMBER, CHAMBER_OPEN = 48, 0.8   # within this many blocks around the foot of a shaft the cave density is lowered by this much
 
 def base_amplitude(amps):
@@ -128,7 +129,9 @@ class Caves:
             out.append((shaft, ramp)); self.log.append(f"sinkhole {s['id']} ({s.get('type')}): radius {r}, down to y {yb}" + (", spiral ramp" if ramp else ""))
         return out
     def carve(self, terrain):
-        """the world's density with the cave world cut into the island and the sinkholes cut through its roof"""
+        """-> (the islands' density with the sinkholes cut through the roof, the cave world's density - below 0 where a cavern is,
+        above 1 outside the zone -, the density of the spiral ramps or None). The three are combined after the interpolation
+        (see build_pack), so the cave world can be computed on a coarser grid: the game computes it for every chunk of the world."""
         bp = self.bp
         self.noises(); self.zone()
         m = bp.clamp(bp.mul(bp.ref("cave/inner"), 1 / FADE), 0, 1)
@@ -137,11 +140,11 @@ class Caves:
         dens = self.density()
         if self.chambers: dens = bp.sub(dens, bp.mul(CHAMBER_OPEN, bp.tree(bp.dmax, self.chambers)))
         cave = bp.add(bp.clamp(dens, -2.0, 2.5), bp.mul(3.2, bp.sub(1, m)))   # >= 1.2 (no effect) outside the zone
-        out = bp.dmin(terrain, cave)
-        for shaft, ramp in holes:
-            out = bp.dmin(out, bp.clamp(bp.mul(shaft, -1.0), -1, 1))
-            if ramp is not None: out = bp.dmax(out, bp.clamp(ramp, -1, 1))
-        return out
+        out, ramps = terrain, [bp.clamp(ramp, -1, 1) for shaft, ramp in holes if ramp is not None]
+        for shaft, ramp in holes: out = bp.dmin(out, bp.clamp(bp.mul(shaft, -1.0), -1, 1))
+        bp.write(f"data/{bp.NS}/worldgen/density_function/cave/density.json", cave)
+        if ramps: bp.write(f"data/{bp.NS}/worldgen/density_function/cave/ramps.json", bp.tree(bp.dmax, ramps))
+        return out, bp.ref("cave/density"), bp.ref("cave/ramps") if ramps else None
 
     # ------------------------------------------------------------------------------------------------ biomes
     ISLAND_DEPTH = -1.9     # the "depth" climate parameter outside the cave world; Dwarfhollow's own runs from -0.3 to 1.1
@@ -181,9 +184,10 @@ class Caves:
         feats, placed = conv.features()
         for kind, d in (("feature", feats), ("placed_feature", placed)):
             for k, v in d.items(): bp.write(f"data/{NSD}/worldgen/{kind}/{k.split(':')[1]}.json", fix_types(v))
-        climates = []
+        climates, sea = [], self.sea()
         for b in self.biomes:
             d = convert81.biome(self.pack.json(f"data/{NSD}/worldgen/biome/{b}.json"))
+            d["features"][0] = sea + d["features"][0]   # before everything else: what grows under water needs it
             d["carvers"] = []   # the game's cave carvers tunnel through anything, the shell included; the cave world has its own caverns
             # The climate of the islands' biomes (see build_pack.climate_biome): 1,700 blocks above the generator's sea level the
             # game takes every biome for frozen - snow on the floor of the sinkholes, ice on the water of the landings.
@@ -199,15 +203,21 @@ class Caves:
         self.log.append("cave biomes with a constant climate and the colours of the vanilla biome of the same temperature/downfall: " + ", ".join(climates))
         self.log.append(f"dwarfhollow ({self.pack.path.name}): {len(feats)} features, {len(placed)} placed features, {len(self.biomes)} biomes, {n} tags converted; "
                         + ", ".join(f"{v} x {k}" for k, v in conv.notes.items()))
-    def aquifers(self):
-        """The seas of the cave world (its sea level -6 = y -337 here). The world's sea level has to stay at its bottom (the game
-        floods everything below it), so the water comes from aquifers, as the lava seas of this pack's Nether do: flooded only
-        inside the cave zone and only in the band of heights whose fluid level is the sea level (a level can only be at 40n + 23)."""
-        bp = self.bp; inner = bp.ref("cave/inner"); sea = -6 + SHIFT
-        assert (sea - 23) % 40 == 0
-        band = bp.mc("interval_select", input=bp.Y, thresholds=[float(sea - 23 - 40), float(sea + 17)], functions=[-1.0, 0.6, -1.0])
-        return {"barrier": 0.0, "lava": 0.0, "surface_level": float(bp.MIN_Y + bp.HEIGHT), "fluid_level_spread": 0.45,
-                "fluid_level_floodedness": bp.choice(inner, 4, 100000, band, -1.0), "exclusion": bp.sub(4.0, inner)}
+    def sea(self):
+        """The seas of the cave world (its sea level -6: the highest water block is at y -7, here y -338) -> placed features for its
+        biomes. The world's sea level has to stay at its bottom (the game floods everything below it), and aquifers, which make the
+        lava seas of this pack's Nether, cost five times the generation time in a world that is mostly air (measured: 256 chunks of
+        void 10 s -> 51 s). So the water is placed like a feature: every block of air from the cave world's floor up to its sea level
+        whose biome is one of the cave world's - that is the zone inside the shell, nothing else - becomes water, 16 layers a time."""
+        bp, top, out = self.bp, -7 + SHIFT, []
+        for n, y0 in enumerate(range(top - 15, self.lo - 16, -16)):
+            bp.write(f"data/{bp.NS}/worldgen/placed_feature/cave_sea_{n}.json", {
+                "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:water", "properties": {"level": "0"}}},
+                "placement": [bp.mc("height_range", height={"absolute": y0}), bp.mc("cuboid", xz_size=15, y_size=15),   # the whole chunk, 16 layers
+                              bp.mc("block_predicate_filter", predicate=bp.mc("matching_block_tag", tag="minecraft:air")), bp.mc("biome")]})
+            out.append(bp.ref(f"cave_sea_{n}"))
+        self.log.append(f"cave seas: water up to y {top} in {len(out)} slabs from y {y0}")
+        return out
     def surface_features(self):
         """placed features for the biome at the island's surface -> [ids]: the water at the foot of the "water_landing" sinkholes"""
         bp = self.bp
