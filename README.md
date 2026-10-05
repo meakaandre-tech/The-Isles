@@ -18,10 +18,11 @@ and with the Create mod pack it is made for); the test, its findings and what is
 | Done | Not yet |
 |---|---|
 | Island terrain from the layout | Water in the sea-basin islands (they generate as dry bowls) |
-| One biome per island, tiers switch biome by height; the void biome above and below | Cave world inside the spawn island, and its sinkholes |
+| One biome per island, tiers switch biome by height | Cave world inside the spawn island, and its sinkholes |
 | Max world height | Cave systems and deepslate inside islands |
 | Ores follow the surface of each island (depth instead of absolute height) | Surface rules that depend on fixed heights (badlands bands below y 63) |
-| Rain or snow by biome, not by altitude | A way into the End (no strongholds), oil deposits for Create Diesel Generators (no bedrock) |
+| Rain or snow by biome, not by altitude | A way into the End (strongholds generate at the bottom of the world), oil deposits for Create Diesel Generators (no bedrock) |
+| | Structures the game puts at fixed heights (trial chambers at y -40..-20, in rock, wherever an island's column is) |
 
 ## Using it
 

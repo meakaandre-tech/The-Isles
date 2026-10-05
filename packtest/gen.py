@@ -248,7 +248,7 @@ probe(C, 'spawn centre', 0, 0)
 C += ['say SPAWNCOL', 'execute at @e[type=minecraft:marker,tag=wspawn,limit=1] run function packtest:col', 'scoreboard players get y pt']
 # the vanilla phase probes every sampled island; here a spread of them is enough to see that the mods do not change the terrain
 PACK_SAMPLE = ['S1', 'Sh4', 'P1', 'Pt3', 'Qt2', 'J1', 'Jt3', 'D1', 'K6', 'M4', 'T3', 'C4', 'e1', 'M1', 'I1', 'K5', 'R2', 'L3']
-C += island_probes([k for k in PACK_SAMPLE if k in SAMPLE]) + void_probes()[:40] + pregen('land', *REG_LAND, after=animals())
+C += island_probes([k for k in PACK_SAMPLE if k in SAMPLE]) + void_probes() + pregen('land', *REG_LAND, after=animals())
 
 # ---- ores: what is inside the islands, by altitude (64x64 columns through the whole body)
 ORES = ['minecraft:stone', 'minecraft:deepslate', 'minecraft:dirt', 'minecraft:gravel', 'minecraft:granite', 'minecraft:diorite', 'minecraft:andesite', 'minecraft:tuff',

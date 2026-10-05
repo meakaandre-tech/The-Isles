@@ -36,6 +36,7 @@ sheets of the screenshots. Start with `report.txt` (written by `packtest/tools/r
 | `client-options.txt` | extra `options.txt` lines (key bindings must be legacy numbers: `key_key.use:22` is U) |
 | `debugmod/`, `debug` | test-only mod, built in the run when the file `debug` exists: prints chunk generation exceptions that the game otherwise swallows (see below) |
 | `view-distance` | server view distance and client render distance |
+| `known.txt` | regexes of failures that are known findings; they are listed in the report but do not fail the run |
 | `server-only`, `exclude.txt`, `no-mods-datapack`, `publish` | switches: no client; regexes of mod jars to leave out; pack phase without `datapack-mods`; publish the release |
 
 ## Things worth knowing

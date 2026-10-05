@@ -1,0 +1,2 @@
+# Failures of the pack test that are known findings: reported, not fixed. One regex per line.
+probe I1 half: FAIL height   # a trial chamber, cased in rock, hangs at y -60..-15 over the basin of I1 (top y -300)

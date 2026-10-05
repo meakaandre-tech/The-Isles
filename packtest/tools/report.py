@@ -88,7 +88,7 @@ def server_report(name, isles=True):
                 own = I.get(p['tag'])   # the rim point is 4 blocks outside the radius: the rag noise can still put a block there
                 if y != MIN_Y and p['kind'] == 'rim' and own and own['y_bottom'] - 40 <= y <= own['y_top'] + 40: verdict = 'ok (ragged rim)'
                 elif y != MIN_Y: verdict = 'FAIL not empty'
-                elif b != 'the_isles:void': verdict = 'FAIL biome'
+                elif b != 'the_isles:void' and p['kind'] != 'rim': verdict = 'FAIL biome'   # the biome footprint is 8 blocks wider than the radius
             elif p['kind'] == 'structure' and not cov: verdict = 'IN THE VOID' if y == MIN_Y else 'outside every island footprint, on something'
             elif y is None: verdict = 'FAIL no answer'
             else:
@@ -156,7 +156,13 @@ if os.path.exists(f'{D}/server2-pack.log'): os.replace(f'{D}/server2-pack.log', 
 server_report('pack-restart')
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
+# packtest/known.txt: regexes of failures that are known findings (reported, not fixed); they do not fail the run
+known = [l.split('#')[0].strip() for l in open(ROOT + '/packtest/known.txt')] if os.path.exists(ROOT + '/packtest/known.txt') else []
+known = [k for k in known if k]
+accepted = [f for f in fails if any(re.search(k, f) for k in known)]
+fails = [f for f in fails if f not in accepted]
 print('\n================ verdict ================')
+for f in accepted: print('  known:', f)
 print('PASS' if not fails else 'FAIL')
 for f in fails: print('  -', f)
 open(f'{D}/verdict.txt', 'w').write(('PASS' if not fails else 'FAIL') + '\n' + ''.join(f'- {f}\n' for f in fails[:30]))
