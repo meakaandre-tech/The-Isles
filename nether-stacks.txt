@@ -1,0 +1,39 @@
+45 running samples
+--- frames anywhere in the stack
+   19 NoiseBasedChunkGenerator.lambda
+   19 NoiseBasedChunkGenerator.buildTerrain
+   19 ChunkStatusTasks.buildTerrain
+   12 NoiseBasedChunkGenerator.doFill
+    8 placement.FeaturePlacer
+    7 NoiseBasedChunkGenerator.mixinextras
+    7 NoiseBasedChunkGenerator.mde81163
+    7 NoiseBasedChunkGenerator.wrapOperation
+    7 NoiseBasedChunkGenerator.buildSurface
+    4 ChunkStatusTasks.generateFeatures
+    3 ThreadedLevelLightEngine
+    1 Aquifer$NoiseBasedAquifer.computeSubstance
+    1 NoiseBasedChunkGenerator.iterateNoiseColumn
+    1 NoiseBasedChunkGenerator.getBaseColumn
+    1 ChunkStatusTasks.generateStructureStarts
+--- top frames
+    9 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+    7 net.minecraft.util.thread.BlockableEventLoop.waitForTasks < net.minecraft.util.thread.BlockableEventLoop.managedBlock < net.minecraft.server.level.ServerChunkCache.mixinextras$bridge$managedBlock$90
+    5 net.minecraft.util.DelegateDataOutput.writeLong < net.minecraft.nbt.LongArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    4 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    2 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000007099a590.get
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000007099f400.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    1 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000007099dff0.apply < material.MaterialRuleContext.getBiome
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000007099dff0.apply
+    1 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    1 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000007099f400.tryApply
+    1 net.minecraft.server.level.ServerLevel.handler$cka000$puzzleslib$tickNonPassenger < net.minecraft.server.level.ServerLevel.tickNonPassenger < net.minecraft.server.level.ServerLevel$$Lambda/0x0000000070ab36d0.accept
+    1 chunk.PalettedContainer.pack < chunk.PalettedContainer.lambda$codec$2 < chunk.PalettedContainer$$Lambda/0x000000007087fd00.apply
+    1 net.minecraft.util.DelegateDataOutput.writeUTF < net.minecraft.nbt.NbtIo$StringFallbackDataOutput.writeUTF < net.minecraft.nbt.StringTag.write
+    1 chunk.PalettedContainer.<init> < chunk.PalettedContainer.copy < chunk.LevelChunkSection.<init>
+    1 block.NyliumBlock.canBeNylium < block.NyliumBlock.randomTick < block.state.BlockBehaviour$BlockStateBase.randomTick
+    1 net.minecraft.world.phys.shapes.Shapes.joinIsNotEmpty < net.minecraft.server.level.ServerLevel.sendBlockUpdated < Level.setBlock
+    1 gamerules.GameRuleMap.get < gamerules.GameRules.get < net.minecraft.server.level.ServerLevel.canSpreadFireAround
+    1 net.minecraft.commands.arguments.blocks.BlockPredicateArgument$BlockPredicate.test < net.minecraft.commands.arguments.blocks.BlockPredicateArgument$BlockPredicate.test < net.minecraft.server.commands.FillCommand.fillBlocks
+    1 net.minecraft.util.thread.AbstractConsecutiveExecutor.schedule < net.minecraft.server.level.ChunkTaskDispatcher.submit < net.minecraft.server.level.ThreadedLevelLightEngine.addTask

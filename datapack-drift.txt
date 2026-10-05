@@ -1,0 +1,1 @@
+ M datapack/data/the_isles/structure/portal_room.nbt
