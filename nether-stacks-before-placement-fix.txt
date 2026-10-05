@@ -1,0 +1,47 @@
+74 running samples
+--- frames anywhere in the stack
+   40 placement.FeaturePlacer
+   31 NoiseBasedChunkGenerator.lambda
+   31 NoiseBasedChunkGenerator.buildTerrain
+   31 ChunkStatusTasks.buildTerrain
+   26 placement.CountOnEveryLayerPlacement
+   19 ChunkStatusTasks.generateFeatures
+   16 NoiseBasedChunkGenerator.doFill
+   14 NoiseBasedChunkGenerator.mixinextras
+   14 NoiseBasedChunkGenerator.mdc5c8f1
+   14 NoiseBasedChunkGenerator.wrapOperation
+   14 NoiseBasedChunkGenerator.buildSurface
+    3 NoiseBasedChunkGenerator.iterateNoiseColumn
+    3 NoiseBasedChunkGenerator.getBaseColumn
+    3 ChunkStatusTasks.generateStructureStarts
+    2 carver.CaveWorldCarver
+    1 Aquifer$NoiseBasedAquifer.computeSubstance
+    1 placement.PlacedFeature
+    1 carver.WorldCarver
+    1 NoiseBasedChunkGenerator.generateCarvers
+--- top frames
+   13 placement.CountOnEveryLayerPlacement.findOnGroundYPosition < placement.CountOnEveryLayerPlacement.modify < placement.FeaturePlacer.place
+   12 net.minecraft.util.thread.BlockableEventLoop.waitForTasks < net.minecraft.util.thread.BlockableEventLoop.managedBlock < net.minecraft.server.level.ServerChunkCache.mixinextras$bridge$managedBlock$90
+   11 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    4 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    4 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000004e9a4ae8.apply
+    3 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000004e9a5ef8.tryApply < material.rule.SequenceRule.lambda$compile$0
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000004e9a5ef8.tryApply
+    2 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000004e97cdf8.get
+    2 chunk.LevelChunkSection.redirect$bpl000$lithium$setBlockStateNoLocking < chunk.LevelChunkSection.setBlockState < chunk.ProtoChunk.setBlockState
+    2 chunk.LevelChunkSection.setBlockState < chunk.LevelChunkSection.redirect$bpl000$lithium$setBlockStateNoLocking < chunk.LevelChunkSection.setBlockState
+    2 net.minecraft.nbt.CompoundTag.store < net.minecraft.nbt.CompoundTag.store < chunk.storage.SerializableChunkData.write
+    1 chunk.LevelChunkSection.getBlockState < feature.OreFeature.doPlace < feature.OreFeature.place
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.BinaryFunction$ConstAddSampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    1 densityfunction.op.BinaryFunction$AddSampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume
+    1 net.minecraft.server.level.WorldGenRegion.warnIfReadOutsideWriteZone < net.minecraft.server.level.WorldGenRegion.getBlockState < blockpredicates.StateTestingPredicate.test
+    1 net.minecraft.world.entity.EntityFluidInteraction.isInFluid < net.minecraft.world.entity.Entity.isInLava < net.minecraft.world.entity.Entity.baseTick
+    1 net.minecraft.core.MappedRegistry.registrationInfo < net.minecraft.core.Registry.lambda$referenceHolderWithLifecycle$4 < net.minecraft.core.Registry$$Lambda/0x000000004d58cfc8.apply
+    1 net.minecraft.util.DelegateDataOutput.write < net.minecraft.nbt.ByteArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    1 carver.WorldCarver.carveEllipsoid < carver.CaveWorldCarver.createTunnel < carver.CaveWorldCarver.carve
+    1 net.minecraft.util.SimpleBitStorage.lithium$compact < chunk.PalettedContainer.pack < chunk.PalettedContainer.lambda$codec$2
+    1 net.minecraft.util.DelegateDataOutput.writeLong < net.minecraft.nbt.LongArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    1 net.minecraft.commands.arguments.blocks.BlockInput.place < net.minecraft.server.commands.FillCommand.fillBlocks < net.minecraft.server.commands.FillCommand.lambda$wrapWithMode$0
+    1 net.minecraft.server.commands.FillCommand.fillBlocks < net.minecraft.server.commands.FillCommand.lambda$wrapWithMode$0 < net.minecraft.server.commands.FillCommand$$Lambda/0x000000004e76b170.run

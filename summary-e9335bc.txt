@@ -1,0 +1,380 @@
+column 8 8 changes 123
+  L11   1624.. 2031 lava@ 1663: air 235 biggest air 1895..1733 lava runs [] bedrock 2 top-solid 1 bottom-solid 85
+  L10   1264.. 1623 lava@ 1303: air  53 biggest air 1570..1533 lava runs [] bedrock 0 top-solid 21 bottom-solid 269
+  L 9    944.. 1263 lava@  983: air 234 biggest air 1243..1124 lava runs [(982, 976)] bedrock 0 top-solid 20 bottom-solid 32
+  L 8    664..  943 lava@  703: air 133 biggest air 847..798 lava runs [] bedrock 0 top-solid 23 bottom-solid 86
+  L 7    304..  663 lava@  343: air  63 biggest air 500..446 lava runs [] bedrock 0 top-solid 163 bottom-solid 91
+  L 6    -16..  303 lava@   23: air 126 biggest air 202..174 lava runs [] bedrock 0 top-solid 27 bottom-solid 40
+  L 5   -376..  -17 lava@ -337: air 180 biggest air -229..-269 lava runs [(-338, -345)] bedrock 0 top-solid 23 bottom-solid 31
+  L 4   -696.. -377 lava@ -657: air  76 biggest air -406..-444 lava runs [(-658, -665)] bedrock 0 top-solid 29 bottom-solid 31
+  L 3  -1056.. -697 lava@-1017: air 186 biggest air -953..-1017 lava runs [(-1018, -1025)] bedrock 0 top-solid 24 bottom-solid 31
+  L 2  -1336..-1057 lava@-1297: air  60 biggest air -1265..-1297 lava runs [(-1298, -1306)] bedrock 0 top-solid 44 bottom-solid 30
+  L 1  -1656..-1337 lava@-1617: air  54 biggest air -1372..-1397 lava runs [(-1620, -1638)] bedrock 0 top-solid 35 bottom-solid 9
+  L 0  -2016..-1657 lava@-1977: air  43 biggest air -1949..-1977 lava runs [(-1978, -1982)] bedrock 0 top-solid 21 bottom-solid 34
+column 72 40 changes 143
+  L11   1624.. 2031 lava@ 1663: air 186 biggest air 1927..1877 lava runs [] bedrock 3 top-solid 3 bottom-solid 43
+  L10   1264.. 1623 lava@ 1303: air 125 biggest air 1557..1487 lava runs [] bedrock 0 top-solid 55 bottom-solid False
+  L 9    944.. 1263 lava@  983: air 170 biggest air 1246..1119 lava runs [(1094, 1094)] bedrock 0 top-solid False bottom-solid 15
+  L 8    664..  943 lava@  703: air  92 biggest air 913..875 lava runs [(874, 874)] bedrock 0 top-solid 6 bottom-solid False
+  L 7    304..  663 lava@  343: air 100 biggest air 663..620 lava runs [] bedrock 0 top-solid False bottom-solid 85
+  L 6    -16..  303 lava@   23: air 184 biggest air 278..179 lava runs [] bedrock 0 top-solid 25 bottom-solid 39
+  L 5   -376..  -17 lava@ -337: air 224 biggest air -252..-346 lava runs [] bedrock 0 top-solid 54 bottom-solid False
+  L 4   -696.. -377 lava@ -657: air 108 biggest air -556..-581 lava runs [] bedrock 0 top-solid False bottom-solid False
+  L 3  -1056.. -697 lava@-1017: air 250 biggest air -943..-1016 lava runs [(-870, -870)] bedrock 0 top-solid False bottom-solid 40
+  L 2  -1336..-1057 lava@-1297: air 155 biggest air -1100..-1181 lava runs [] bedrock 0 top-solid 19 bottom-solid False
+  L 1  -1656..-1337 lava@-1617: air 122 biggest air -1399..-1432 lava runs [] bedrock 0 top-solid False bottom-solid False
+  L 0  -2016..-1657 lava@-1977: air 147 biggest air -1890..-1953 lava runs [] bedrock 0 top-solid False bottom-solid 63
+column 120 120 changes 150
+  L11   1624.. 2031 lava@ 1663: air 150 biggest air 1748..1672 lava runs [(1660, 1655)] bedrock 4 top-solid 4 bottom-solid 31
+  L10   1264.. 1623 lava@ 1303: air 157 biggest air 1373..1322 lava runs [(1302, 1294)] bedrock 0 top-solid 17 bottom-solid 30
+  L 9    944.. 1263 lava@  983: air 170 biggest air 1247..1117 lava runs [(982, 974)] bedrock 0 top-solid 16 bottom-solid 30
+  L 8    664..  943 lava@  703: air  77 biggest air 859..825 lava runs [(702, 692)] bedrock 0 top-solid 27 bottom-solid 28
+  L 7    304..  663 lava@  343: air 204 biggest air 588..481 lava runs [] bedrock 0 top-solid 75 bottom-solid 58
+  L 6    -16..  303 lava@   23: air 104 biggest air 231..193 lava runs [(22, 14)] bedrock 0 top-solid 23 bottom-solid 30
+  L 5   -376..  -17 lava@ -337: air 156 biggest air -146..-210 lava runs [(-338, -348)] bedrock 0 top-solid 29 bottom-solid 28
+  L 4   -696.. -377 lava@ -657: air 134 biggest air -502..-563 lava runs [(-658, -658)] bedrock 0 top-solid 36 bottom-solid 38
+  L 3  -1056.. -697 lava@-1017: air 234 biggest air -787..-886 lava runs [(-1018, -1026)] bedrock 0 top-solid 19 bottom-solid 30
+  L 2  -1336..-1057 lava@-1297: air 179 biggest air -1178..-1261 lava runs [(-1298, -1309)] bedrock 0 top-solid 20 bottom-solid 27
+  L 1  -1656..-1337 lava@-1617: air 136 biggest air -1357..-1405 lava runs [] bedrock 0 top-solid 20 bottom-solid 72
+  L 0  -2016..-1657 lava@-1977: air 117 biggest air -1679..-1712 lava runs [] bedrock 0 top-solid 22 bottom-solid 110
+column 40 100 changes 139
+  L11   1624.. 2031 lava@ 1663: air 142 biggest air 1731..1701 lava runs [] bedrock 4 top-solid 4 bottom-solid 48
+  L10   1264.. 1623 lava@ 1303: air  95 biggest air 1604..1510 lava runs [] bedrock 0 top-solid 19 bottom-solid 246
+  L 9    944.. 1263 lava@  983: air 171 biggest air 1238..1158 lava runs [(982, 973)] bedrock 0 top-solid 25 bottom-solid 29
+  L 8    664..  943 lava@  703: air  94 biggest air 925..873 lava runs [(872, 872)] bedrock 0 top-solid 18 bottom-solid 82
+  L 7    304..  663 lava@  343: air 181 biggest air 587..517 lava runs [(342, 333)] bedrock 0 top-solid 17 bottom-solid 29
+  L 6    -16..  303 lava@   23: air  86 biggest air 94..46 lava runs [(22, 15)] bedrock 0 top-solid 96 bottom-solid 31
+  L 5   -376..  -17 lava@ -337: air 158 biggest air -148..-244 lava runs [(-338, -341)] bedrock 0 top-solid 100 bottom-solid 35
+  L 4   -696.. -377 lava@ -657: air 145 biggest air -461..-579 lava runs [] bedrock 0 top-solid 23 bottom-solid 39
+  L 3  -1056.. -697 lava@-1017: air 192 biggest air -788..-887 lava runs [(-1018, -1025)] bedrock 0 top-solid 19 bottom-solid 31
+  L 2  -1336..-1057 lava@-1297: air 104 biggest air -1106..-1156 lava runs [(-1302, -1305)] bedrock 0 top-solid 16 bottom-solid 31
+  L 1  -1656..-1337 lava@-1617: air 129 biggest air -1565..-1597 lava runs [(-1618, -1624)] bedrock 0 top-solid 43 bottom-solid 32
+  L 0  -2016..-1657 lava@-1977: air  85 biggest air -1884..-1955 lava runs [] bedrock 0 top-solid 116 bottom-solid 61
+scan                  netherrac      lava   bedrock nether_qu nether_go ancient_d glowstone soul_sand soul_soil    basalt blackston magma_blo    gravel crimson_n warped_ny crimson_s warped_st crimson_r nether_sp sulfur_or       air nether_br polished_  obsidian bone_bloc
+layer0                  1146697      7583         0      3174      1037        33        28         0         0         0      3574      4998      2282         0         0         0         0         0         0      1447                                                  
+layer1                  1045753      3168         0      3434      1115        25       161         0         0         0      2939      4843      3869       562         0        94         0        19         0      1413                                                  
+separator0-1                                                                                                                                                                                                                      45943                                        
+layer2                   695768     10846         0      2197       711        22        86         0         0         0      1177       572      1547        13         0         0         0         0         0      1079                                                  
+separator1-2                                                                                                                                                                                                                      44569                                        
+layer3                   422946      9287         0       931       333        24        26         0         0         0      2074      2415      2135     11139         0      3410         0       700         0       334                                                  
+separator2-3                                                                                                                                                                                                                       4644                                        
+layer4                   939877      9955         0      2726      1023        27       146         1         0         0      3679      4148      2258         0         0         0         0         0         0      1122                                                  
+separator3-4                                                                                                                                                                                                                      26381                                        
+layer5                   688208      5512         0      1997       710        20        26     17581      5992      1063      4078      3235      2548         0         0         0         0         0         0       803                                                  
+separator4-5                                                                                                                                                                                                                      32502                                        
+layer6                   746804       342         0      2322       703        25        69         0         0       918      3193      4986      3769     12609         0      2448         0       646         0       976                                                  
+separator5-6                                                                                                                                                                                                                       4832                                        
+layer7                  1008003      7279         0      2848       827        36       102         0         0      9866      6438      3349      3017         0         0         0         0         0         0      1310                                                  
+separator6-7                                                                                                                                                                                                                      37529                                        
+layer8                   294448      4408         0      1953       620        31        14         0         0    390191    102183      4149        58         3         0         0         0         0         0       726                                                  
+separator7-8                                                                                                                                                                                                                      32225                                        
+layer9                   299214     11734         0       670       276        17        21         0         0      1390      2397      2146      1520      5719         0      1765         0       353         0       365                                                  
+separator8-9                                                                                                                                                                                                                      22527                                        
+layer10                 1173109      3556         0      2973      1151        25        20         0         0         0      1493      4849      2606        18         0         0         0         0         0      1292                                                  
+separator9-10                                                                                                                                                                                                                     42922                                        
+layer11                  711070      1123     12352      1602       441        22        41         0         0         0      3117      5450      2911     14840         0      2936         0       848         0       642                                                  
+separator10-11                                                                                                                                                                                                                     8952                                        
+bottom-pad                53250         0     12286                                                                                                                                                                                   0                                        
+fortress-layer0                                                                                                                                                                                                                                 0                              
+fortress-layer1                                                                                                                                                                                                                                 0                              
+fortress-layer2                                                                                                                                                                                                                                 0                              
+fortress-layer3                                                                                                                                                                                                                                 0                              
+fortress-layer4                                                                                                                                                                                                                                 0                              
+fortress-layer5                                                                                                                                                                                                                                 0                              
+fortress-layer6                                                                                                                                                                                                                             58579                              
+fortress-layer7                                                                                                                                                                                                                                 0                              
+fortress-layer8                                                                                                                                                                                                                                 0                              
+fortress-layer9                                                                                                                                                                                                                                 0                              
+fortress-layer10                                                                                                                                                                                                                                0                              
+fortress-layer11                                                                                                                                                                                                                                0                              
+bastion0-layer0                                                                                                                                                                                                                                           0                    
+bastion0-layer1                                                                                                                                                                                                                                           0                    
+bastion0-layer2                                                                                                                                                                                                                                           0                    
+bastion0-layer3                                                                                                                                                                                                                                           0                    
+bastion0-layer4                                                                                                                                                                                                                                           0                    
+bastion0-layer5                                                                                                                                                                                                                                           0                    
+bastion0-layer6                                                                                                                                                                                                                                        5705                    
+bastion0-layer7                                                                                                                                                                                                                                           0                    
+bastion0-layer8                                                                                                                                                                                                                                           0                    
+bastion0-layer9                                                                                                                                                                                                                                           0                    
+bastion0-layer10                                                                                                                                                                                                                                          0                    
+bastion0-layer11                                                                                                                                                                                                                                          0                    
+bastion1-layer0                                                                                                                                                                                                                                           0                    
+bastion1-layer1                                                                                                                                                                                                                                           0                    
+bastion1-layer2                                                                                                                                                                                                                                           0                    
+bastion1-layer3                                                                                                                                                                                                                                           0                    
+bastion1-layer4                                                                                                                                                                                                                                           0                    
+bastion1-layer5                                                                                                                                                                                                                                           0                    
+bastion1-layer6                                                                                                                                                                                                                                           0                    
+bastion1-layer7                                                                                                                                                                                                                                           0                    
+bastion1-layer8                                                                                                                                                                                                                                       13586                    
+bastion1-layer9                                                                                                                                                                                                                                           0                    
+bastion1-layer10                                                                                                                                                                                                                                          0                    
+bastion1-layer11                                                                                                                                                                                                                                          0                    
+bastion2-layer0                                                                                                                                                                                                                                           0                    
+bastion2-layer1                                                                                                                                                                                                                                           0                    
+bastion2-layer2                                                                                                                                                                                                                                           0                    
+bastion2-layer3                                                                                                                                                                                                                                           0                    
+bastion2-layer4                                                                                                                                                                                                                                           0                    
+bastion2-layer5                                                                                                                                                                                                                                           0                    
+bastion2-layer6                                                                                                                                                                                                                                        9128                    
+bastion2-layer7                                                                                                                                                                                                                                           0                    
+bastion2-layer8                                                                                                                                                                                                                                           0                    
+bastion2-layer9                                                                                                                                                                                                                                           0                    
+bastion2-layer10                                                                                                                                                                                                                                          0                    
+bastion2-layer11                                                                                                                                                                                                                                          0                    
+ruined-portal-layer0                                                                                                                                                                                                                                                0          
+ruined-portal-layer1                                                                                                                                                                                                                                                0          
+ruined-portal-layer2                                                                                                                                                                                                                                                0          
+ruined-portal-layer3                                                                                                                                                                                                                                                0          
+ruined-portal-layer4                                                                                                                                                                                                                                                0          
+ruined-portal-layer5                                                                                                                                                                                                                                                0          
+ruined-portal-layer6                                                                                                                                                                                                                                                9          
+ruined-portal-layer7                                                                                                                                                                                                                                                0          
+ruined-portal-layer8                                                                                                                                                                                                                                                0          
+ruined-portal-layer9                                                                                                                                                                                                                                                0          
+ruined-portal-layer10                                                                                                                                                                                                                                               0          
+ruined-portal-layer11                                                                                                                                                                                                                                               0          
+fossil-layer0                                                                                                                                                                                                                                                                 0
+fossil-layer1                                                                                                                                                                                                                                                                 0
+fossil-layer2                                                                                                                                                                                                                                                                 0
+fossil-layer3                                                                                                                                                                                                                                                                 0
+fossil-layer4                                                                                                                                                                                                                                                                 0
+fossil-layer5                                                                                                                                                                                                                                                                51
+fossil-layer6                                                                                                                                                                                                                                                                 0
+fossil-layer7                                                                                                                                                                                                                                                                 0
+fossil-layer8                                                                                                                                                                                                                                                                 0
+fossil-layer9                                                                                                                                                                                                                                                                 0
+fossil-layer10                                                                                                                                                                                                                                                                0
+fossil-layer11                                                                                                                                                                                                                                                                0
+Percentiles: P50: 0.8ms P95: 3.0ms P99: 72.4ms. Sample: 100
+Percentiles: P50: 6.0ms P95: 29.7ms P99: 128.6ms. Sample: 100
+TICK after-45s
+Percentiles: P50: 2.3ms P95: 4.3ms P99: 13.5ms. Sample: 100
+COUNT gen strider
+COUNT gen piglin
+Test passed. Count: 40
+COUNT gen zombified_piglin
+COUNT gen ghast
+COUNT gen magma_cube
+COUNT gen hoglin
+COUNT gen enderman
+COUNT gen skeleton
+COUNT gen blaze
+COUNT gen wither_skeleton
+NBIOMEAT 8 8 layer 0
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 1
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 2
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 3
+NBIOME crimson_forest
+NBIOMEAT 8 8 layer 4
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 5
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 6
+NBIOME crimson_forest
+NBIOMEAT 8 8 layer 7
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 8
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 9
+NBIOME crimson_forest
+NBIOMEAT 8 8 layer 10
+NBIOME nether_wastes
+NBIOMEAT 8 8 layer 11
+NBIOME crimson_forest
+NBIOMEAT 72 40 layer 0
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 1
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 2
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 3
+NBIOME crimson_forest
+NBIOMEAT 72 40 layer 4
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 5
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 6
+NBIOME crimson_forest
+NBIOMEAT 72 40 layer 7
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 8
+NBIOME basalt_deltas
+NBIOMEAT 72 40 layer 9
+NBIOME crimson_forest
+NBIOMEAT 72 40 layer 10
+NBIOME nether_wastes
+NBIOMEAT 72 40 layer 11
+NBIOME crimson_forest
+NBIOMEAT 120 120 layer 0
+NBIOME crimson_forest
+NBIOMEAT 120 120 layer 1
+NBIOME warped_forest
+NBIOMEAT 120 120 layer 2
+NBIOME nether_wastes
+NBIOMEAT 120 120 layer 3
+NBIOME crimson_forest
+NBIOMEAT 120 120 layer 4
+NBIOME soul_sand_valley
+NBIOMEAT 120 120 layer 5
+NBIOME nether_wastes
+NBIOMEAT 120 120 layer 6
+NBIOME crimson_forest
+NBIOMEAT 120 120 layer 7
+NBIOME nether_wastes
+NBIOMEAT 120 120 layer 8
+NBIOME basalt_deltas
+NBIOMEAT 120 120 layer 9
+NBIOME soul_sand_valley
+NBIOMEAT 120 120 layer 10
+NBIOME basalt_deltas
+NBIOMEAT 120 120 layer 11
+NBIOME crimson_forest
+NBIOMEAT 40 100 layer 0
+NBIOME nether_wastes
+NBIOMEAT 40 100 layer 1
+NBIOME warped_forest
+NBIOMEAT 40 100 layer 2
+NBIOME warped_forest
+NBIOMEAT 40 100 layer 3
+NBIOME crimson_forest
+NBIOMEAT 40 100 layer 4
+NBIOME soul_sand_valley
+NBIOMEAT 40 100 layer 5
+NBIOME nether_wastes
+NBIOMEAT 40 100 layer 6
+NBIOME crimson_forest
+NBIOMEAT 40 100 layer 7
+NBIOME nether_wastes
+NBIOMEAT 40 100 layer 8
+NBIOME basalt_deltas
+NBIOMEAT 40 100 layer 9
+NBIOME soul_sand_valley
+NBIOMEAT 40 100 layer 10
+NBIOME nether_wastes
+NBIOMEAT 40 100 layer 11
+NBIOME crimson_forest
+LOCATE fortress
+The nearest minecraft:fortress is at [-128, ~, 192] (230 blocks away)
+LOCATE bastion0
+The nearest minecraft:bastion_remnant is at [32, ~, 16] (35 blocks away)
+LOCATE bastion1
+The nearest minecraft:bastion_remnant is at [1440, ~, 1504] (60 blocks away)
+LOCATE bastion2
+The nearest minecraft:bastion_remnant is at [-2064, ~, 848] (80 blocks away)
+LOCATE ruined-portal
+The nearest minecraft:ruined_portal_nether is at [384, ~, 48] (386 blocks away)
+LOCATE fossil
+The nearest minecraft:nether_fossil is at [-32, ~, -32] (45 blocks away)
+Percentiles: P50: 0.0ms P95: 0.1ms P99: 7.8ms. Sample: 100
+CHECK commands done
+VIEW layer6 yaw 0 pitch 10
+VIEW layer6 yaw 90 pitch 25
+VIEW layer6 yaw 180 pitch -20
+VIEW layer6 yaw 270 pitch 40
+VIEW layer6 yaw 0 pitch 89
+COUNT layer6-120s strider
+Test passed. Count: 18
+COUNT layer6-120s piglin
+Test passed. Count: 60
+COUNT layer6-120s zombified_piglin
+Test passed. Count: 13
+COUNT layer6-120s ghast
+COUNT layer6-120s magma_cube
+COUNT layer6-120s hoglin
+Test passed. Count: 15
+COUNT layer6-120s enderman
+COUNT layer6-120s skeleton
+COUNT layer6-120s blaze
+COUNT layer6-120s wither_skeleton
+Percentiles: P50: 30.3ms P95: 46.3ms P99: 61.0ms. Sample: 100
+COUNT layer6-240s strider
+Test passed. Count: 17
+COUNT layer6-240s piglin
+Test passed. Count: 81
+COUNT layer6-240s zombified_piglin
+Test passed. Count: 11
+COUNT layer6-240s ghast
+Test passed. Count: 1
+COUNT layer6-240s magma_cube
+COUNT layer6-240s hoglin
+Test passed. Count: 34
+COUNT layer6-240s enderman
+COUNT layer6-240s skeleton
+COUNT layer6-240s blaze
+COUNT layer6-240s wither_skeleton
+VIEW layer9 yaw 0 pitch 10
+VIEW layer9 yaw 90 pitch 25
+VIEW layer9 yaw 180 pitch -20
+VIEW layer9 yaw 270 pitch 40
+VIEW layer9 yaw 0 pitch 89
+COUNT layer9-120s strider
+Test passed. Count: 12
+COUNT layer9-120s piglin
+Test passed. Count: 22
+COUNT layer9-120s zombified_piglin
+Test passed. Count: 2
+COUNT layer9-120s ghast
+COUNT layer9-120s magma_cube
+COUNT layer9-120s hoglin
+Test passed. Count: 19
+COUNT layer9-120s enderman
+COUNT layer9-120s skeleton
+Test passed. Count: 8
+COUNT layer9-120s blaze
+COUNT layer9-120s wither_skeleton
+Percentiles: P50: 14.1ms P95: 19.3ms P99: 21.7ms. Sample: 100
+COUNT layer9-240s strider
+Test passed. Count: 10
+COUNT layer9-240s piglin
+Test passed. Count: 34
+COUNT layer9-240s zombified_piglin
+Test passed. Count: 3
+COUNT layer9-240s ghast
+Test passed. Count: 2
+COUNT layer9-240s magma_cube
+COUNT layer9-240s hoglin
+Test passed. Count: 10
+COUNT layer9-240s enderman
+Test passed. Count: 1
+COUNT layer9-240s skeleton
+Test passed. Count: 2
+COUNT layer9-240s blaze
+COUNT layer9-240s wither_skeleton
+PORTALTEST overworld-low island M4 top -1350
+Marker has the following entity data: [1114.5d, -1351.0d, -3125.5d]
+PORTAL lit
+CHECK through the overworld-low portal
+packtest has the following entity data: "minecraft:overworld"
+packtest has the following entity data: [1115.0d, -1351.0d, -3125.0d]
+UNDER sand
+UNDER solid
+PORTALTEST overworld-high island K6 top 1402
+Marker has the following entity data: [-2485.5d, 1375.0d, -1285.5d]
+PORTAL lit
+CHECK through the overworld-high portal
+packtest has the following entity data: "minecraft:overworld"
+packtest has the following entity data: [-2485.0d, 1375.0d, -1285.0d]
+AT air
+UNDER solid
+PORTALTEST nether-layer2-under-S1 at 300 -1257 300
+PORTAL lit
+CHECK through the nether-layer2-under-S1 portal
+packtest has the following entity data: "minecraft:overworld"
+packtest has the following entity data: [290.5d, 53.0d, 315.5d]
+UNDER obsidian
+AT nether_portal
+UNDER solid
+PORTALTEST nether-layer9-void at 2000 1023 -1000
+PORTAL lit
+CHECK through the nether-layer9-void portal
+packtest has the following entity data: "minecraft:overworld"
+packtest has the following entity data: [1999.5d, 1023.0d, -999.5d]
+UNDER obsidian
+AT nether_portal
+UNDER solid
+Percentiles: P50: 11.2ms P95: 20.7ms P99: 31.2ms. Sample: 100
