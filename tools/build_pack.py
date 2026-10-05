@@ -586,6 +586,9 @@ def build(src):
             odd = (d["temperature"], d["downfall"]) != (v["temperature"], v["downfall"]) and not {"grass_color", "foliage_color"} <= set(d.get("effects", {}))
             if gone: print(f"{b} ({source[b]}): taken out {' '.join(gone)}")
         c = climate_biome(b, d)
+        extra = caves.surface_features() if caves and b == caves.island["biome"] else []
+        if extra:   # (the water of the sinkholes: after everything else of the biome at the cave island's surface)
+            c = c or d or vanilla_biome(b); c["features"] = c["features"] + [[]] * (11 - len(c["features"])); c["features"][10] = c["features"][10] + extra
         if c and d and odd: src.warnings.append(f"{b} ({source[b]}): temperature/downfall differ from vanilla and the colours are not set; the vanilla colours are pinned")
         if c: warm.append(b)
         if c or d: write(f"data/minecraft/worldgen/biome/{b}.json", c or d)

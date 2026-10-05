@@ -35,6 +35,7 @@ FADE = 12.0
 LAYER_TRIES = 12        # attempts per unit of a count_on_every_layer count
 SINK_BOTTOM = {"spiral_ledge": -150, "water_landing": -120, "sheer_drop": -110}   # where a shaft ends (the cave world's highlands)
 RAMP_PITCH, RAMP_WIDTH, RAMP_THICK, SECTORS = 36, 8, 12, 12
+CHAMBER, CHAMBER_OPEN = 48, 0.8   # within this many blocks around the foot of a shaft the cave density is lowered by this much
 
 def base_amplitude(amps):
     """NormalNoise.computeParityBaseAmplitude of 26.3: the base_amplitude with which a noise equals the 1.21 noise of the
@@ -118,6 +119,12 @@ class Caves:
                 slab = bp.dmin(bp.sub(u, RAMP_PITCH - RAMP_THICK), bp.sub(RAMP_PITCH, u))
                 ring = bp.dmin(bp.add(inn, 4.0), bp.sub(RAMP_WIDTH, inn))
                 ramp = bp.dmin(bp.dmin(bp.mul(slab, 1 / 4), bp.mul(ring, 1 / 3)), bp.dmin(bp.mul(bp.sub(bp.Y, yb + 6), 1 / 8), bp.mul(bp.sub(top - 4, bp.Y), 1 / 8)))
+            # the cavern a sinkhole opens into: around the lower part of the shaft the cave density is lowered
+            near = bp.flat(bp.clamp(bp.mul(bp.sub(r + CHAMBER, dist), 1 / CHAMBER), 0, 1))
+            band = bp.dmin(bp.clamp(bp.mul(bp.sub(yb + 70, bp.Y), 1 / 30), 0, 1), bp.clamp(bp.mul(bp.sub(bp.Y, yb - 40), 1 / 30), 0, 1))
+            self.chambers.append(bp.mul(near, band))
+            if s.get("type") == "water_landing":   # water sources on the floor of the shaft, every 9 blocks: landing in water breaks the fall
+                self.pools += [[s["x"] + dx, 0, s["z"] + dz] for dx in range(-r, r + 1, 9) for dz in range(-r, r + 1, 9) if math.hypot(dx, dz) < r - 6]
             out.append((shaft, ramp)); self.log.append(f"sinkhole {s['id']} ({s.get('type')}): radius {r}, down to y {yb}" + (", spiral ramp" if ramp else ""))
         return out
     def carve(self, terrain):
@@ -125,9 +132,13 @@ class Caves:
         bp = self.bp
         self.noises(); self.zone()
         m = bp.clamp(bp.mul(bp.ref("cave/inner"), 1 / FADE), 0, 1)
-        cave = bp.add(bp.clamp(self.density(), -2.0, 2.5), bp.mul(3.2, bp.sub(1, m)))   # >= 1.2 (no effect) outside the zone
+        self.chambers, self.pools = [], []
+        holes = self.sinkholes()
+        dens = self.density()
+        if self.chambers: dens = bp.sub(dens, bp.mul(CHAMBER_OPEN, bp.tree(bp.dmax, self.chambers)))
+        cave = bp.add(bp.clamp(dens, -2.0, 2.5), bp.mul(3.2, bp.sub(1, m)))   # >= 1.2 (no effect) outside the zone
         out = bp.dmin(terrain, cave)
-        for shaft, ramp in self.sinkholes():
+        for shaft, ramp in holes:
             out = bp.dmin(out, bp.clamp(bp.mul(shaft, -1.0), -1, 1))
             if ramp is not None: out = bp.dmax(out, bp.clamp(ramp, -1, 1))
         return out
@@ -171,7 +182,9 @@ class Caves:
         for kind, d in (("feature", feats), ("placed_feature", placed)):
             for k, v in d.items(): bp.write(f"data/{NSD}/worldgen/{kind}/{k.split(':')[1]}.json", fix_types(v))
         for b in self.biomes:
-            bp.write(f"data/{NSD}/worldgen/biome/{b}.json", convert81.biome(self.pack.json(f"data/{NSD}/worldgen/biome/{b}.json")))
+            d = convert81.biome(self.pack.json(f"data/{NSD}/worldgen/biome/{b}.json"))
+            d["carvers"] = []   # the game's cave carvers tunnel through anything, the shell included; the cave world has its own caverns
+            bp.write(f"data/{NSD}/worldgen/biome/{b}.json", d)
         n = 0
         for rel, data in f.items():   # its block and biome tags (the function tags and the entity tag belong to what is left out)
             if rel.startswith((f"data/{NSD}/tags/block/", f"data/{NSD}/tags/worldgen/", "data/minecraft/tags/worldgen/biome/")):
@@ -179,14 +192,25 @@ class Caves:
         self.conv = conv
         self.log.append(f"dwarfhollow ({self.pack.path.name}): {len(feats)} features, {len(placed)} placed features, {len(self.biomes)} biomes, {n} tags converted; "
                         + ", ".join(f"{v} x {k}" for k, v in conv.notes.items()))
+    def surface_features(self):
+        """placed features for the biome at the island's surface -> [ids]: the water at the foot of the "water_landing" sinkholes"""
+        bp = self.bp
+        if not self.pools: return []
+        bp.write(f"data/{bp.NS}/worldgen/placed_feature/sinkhole_pool.json", {
+            "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:water", "properties": {"level": "0"}}, "schedule_tick": True},
+            "placement": [bp.mc("fixed_placement", positions=self.pools), bp.mc("heightmap", heightmap="MOTION_BLOCKING")]})
+        return [bp.ref("sinkhole_pool")]
     def surface_rule(self):
         """Dwarfhollow's surface rule for its biomes (its bedrock floor and roof are left out)"""
         rule = self.pack.json(f"data/{NSD}/worldgen/noise_settings/dwarfhollow.json")["surface_rule"]
         conv = convert81.Converter({}, {}, shift=SHIFT, old_min=DH_MIN, old_top=DH_TOP - 1)
         seq = [e for e in rule["sequence"] if "bedrock" not in json.dumps(e.get("then_run", {}).get("result_state", ""))]
         self.bp.write(f"data/{self.bp.NS}/worldgen/material_rule/cave_world.json", {"type": "minecraft:sequence", "sequence": conv.rule(seq)})
-        return {"type": "minecraft:condition", "if_true": {"type": "minecraft:biome", "biome_is": [f"{NSD}:{b}" for b in self.biomes]},
-                "then_run": self.bp.ref("cave_world")}
+        # the heights first: a biome test for every block of every island costs a third of the generation time
+        above = lambda y: {"type": "minecraft:y_above", "anchor": {"absolute": y}, "surface_depth_multiplier": 0, "add_stone_depth": False}
+        cond = lambda c, then: {"type": "minecraft:condition", "if_true": c, "then_run": then}
+        return cond(above(self.lo - 8), cond({"type": "minecraft:not", "invert": above(self.hi + 32)},
+                    cond({"type": "minecraft:biome", "biome_is": [f"{NSD}:{b}" for b in self.biomes]}, self.bp.ref("cave_world"))))
 
 def fix_types(o):
     """feature types that changed between 1.21.5 and 26.3 beyond what convert81 does"""
