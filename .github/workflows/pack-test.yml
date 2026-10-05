@@ -13,7 +13,7 @@ concurrency:
   group: pack-test-${{ github.ref }}
   cancel-in-progress: true
 env:
-  # a run of another branch than pack-test keeps its logs and key branches apart (ci-logs-dh-*, ci-key-dh-*)
+  # a run of another branch than pack-test keeps its logs apart (ci-logs-dh-*)
   SUFFIX: ${{ github.ref_name == 'pack-test' && ' ' || 'dh-' }}
 jobs:
   test:
@@ -51,12 +51,11 @@ jobs:
         run: |
           mkdir -p /tmp/ci
           # Biome providers (packtest/providers: ids of layout/providers.json; no file = vanilla biomes). Those with a public
-          # URL are downloaded; the others are asked for (packtest/tools/vendor-recv.sh) and left out when nobody answers.
+          # URL are downloaded; a pack without one cannot be tested here (it may not be uploaded anywhere) and is left out.
           # Nothing of them is uploaded: the zip tested here stays on the runner, the release is built without them.
           want=$( (cat packtest/providers 2>/dev/null || true) | tr -s ' \n' ',,' | sed 's/^,//;s/,$//')
           if [ -n "$want" ]; then
             (python3 tools/providers.py fetch 2>&1 || true) | tee /tmp/ci/build.txt
-            (bash packtest/tools/vendor-recv.sh "${SUFFIX// /}${{ matrix.part }}" "$want" 2>&1 || true) | tee -a /tmp/ci/build.txt
           fi
           echo "ISLES_PROVIDERS=${want:-none}" >> "$GITHUB_ENV"
           ISLES_PROVIDERS=${want:-none} python3 tools/build_pack.py | tee -a /tmp/ci/build.txt

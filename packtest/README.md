@@ -46,8 +46,7 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 | `view-distance` | server view distance and client render distance |
 | `known.txt` | regexes of failures that are known findings; they are listed in the report but do not fail the run |
 | `quick` | while iterating: the only sections to run (words used by `on()` in `gen.py`, e.g. `islands-few structures look biomes biomeviews`); delete it for a full run |
-| `providers` | ids of `layout/providers.json` the tested pack is built with (`overrealm geophilic`); no file = vanilla biomes |
-| `tools/vendor-recv.sh`, `tools/vendor-send.sh` | how a job gets a provider that has no public download: see "Biome packs" |
+| `providers` | ids of `layout/providers.json` the tested pack is built with; only packs with a public download reach the runner (`geophilic`); no file = vanilla biomes |
 | `server-only`, `exclude.txt`, `no-mods-datapack`, `publish` | switches: no client; regexes of mod jars to leave out; pack phase without `datapack-mods`; publish the release |
 
 ## Things worth knowing
@@ -86,12 +85,13 @@ Fixed in the generator (each its own commit on `pack-test`):
 How the generator uses them is in the main README. The test builds the pack with both and runs everything on that
 build (run 31f9796; the released zips are the vanilla build, which the generator still writes byte for byte as before).
 
-* **Getting them to the runner.** Geophilic is downloaded from Modrinth (`tools/providers.py fetch`, sha256 checked).
-  Overrealm has no public download and may not be redistributed, and this repository is public. So a job makes an RSA
-  key pair that only exists in its memory, pushes the public key to the branch `ci-key-<job>` and waits four minutes for
-  `ci-vendor-<job>`: the zip encrypted for that key (`vendor-recv.sh`). `vendor-send.sh`, run by whoever has the pack
-  while the test runs, answers every new key and deletes those branches afterwards. What is pushed can only be read by a
-  job that no longer exists. When nobody answers, the job goes on with what it has (Geophilic) and says so in `build.txt`.
+* **Getting them to the runner.** Geophilic is downloaded from Modrinth (`tools/providers.py fetch`, sha256 checked), so
+  the test can build with it (`packtest/providers`). Overrealm and Dwarfhollow have no public download and may not be
+  redistributed: the workflow does not test them any more. The findings below that involve them come from runs 31f9796
+  (pack-test) and 3f2a634 (dwarfhollow), for which the zips were handed to each job encrypted for a key pair that only
+  existed in that job (branches `ci-key-*` / `ci-vendor-*`). That put ciphertext of the packs on a public repository,
+  which is still an upload of them; the hand-over was taken out again (scripts and workflow step) and the leftover
+  branches are to be deleted. With those two packs the pack is now built and checked locally only.
 * **Loading.** No error or warning from the data packs: 0 lines with Fabric API only, the same single mod warning as
   before with the whole mod pack.
 * **What grows** (96x96 columns around the centre of an island, from the upper part of the body to 60 above the top;
@@ -136,6 +136,52 @@ build (run 31f9796; the released zips are the vanilla build, which the generator
 * **Whole mod pack** (32 mods, client): verdict PASS. Ores per 64x64 columns as before, the mods' included (S1: 1,043 coal,
   1,138 iron, 442 diamond, 1,243 zinc; B1: 1,341 zinc, 1,097 lead; M1: 1,842 uranium); animals and monsters spawn on the
   Geophilic plains of the spawn island (16 zombies, 17 skeletons, 24 creepers in a night).
+
+### Cave world in the spawn island (Dwarfhollow 0.1)
+
+What it is and how it is fitted in: main README. Tested in run 3f2a634 of the `dwarfhollow` branch (see "Getting them to the runner" above). Sections `caves` (server) and `caveviews` (client) of `gen.py`.
+
+* **Loading.** Its 131 configured and 119 placed features, 15 biomes and surface rule are for Minecraft 1.21.5; converted
+  by `tools/convert81.py` they load in 26.3 without an error or warning. Two things had to be found by running it: disks
+  need a `type` on their rule based state provider, and an offset reaches 16 blocks at most (wider patches take two).
+* **Shell.** Twelve columns from above the surface to below the underside (`VPROFILE`, every second block): rock between
+  the ground and the first cavern of the cave world 80 to 200 blocks, between the last cavern and the underside 44 to
+  308; where the island is thinner than about 120 blocks (five of the columns, towards the rim) there are no caverns.
+  Lines outwards at y -60 and -160 (`HPROFILE`): 152 and 30 blocks of rock between the last cavern and the void.
+  Under the island (140 layers below the middle): no water, nothing. The blocks of air above the cave world's ceiling
+  (y 30..38 under the spawn point) are the trial chambers; the game's cave carvers are off inside the cave world's
+  footprint.
+* **Biomes** down a column every 40 blocks (`VBIOME`): plains, plains (y 50, 10), then highlands (`orichalc_highlands`,
+  `bronze_sanctuary`, `honeycomb_caves`), midlands (`shadow_woods`, `floral_grove`, `dry_midlands`), `black_sea` /
+  `ocean` at the bottom, and plains again in the floor shell.
+* **Inside** (48x48 columns, three depth bands, `SCAN cave-*`): 5 to 23% of the blocks are open in the middle of the island
+  at this seed (the cave world's own noise decides, some regions are mostly rock); grass, mud, moss, sculk, basalt,
+  prismarine, deepslate by biome; trees (722 logs, 5,193 leaves in the upper band), giant mushrooms; 1,432 light blocks
+  in the upper band (Dwarfhollow lights its caverns with invisible light sources); its ores (upper band, 9 chunks: 2,715
+  coal, 2,944 iron, 2,529 copper; lower: diamonds, redstone, gold, lapis).
+* **Sinkholes.** All six open from the surface to y -110..-150. SK1: the ramp shows in a column near the wall as slabs
+  8 to 16 thick every 36 blocks with 22 to 26 blocks of headroom, down to the cavern at its foot. Water landings SK2 and
+  SK3: 1,205 and 2,323 blocks of water on the floor, no snow, 2 and 19 blocks of ice.
+* **Seas.** Water where the cave world reaches below y -338: 1,312 and 512 blocks in two 48x48 boxes (y -395..-339) under
+  the middle of the island, with air above it; none towards the rim, where the island ends higher up. They are ponds on
+  cavern floors rather than seas: at this seed and this depth most of the storey is open space or rock.
+* **Mobs**, 90 seconds around a player at the foot of SK1 (whole mod pack): 25 zombies, 15 skeletons, 16 creepers, 11 spiders, 10 bats, 1 enderman, 1 slime; 4 cows, 8 sheep,
+  1 pig, 9 chickens, 1 armadillo. No witch, cave spider, glow squid, bogged, stray, drowned or axolotl there. Server
+  tick 18.5 ms on average with the client in the cavern (P99 134 ms).
+* **Screenshots** (`client-NN.png` after `VIEW cave ...`): the sinkhole from above and from its rim with the ramp winding
+  down; at its foot orange honeycomb terraces with birches, bamboo and a giant mushroom; the water landing from above;
+  from inside the rock (a spectator sees the caverns around) floating pieces of land with cherry trees in pink fog,
+  groves with dark oaks, a deepslate tunnel with lapis at y -320. Without night vision the caverns are dark between
+  the lit patches.
+* **Time.** Same runner, Fabric API only, seconds for 256 chunks of land inside the spawn island / 256 of void / 64 with
+  three tiers: vanilla biomes 15.1 / 6.9 / 6.9, with
+  Geophilic and Overrealm 15.2 / 7.0 / 5.9, with the cave world as well 39.4 / 10.0 / 8.0.
+  The spawn island is the expensive part: surface rule and features of a decorated cave world in 600 layers of rock.
+  What was tried: with the climate noises computed for every point of the world the void took 40% longer (6.9 instead
+  of 4.9 s; the game asks for the climate point by point, so they are now behind a test of height and distance);
+  a coarser grid for the cave noise changed nothing (6.9 s with 4 and with 8 block cells); aquifers for the seas made
+  every chunk five times slower (void 10 -> 51 s), so the water is placed as a feature.
+  Heap with the 256 land chunks loaded: about 1.0 to 1.3 GB (0.5 to 1.1 without the cave world).
 
 ### Structures
 
