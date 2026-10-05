@@ -46,7 +46,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": -502
+             "absolute": -505
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -86,7 +86,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 392
+             "absolute": 390
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -126,7 +126,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 582
+             "absolute": 579
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -166,7 +166,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 863
+             "absolute": 857
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -220,7 +220,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": -422
+             "absolute": -425
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -260,7 +260,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 646
+             "absolute": 641
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -314,7 +314,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": -594
+             "absolute": -596
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -354,7 +354,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": -113
+             "absolute": -118
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -394,7 +394,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 171
+             "absolute": 166
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -434,7 +434,7 @@
            "if_true": {
             "type": "minecraft:y_above",
             "anchor": {
-             "absolute": 362
+             "absolute": 361
             },
             "surface_depth_multiplier": 2,
             "add_stone_depth": false
@@ -6720,26 +6720,6 @@
     "then_run": {
      "type": "minecraft:sequence",
      "sequence": [
-      {
-       "type": "minecraft:condition",
-       "if_true": {
-        "type": "minecraft:biome",
-        "biome_is": [
-         "minecraft:frozen_ocean",
-         "minecraft:deep_frozen_ocean"
-        ]
-       },
-       "then_run": {
-        "type": "minecraft:condition",
-        "if_true": {
-         "type": "minecraft:hole"
-        },
-        "then_run": {
-         "type": "minecraft:block",
-         "result_state": "minecraft:air"
-        }
-       }
-      },
       "minecraft:overworld/biome_surface"
      ]
     }
@@ -6758,20 +6738,11 @@
        "type": "minecraft:condition",
        "if_true": {
         "type": "minecraft:biome",
-        "biome_is": [
-         "minecraft:frozen_ocean",
-         "minecraft:deep_frozen_ocean"
-        ]
+        "biome_is": "the_isles:void"
        },
        "then_run": {
-        "type": "minecraft:condition",
-        "if_true": {
-         "type": "minecraft:hole"
-        },
-        "then_run": {
-         "type": "minecraft:block",
-         "result_state": "minecraft:water"
-        }
+        "type": "minecraft:block",
+        "result_state": "minecraft:stone"
        }
       }
      },

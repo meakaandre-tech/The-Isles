@@ -91,8 +91,8 @@ def seas(bp, islands):
 
 # ---------------------------------------------------------------------------------------------------------- caves
 FLOOR, SIDE, FADE = 16, 20, 10.0     # rock above the underside, in from the rim; the carving fades out over FADE blocks
-TUNNEL, CAVERN = 0.085, 0.5         # tunnels where two noises are both this close to 0, caverns where a third is above this
-ENTRANCE = 0.62                      # the caves come up through the ground where the entrance noise is above this
+TUNNEL, CAVERN = 0.085, 0.6         # tunnels where two noises are both this close to 0, caverns where a third is above this
+ENTRANCE = 0.68                      # the caves come up through the ground where the entrance noise is above this
 def surface_floor(bp, i):
     """The surface rule runs above this height in the island's columns (the router's chunk_surface_level; the rule starts
     about 5 blocks lower): 24 blocks under the lowest ground the island's relief can have. One number per island: the game
@@ -107,7 +107,7 @@ def cave_top(bp, i):
 def has_caves(i, nocave=()): return "caves" not in OFF and i["layer"] == "main" and not is_basin(i) and i["id"] not in nocave
 def cave_noise(bp):
     """-> the name of the cave density (below 0: open), shared by all layers"""
-    for n, octave in (("hollow_a", -6), ("hollow_b", -6), ("hollow_c", -6), ("entrance", -7)):
+    for n, octave in (("hollow_a", -6), ("hollow_b", -6), ("hollow_c", -6), ("entrance", -6)):
         bp.write(f"data/{bp.NS}/worldgen/noise/{n}.json", {"base_octave": octave, "octave_count": 1})
     n3 = lambda n, y: bp.mc("noise", noise=bp.ref(n), xz_scale=1.0, y_scale=y)
     tunnel = bp.mul(bp.sub(bp.dmax(bp.mc("abs", input=n3("hollow_a", 1.6)), bp.mc("abs", input=n3("hollow_b", 1.6))), TUNNEL), 10.0)
@@ -229,7 +229,7 @@ def sulfur(bp, islands, layout, sea_biomes=()):
 
 # ---------------------------------------------------------------------------------------------------------- surfaces
 BADLANDS = ("badlands", "eroded_badlands", "wooded_badlands")
-SNOW_CAPS = {"windswept_hills": 0.4, "windswept_gravelly_hills": 0.4, "windswept_forest": 0.33}   # snow on this upper share of the relief
+SNOW_CAPS = {"windswept_hills": 0.48, "windswept_gravelly_hills": 0.48, "windswept_forest": 0.4}   # snow on this upper share of the relief
 BAND_PERIOD = ["terracotta"] * 5 + ["orange_terracotta"] * 3 + ["terracotta"] * 2 + ["yellow_terracotta"] * 2 + ["terracotta"] * 4 + ["brown_terracotta"] * 2 + \
               ["orange_terracotta"] * 4 + ["terracotta"] * 3 + ["red_terracotta"] * 2 + ["terracotta"] * 2 + ["white_terracotta", "light_gray_terracotta", "white_terracotta"] + \
               ["terracotta"] * 4 + ["orange_terracotta"] * 2 + ["yellow_terracotta"] + ["terracotta"] * 5 + ["red_terracotta"] + ["orange_terracotta"] * 3 + \
@@ -286,10 +286,17 @@ def surface(bp, islands):
     def is_badlands(c):
         b = c.get("biome_is") if isinstance(c, dict) and c.get("type") == "minecraft:biome" else None
         return b is not None and all(x.split(":")[1] in BADLANDS for x in ([b] if isinstance(b, str) else b))
+    def is_frozen_sea(c):
+        b = c.get("biome_is") if isinstance(c, dict) and c.get("type") == "minecraft:biome" else None
+        return b is not None and all(x.split(":")[1] in ("frozen_ocean", "deep_frozen_ocean") for x in ([b] if isinstance(b, str) else b))
     def walk(o):
-        if isinstance(o, list): return [walk(v) for v in o]
+        # The frozen oceans' rule (holes in the top layer: air above the water level, water below) is left out: with the sea
+        # filled in afterwards it put single water blocks on ledges of the island's underside (60 counted under M2).
+        if isinstance(o, list): return [walk(v) for v in o if not (isinstance(v, dict) and v.get("type") == "minecraft:condition" and is_frozen_sea(v["if_true"]))]
         if not isinstance(o, dict): return o
         if o.get("type") == "minecraft:condition" and is_badlands(o["if_true"]) and groups: return {**o, "then_run": per_island(o["then_run"])}
+        if o.get("type") == "minecraft:condition" and isinstance(o.get("then_run"), dict) and o["then_run"].get("type") == "minecraft:condition" and is_frozen_sea(o["then_run"]["if_true"]):
+            return {**o, "then_run": cond({"type": "minecraft:biome", "biome_is": bp.VOID_BIOME}, block("stone"))}   # (a rule that never applies)
         return {k: walk(v) for k, v in o.items()}
     rule = walk(rule)
     # --- snow line
