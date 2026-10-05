@@ -75,6 +75,8 @@ for n, (ox, oz) in enumerate([(0, 0), (1500, 1500), (-2000, 800)]): C += structu
 C += structure('ruined-portal', 'minecraft:ruined_portal_nether', 0, 0, 'minecraft:obsidian')
 C += structure('fossil', 'minecraft:nether_fossil', 0, 0, 'minecraft:bone_block')
 C += ['tick query']
+QUICK = os.path.exists(ROOT + '/packtest/nether-quick')   # switch: only the portal tests
+if QUICK: C = HEAD
 open(OUT + '/commands-nether.txt', 'w').write('\n'.join(C + ['say SECTION end nether']) + '\n')
 
 B = HEAD + gen() + ['say SECTION layers']
@@ -99,6 +101,7 @@ for k, (px, pz) in ((6, (72, 40)), (9, (72, 40))):
           'cmd kill @e[type=!minecraft:player]', 'sleep 120'] + [f'cmd {x}' for x in mobs(f'layer{k}-120s')] + ['cmd tick query', 'shot',
           'sleep 120'] + [f'cmd {x}' for x in mobs(f'layer{k}-240s')] + ['cmd gamemode creative packtest', f'cmd {N}forceload remove all']
 # portals from the Overworld: the lowest and the highest island
+if QUICK: S = ['cmd say SECTION client', 'cmd gamemode creative packtest']
 S += ['cmd say SECTION portals']
 lo, hi = min(ISL.values(), key=lambda i: i['y_top']), max(ISL.values(), key=lambda i: i['y_top'])
 for tag, i in (('low', lo), ('high', hi)):
@@ -107,7 +110,7 @@ for tag, i in (('low', lo), ('high', hi)):
           f'cmd execute positioned {x} 0 {z} positioned over motion_blocking run summon minecraft:marker ~ ~ ~ {{Tags:["pf{tag}"]}}',
           f'cmd data get entity @e[type=minecraft:marker,tag=pf{tag},limit=1] Pos']
     S += frame('', f'execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run ')
-    S += [f'cmd execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run tp packtest ~0.5 ~ ~0.5', 'sleep 40'] + where(f'through the overworld-{tag} portal') + ['shot',
+    S += [f'cmd execute at @e[type=minecraft:marker,tag=pf{tag},limit=1] run tp packtest ~ ~ ~', 'sleep 40'] + where(f'through the overworld-{tag} portal') + ['shot',
           'cmd execute at packtest run tp packtest ~3 ~ ~3', 'sleep 2', 'cmd forceload remove all']
 # portals from the Nether: layer 2 under the spawn island, layer 9 under a void column
 for tag, k, x, z in (('layer2-under-S1', 2, 300, 300), ('layer9-void', 9, 2000, -1000)):
