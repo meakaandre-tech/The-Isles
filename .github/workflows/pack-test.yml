@@ -43,12 +43,25 @@ jobs:
       - name: Rebuild the data pack from the layout and zip it
         if: steps.ph.outputs.phases != ''
         shell: bash
+        env:
+          PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: |
           mkdir -p /tmp/ci
-          python3 tools/build_pack.py | tee /tmp/ci/build.txt
+          # Biome providers (packtest/providers: ids of layout/providers.json; no file = vanilla biomes). Those with a public
+          # URL are downloaded; the others are asked for (packtest/tools/vendor-recv.sh) and left out when nobody answers.
+          # Nothing of them is uploaded: the zip tested here stays on the runner, the release is built without them.
+          want=$( (cat packtest/providers 2>/dev/null || true) | tr -s ' \n' ',,' | sed 's/^,//;s/,$//')
+          if [ -n "$want" ]; then
+            (python3 tools/providers.py fetch 2>&1 || true) | tee /tmp/ci/build.txt
+            (bash packtest/tools/vendor-recv.sh "${{ matrix.part }}" "$want" 2>&1 || true) | tee -a /tmp/ci/build.txt
+          fi
+          echo "ISLES_PROVIDERS=${want:-none}" >> "$GITHUB_ENV"
+          ISLES_PROVIDERS=${want:-none} python3 tools/build_pack.py | tee -a /tmp/ci/build.txt
           git status --porcelain datapack datapack-mods | tee /tmp/ci/datapack-drift.txt
           [ -s /tmp/ci/datapack-drift.txt ] && echo "WARNING: the committed data packs differ from the generator output" | tee -a /tmp/ci/build.txt
-          (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
+          src=datapack; [ -d build/the-isles ] && src=build/the-isles
+          echo "pack under test: $src" | tee -a /tmp/ci/build.txt
+          (cd $src && zip -q -r -X /tmp/the-isles-tested.zip .)
           (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
           ls -l /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip | tee -a /tmp/ci/build.txt
       - name: Run the tests
@@ -89,7 +102,8 @@ jobs:
           mkdir -p /tmp/ci
           for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf /tmp/parts/ci-nether; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
           cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null; cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null | sort -u > /tmp/ci/build.txt
-          python3 tools/build_pack.py > /dev/null
+          # the release only holds The Isles' own files: built here without any provider (vanilla biomes)
+          ISLES_PROVIDERS=none python3 tools/build_pack.py > /dev/null
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
           (cd datapack-mods && zip -q -r -X /tmp/the-isles-mods-tested.zip .)
           python3 packtest/tools/report.py /tmp/ci > /tmp/ci/report.txt 2>&1

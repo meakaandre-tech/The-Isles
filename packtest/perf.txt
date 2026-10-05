@@ -1,5 +1,3 @@
 # name, then how the pack is built: "@commit" = the generator of that commit, or settings of tools/build_pack.py
-before @3d88f92
+vanilla ISLES_PROVIDERS=none
 now
-trim ISLES_TRIM_NOISE=1
-cell8 ISLES_CELL_XZ=8

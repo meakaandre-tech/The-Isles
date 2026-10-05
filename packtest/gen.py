@@ -231,6 +231,36 @@ def churn():
     c += ['#sleep 5', 'forceload add 2000 2000', '#poll 120 execute if loaded 2000 0 2000 run say CHURN chunks-still-load ## CHURN chunks-still-load', 'forceload remove all']
     return c
 
+# ---- biome packs (tools/providers.py): what stands on a spread of islands, one per kind of biome, and what is in the open under them
+BIOME_SAMPLE = []
+for b in ['desert', 'forest', 'badlands', 'warm_ocean', 'frozen_ocean', 'birch_forest', 'taiga', 'jungle', 'savanna', 'cherry_grove', 'swamp', 'mangrove_swamp']:
+    c = [i for i in L['islands'] if i['biome'] == b and i['layer'] == 'main']
+    if c: BIOME_SAMPLE.append(min(c, key=lambda i: abs(i['radius'] - 150))['id'])
+VEG = ['#minecraft:logs', '#minecraft:leaves', '#minecraft:flowers', 'minecraft:short_grass', 'minecraft:tall_grass', 'minecraft:fern', 'minecraft:bush', 'minecraft:cactus',
+       'minecraft:dead_bush', 'minecraft:leaf_litter', 'minecraft:moss_block', 'minecraft:moss_carpet', 'minecraft:cobblestone', 'minecraft:mossy_cobblestone',
+       'minecraft:coarse_dirt', 'minecraft:podzol', 'minecraft:snow', 'minecraft:water', 'minecraft:lava', '#minecraft:coral_blocks', 'minecraft:sponge', 'minecraft:wet_sponge',
+       'minecraft:bone_block', 'minecraft:magma_block', 'minecraft:spawner', 'minecraft:chest', 'minecraft:packed_ice', 'minecraft:ice', 'minecraft:granite', 'minecraft:calcite',
+       'minecraft:tuff', '#minecraft:terracotta', 'minecraft:sandstone', 'minecraft:kelp_plant', 'minecraft:seagrass', 'minecraft:pumpkin', 'minecraft:sugar_cane']
+UNDER = ['#minecraft:logs', '#minecraft:leaves', '#minecraft:base_stone_overworld', '#minecraft:dirt', '#minecraft:sand', '#minecraft:terracotta', '#minecraft:ice',
+         'minecraft:water', 'minecraft:lava', 'minecraft:sandstone', '#minecraft:coral_blocks', 'minecraft:cobblestone', 'minecraft:mossy_cobblestone', 'minecraft:bone_block',
+         'minecraft:packed_ice', 'minecraft:gravel']
+def biome_scans():
+    """96x96 columns around the centre of each island: blocks from the upper part of the body to 60 above the top, and (must be nothing)
+    in a box 40 to 160 under the island's bottom. The counts replace the blocks (tags cannot be put back): run last."""
+    c = ['say SECTION biomes']
+    for k in BIOME_SAMPLE:
+        i = I[k]; x0, z0 = i['x'] // 16 * 16 - 48, i['z'] // 16 * 16 - 48; x1, z1 = x0 + 95, z0 + 95
+        lo, hi = i['y_top'] - int(min(0.5 * i['thickness'], 120)) - 10, i['y_top'] + 60
+        c += [f'forceload add {x0} {z0} {x1} {z1}', f'#time BIOMEGEN-{k}-{i["biome"]}-36-chunks',
+              f'#poll 300 execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} if loaded {i["x"]} 0 {i["z"]} run say LOADED bio-{k} ## LOADED bio-{k}', '#time']
+        probe(c, f'{k} centre', i['x'], i['z'], i['biome'])
+        c += [f'say SCANBOX on-{k} {i["biome"]} y {lo}..{hi}, 96x96 columns']
+        for b in VEG: c += [f'say SCAN on-{k} {b}', f'fill {x0} {lo} {z0} {x1} {hi} {z1} minecraft:structure_void replace {b}']
+        c += [f'say SCANBOX under-{k} {i["biome"]} y {i["y_bottom"] - 160}..{i["y_bottom"] - 40} (in the open under the island)']
+        for b in UNDER: c += [f'say SCAN under-{k} {b}', f'fill {x0} {i["y_bottom"] - 160} {z0} {x1} {i["y_bottom"] - 40} {z1} minecraft:structure_void replace {b}']
+        c += ['forceload remove all']
+    return c
+
 def write(name, lines):
     open(f'{OUT}/commands-{name}.txt', 'w').write('\n'.join(lines + [f'say SECTION end {name}']) + '\n')
 
@@ -241,7 +271,7 @@ write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUI
       + (structures() if on('structures') else [])
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
       + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
-      + ['tick query'] + (churn() if on('churn') else []))
+      + ['tick query'] + (churn() if on('churn') else []) + (biome_scans() if on('biomes') else []))
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
 write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER)
@@ -418,6 +448,15 @@ if on('views'):
               f'cmd say VIEW {k} side', f'cmd tp packtest {x} {top + 12} {z + rad + 70} 180 12', 'sleep 14', 'shot']
     S += ['cmd say VIEW I1 sand above the basin', 'cmd tp packtest -1257 20 3440 180 25', 'sleep 40', 'shot',
           'cmd say VIEW snow', f'cmd tp packtest {I["e3"]["x"]} {I["e3"]["y_top"] + 20} {I["e3"]["z"] + 60} 180 15', 'cmd weather rain', 'sleep 25', 'shot', 'cmd weather clear']
+# biome packs: every sampled island from above, from a little above its ground, and from the side with what is under it
+if on('biomeviews'):
+    S += ['cmd say SECTION biome views']
+    for k in BIOME_SAMPLE:
+        i = I[k]; x, z, rad, top = i['x'], i['z'], i['radius'], i['y_top']
+        g = top - (int(0.3 * i['thickness']) if i['kind'] == 'basin' else 0)   # ground level near the centre
+        S += [f'cmd say VIEW biome {k} {i["biome"]} top, near, side', f'cmd tp packtest {x} {g + 75} {z} 180 90', 'sleep 40', 'shot',
+              f'cmd tp packtest {x} {g + 22} {z + min(50, rad // 2)} 180 24', 'sleep 10', 'shot',
+              f'cmd tp packtest {x} {top - i["thickness"] // 3} {z + rad + 80} 180 -4', 'sleep 18', 'shot']
 # the look of the sky: on a low, a middle and a high island (standing on the rim, looking out over the void: level, down, up), in the open
 # void at three heights, and at dusk and at night
 if on('look'):

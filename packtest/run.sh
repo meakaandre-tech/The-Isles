@@ -24,7 +24,9 @@ phases=${PHASES:-$(cat $P/phases 2>/dev/null || echo "vanilla")}   # the workflo
 has() { echo " $phases " | grep -q " $1 "; }
 nproc; free -m | head -2
 ZIP=/tmp/the-isles-tested.zip
-[ -f $ZIP ] || (cd $root/datapack && zip -q -r -X $ZIP .)
+# the pack under test: build/the-isles when the build had biome providers (packtest/providers), datapack/ otherwise
+pack_dir() { [ -d $root/build/the-isles ] && echo $root/build/the-isles || echo $root/datapack; }
+[ -f $ZIP ] || (cd $(pack_dir) && zip -q -r -X $ZIP .)
 ZIP_MODS=/tmp/the-isles-mods-tested.zip
 [ -f $ZIP_MODS ] || (cd $root/datapack-mods && zip -q -r -X $ZIP_MODS .)
 python3 $P/gen.py $W/gen || ts "gen.py FAILED"
@@ -195,12 +197,12 @@ speed_phase() { # $1 = name, $2 = regex of the mod files that stay in (fabric-ap
 }
 perf_phase() { # $1 = name, rest = how the pack is built: "@<commit>" (the generator of that commit) or VAR=value settings of tools/build_pack.py
   local name=perf-$1 dir=$W/perf-$1; shift
-  cd $root
+  cd $root; rm -rf $root/build/the-isles
   case "$1" in
     @*) git show "${1#@}:tools/build_pack.py" > tools/_perf_build.py && python3 tools/_perf_build.py > $out/build-$name.txt 2>&1; rm -f tools/_perf_build.py;;
     *) env "$@" python3 tools/build_pack.py > $out/build-$name.txt 2>&1;;
   esac
-  rm -f $W/$name.zip; (cd $root/datapack && zip -q -r -X $W/$name.zip .)
+  rm -f $W/$name.zip; (cd $(pack_dir) && zip -q -r -X $W/$name.zip .)
   mkdir -p $dir/mods $dir/world/datapacks && cd $dir
   cp $W/server.jar . && cp "$W"/mods/fabric-api*.jar mods/
   cp $W/$name.zip world/datapacks/the-isles.zip; cp -r $W/gen/probes world/datapacks/packtest-probes
