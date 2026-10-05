@@ -8,12 +8,14 @@ Nothing here is part of the data pack; `tools/build_pack.py` and `datapack/` do 
 Push to the `pack-test` branch (or start the "Pack test" workflow by hand). The workflow has one job per group of
 phases (`vanilla`, `pack`, `perf`; they run side by side, about 45 minutes for everything) and a `report` job:
 
-1. each job rebuilds `datapack/` and `datapack-mods/` from `layout/islands.json`, zips them and runs `packtest/run.sh`
+1. each job rebuilds `datapack/` and `datapack-mods/` from `layout/islands.json` - with the biome packs named in
+   `packtest/providers` it also builds `build/the-isles/` and tests that one (see "Biome packs" below) -, zips them and runs `packtest/run.sh`
    with its phases; while it runs, a snapshot of its logs is pushed every 3 minutes to `ci-logs-vanilla`,
    `ci-logs-pack`, `ci-logs-perf`,
 2. the `report` job puts the logs together, writes `report.txt` and `verdict.txt` (`packtest/tools/report.py`) and
    force-pushes everything, screenshots included, to the `ci-logs` branch,
-3. if `packtest/publish` exists and the verdict is PASS, it publishes the two zips as release `pack-test-latest`.
+3. if `packtest/publish` exists and the verdict is PASS, it publishes the two zips as release `pack-test-latest`. The
+   release is always built without providers (vanilla biomes): nothing of the biome packs leaves the runner.
 
 `packtest/tools/wait.sh` waits for the run of HEAD and unpacks `ci-logs`; `packtest/tools/sheet.py` makes contact
 sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
@@ -43,7 +45,9 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 | `debugmod/`, `debug` | test-only mod, built in the run when the file `debug` exists: prints chunk generation exceptions that the game otherwise swallows (see below) |
 | `view-distance` | server view distance and client render distance |
 | `known.txt` | regexes of failures that are known findings; they are listed in the report but do not fail the run |
-| `quick` | while iterating: the only sections to run (words used by `on()` in `gen.py`, e.g. `islands-few structures look`); delete it for a full run |
+| `quick` | while iterating: the only sections to run (words used by `on()` in `gen.py`, e.g. `islands-few structures look biomes biomeviews`); delete it for a full run |
+| `providers` | ids of `layout/providers.json` the tested pack is built with (`overrealm geophilic`); no file = vanilla biomes |
+| `tools/vendor-recv.sh`, `tools/vendor-send.sh` | how a job gets a provider that has no public download: see "Biome packs" |
 | `server-only`, `exclude.txt`, `no-mods-datapack`, `publish` | switches: no client; regexes of mod jars to leave out; pack phase without `datapack-mods`; publish the release |
 
 ## Things worth knowing
@@ -76,6 +80,62 @@ Fixed in the generator (each its own commit on `pack-test`):
 | Structures start over empty columns of an island's biome (an igloo and a treasure were located over the void) | `/locate` answers with ground at y -2032 | the biome follows the island's rim (24 blocks past it), and the 500 layers under the lowest island are void biome, so a start that falls to the bottom of the world is rejected; `freeze_top_layer` (snow, ice) lost its biome check, which the game makes at the bottom of the chunk |
 | Below y 63 the lower half of the sky is black | screenshots at y 0 and y -1500 | the whole sky is drawn in the fog colour (`sky_fog_end_distance` 3) |
 | Every chunk pays for all 240 islands; void costs as much as land | thread dumps: 60-80% of the generation in the terrain function; 256 void chunks 21 s | terrain from flat per-layer fields: 256 land chunks 32 s -> 15 s, void 21 s -> 7 s, three stacked tiers (64 chunks) 13 s -> 6-7 s, same heights at every probe |
+
+### Biome packs (Geophilic 3.7, Overrealm 0.3.1)
+
+How the generator uses them is in the main README. The test builds the pack with both and runs everything on that
+build (run 31f9796; the released zips are the vanilla build, which the generator still writes byte for byte as before).
+
+* **Getting them to the runner.** Geophilic is downloaded from Modrinth (`tools/providers.py fetch`, sha256 checked).
+  Overrealm has no public download and may not be redistributed, and this repository is public. So a job makes an RSA
+  key pair that only exists in its memory, pushes the public key to the branch `ci-key-<job>` and waits four minutes for
+  `ci-vendor-<job>`: the zip encrypted for that key (`vendor-recv.sh`). `vendor-send.sh`, run by whoever has the pack
+  while the test runs, answers every new key and deletes those branches afterwards. What is pushed can only be read by a
+  job that no longer exists. When nobody answers, the job goes on with what it has (Geophilic) and says so in `build.txt`.
+* **Loading.** No error or warning from the data packs: 0 lines with Fabric API only, the same single mod warning as
+  before with the whole mod pack.
+* **What grows** (96x96 columns around the centre of an island, from the upper part of the body to 60 above the top;
+  `SCAN on-<island>` in the report):
+
+  | Island | Biome, from | Blocks counted |
+  |---|---|---|
+  | C5 | desert, Overrealm | 174 cactus, 575 bushes, 91 dead bushes, 16 logs (desert trees), 97 bone blocks and 2 chests (its buried ruins), 38,000 granite (boulders), 5,000 coarse dirt |
+  | A6 | forest, Overrealm | 10,104 logs, 31,348 leaves, 677 ferns, 779 leaf litter, 1,636 podzol, 107 (mossy) cobblestone, 1 chest |
+  | T4 | badlands, Overrealm (on a tier at y -1000) | 1,308 short grass, 73 bushes, sandstone and terracotta bands |
+  | d5 | warm ocean, Overrealm (dry basin) | 3,437 logs and 9,661 leaves (palms); no coral, sponge, kelp or sea grass: they need water |
+  | M5 | frozen ocean, Overrealm (dry basin) | 8,663 snow layers, 57,523 tuff (spikes), 172 logs, 1 chest |
+  | f2 | birch forest, Overrealm | 10,753 logs, 17,611 leaves, 913 flowers, 3,612 short grass, 512 calcite |
+  | E5 | taiga, Geophilic | 2,104 logs, 21,298 leaves, 1,245 podzol, 662 ferns, 94 cobblestone (rocks) |
+  | H7 | jungle, Geophilic | 6,381 logs, 21,980 leaves, 1,225 short grass, 106 cobblestone |
+  | c4 | savanna, Geophilic | 425 logs, 2,330 leaves, 2,514 short grass, 2,523 coarse dirt |
+  | Q2 | cherry grove, Geophilic | 1,452 logs, 19,136 leaves, 2,244 flowers, 308 cobblestone, 76 water (its deltas) |
+
+  No snow layer in any biome that rains in vanilla (the report's snow check covers every probed island).
+* **Under the islands.** A box 40 to 160 blocks under the bottom of each of those islands: empty in all twelve. The whole
+  footprint 40 to 200 blocks below, 20 seconds after generation: only air under eight of ten; 10 and 44 blocks of water
+  under M5 and f2 - streams from the game's own springs, which every biome has below y 192, also the vanilla ones - and
+  vines, leaves and roots of rim trees under the swamp island n3. Overrealm puts 64 more water springs per chunk into
+  low caves (they are meant for flooded ocean caves): on an island they ran out of the underside in several columns
+  (first run: water under M5, two columns under d5 in the screenshots), so that feature is left out
+  (`drop_features`).
+* **Fixed heights.** 63 placements of Overrealm that pick an absolute height (cave vegetation and disks, dungeons, spikes)
+  are generated by depth under the surface; its ruins were found that way (bone blocks, chests). Geophilic has none.
+* **Structures** as before: the pack's stronghold, villages, trial chambers, ruined portals, outpost, pyramid, wrecks,
+  ruins, igloo, hut and trail ruins were located on islands with nothing on the world floor (table in the report).
+* **Screenshots** (`client-NN.png` after `VIEW biome ...`: from above, from just over the ground, from the side with the
+  void under it) of the twelve islands: Overrealm's desert (banded sand and coarse dirt, cacti, boulders), forest and
+  tall birch forest, striped badlands, the frozen basin with tuff spikes; Geophilic's taiga with fallen logs, jungle,
+  savanna, cherry grove with bamboo, swamp; the vanilla mangrove swamp. Nothing hangs from a rim or stands under an
+  island except the water streams mentioned above.
+* **Dry sea basins.** The warm ocean basin d5 is a palm grove: Overrealm plants palms "where no water is above the sea
+  floor", which in a dry basin is everywhere. Left as it is (it will sort itself out when the basins hold water); to
+  have bare sea floors until then, add `orealm:tree/*` and `orealm:veg_patch/*islands*` to `drop_features`.
+* **Generation time**, same runner, Fabric API only (perf phase): 256 chunks of land 15.1 -> 17.2 s, 256 of void 6.9 -> 7.0 s,
+  three stacked tiers 6.9 -> 6.9 s (vanilla biomes -> with both packs; on another runner 10.0 / 4.9 / 4.9 -> 10.0 / 4.9 / 3.9).
+  36 chunks around the centre of an island took 4 to 8 seconds for every sampled biome.
+* **Whole mod pack** (32 mods, client): verdict PASS. Ores per 64x64 columns as before, the mods' included (S1: 1,043 coal,
+  1,138 iron, 442 diamond, 1,243 zinc; B1: 1,341 zinc, 1,097 lead; M1: 1,842 uranium); animals and monsters spawn on the
+  Geophilic plains of the spawn island (16 zombies, 17 skeletons, 24 creepers in a night).
 
 ### Structures
 
