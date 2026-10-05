@@ -16,7 +16,7 @@
       "input": {
        "type": "minecraft:mul",
        "left": "the_isles:edge/083_k3",
-       "right": 8.416666666666666
+       "right": 16.833333333333332
       },
       "min": 0,
       "max": 1

@@ -166,7 +166,7 @@ def island_fields(i):
     """The parts of an island that only depend on x and z: (inside its footprint 1/0, surface height, bottom height, edge term).
     Its density is  clamp(min((surface - y) / 8, (y - bottom) / 12, edge) + 0.55 * rag, -1, 1)  inside the footprint and -1 outside.
 
-    A sea basin (tools/build_terrain.py fills it with water): the rim rises to the island's top within 12 blocks and stays
+    A sea basin (tools/build_terrain.py fills it with water): the rim rises to the island's top within 6 blocks and stays
     there, a ring at least RING blocks wide, 7 blocks above the water; inside the ring the floor drops by up to 0.3 of the
     thickness. Under the ring and the floor there are at least 26 blocks of rock from 10 blocks in from the rim."""
     R, top, t = i["radius"], i["y_top"], i["thickness"]
@@ -183,7 +183,7 @@ def island_fields(i):
     rim = min(10, 0.1 * t)
     surface = sub(sub(top, mul(0.5 * amp, sub(1, RELIEF_N))), mul(rim, sub(1, c)))
     if basin:  # bowl: the rim ring stays up, the interior drops (a little less where the relief noise is low)
-        surface = sub(sub(top, mul(rim, sub(1, clamp(mul(e, R / 12), 0, 1)))),
+        surface = sub(sub(top, mul(rim, sub(1, clamp(mul(e, R / 6), 0, 1)))),
                       mul(mul(sea["depth"], clamp(mul(sub(e, sea["e0"]), 1 / sea["slope"]), 0, 1)), add(0.85, mul(0.15, RELIEF_N))))
     g = i.get("geyser_at")
     if g:   # level ground around the geyser, at the height layout/geysers.json gives
