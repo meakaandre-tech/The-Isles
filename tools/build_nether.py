@@ -6,7 +6,7 @@ Called by tools/build_pack.py (build(write, out_mods)); writes into datapack/
   data/the_isles/worldgen/noise_settings/nether.json, material_rule/nether.json, noise/nether_holes.json
   data/minecraft/worldgen/placed_feature/*.json   the Nether features that pick a height, once per layer
   data/minecraft/worldgen/structure/bastion_remnant.json, nether_fossil.json, structure_set/*, carver/nether_cave.json
-and into datapack-mods/ the Nether sulfur ore of Create: Gunsmithing.
+and into datapack-mods/ an override that switches off the sulfur ore of Create: Gunsmithing.
 Vanilla 26.3 inputs: tools/vanilla_nether/.
 
 Every layer is a vanilla Nether stretched in height: netherrack floor, lava sea, open cavern, ceiling. Between two
@@ -180,10 +180,9 @@ def build(write, out_mods):
     write("data/minecraft/worldgen/structure_set/nether_fossils.json", {
         "placement": {"type": "minecraft:random_spread", "salt": 14357921, "separation": 0, "spacing": 1},
         "structures": [{"structure": "minecraft:nether_fossil", "weight": 1}]})
-    # Create: Gunsmithing sulfur ore (y 10..117 of the vanilla Nether, 16 per chunk): the same in every layer
-    write("data/cgs/worldgen/placed_feature/sulfur_ore_placed.json", layered_feature({"feature": "cgs:sulfur_ore", "placement": [
-        mc("count", count=16), mc("in_square"),
-        mc("height_range", height=mc("uniform", min_inclusive={"above_bottom": 10}, max_inclusive={"below_top": 10})), mc("biome")]}), out_mods)
+    # Create: Gunsmithing sulfur ore: switched off (owner's decision: sulfur ore generates nowhere; sulfur comes from nodes)
+    write("data/cgs/worldgen/placed_feature/sulfur_ore_placed.json",
+          {"feature": "cgs:sulfur_ore", "placement": [mc("count", count=0)]}, out_mods)
     print(f"nether: {len(LAYERS)} layers, lava at y " + " ".join(str(l["lava"]) for l in LAYERS) + f", {n} features per layer")
 
 if __name__ == "__main__":
