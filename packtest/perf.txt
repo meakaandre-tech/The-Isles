@@ -5,3 +5,4 @@ nocaves ISLES_PROVIDERS=none ISLES_OFF=caves
 noseas ISLES_PROVIDERS=none ISLES_OFF=seas
 nosulfur ISLES_PROVIDERS=none ISLES_OFF=sulfur
 nosurface ISLES_PROVIDERS=none ISLES_OFF=surface
+biomes ISLES_PROVIDERS=geophilic

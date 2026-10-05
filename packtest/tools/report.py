@@ -226,6 +226,7 @@ def server_report(name, isles=True):
                 if p['kind'] == 'structure': verdict = 'in an island' if y > MIN_Y else 'IN THE VOID'
                 elif y == MIN_Y and core and p['kind'] == 'half' and core[0]['radius'] < 100: verdict = 'ok (hole in a small ragged island)'
                 elif y == MIN_Y and core: verdict = 'FAIL no ground'
+                elif not hit and core and any(i['layer'] == 'main' and i['kind'] == 'land' and i['y_bottom'] <= y < top_range(i)[0] for i in core): verdict = 'ok (below the surface: a cave entrance)'
                 elif not hit and core: verdict = f'FAIL height (allowed {",".join("%d..%d" % r for _, r in ranges)})'
                 elif hit and b != 'minecraft:' + hit[0]['biome'] and b not in ['minecraft:' + i['biome'] for i in cov]: verdict = f"FAIL biome (want {hit[0]['biome']})"
             if 'FAIL' in verdict: fails.append(f"{name}: probe {p['tag']} {p['kind']}: {verdict}")

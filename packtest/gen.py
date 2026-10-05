@@ -338,7 +338,7 @@ def load(c, tag, x0, z0, x1, z1, wait=420):
     ncx = x1 // 16 - x0 // 16 + 1; rows = max(1, 256 // ncx)     # (one forceload takes 256 chunks at most)
     c += ['forceload remove all'] + [f'forceload add {x0} {cz * 16} {x1} {min(cz + rows - 1, z1 // 16) * 16 + 15}' for cz in range(z0 // 16, z1 // 16 + 1, rows)] + [
           f'#poll {wait} execute if loaded {x0} 0 {z0} if loaded {x1} 0 {z1} if loaded {(x0 + x1) // 2} 0 {(z0 + z1) // 2} if loaded {x0} 0 {z1} if loaded {x1} 0 {z0} run say LOADED {tag} ## LOADED {tag}']
-SEA_SAMPLE = ['d5', 'M5', 'N4', 'D4', 'K3', 'I4']
+SEA_SAMPLE = ['d2', 'M2', 'N4', 'D4', 'K3', 'I4']     # (not the basins of the biome scans)
 SEA_BLOCKS = ['minecraft:kelp', 'minecraft:kelp_plant', 'minecraft:seagrass', 'minecraft:tall_seagrass', '#minecraft:coral_blocks', '#minecraft:corals', 'minecraft:sea_pickle',
               'minecraft:sand', 'minecraft:gravel', 'minecraft:clay', 'minecraft:grass_block', 'minecraft:dirt', 'minecraft:ice', 'minecraft:packed_ice', 'minecraft:magma_block']
 CAVE_SAMPLE = [k for k in ['S1', 'C1', 'E1', 'H1', 'T1', 'R1', 'A1', 'S2', 'C2'] if k in I and I[k]['layer'] == 'main' and I[k]['kind'] == 'land']
@@ -401,7 +401,7 @@ def terrain_probes():
     for k in CAVE_SAMPLE:
         i = I[k]; x, z, R, top, t = i['x'], i['z'], i['radius'], i['y_top'], i['thickness']
         ctop = _bt.cave_top(_bp, RAW[k]); amp = relief(i)
-        ox = 200 if k == 'S1' else 0     # (not through the spawn point)
+        ox = 200 if k == 'S1' else 100     # (beside the columns the island probes look at)
         load(c, f'cave-{k}', x + ox - 80, z - 80, x + ox + 80, z + 80, 300)
         y1 = ctop - 6; y0 = int(max(y1 - 110, top - 0.55 * t))
         for n, (dx, dz) in enumerate(((0, 0), (40, 0), (-40, 0), (0, 40), (0, -40), (60, 60), (-60, -60), (60, -60), (-60, 60))):
@@ -449,14 +449,14 @@ def write(name, lines):
 # vanilla = Fabric API + The Isles only; baseline = the same server without The Isles (vanilla generator), timing only
 QUICK_SAMPLE = ['S1', 'K1', 'I1', 'e1', 'M4', 'Pt3', 'C1']
 write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUICK_SAMPLE) if on('islands-few') else [])
+      + (terrain_probes() if on('terrain') else [])    # (its scans replace what they count: on islands and in places the later sections do not look at)
       + (biome_scans() if on('biomes') else [])      # (they replace the blocks they count, on islands nothing else looks at)
       + (void_probes() if on('void') else []) + (limits() if on('limits') else [])
       + (structures() if on('structures') else [])
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
       + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
       + ['tick query'] + (churn() if on('churn') else [])
-      + (cave_probes() if CAVE_BIOMES and on('caves') else [])    # (last: they replace what they count inside the spawn island)
-      + (terrain_probes() if on('terrain') else []))
+      + (cave_probes() if CAVE_BIOMES and on('caves') else []))    # (last: they replace what they count inside the spawn island)
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
 write('perf', HEAD + pregen('land', *REG_LAND) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) + pregen('basin', *REG_BASIN)
