@@ -7,8 +7,8 @@ L = json.load(open(ROOT + '/layout/islands.json'))
 I = {i['id']: i for i in L['islands']}
 MIN_Y = L['min_y']
 sys.path.insert(0, ROOT + '/tools')
-from build_pack import RELIEF, DEFAULT_RELIEF, BIOME_SUBSTITUTE
-for i in L['islands']: i['layout_biome'] = i['biome']; i['biome'] = BIOME_SUBSTITUTE.get(i['biome'], i['biome'])
+from build_pack import RELIEF, DEFAULT_RELIEF, pack_biome
+for i in L['islands']: i['layout_biome'] = i['biome']; i['biome'] = pack_biome(i)
 fails, notes = [], []
 
 def lines(name):
@@ -19,7 +19,7 @@ def msg(l):
     return (m.group(1), re.sub(r'^(\[Not Secure\] )?\[Server\] |^System chat: ', '', m.group(2))) if m else ('', l)
 
 NOISE = re.compile(r'Ambiguity between arguments|is missing mods\.toml|Mod .* uses the version|experimental|Server Watchdog|Can\'t keep up|'
-                   r'moved too quickly|packtest:biome|the_isles:void|make no attempt to authenticate|While this makes the game possible|To change this, set "online-mode"|sun.misc.Unsafe|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
+                   r'moved too quickly|Error loading class: |config/create/server\.json|\[STDERR\]: \s+at |Failed to read config file|packtest:biome|the_isles:void|make no attempt to authenticate|While this makes the game possible|To change this, set "online-mode"|sun.misc.Unsafe|Unknown or incomplete command|authlib|\*\*\*\* |Reference map|@Mixin target .* was not found')
 def problems(name):
     out = []
     for l in lines(name):
@@ -83,7 +83,7 @@ def server_report(name, isles=True):
             y, b = p.get('y'), p.get('biome', '?')
             cov = covering(p['x'], p['z']); core = covering(p['x'], p['z'], 0.7)
             verdict, exp = 'ok', ''
-            if p['kind'] in ('void', 'outside') and not cov:
+            if p['kind'] in ('void', 'outside', 'rim') and not cov:
                 exp = f'void {MIN_Y}'
                 if y != MIN_Y: verdict = 'FAIL not empty'
                 elif b != 'the_isles:void': verdict = 'FAIL biome'
