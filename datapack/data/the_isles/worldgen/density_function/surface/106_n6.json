@@ -4,19 +4,7 @@
   "type": "minecraft:sub",
   "left": {
    "type": "minecraft:sub",
-   "left": {
-    "type": "minecraft:sub",
-    "left": -512,
-    "right": {
-     "type": "minecraft:mul",
-     "left": 0.0,
-     "right": {
-      "type": "minecraft:sub",
-      "left": 1,
-      "right": "the_isles:noise/relief"
-     }
-    }
-   },
+   "left": -512,
    "right": {
     "type": "minecraft:mul",
     "left": 7.2,
@@ -28,7 +16,7 @@
       "input": {
        "type": "minecraft:mul",
        "left": "the_isles:edge/106_n6",
-       "right": 1.6666666666666667
+       "right": 8.75
       },
       "min": 0,
       "max": 1
@@ -38,20 +26,32 @@
   },
   "right": {
    "type": "minecraft:mul",
-   "left": 21.599999999999998,
-   "right": {
-    "type": "minecraft:clamp",
-    "input": {
-     "type": "minecraft:mul",
-     "left": {
-      "type": "minecraft:sub",
-      "left": "the_isles:edge/106_n6",
-      "right": 0.16
+   "left": {
+    "type": "minecraft:mul",
+    "left": 22,
+    "right": {
+     "type": "minecraft:clamp",
+     "input": {
+      "type": "minecraft:mul",
+      "left": {
+       "type": "minecraft:sub",
+       "left": "the_isles:edge/106_n6",
+       "right": 0.3238095238095238
+      },
+      "right": 4
      },
-     "right": 4
-    },
-    "min": 0,
-    "max": 1
+     "min": 0,
+     "max": 1
+    }
+   },
+   "right": {
+    "type": "minecraft:add",
+    "left": 0.85,
+    "right": {
+     "type": "minecraft:mul",
+     "left": 0.15,
+     "right": "the_isles:noise/relief"
+    }
    }
   }
  }

@@ -147,7 +147,17 @@
   "dry_foliage_color": "#a17448"
  },
  "features": [
-  [],
+  [
+   "the_isles:sea/067_i1",
+   "the_isles:sea/070_i4",
+   "the_isles:sea/071_i5",
+   "the_isles:sea/072_i6",
+   "the_isles:sea/073_i7",
+   "the_isles:sea/149_d1",
+   "the_isles:sea/150_d2",
+   "the_isles:sea/153_d5",
+   "the_isles:sea_floor_sand"
+  ],
   [
    "minecraft:lake_lava_underground",
    "minecraft:lake_lava_surface"

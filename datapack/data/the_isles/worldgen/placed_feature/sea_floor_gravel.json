@@ -1,0 +1,64 @@
+{
+ "feature": {
+  "type": "minecraft:block_column",
+  "direction": "down",
+  "prioritize_tip": false,
+  "allowed_placement": {
+   "type": "minecraft:matching_blocks",
+   "blocks": [
+    "minecraft:grass_block",
+    "minecraft:dirt"
+   ],
+   "offset": [
+    0,
+    1,
+    0
+   ]
+  },
+  "layers": [
+   {
+    "height": 4,
+    "provider": {
+     "id": "minecraft:gravel"
+    }
+   }
+  ]
+ },
+ "placement": [
+  {
+   "type": "minecraft:cuboid",
+   "xz_size": 15,
+   "y_size": 0
+  },
+  {
+   "type": "minecraft:heightmap",
+   "heightmap": "OCEAN_FLOOR_WG"
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_fluids",
+    "fluids": "minecraft:water"
+   }
+  },
+  {
+   "type": "minecraft:offset",
+   "x": 0,
+   "y": -1,
+   "z": 0
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_blocks",
+    "blocks": [
+     "minecraft:grass_block",
+     "minecraft:dirt"
+    ]
+   }
+  },
+  {
+   "type": "minecraft:biome"
+  }
+ ]
+}

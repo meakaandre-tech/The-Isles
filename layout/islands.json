@@ -63,7 +63,8 @@
    "radius": 1200,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 225758
+   "shape_seed": 225758,
+   "geyser": true
   },
   {
    "id": "S2",
@@ -79,7 +80,8 @@
    "radius": 123,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 479626
+   "shape_seed": 479626,
+   "geyser": false
   },
   {
    "id": "S3",
@@ -95,7 +97,8 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 399766
+   "shape_seed": 399766,
+   "geyser": false
   },
   {
    "id": "S4",
@@ -111,7 +114,8 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 973287
+   "shape_seed": 973287,
+   "geyser": false
   },
   {
    "id": "S5",
@@ -127,7 +131,8 @@
    "radius": 139,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 72783
+   "shape_seed": 72783,
+   "geyser": false
   },
   {
    "id": "S6",
@@ -143,7 +148,8 @@
    "radius": 184,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 631010
+   "shape_seed": 631010,
+   "geyser": false
   },
   {
    "id": "S7",
@@ -159,7 +165,8 @@
    "radius": 192,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 201742
+   "shape_seed": 201742,
+   "geyser": false
   },
   {
    "id": "S8",
@@ -175,7 +182,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 534239
+   "shape_seed": 534239,
+   "geyser": false
   },
   {
    "id": "S9",
@@ -191,7 +199,8 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 811178
+   "shape_seed": 811178,
+   "geyser": false
   },
   {
    "id": "S10",
@@ -207,7 +216,8 @@
    "radius": 123,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 744972
+   "shape_seed": 744972,
+   "geyser": false
   },
   {
    "id": "S11",
@@ -223,7 +233,8 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 432210
+   "shape_seed": 432210,
+   "geyser": false
   },
   {
    "id": "S12",
@@ -239,7 +250,8 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 149103
+   "shape_seed": 149103,
+   "geyser": false
   },
   {
    "id": "A1",
@@ -255,7 +267,8 @@
    "radius": 280,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 615206
+   "shape_seed": 615206,
+   "geyser": true
   },
   {
    "id": "A2",
@@ -271,7 +284,8 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 132332
+   "shape_seed": 132332,
+   "geyser": false
   },
   {
    "id": "A3",
@@ -287,7 +301,8 @@
    "radius": 97,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 921458
+   "shape_seed": 921458,
+   "geyser": false
   },
   {
    "id": "A4",
@@ -303,7 +318,8 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 515736
+   "shape_seed": 515736,
+   "geyser": false
   },
   {
    "id": "A5",
@@ -319,7 +335,8 @@
    "radius": 145,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 884603
+   "shape_seed": 884603,
+   "geyser": false
   },
   {
    "id": "A6",
@@ -335,7 +352,8 @@
    "radius": 155,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 246735
+   "shape_seed": 246735,
+   "geyser": false
   },
   {
    "id": "A7",
@@ -351,7 +369,8 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 434450
+   "shape_seed": 434450,
+   "geyser": false
   },
   {
    "id": "B1",
@@ -367,7 +386,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 145951
+   "shape_seed": 145951,
+   "geyser": true
   },
   {
    "id": "B2",
@@ -383,7 +403,8 @@
    "radius": 49,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 333920
+   "shape_seed": 333920,
+   "geyser": false
   },
   {
    "id": "B3",
@@ -399,7 +420,8 @@
    "radius": 121,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 369999
+   "shape_seed": 369999,
+   "geyser": false
   },
   {
    "id": "B4",
@@ -415,7 +437,8 @@
    "radius": 131,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 684840
+   "shape_seed": 684840,
+   "geyser": false
   },
   {
    "id": "B5",
@@ -431,7 +454,8 @@
    "radius": 45,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 874794
+   "shape_seed": 874794,
+   "geyser": false
   },
   {
    "id": "B6",
@@ -447,7 +471,8 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 480502
+   "shape_seed": 480502,
+   "geyser": false
   },
   {
    "id": "B7",
@@ -463,7 +488,8 @@
    "radius": 40,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 535144
+   "shape_seed": 535144,
+   "geyser": false
   },
   {
    "id": "C1",
@@ -479,7 +505,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 948629
+   "shape_seed": 948629,
+   "geyser": true
   },
   {
    "id": "C2",
@@ -495,7 +522,8 @@
    "radius": 146,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 870602
+   "shape_seed": 870602,
+   "geyser": false
   },
   {
    "id": "C3",
@@ -511,7 +539,8 @@
    "radius": 205,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 128342
+   "shape_seed": 128342,
+   "geyser": false
   },
   {
    "id": "C4",
@@ -527,7 +556,8 @@
    "radius": 87,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 434207
+   "shape_seed": 434207,
+   "geyser": false
   },
   {
    "id": "C5",
@@ -543,7 +573,8 @@
    "radius": 135,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 399113
+   "shape_seed": 399113,
+   "geyser": false
   },
   {
    "id": "C6",
@@ -559,7 +590,8 @@
    "radius": 50,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 758578
+   "shape_seed": 758578,
+   "geyser": false
   },
   {
    "id": "C7",
@@ -575,7 +607,8 @@
    "radius": 88,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 383245
+   "shape_seed": 383245,
+   "geyser": false
   },
   {
    "id": "D1",
@@ -591,7 +624,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 393689
+   "shape_seed": 393689,
+   "geyser": false
   },
   {
    "id": "D2",
@@ -607,7 +641,8 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 703515
+   "shape_seed": 703515,
+   "geyser": false
   },
   {
    "id": "D3",
@@ -623,7 +658,8 @@
    "radius": 201,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 370009
+   "shape_seed": 370009,
+   "geyser": false
   },
   {
    "id": "D4",
@@ -639,7 +675,8 @@
    "radius": 95,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 468222
+   "shape_seed": 468222,
+   "geyser": false
   },
   {
    "id": "D5",
@@ -655,7 +692,8 @@
    "radius": 42,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 11719
+   "shape_seed": 11719,
+   "geyser": false
   },
   {
    "id": "D6",
@@ -671,7 +709,8 @@
    "radius": 134,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 802656
+   "shape_seed": 802656,
+   "geyser": false
   },
   {
    "id": "D7",
@@ -687,7 +726,8 @@
    "radius": 134,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 246465
+   "shape_seed": 246465,
+   "geyser": false
   },
   {
    "id": "E1",
@@ -703,7 +743,8 @@
    "radius": 280,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 658625
+   "shape_seed": 658625,
+   "geyser": true
   },
   {
    "id": "E2",
@@ -719,7 +760,8 @@
    "radius": 47,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 423485
+   "shape_seed": 423485,
+   "geyser": false
   },
   {
    "id": "E3",
@@ -735,7 +777,8 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 993296
+   "shape_seed": 993296,
+   "geyser": false
   },
   {
    "id": "E4",
@@ -751,7 +794,8 @@
    "radius": 68,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 870858
+   "shape_seed": 870858,
+   "geyser": false
   },
   {
    "id": "E5",
@@ -767,7 +811,8 @@
    "radius": 115,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 450351
+   "shape_seed": 450351,
+   "geyser": false
   },
   {
    "id": "E6",
@@ -783,7 +828,8 @@
    "radius": 202,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 935171
+   "shape_seed": 935171,
+   "geyser": false
   },
   {
    "id": "E7",
@@ -799,7 +845,8 @@
    "radius": 58,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 390331
+   "shape_seed": 390331,
+   "geyser": false
   },
   {
    "id": "F1",
@@ -815,7 +862,8 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 830267
+   "shape_seed": 830267,
+   "geyser": true
   },
   {
    "id": "F2",
@@ -831,7 +879,8 @@
    "radius": 51,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 722524
+   "shape_seed": 722524,
+   "geyser": false
   },
   {
    "id": "F3",
@@ -847,7 +896,8 @@
    "radius": 171,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 313479
+   "shape_seed": 313479,
+   "geyser": false
   },
   {
    "id": "F4",
@@ -863,7 +913,8 @@
    "radius": 150,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 822615
+   "shape_seed": 822615,
+   "geyser": false
   },
   {
    "id": "F5",
@@ -879,7 +930,8 @@
    "radius": 158,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 936993
+   "shape_seed": 936993,
+   "geyser": false
   },
   {
    "id": "F6",
@@ -895,7 +947,8 @@
    "radius": 140,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 379345
+   "shape_seed": 379345,
+   "geyser": false
   },
   {
    "id": "G1",
@@ -911,7 +964,8 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 586262
+   "shape_seed": 586262,
+   "geyser": true
   },
   {
    "id": "G2",
@@ -927,7 +981,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 45504
+   "shape_seed": 45504,
+   "geyser": false
   },
   {
    "id": "G3",
@@ -943,7 +998,8 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 542241
+   "shape_seed": 542241,
+   "geyser": false
   },
   {
    "id": "G4",
@@ -959,7 +1015,8 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 460246
+   "shape_seed": 460246,
+   "geyser": false
   },
   {
    "id": "G5",
@@ -975,7 +1032,8 @@
    "radius": 137,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 947211
+   "shape_seed": 947211,
+   "geyser": false
   },
   {
    "id": "G6",
@@ -991,7 +1049,8 @@
    "radius": 120,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 531894
+   "shape_seed": 531894,
+   "geyser": false
   },
   {
    "id": "G7",
@@ -1007,7 +1066,8 @@
    "radius": 196,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 121060
+   "shape_seed": 121060,
+   "geyser": false
   },
   {
    "id": "H1",
@@ -1023,7 +1083,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 945022
+   "shape_seed": 945022,
+   "geyser": true
   },
   {
    "id": "H2",
@@ -1039,7 +1100,8 @@
    "radius": 75,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 974664
+   "shape_seed": 974664,
+   "geyser": false
   },
   {
    "id": "H3",
@@ -1055,7 +1117,8 @@
    "radius": 174,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 941317
+   "shape_seed": 941317,
+   "geyser": false
   },
   {
    "id": "H4",
@@ -1071,7 +1134,8 @@
    "radius": 93,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 370074
+   "shape_seed": 370074,
+   "geyser": false
   },
   {
    "id": "H5",
@@ -1087,7 +1151,8 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 749541
+   "shape_seed": 749541,
+   "geyser": false
   },
   {
    "id": "H6",
@@ -1103,7 +1168,8 @@
    "radius": 202,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 410178
+   "shape_seed": 410178,
+   "geyser": false
   },
   {
    "id": "H7",
@@ -1119,7 +1185,8 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 542548
+   "shape_seed": 542548,
+   "geyser": false
   },
   {
    "id": "I1",
@@ -1135,7 +1202,8 @@
    "radius": 280,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 853465
+   "shape_seed": 853465,
+   "geyser": false
   },
   {
    "id": "I2",
@@ -1151,7 +1219,8 @@
    "radius": 67,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 772653
+   "shape_seed": 772653,
+   "geyser": false
   },
   {
    "id": "I3",
@@ -1167,7 +1236,8 @@
    "radius": 79,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 599511
+   "shape_seed": 599511,
+   "geyser": false
   },
   {
    "id": "I4",
@@ -1183,7 +1253,8 @@
    "radius": 99,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 132954
+   "shape_seed": 132954,
+   "geyser": false
   },
   {
    "id": "I5",
@@ -1199,7 +1270,8 @@
    "radius": 187,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 117641
+   "shape_seed": 117641,
+   "geyser": false
   },
   {
    "id": "I6",
@@ -1215,7 +1287,8 @@
    "radius": 113,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 328547
+   "shape_seed": 328547,
+   "geyser": false
   },
   {
    "id": "I7",
@@ -1231,7 +1304,8 @@
    "radius": 196,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 310956
+   "shape_seed": 310956,
+   "geyser": false
   },
   {
    "id": "J1",
@@ -1247,7 +1321,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 965151
+   "shape_seed": 965151,
+   "geyser": true
   },
   {
    "id": "J2",
@@ -1263,7 +1338,8 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 366221
+   "shape_seed": 366221,
+   "geyser": false
   },
   {
    "id": "J3",
@@ -1279,7 +1355,8 @@
    "radius": 116,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 78950
+   "shape_seed": 78950,
+   "geyser": false
   },
   {
    "id": "J4",
@@ -1295,7 +1372,8 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 103973
+   "shape_seed": 103973,
+   "geyser": false
   },
   {
    "id": "J5",
@@ -1311,7 +1389,8 @@
    "radius": 85,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 119173
+   "shape_seed": 119173,
+   "geyser": false
   },
   {
    "id": "J6",
@@ -1327,7 +1406,8 @@
    "radius": 183,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 502993
+   "shape_seed": 502993,
+   "geyser": false
   },
   {
    "id": "J7",
@@ -1343,7 +1423,8 @@
    "radius": 141,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 743371
+   "shape_seed": 743371,
+   "geyser": false
   },
   {
    "id": "K1",
@@ -1359,7 +1440,8 @@
    "radius": 320,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 658152
+   "shape_seed": 658152,
+   "geyser": false
   },
   {
    "id": "K2",
@@ -1375,7 +1457,8 @@
    "radius": 208,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 56918
+   "shape_seed": 56918,
+   "geyser": false
   },
   {
    "id": "K3",
@@ -1391,7 +1474,8 @@
    "radius": 101,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 716092
+   "shape_seed": 716092,
+   "geyser": false
   },
   {
    "id": "K4",
@@ -1407,7 +1491,8 @@
    "radius": 111,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 575754
+   "shape_seed": 575754,
+   "geyser": false
   },
   {
    "id": "K5",
@@ -1423,7 +1508,8 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 44506
+   "shape_seed": 44506,
+   "geyser": false
   },
   {
    "id": "K6",
@@ -1439,7 +1525,8 @@
    "radius": 143,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 347930
+   "shape_seed": 347930,
+   "geyser": false
   },
   {
    "id": "K7",
@@ -1455,7 +1542,8 @@
    "radius": 95,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 348888
+   "shape_seed": 348888,
+   "geyser": false
   },
   {
    "id": "L1",
@@ -1471,7 +1559,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 495285
+   "shape_seed": 495285,
+   "geyser": true
   },
   {
    "id": "L2",
@@ -1487,7 +1576,8 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 879637
+   "shape_seed": 879637,
+   "geyser": false
   },
   {
    "id": "L3",
@@ -1503,7 +1593,8 @@
    "radius": 79,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 83421
+   "shape_seed": 83421,
+   "geyser": false
   },
   {
    "id": "L4",
@@ -1519,7 +1610,8 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 958339
+   "shape_seed": 958339,
+   "geyser": false
   },
   {
    "id": "L5",
@@ -1535,7 +1627,8 @@
    "radius": 186,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 318762
+   "shape_seed": 318762,
+   "geyser": false
   },
   {
    "id": "L6",
@@ -1551,7 +1644,8 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 263172
+   "shape_seed": 263172,
+   "geyser": false
   },
   {
    "id": "L7",
@@ -1567,7 +1661,8 @@
    "radius": 197,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 354083
+   "shape_seed": 354083,
+   "geyser": false
   },
   {
    "id": "M1",
@@ -1583,7 +1678,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 910961
+   "shape_seed": 910961,
+   "geyser": false
   },
   {
    "id": "M2",
@@ -1599,7 +1695,8 @@
    "radius": 203,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 518723
+   "shape_seed": 518723,
+   "geyser": false
   },
   {
    "id": "M3",
@@ -1615,7 +1712,8 @@
    "radius": 64,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 707135
+   "shape_seed": 707135,
+   "geyser": false
   },
   {
    "id": "M4",
@@ -1631,7 +1729,8 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 961004
+   "shape_seed": 961004,
+   "geyser": false
   },
   {
    "id": "M5",
@@ -1647,7 +1746,8 @@
    "radius": 159,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 207092
+   "shape_seed": 207092,
+   "geyser": false
   },
   {
    "id": "M6",
@@ -1663,7 +1763,8 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 960952
+   "shape_seed": 960952,
+   "geyser": false
   },
   {
    "id": "N1",
@@ -1679,7 +1780,8 @@
    "radius": 260,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 175427
+   "shape_seed": 175427,
+   "geyser": false
   },
   {
    "id": "N2",
@@ -1695,7 +1797,8 @@
    "radius": 151,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 363212
+   "shape_seed": 363212,
+   "geyser": false
   },
   {
    "id": "N3",
@@ -1711,7 +1814,8 @@
    "radius": 67,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 253021
+   "shape_seed": 253021,
+   "geyser": false
   },
   {
    "id": "N4",
@@ -1727,7 +1831,8 @@
    "radius": 132,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 957287
+   "shape_seed": 957287,
+   "geyser": false
   },
   {
    "id": "N5",
@@ -1743,7 +1848,8 @@
    "radius": 181,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 430624
+   "shape_seed": 430624,
+   "geyser": false
   },
   {
    "id": "N6",
@@ -1759,7 +1865,8 @@
    "radius": 105,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 550720
+   "shape_seed": 550720,
+   "geyser": false
   },
   {
    "id": "P1",
@@ -1775,7 +1882,8 @@
    "radius": 340,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 924969
+   "shape_seed": 924969,
+   "geyser": true
   },
   {
    "id": "P2",
@@ -1791,7 +1899,8 @@
    "radius": 127,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 980839
+   "shape_seed": 980839,
+   "geyser": false
   },
   {
    "id": "P3",
@@ -1807,7 +1916,8 @@
    "radius": 115,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 301345
+   "shape_seed": 301345,
+   "geyser": false
   },
   {
    "id": "P4",
@@ -1823,7 +1933,8 @@
    "radius": 161,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 83198
+   "shape_seed": 83198,
+   "geyser": false
   },
   {
    "id": "P5",
@@ -1839,7 +1950,8 @@
    "radius": 86,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 910978
+   "shape_seed": 910978,
+   "geyser": false
   },
   {
    "id": "P6",
@@ -1855,7 +1967,8 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 646902
+   "shape_seed": 646902,
+   "geyser": false
   },
   {
    "id": "Q1",
@@ -1871,7 +1984,8 @@
    "radius": 230,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 711307
+   "shape_seed": 711307,
+   "geyser": true
   },
   {
    "id": "Q2",
@@ -1887,7 +2001,8 @@
    "radius": 147,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 465980
+   "shape_seed": 465980,
+   "geyser": false
   },
   {
    "id": "Q3",
@@ -1903,7 +2018,8 @@
    "radius": 97,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 331970
+   "shape_seed": 331970,
+   "geyser": false
   },
   {
    "id": "Q4",
@@ -1919,7 +2035,8 @@
    "radius": 117,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 969754
+   "shape_seed": 969754,
+   "geyser": false
   },
   {
    "id": "Q5",
@@ -1935,7 +2052,8 @@
    "radius": 91,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 438087
+   "shape_seed": 438087,
+   "geyser": false
   },
   {
    "id": "Q6",
@@ -1951,7 +2069,8 @@
    "radius": 207,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 958619
+   "shape_seed": 958619,
+   "geyser": false
   },
   {
    "id": "R1",
@@ -1967,7 +2086,8 @@
    "radius": 240,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 786616
+   "shape_seed": 786616,
+   "geyser": true
   },
   {
    "id": "R2",
@@ -1983,7 +2103,8 @@
    "radius": 49,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 985034
+   "shape_seed": 985034,
+   "geyser": false
   },
   {
    "id": "R3",
@@ -1999,7 +2120,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 905101
+   "shape_seed": 905101,
+   "geyser": false
   },
   {
    "id": "R4",
@@ -2015,7 +2137,8 @@
    "radius": 191,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 62036
+   "shape_seed": 62036,
+   "geyser": false
   },
   {
    "id": "R5",
@@ -2031,7 +2154,8 @@
    "radius": 70,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 683609
+   "shape_seed": 683609,
+   "geyser": false
   },
   {
    "id": "R6",
@@ -2047,7 +2171,8 @@
    "radius": 175,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 431170
+   "shape_seed": 431170,
+   "geyser": false
   },
   {
    "id": "T1",
@@ -2063,7 +2188,8 @@
    "radius": 340,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 152296
+   "shape_seed": 152296,
+   "geyser": true
   },
   {
    "id": "T2",
@@ -2079,7 +2205,8 @@
    "radius": 85,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 347553
+   "shape_seed": 347553,
+   "geyser": false
   },
   {
    "id": "T3",
@@ -2095,7 +2222,8 @@
    "radius": 147,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 502739
+   "shape_seed": 502739,
+   "geyser": false
   },
   {
    "id": "T4",
@@ -2111,7 +2239,8 @@
    "radius": 152,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 383371
+   "shape_seed": 383371,
+   "geyser": false
   },
   {
    "id": "T5",
@@ -2127,7 +2256,8 @@
    "radius": 99,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 289598
+   "shape_seed": 289598,
+   "geyser": false
   },
   {
    "id": "T6",
@@ -2143,7 +2273,8 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 340381
+   "shape_seed": 340381,
+   "geyser": false
   },
   {
    "id": "a1",
@@ -2159,7 +2290,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 660605
+   "shape_seed": 660605,
+   "geyser": true
   },
   {
    "id": "a2",
@@ -2175,7 +2307,8 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 934836
+   "shape_seed": 934836,
+   "geyser": false
   },
   {
    "id": "a3",
@@ -2191,7 +2324,8 @@
    "radius": 150,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 196175
+   "shape_seed": 196175,
+   "geyser": false
   },
   {
    "id": "a4",
@@ -2207,7 +2341,8 @@
    "radius": 169,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 820445
+   "shape_seed": 820445,
+   "geyser": false
   },
   {
    "id": "a5",
@@ -2223,7 +2358,8 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 362579
+   "shape_seed": 362579,
+   "geyser": false
   },
   {
    "id": "a6",
@@ -2239,7 +2375,8 @@
    "radius": 138,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 666592
+   "shape_seed": 666592,
+   "geyser": false
   },
   {
    "id": "b1",
@@ -2255,7 +2392,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 431205
+   "shape_seed": 431205,
+   "geyser": false
   },
   {
    "id": "b2",
@@ -2271,7 +2409,8 @@
    "radius": 94,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 284260
+   "shape_seed": 284260,
+   "geyser": false
   },
   {
    "id": "b3",
@@ -2287,7 +2426,8 @@
    "radius": 93,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 199575
+   "shape_seed": 199575,
+   "geyser": false
   },
   {
    "id": "b4",
@@ -2303,7 +2443,8 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 548271
+   "shape_seed": 548271,
+   "geyser": false
   },
   {
    "id": "b5",
@@ -2319,7 +2460,8 @@
    "radius": 168,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 18458
+   "shape_seed": 18458,
+   "geyser": false
   },
   {
    "id": "b6",
@@ -2335,7 +2477,8 @@
    "radius": 136,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 200073
+   "shape_seed": 200073,
+   "geyser": false
   },
   {
    "id": "c1",
@@ -2351,7 +2494,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 110383
+   "shape_seed": 110383,
+   "geyser": true
   },
   {
    "id": "c2",
@@ -2367,7 +2511,8 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 994069
+   "shape_seed": 994069,
+   "geyser": false
   },
   {
    "id": "c3",
@@ -2383,7 +2528,8 @@
    "radius": 142,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 726476
+   "shape_seed": 726476,
+   "geyser": false
   },
   {
    "id": "c4",
@@ -2399,7 +2545,8 @@
    "radius": 164,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 606143
+   "shape_seed": 606143,
+   "geyser": false
   },
   {
    "id": "c5",
@@ -2415,7 +2562,8 @@
    "radius": 73,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 981128
+   "shape_seed": 981128,
+   "geyser": false
   },
   {
    "id": "c6",
@@ -2431,7 +2579,8 @@
    "radius": 145,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 528860
+   "shape_seed": 528860,
+   "geyser": false
   },
   {
    "id": "d1",
@@ -2447,7 +2596,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 230725
+   "shape_seed": 230725,
+   "geyser": false
   },
   {
    "id": "d2",
@@ -2463,7 +2613,8 @@
    "radius": 123,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 449092
+   "shape_seed": 449092,
+   "geyser": false
   },
   {
    "id": "d3",
@@ -2479,7 +2630,8 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 698321
+   "shape_seed": 698321,
+   "geyser": false
   },
   {
    "id": "d4",
@@ -2495,7 +2647,8 @@
    "radius": 86,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 444096
+   "shape_seed": 444096,
+   "geyser": false
   },
   {
    "id": "d5",
@@ -2511,7 +2664,8 @@
    "radius": 141,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 174306
+   "shape_seed": 174306,
+   "geyser": false
   },
   {
    "id": "d6",
@@ -2527,7 +2681,8 @@
    "radius": 89,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 431621
+   "shape_seed": 431621,
+   "geyser": false
   },
   {
    "id": "e1",
@@ -2543,7 +2698,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 989099
+   "shape_seed": 989099,
+   "geyser": true
   },
   {
    "id": "e2",
@@ -2559,7 +2715,8 @@
    "radius": 112,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 380812
+   "shape_seed": 380812,
+   "geyser": false
   },
   {
    "id": "e3",
@@ -2575,7 +2732,8 @@
    "radius": 52,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 323119
+   "shape_seed": 323119,
+   "geyser": false
   },
   {
    "id": "e4",
@@ -2591,7 +2749,8 @@
    "radius": 209,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 178865
+   "shape_seed": 178865,
+   "geyser": false
   },
   {
    "id": "e5",
@@ -2607,7 +2766,8 @@
    "radius": 106,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 630756
+   "shape_seed": 630756,
+   "geyser": false
   },
   {
    "id": "e6",
@@ -2623,7 +2783,8 @@
    "radius": 41,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 472090
+   "shape_seed": 472090,
+   "geyser": false
   },
   {
    "id": "f1",
@@ -2639,7 +2800,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 678056
+   "shape_seed": 678056,
+   "geyser": true
   },
   {
    "id": "f2",
@@ -2655,7 +2817,8 @@
    "radius": 131,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 985863
+   "shape_seed": 985863,
+   "geyser": false
   },
   {
    "id": "f3",
@@ -2671,7 +2834,8 @@
    "radius": 81,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 13935
+   "shape_seed": 13935,
+   "geyser": false
   },
   {
    "id": "f4",
@@ -2687,7 +2851,8 @@
    "radius": 60,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 305206
+   "shape_seed": 305206,
+   "geyser": false
   },
   {
    "id": "f5",
@@ -2703,7 +2868,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 813067
+   "shape_seed": 813067,
+   "geyser": false
   },
   {
    "id": "f6",
@@ -2719,7 +2885,8 @@
    "radius": 53,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 252644
+   "shape_seed": 252644,
+   "geyser": false
   },
   {
    "id": "g1",
@@ -2735,7 +2902,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 604402
+   "shape_seed": 604402,
+   "geyser": false
   },
   {
    "id": "g2",
@@ -2751,7 +2919,8 @@
    "radius": 84,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 892044
+   "shape_seed": 892044,
+   "geyser": false
   },
   {
    "id": "g3",
@@ -2767,7 +2936,8 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 658987
+   "shape_seed": 658987,
+   "geyser": false
   },
   {
    "id": "g4",
@@ -2783,7 +2953,8 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 469569
+   "shape_seed": 469569,
+   "geyser": false
   },
   {
    "id": "g5",
@@ -2799,7 +2970,8 @@
    "radius": 196,
    "layer": "main",
    "kind": "basin",
-   "shape_seed": 624944
+   "shape_seed": 624944,
+   "geyser": false
   },
   {
    "id": "g6",
@@ -2815,7 +2987,8 @@
    "radius": 46,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 344981
+   "shape_seed": 344981,
+   "geyser": false
   },
   {
    "id": "h1",
@@ -2831,7 +3004,8 @@
    "radius": 300,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 835645
+   "shape_seed": 835645,
+   "geyser": true
   },
   {
    "id": "h2",
@@ -2847,7 +3021,8 @@
    "radius": 138,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 312444
+   "shape_seed": 312444,
+   "geyser": false
   },
   {
    "id": "h3",
@@ -2863,7 +3038,8 @@
    "radius": 87,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 839592
+   "shape_seed": 839592,
+   "geyser": false
   },
   {
    "id": "h4",
@@ -2879,7 +3055,8 @@
    "radius": 66,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 236756
+   "shape_seed": 236756,
+   "geyser": false
   },
   {
    "id": "h5",
@@ -2895,7 +3072,8 @@
    "radius": 54,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 205713
+   "shape_seed": 205713,
+   "geyser": false
   },
   {
    "id": "h6",
@@ -2911,7 +3089,8 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 9052
+   "shape_seed": 9052,
+   "geyser": false
   },
   {
    "id": "i1",
@@ -2927,7 +3106,8 @@
    "radius": 284,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 479796
+   "shape_seed": 479796,
+   "geyser": true
   },
   {
    "id": "i2",
@@ -2943,7 +3123,8 @@
    "radius": 56,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 801984
+   "shape_seed": 801984,
+   "geyser": false
   },
   {
    "id": "i3",
@@ -2959,7 +3140,8 @@
    "radius": 65,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 161919
+   "shape_seed": 161919,
+   "geyser": false
   },
   {
    "id": "i4",
@@ -2975,7 +3157,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 872678
+   "shape_seed": 872678,
+   "geyser": false
   },
   {
    "id": "i5",
@@ -2991,7 +3174,8 @@
    "radius": 56,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 244873
+   "shape_seed": 244873,
+   "geyser": false
   },
   {
    "id": "i6",
@@ -3007,7 +3191,8 @@
    "radius": 130,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 512927
+   "shape_seed": 512927,
+   "geyser": false
   },
   {
    "id": "j1",
@@ -3023,7 +3208,8 @@
    "radius": 274,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 814116
+   "shape_seed": 814116,
+   "geyser": true
   },
   {
    "id": "j2",
@@ -3039,7 +3225,8 @@
    "radius": 162,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 184973
+   "shape_seed": 184973,
+   "geyser": false
   },
   {
    "id": "j3",
@@ -3055,7 +3242,8 @@
    "radius": 69,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 410286
+   "shape_seed": 410286,
+   "geyser": false
   },
   {
    "id": "j4",
@@ -3071,7 +3259,8 @@
    "radius": 63,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 859500
+   "shape_seed": 859500,
+   "geyser": false
   },
   {
    "id": "j5",
@@ -3087,7 +3276,8 @@
    "radius": 40,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 450137
+   "shape_seed": 450137,
+   "geyser": false
   },
   {
    "id": "j6",
@@ -3103,7 +3293,8 @@
    "radius": 58,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 691638
+   "shape_seed": 691638,
+   "geyser": false
   },
   {
    "id": "k1",
@@ -3119,7 +3310,8 @@
    "radius": 258,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 643873
+   "shape_seed": 643873,
+   "geyser": true
   },
   {
    "id": "k2",
@@ -3135,7 +3327,8 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 730107
+   "shape_seed": 730107,
+   "geyser": false
   },
   {
    "id": "k3",
@@ -3151,7 +3344,8 @@
    "radius": 71,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 478859
+   "shape_seed": 478859,
+   "geyser": false
   },
   {
    "id": "k4",
@@ -3167,7 +3361,8 @@
    "radius": 47,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 945867
+   "shape_seed": 945867,
+   "geyser": false
   },
   {
    "id": "k5",
@@ -3183,7 +3378,8 @@
    "radius": 83,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 180847
+   "shape_seed": 180847,
+   "geyser": false
   },
   {
    "id": "k6",
@@ -3199,7 +3395,8 @@
    "radius": 59,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 391355
+   "shape_seed": 391355,
+   "geyser": false
   },
   {
    "id": "l1",
@@ -3215,7 +3412,8 @@
    "radius": 244,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 291459
+   "shape_seed": 291459,
+   "geyser": true
   },
   {
    "id": "l2",
@@ -3231,7 +3429,8 @@
    "radius": 180,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 749682
+   "shape_seed": 749682,
+   "geyser": false
   },
   {
    "id": "l3",
@@ -3247,7 +3446,8 @@
    "radius": 57,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 508429
+   "shape_seed": 508429,
+   "geyser": false
   },
   {
    "id": "l4",
@@ -3263,7 +3463,8 @@
    "radius": 62,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 927817
+   "shape_seed": 927817,
+   "geyser": false
   },
   {
    "id": "l5",
@@ -3279,7 +3480,8 @@
    "radius": 60,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 253204
+   "shape_seed": 253204,
+   "geyser": false
   },
   {
    "id": "l6",
@@ -3295,7 +3497,8 @@
    "radius": 46,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 524600
+   "shape_seed": 524600,
+   "geyser": false
   },
   {
    "id": "m1",
@@ -3311,7 +3514,8 @@
    "radius": 236,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 458238
+   "shape_seed": 458238,
+   "geyser": true
   },
   {
    "id": "m2",
@@ -3327,7 +3531,8 @@
    "radius": 77,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 46395
+   "shape_seed": 46395,
+   "geyser": false
   },
   {
    "id": "m3",
@@ -3343,7 +3548,8 @@
    "radius": 96,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 940481
+   "shape_seed": 940481,
+   "geyser": false
   },
   {
    "id": "m4",
@@ -3359,7 +3565,8 @@
    "radius": 74,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 72940
+   "shape_seed": 72940,
+   "geyser": false
   },
   {
    "id": "m5",
@@ -3375,7 +3582,8 @@
    "radius": 82,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 991292
+   "shape_seed": 991292,
+   "geyser": false
   },
   {
    "id": "m6",
@@ -3391,7 +3599,8 @@
    "radius": 128,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 429534
+   "shape_seed": 429534,
+   "geyser": false
   },
   {
    "id": "n1",
@@ -3407,7 +3616,8 @@
    "radius": 236,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 157657
+   "shape_seed": 157657,
+   "geyser": true
   },
   {
    "id": "n2",
@@ -3423,7 +3633,8 @@
    "radius": 80,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 305194
+   "shape_seed": 305194,
+   "geyser": false
   },
   {
    "id": "n3",
@@ -3439,7 +3650,8 @@
    "radius": 101,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 494393
+   "shape_seed": 494393,
+   "geyser": false
   },
   {
    "id": "n4",
@@ -3455,7 +3667,8 @@
    "radius": 94,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 15824
+   "shape_seed": 15824,
+   "geyser": false
   },
   {
    "id": "n5",
@@ -3471,7 +3684,8 @@
    "radius": 43,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 163262
+   "shape_seed": 163262,
+   "geyser": false
   },
   {
    "id": "n6",
@@ -3487,7 +3701,8 @@
    "radius": 55,
    "layer": "main",
    "kind": "land",
-   "shape_seed": 709863
+   "shape_seed": 709863,
+   "geyser": false
   },
   {
    "id": "Sh1",
@@ -3503,7 +3718,8 @@
    "radius": 42,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 126964
+   "shape_seed": 126964,
+   "geyser": false
   },
   {
    "id": "Sh2",
@@ -3519,7 +3735,8 @@
    "radius": 45,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 307462
+   "shape_seed": 307462,
+   "geyser": false
   },
   {
    "id": "Sh3",
@@ -3535,7 +3752,8 @@
    "radius": 31,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 337419
+   "shape_seed": 337419,
+   "geyser": false
   },
   {
    "id": "Sh4",
@@ -3551,7 +3769,8 @@
    "radius": 27,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 664142
+   "shape_seed": 664142,
+   "geyser": false
   },
   {
    "id": "Sh5",
@@ -3567,7 +3786,8 @@
    "radius": 38,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 563341
+   "shape_seed": 563341,
+   "geyser": false
   },
   {
    "id": "Ch6",
@@ -3583,7 +3803,8 @@
    "radius": 41,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 986355
+   "shape_seed": 986355,
+   "geyser": false
   },
   {
    "id": "Eh7",
@@ -3599,7 +3820,8 @@
    "radius": 32,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 161318
+   "shape_seed": 161318,
+   "geyser": false
   },
   {
    "id": "Fh8",
@@ -3615,7 +3837,8 @@
    "radius": 28,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 692223
+   "shape_seed": 692223,
+   "geyser": false
   },
   {
    "id": "Hh9",
@@ -3631,7 +3854,8 @@
    "radius": 38,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 778851
+   "shape_seed": 778851,
+   "geyser": false
   },
   {
    "id": "Rh11",
@@ -3647,7 +3871,8 @@
    "radius": 29,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 213886
+   "shape_seed": 213886,
+   "geyser": false
   },
   {
    "id": "Th12",
@@ -3663,7 +3888,8 @@
    "radius": 24,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 652451
+   "shape_seed": 652451,
+   "geyser": false
   },
   {
    "id": "ah13",
@@ -3679,7 +3905,8 @@
    "radius": 27,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 118950
+   "shape_seed": 118950,
+   "geyser": false
   },
   {
    "id": "ch14",
@@ -3695,7 +3922,8 @@
    "radius": 22,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 264026
+   "shape_seed": 264026,
+   "geyser": false
   },
   {
    "id": "eh15",
@@ -3711,7 +3939,8 @@
    "radius": 36,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 616554
+   "shape_seed": 616554,
+   "geyser": false
   },
   {
    "id": "fh16",
@@ -3727,7 +3956,8 @@
    "radius": 40,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 663525
+   "shape_seed": 663525,
+   "geyser": false
   },
   {
    "id": "hh17",
@@ -3743,7 +3973,8 @@
    "radius": 35,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 402857
+   "shape_seed": 402857,
+   "geyser": false
   },
   {
    "id": "ih18",
@@ -3759,7 +3990,8 @@
    "radius": 22,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 685079
+   "shape_seed": 685079,
+   "geyser": false
   },
   {
    "id": "kh19",
@@ -3775,7 +4007,8 @@
    "radius": 37,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 293364
+   "shape_seed": 293364,
+   "geyser": false
   },
   {
    "id": "lh20",
@@ -3791,7 +4024,8 @@
    "radius": 30,
    "layer": "high",
    "kind": "land",
-   "shape_seed": 212899
+   "shape_seed": 212899,
+   "geyser": false
   },
   {
    "id": "Pt2",
@@ -3807,7 +4041,8 @@
    "radius": 210,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 623608
+   "shape_seed": 623608,
+   "geyser": false
   },
   {
    "id": "Pt3",
@@ -3823,7 +4058,8 @@
    "radius": 108,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 536033
+   "shape_seed": 536033,
+   "geyser": false
   },
   {
    "id": "Qt2",
@@ -3839,7 +4075,8 @@
    "radius": 138,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 604382
+   "shape_seed": 604382,
+   "geyser": false
   },
   {
    "id": "Qt3",
@@ -3855,7 +4092,8 @@
    "radius": 69,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 950466
+   "shape_seed": 950466,
+   "geyser": false
   },
   {
    "id": "Jt2",
@@ -3871,7 +4109,8 @@
    "radius": 156,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 901736
+   "shape_seed": 901736,
+   "geyser": false
   },
   {
    "id": "Jt3",
@@ -3887,7 +4126,8 @@
    "radius": 78,
    "layer": "tier",
    "kind": "land",
-   "shape_seed": 153256
+   "shape_seed": 153256,
+   "geyser": false
   }
  ]
 }

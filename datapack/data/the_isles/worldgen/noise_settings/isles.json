@@ -9,7 +9,7 @@
   "min_y": -2032
  },
  "noise_router": {
-  "chunk_surface_level": 0.0,
+  "chunk_surface_level": "the_isles:surface_level",
   "continents": 0.0,
   "depth": 0.0,
   "erosion": 0.0,

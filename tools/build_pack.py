@@ -9,6 +9,7 @@ import fnmatch, json, math, os, shutil, sys, zipfile
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import providers as prov
+import build_terrain as bt
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "datapack"            # the pack with vanilla biomes: committed, released
@@ -158,9 +159,14 @@ def flat(f): return mc("slice", axis="y", coordinate=0, input=f)   # f only depe
 
 def island_fields(i):
     """The parts of an island that only depend on x and z: (inside its footprint 1/0, surface height, bottom height, edge term).
-    Its density is  clamp(min((surface - y) / 8, (y - bottom) / 12, edge) + 0.55 * rag, -1, 1)  inside the footprint and -1 outside."""
+    Its density is  clamp(min((surface - y) / 8, (y - bottom) / 12, edge) + 0.55 * rag, -1, 1)  inside the footprint and -1 outside.
+
+    A sea basin (tools/build_terrain.py fills it with water): the rim rises to the island's top within 12 blocks and stays
+    there, a ring at least RING blocks wide, 7 blocks above the water; inside the ring the floor drops by up to 0.3 of the
+    thickness. Under the ring and the floor there are at least 26 blocks of rock from 10 blocks in from the rim."""
     R, top, t = i["radius"], i["y_top"], i["thickness"]
     basin = i["kind"] == "basin"
+    sea = bt.basin_shape(i) if basin else None
     amp = 0 if basin else min(RELIEF.get(i.get("layout_biome", i["biome"]), DEFAULT_RELIEF), 0.5 * t)   # the shape follows the layout biome
     shrink = max(0.05, min(0.2, 40 / R + 0.04))
     d = ref(f"dist/{i['key']}")
@@ -171,13 +177,22 @@ def island_fields(i):
     c = clamp(mul(e, 1 / 0.6), 0, 1)
     rim = min(10, 0.1 * t)
     surface = sub(sub(top, mul(0.5 * amp, sub(1, RELIEF_N))), mul(rim, sub(1, c)))
-    if basin:  # bowl: rim stays up, interior drops
-        surface = sub(surface, mul(0.3 * t, clamp(mul(sub(e, 0.16), 4), 0, 1)))
+    if basin:  # bowl: the rim ring stays up, the interior drops (a little less where the relief noise is low)
+        surface = sub(sub(top, mul(rim, sub(1, clamp(mul(e, R / 12), 0, 1)))),
+                      mul(mul(sea["depth"], clamp(mul(sub(e, sea["e0"]), 4), 0, 1)), add(0.85, mul(0.15, RELIEF_N))))
+    g = i.get("geyser_at")
+    if g:   # level ground around the geyser, at the height layout/geysers.json gives
+        gd = mc("distance_to_point", metric="euclidean", point=[g["x"], 0, g["z"]])
+        pad = clamp(mul(sub(bt.PAD_R, gd), 1 / 6), 0, 1)
+        surface = add(surface, mul(pad, sub(g["y"], surface)))
     write(f"data/{NS}/worldgen/density_function/surface/{i['key']}.json", mc("cache", input=surface))
     surface = ref(f"surface/{i['key']}")
-    body = max(12, (t - amp - (0.3 * t if basin else 0)) / 1.3)
+    body = max(12, (t - amp - (sea["depth"] if basin else 0)) / 1.3)
+    if basin: c = clamp(mul(e, 1 / 0.25), 0, 1)
     taper = add(mul(0.4, mc("sqrt", input=c)), mul(0.6, c))
-    bottom = sub(surface, mul(mul(body, taper), add(1, mul(0.3, UNDER))))
+    thick = mul(mul(body, taper), add(1, mul(0.3, UNDER)))
+    if basin: thick = dmax(thick, mul(26, clamp(mul(e, R / 10), 0, 1)))
+    bottom = sub(surface, thick)
     write(f"data/{NS}/worldgen/density_function/inside/{i['key']}.json", mc("cache", input=choice(d, 0, R + PAD, 1, 0)))
     return ref(f"inside/{i['key']}"), surface, bottom, mul(e, R / 12)
 
@@ -190,7 +205,7 @@ def layers(islands):
         else: out.append([i])
     return out
 
-def terrain(islands):
+def terrain(islands, nocave=()):
     """The density of the world: the highest of the layers' densities.
 
     The 26.3 density functions are evaluated for a whole chunk at once and nothing in them is skipped: a range_choice or
@@ -200,18 +215,48 @@ def terrain(islands):
     12,725) - surface, bottom and edge of whichever island of the layer the column belongs to - and only the last step,
     the same for every island, runs on the whole chunk, once per layer. The values are the same as before."""
     BIG = 1000.0
-    parts = []
+    parts, levels = [], []
+    hollow = bt.cave_noise(sys.modules[__name__])
     for n, group in enumerate(layers(islands)):
-        f = {i["key"]: island_fields(i) for i in sorted(group, key=lambda i: i["key"])}
+        group = sorted(group, key=lambda i: i["key"])
+        f = {i["key"]: island_fields(i) for i in group}
         inside = [v[0] for v in f.values()]
         fields = {"surface": tree(add, [mul(v[0], v[1]) for v in f.values()]), "bottom": tree(add, [mul(v[0], v[2]) for v in f.values()]),
                   # the island's edge term inside a footprint, -BIG (nothing) outside
                   "edge": add(tree(add, [mul(v[0], v[3]) for v in f.values()]), mul(sub(tree(add, inside), 1), BIG))}
+        # Caves (tools/build_terrain.py): the depth of the cave zone's roof under the surface, per island; it goes up through
+        # the surface where the entrance noise is high. Islands without caves have no flat field at all.
+        caved = [i for i in group if bt.has_caves(i, nocave)]
+        pockets = [i for i in caved if i.get("geyser_at")]
+        # (the chamber of the sulfur caves under a geyser: how near its axis a column is; the roof is thin there)
+        near = lambda i: clamp(mul(sub(bt.CHAMBER_R, mc("distance_to_point", metric="euclidean", point=[i["geyser_at"]["x"], 0, i["geyser_at"]["z"]])), 1 / 6), 0, 1)
+        def roof(i):
+            r = bt.cave_roof(sys.modules[__name__], i)
+            out = sub(r, mul(ref("hollow/entrance"), r + 16))
+            return sub(out, mul(near(i), r - 16)) if i.get("geyser_at") else out
+        if caved:
+            fields["roof"] = tree(add, [mul(f[i["key"]][0], roof(i) if bt.has_caves(i, nocave) else 10000.0) for i in group])
+        if pockets:
+            fields["pnear"] = tree(add, [mul(f[i["key"]][0], near(i)) for i in pockets])
+            fields["py"] = tree(add, [mul(f[i["key"]][0], bt.pocket(i["geyser_at"])["chamber"]["y"]) for i in pockets])
+        # the lowest height at which the surface rule runs (surface_level): only the lowest island of a column counts
+        levels.append(add(tree(add, [mul(f[i["key"]][0], sub(f[i["key"]][1], bt.surface_margin(sys.modules[__name__], i))) for i in group]),
+                          mul(sub(1, tree(add, inside)), 100000.0)))
         for k, v in fields.items(): write(f"data/{NS}/worldgen/density_function/layer/{n}_{k}.json", flat(v))
         S, B, E = (ref(f"layer/{n}_{k}") for k in ("surface", "bottom", "edge"))
         solid = dmin(dmin(mul(sub(S, Y), 1 / 8), mul(sub(Y, B), 1 / 12)), E)
-        parts.append(clamp(add(solid, mul(0.55, RAG)), -1, 1))
-        print(f"layer {n}: {len(group)} islands")
+        part = clamp(add(solid, mul(0.55, RAG)), -1, 1)
+        if caved:
+            inner = dmin(dmin(sub(sub(S, ref(f"layer/{n}_roof")), Y), sub(sub(Y, B), bt.FLOOR)), sub(mul(E, 12.0), bt.SIDE))
+            cave = hollow
+            if pockets:
+                band = clamp(mul(sub(bt.CHAMBER_H + 3, mc("abs", input=sub(Y, ref(f"layer/{n}_py")))), 1 / 3), 0, 1)
+                cave = dmin(cave, sub(1.5, mul(3.0, mul(ref(f"layer/{n}_pnear"), band))))
+            part = dmin(part, add(cave, mul(3.2, sub(1, clamp(mul(inner, 1 / bt.FADE), 0, 1)))))   # >= 1.7 (no effect) outside the zone
+        parts.append(part)
+        print(f"layer {n}: {len(group)} islands, {len(caved)} with caves")
+    low = tree(dmin, levels)
+    write(f"data/{NS}/worldgen/density_function/surface_level.json", flat(choice(low, -50000, 50000, low, float(MIN_Y - 64))))
     return tree(dmax, parts)
 
 def grid(islands, leaf):
@@ -510,6 +555,10 @@ def build(src):
         if pack_biome(i) != i["biome"]: i["layout_biome"], i["biome"] = i["biome"], pack_biome(i)
     for a, b in BIOME_SUBSTITUTE.items():
         print(f"{a} -> {b} on {sum(1 for i in islands if i.get('layout_biome') == a)} islands")
+    me = sys.modules[__name__]
+    for i in islands:   # sulfur geysers (the "geyser" flags of the layout): the ground is levelled around them
+        g = bt.geyser(me, i, layout, islands)
+        if g: i["geyser_at"] = g
     if OUT.exists(): shutil.rmtree(OUT)
 
     replaced = {}   # biome ids asked for in biome_sources.json -> the layout biomes they stand in for
@@ -519,14 +568,17 @@ def build(src):
             i.setdefault("layout_biome", i["biome"]); replaced.setdefault(t, set()).add(i["biome"]); i["biome"] = t
     for t, was in sorted(replaced.items()):
         print(f"{bid(t)} instead of {' '.join(sorted(was))} on {sum(1 for i in islands if i['biome'] == t and 'layout_biome' in i)} islands (biome_sources.json)")
-    biomes = sorted({i["biome"] for i in islands})
+    SULFUR = "sulfur_caves"
+    assert not any(i["biome"] == SULFUR for i in islands)
+    # (the rim ring of a sea basin has a shore biome, see biome_term)
+    biomes = sorted({i["biome"] for i in islands} | {bt.shore_biome(i) for i in islands if bt.is_basin(i)})
     source = {b: src.of(b) if src else "vanilla" for b in biomes}
     used = sorted(set(source.values()) - {"vanilla"})
     if src:   # the providers' own files first: whatever the generator writes after this replaces theirs
         for pid, (n, moved) in src.copy(used).items():
             print(f"{pid} ({src.packs[pid].path.name}): {n} files copied, {moved.get('moved', 0)} fixed-height placements moved under the island surface"
                   + (f", {moved['not understood']} height ranges NOT understood" if moved.get("not understood") else ""))
-    code = {b: round(-1.8 + 0.07 * k, 4) for k, b in enumerate(biomes, 1)}
+    code = {b: round(-1.8 + 0.07 * k, 4) for k, b in enumerate(biomes + [SULFUR], 1)}
     VOID = -1.8
     assert max(code.values()) < 1.95
 
@@ -543,7 +595,7 @@ def build(src):
               mc("gradient", axis=axis, from_coordinate=-100000, to_coordinate=100000, from_value=-100000.0, to_value=100000.0))
     # --- islands
     for i in islands: write(f"data/{NS}/worldgen/density_function/dist/{i['key']}.json", dist_fn(i))
-    land = terrain(islands)
+    land = terrain(islands, nocave={src.cave_island} if src and src.cave else ())
     caves = None
     if src and src.cave:   # the cave world inside the spawn island (tools/build_caves.py)
         import build_caves
@@ -565,25 +617,38 @@ def build(src):
                 levels.append((below["y_top"] + t["y_bottom"]) / 2); below = t
             val = mc("interval_select", input=Y, thresholds=levels,
                      functions=[code[i["biome"]] - VOID] + [code[t["biome"]] - VOID for t in stack])
+        if i.get("geyser_at"):   # the pocket of sulfur caves under the geyser: a cylinder
+            pk = bt.pocket(i["geyser_at"])
+            write(f"data/{NS}/worldgen/density_function/dist/pocket_{i['key']}.json",
+                  flat(mc("distance_to_point", metric="euclidean", point=[pk["x"], 0, pk["z"]])))
+            val = choice(Y, pk["y_min"], pk["y_max"], choice(ref(f"dist/pocket_{i['key']}"), 0, pk["radius"], code[SULFUR] - VOID, val), val)
         if stack: return choice(ref(f"dist/{i['key']}"), 0, i["radius"] + PAD, val, 0)
+        if bt.is_basin(i):
+            # A sea basin: the sea's biome only inside the rim ring; the ring and the margin past the rim are a shore biome.
+            # The sea is filled by features of the sea biome (tools/build_terrain.py): no column outside the ring gets water.
+            return choice(ref(f"edge/{i['key']}"), bt.basin_shape(i)["e_sea"], 2, val,
+                          choice(ref(f"edge/{i['key']}"), -BIOME_MARGIN / i["radius"], 2, code[bt.shore_biome(i)] - VOID, 0))
         # The biome ends BIOME_MARGIN blocks past the island's own rim (enough for the colour blending and the ragged
         # edge) instead of at the full radius: the rim is drawn in by up to a fifth of the radius, and every empty
         # column inside the biome is a place where a structure can start with nothing under it.
         return choice(ref(f"edge/{i['key']}"), -BIOME_MARGIN / i["radius"], 2, val, 0)
     def has_stack(i): return i["id"] == i["cluster"] + "1" and i["cluster"] in tiers
+    def flat_biome(i): return not has_stack(i) and not i.get("geyser_at")   # one biome at every height of the column
     # one flat slice for the islands with one biome (through the grid: a single lookup, as /locate does, only computes its
     # own cell), and the three stacks, whose biome changes with the height
     # Below the lowest island everything is void biome: a structure that starts over an empty column gets the bottom of
     # the world as its height, and with the island's biome there it would be built on the world floor (igloos, treasure).
     floor = min(i["y_bottom"] for i in islands) - 64
     write(f"data/{NS}/worldgen/density_function/biome_code.json", add(VOID, mul(choice(Y, floor, 100000, 1, 0), tree(add,
-          [flat(grid([i for i in mains if not has_stack(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0))]
+          [flat(grid([i for i in mains if flat_biome(i)], lambda hit: tree(add, [biome_term(i) for i in hit]) if hit else 0)),
+           # the islands with sulfur caves under their geyser: the same lookup, by height
+           grid([i for i in mains if not flat_biome(i) and not has_stack(i)] or mains[:1], lambda hit: tree(add, [biome_term(i) for i in hit if not flat_biome(i)]) if [i for i in hit if not flat_biome(i)] else 0)]
           + [biome_term(i) for i in mains if has_stack(i)]))))
 
     # --- noise settings, surface rule, dimension
     final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
                 input=mul(mc("blend_density", input=ref("terrain")), 0.64))), mc("beardifier"))
-    router = {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
+    router = {"chunk_surface_level": ref("surface_level"), "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
               "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final}
     if caves: caves.router(router)
     write(f"data/{NS}/worldgen/noise_settings/isles.json", {
@@ -595,8 +660,20 @@ def build(src):
     # (ArrayIndexOutOfBoundsException in MaterialSystem.getBand), which kills chunk generation there.
     near_surface = {"type": "minecraft:stone_depth", "offset": SURFACE_RULE_DEPTH, "add_surface_depth": True,
                     "secondary_depth_range": 0, "surface_type": "floor"}
-    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": ([caves.surface_rule()] if caves else []) + [
-        {"type": "minecraft:condition", "if_true": near_surface, "then_run": "minecraft:overworld/surface"}]})
+    # With caves inside the islands the rule must not run on cave floors (grass, sand, terracotta in the dark): it only runs
+    # above the "preliminary surface" of the column, which the router gets from the layers' flat fields: the surface of the
+    # column's lowest island less a margin for the relief (the game interpolates it over 16 blocks). Caves start below it.
+    sulfur_biome, sulfur_rule = bt.sulfur(me, islands, layout)
+    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": ([caves.surface_rule()] if caves else []) +
+        ([sulfur_rule] if sulfur_rule else []) + [
+        {"type": "minecraft:condition", "if_true": {"type": "minecraft:above_preliminary_surface"},
+         "then_run": {"type": "minecraft:condition", "if_true": near_surface, "then_run": "minecraft:overworld/surface"}}]})
+    bt.surface(me, islands)
+    if sulfur_biome: write(bfile(SULFUR), sulfur_biome)
+    sea_features = bt.seas(me, islands)
+    # the game's cave carvers tunnel through anything, undersides and sea floors included: off (the caves are in the terrain)
+    for f in sorted((Path(__file__).parent / "vanilla_carver").glob("*.json")):
+        write(f"data/minecraft/worldgen/carver/{f.name}", {**json.loads(f.read_text()), "probability": 0.0})
     write(f"data/{NS}/worldgen/biome/void.json", {
         "attributes": {"minecraft:gameplay/natural_mob_spawns": {"argument": {"spawn_costs": {}, "spawns_by_category": {
             k: [] for k in ["ambient", "axolotls", "creature", "misc", "monster", "underground_water_creature", "water_ambient", "water_creature"]}},
@@ -605,7 +682,7 @@ def build(src):
     def point(c):
         p = {"temperature": [round(c - 0.03, 4), round(c + 0.03, 4)], "humidity": 0, "continentalness": 0, "erosion": 0, "weirdness": 0, "depth": 0, "offset": 0}
         return caves.island_point(p) if caves else p
-    entries = [{"biome": VOID_BIOME, "parameters": point(VOID)}] + [{"biome": bid(b), "parameters": point(code[b])} for b in biomes]
+    entries = [{"biome": VOID_BIOME, "parameters": point(VOID)}] + [{"biome": bid(b), "parameters": point(code[b])} for b in biomes + ([SULFUR] if sulfur_biome else [])]
     if caves:
         entries += caves.entries()
         for l in caves.log: print(l)
@@ -627,7 +704,9 @@ def build(src):
             if gone: print(f"{b} ({source[b]}): taken out {' '.join(gone)}")
             c, twin = climate_other(d)
             if c: warm.append(b); print(f"{b} ({source[b]}): constant climate, colours of {twin} where it sets none")
-            write(bfile(b), c or d); continue
+            c = c or d
+            if b in sea_features: c["features"] = c["features"] + [[]] * (1 - len(c["features"])); c["features"][0] = sea_features[b] + c["features"][0]
+            write(bfile(b), c); continue
         if d is not None:
             v = vanilla_biome(b)
             odd = (d["temperature"], d["downfall"]) != (v["temperature"], v["downfall"]) and not {"grass_color", "foliage_color"} <= set(d.get("effects", {}))
@@ -636,6 +715,8 @@ def build(src):
         extra = caves.surface_features() if caves and b == caves.island["biome"] else []
         if extra:   # (the water of the sinkholes: after everything else of the biome at the cave island's surface)
             c = c or d or vanilla_biome(b); c["features"] = c["features"] + [[]] * (11 - len(c["features"])); c["features"][10] = c["features"][10] + extra
+        if b in sea_features:   # the water of the sea basins, before everything that grows in it
+            c = c or d or vanilla_biome(b); c["features"] = c["features"] + [[]] * (1 - len(c["features"])); c["features"][0] = sea_features[b] + c["features"][0]
         if c and d and odd: src.warnings.append(f"{b} ({source[b]}): temperature/downfall differ from vanilla and the colours are not set; the vanilla colours are pinned")
         if c: warm.append(b)
         if c or d: write(f"data/minecraft/worldgen/biome/{b}.json", c or d)

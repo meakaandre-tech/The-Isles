@@ -8,12 +8,10 @@
   "biomes": {},
   "islands": {},
   "drop_features": [
-    "orealm:sequence/jellyfish",
     "orealm:spring/ocean_caves"
   ],
   "drop_reasons": {
-    "orealm:sequence/jellyfish": "floats 4 to 15 blocks above a sea floor; the sea basins have no water yet",
-    "orealm:spring/ocean_caves": "64 water springs per chunk meant for flooded ocean caves: in a dry basin they run through the caves and pour out of the island's underside (seen as water columns under d5 and M5)"
+    "orealm:spring/ocean_caves": "64 water springs per chunk meant for flooded ocean caves: the sea basins have no caves under them, and in the other islands they would run out of the underside (seen as water columns under d5 and M5)"
   },
   "cave_world": {
     "provider": "dwarfhollow",
