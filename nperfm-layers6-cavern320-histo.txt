@@ -1,0 +1,23 @@
+10125:
+ num     #instances         #bytes  class name (module)
+-------------------------------------------------------
+   1:        170161      125578504  [J (java.base@25.0.4.1)
+   2:        940560       99190816  [B (java.base@25.0.4.1)
+   3:        266867       31683208  [Ljava.lang.Object; (java.base@25.0.4.1)
+   4:        141260       18081280  net.minecraft.world.level.block.state.BlockState
+   5:        645668       15496032  net.minecraft.world.level.chunk.PalettedContainer
+   6:        645668       15496032  net.minecraft.world.level.chunk.PalettedContainer$Data
+   7:        576313       13831512  net.minecraft.core.BlockPos
+   8:        525839       12620136  net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate$StructureBlockInfo
+   9:        474376       11385024  java.lang.String (java.base@25.0.4.1)
+  10:        322834       10330688  net.minecraft.world.level.chunk.LevelChunkSection
+  11:         66827        8355160  [I (java.base@25.0.4.1)
+  12:        518883        8302128  net.minecraft.util.ZeroBitStorage
+  13:        518883        8302128  net.minecraft.world.level.chunk.SingleValuePalette
+  14:         16213        8126288  [Ljdk.internal.vm.FillerElement; (java.base@25.0.4.1)
+  15:        324342        7911112  [S (java.base@25.0.4.1)
+  16:        242572        7762304  java.util.HashMap$Node (java.base@25.0.4.1)
+  17:        322326        7735824  net.caffeinemc.mods.lithium.common.world.section.LithiumSectionData$SectionData
+  18:        137194        7682864  net.minecraft.world.phys.shapes.SubShape
+  19:        129142        6198816  net.minecraft.util.SimpleBitStorage
+Total      11039887      565964024

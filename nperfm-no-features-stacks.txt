@@ -1,0 +1,27 @@
+35 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 34.3%    12 features
+ 28.6%    10 surface rule
+ 20.0%     7 terrain: fill (blocks into sections)
+ 11.4%     4 terrain: aquifer
+  2.9%     1 terrain: other density functions
+  2.9%     1 terrain: 3D noise
+--- features
+ 22.9%     8 placement.FeaturePlacer.place
+ 11.4%     4 other
+--- top frames
+    8 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    5 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001e99f628.tryApply
+    3 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000001e998650.get
+    3 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    3 chunk.PalettedContainer$$Lambda/0x000000001e9aa000.accept < net.minecraft.util.SimpleBitStorage.getAll < chunk.PalettedContainer.getAll
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001e99f628.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 com.ishland.c2me.opts.worldgen.general.common.random_instances.RandomUtils.derive < Aquifer$NoiseBasedAquifer.handler$zgi00b$c2me-opts-worldgen-vanilla$onInit < Aquifer$NoiseBasedAquifer.<init>
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 chunk.ProtoChunk.setBlockState < net.minecraft.server.level.WorldGenRegion.setBlock < LevelWriter.setBlock
+    1 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000001e99e218.apply < material.MaterialRuleContext.getBiome
+    1 material.MaterialRuleContext$LazyYCondition.test < material.condition.NotCondition.lambda$compile$0 < material.condition.NotCondition$$Lambda/0x000000001e99fcd0.test
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000001e99e218.apply
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.BinaryFunction$ConstAddSampler.sampleVolume
+    1 net.minecraft.server.level.ChunkHolder.blockChanged < com.ishland.c2me.rewrites.chunksystem.common.NewChunkHolderVanillaInterface.blockChanged < net.minecraft.server.level.ServerChunkCache.blockChanged

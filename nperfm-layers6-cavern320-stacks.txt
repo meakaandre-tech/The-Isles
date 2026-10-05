@@ -1,0 +1,28 @@
+32 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 53.1%    17 surface rule
+ 15.6%     5 terrain: aquifer
+ 12.5%     4 features
+  9.4%     3 terrain: fill (blocks into sections)
+  3.1%     1 terrain: other density functions
+  3.1%     1 terrain: 3D noise
+  3.1%     1 structures
+--- features
+ 12.5%     4 placement.FeaturePlacer.place
+--- top frames
+    6 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000004199a6c0.tryApply
+    4 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    4 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    2 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < net.minecraft.server.level.WorldGenRegion.getBlockState
+    2 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000004199a6c0.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 Aquifer$NoiseBasedAquifer.surfaceLevel < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 densityfunction.op.InterpolatedFunction$Sampler.fillCell < densityfunction.op.InterpolatedFunction$Sampler.sampleWithBlockStep < densityfunction.op.InterpolatedFunction$Sampler.sampleVolume
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    1 net.minecraft.world.attribute.EnvironmentAttributeMap.keySet < net.minecraft.world.attribute.EnvironmentAttributeSystem.lambda$addBiomeLayer$0 < net.minecraft.world.attribute.EnvironmentAttributeSystem$$Lambda/0x00000000418e31f0.apply
+    1 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    1 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x000000004199e688.call
+    1 material.rule.SequenceRule.lambda$compile$0 < material.rule.SequenceRule$$Lambda/0x000000004199ab38.tryApply < material.rule.ConditionRule.lambda$compile$0
+    1 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x0000000041997558.get

@@ -1,0 +1,31 @@
+68 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 41.2%    28 surface rule
+ 26.5%    18 terrain: 3D noise
+ 10.3%     7 terrain: aquifer
+ 10.3%     7 features
+  5.9%     4 terrain: fill (blocks into sections)
+  2.9%     2 saving / loading chunks
+  1.5%     1 structures
+  1.5%     1 terrain: other density functions
+--- features
+  8.8%     6 placement.FeaturePlacer.place
+  1.5%     1 feature.SteppedColumnClusterFeature.place
+--- top frames
+   18 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+    9 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    6 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    6 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    5 chunk.LevelChunkSection.setBlockState < chunk.LevelChunkSection.redirect$bpl000$lithium$setBlockStateNoLocking < chunk.LevelChunkSection.setBlockState
+    5 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000003d9a5ef8.tryApply
+    4 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000003d99ce68.get
+    3 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    3 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x000000003d9a4000.call
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000003d9a5ef8.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 structure.structures.NetherFossilStructure.lambda$findGenerationPoint$0 < structure.structures.NetherFossilStructure$$Lambda/0x000000003da45bb0.accept < structure.Structure$GenerationStub.lambda$getPiecesBuilder$0
+    1 densityfunction.op.ClampFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    1 NoiseBasedChunkGenerator.getGenDepth < WorldGenerationContext.<init> < WorldGenerationContext.of
+    1 Aquifer$NoiseBasedAquifer.surfaceLevel < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock < material.MaterialSystem.buildSurface
+    1 net.minecraft.util.DelegateDataOutput.write < net.minecraft.nbt.ByteArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    1 net.minecraft.nbt.CompoundTag.store < net.minecraft.nbt.CompoundTag.store < chunk.storage.SerializableChunkData.write

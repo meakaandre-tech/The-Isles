@@ -1,0 +1,23 @@
+34 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 32.4%    11 surface rule
+ 32.4%    11 features
+ 20.6%     7 terrain: aquifer
+  8.8%     3 terrain: fill (blocks into sections)
+  5.9%     2 terrain: other density functions
+--- features
+ 32.4%    11 placement.FeaturePlacer.place
+--- top frames
+   11 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    4 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    4 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x000000008b9a6470.call
+    3 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000008b9a2470.tryApply
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000008b9a2470.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 Aquifer$NoiseBasedAquifer.computeSurfaceLevel < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 Aquifer$NoiseBasedAquifer.aquiferExtracted$refreshDistPosIdx < Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.iterateNoiseColumn
+    1 Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume < densityfunction.op.BinaryFunction$AddSampler.sampleVolume
+    1 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    1 densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume < densityfunction.op.BinaryFunction$AddSampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000008b9a6f58.apply
+    1 Aquifer$NoiseBasedAquifer.aquiferExtracted$extractedCheckFG < Aquifer$NoiseBasedAquifer.aquiferExtracted$getFinalBlockState < Aquifer$NoiseBasedAquifer.aquiferExtracted$applyPost

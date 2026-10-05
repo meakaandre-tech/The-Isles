@@ -1,0 +1,1 @@
+nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
