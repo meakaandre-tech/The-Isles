@@ -236,8 +236,9 @@ def write(name, lines):
 QUICK_SAMPLE = ['S1', 'K1', 'I1', 'e1', 'M4', 'Pt3', 'C1']
 write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUICK_SAMPLE) if on('islands-few') else [])
       + (void_probes() if on('void') else []) + (limits() if on('limits') else [])
+      + (structures() if on('structures') else [])
       + (pregen('land', *REG_LAND, after=animals()) + pregen('void', *REG_VOID) + pregen('tiers', *REG_TIER) if on('pregen') else [])
-      + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else []) + (structures() if on('structures') else [])
+      + (anomalies() if on('anomalies') else []) + (dims() if on('dims') else [])
       + ['tick query'] + (churn() if on('churn') else []))
 # perf: the same on every pack variant of packtest/perf.txt - generation time and heap of land, void and stacked tiers, with thread
 # dumps while they generate, the tick times after, and a /locate that finds nothing
@@ -399,21 +400,6 @@ if on('spawn'):
     S += ['cmd gamemode survival packtest', 'cmd kill packtest', 'sleep 8', 'cmd say CHECK respawned at', 'cmd data get entity packtest Pos',
           'cmd execute at packtest run function packtest:col', 'cmd scoreboard players get y pt', 'shot',
           'cmd tp packtest 1240 -1900 0', 'sleep 14', 'cmd say CHECK after the fall out of the world', 'cmd data get entity packtest Pos', 'cmd data get entity packtest Health', 'shot']
-MOBS = ['zombie', 'skeleton', 'creeper', 'spider', 'enderman', 'witch', 'slime', 'zombie_villager', 'bat']
-if on('mobs'):
-    # monsters at night, in survival, on the spawn island
-    S += ['cmd gamemode survival packtest', 'cmd effect give packtest minecraft:resistance infinite 255 true', 'cmd gamerule advance_time true', 'cmd time set midnight', 'sleep 90',
-          'cmd say SECTION mobs'] + count('night', MOBS) + ['shot']
-    S += ['cmd time set noon', 'cmd gamerule spawn_monsters false', 'cmd kill @e[type=#minecraft:undead]', 'cmd kill @e[type=minecraft:creeper]',
-          'cmd kill @e[type=minecraft:spider]', 'cmd kill @e[type=minecraft:enderman]', 'cmd kill @e[type=minecraft:witch]', 'cmd kill @e[type=minecraft:item]']
-    # animals that spawn later: everything generated is removed, then half a day passes at full speed (the game tries every 400 ticks)
-    S += [f'cmd kill @e[type={m}]' for m in PASSIVE] + ['cmd kill @e[type=minecraft:item]', 'cmd kill @e[type=minecraft:experience_orb]', 'cmd say SECTION animals after the kill'] + count('killed', ['cow', 'pig', 'chicken'])
-    S += ['cmd time set 0', 'cmd tick sprint 10000', 'sleep 150', 'cmd tick sprint stop', 'cmd say SECTION animals spawned later'] + count('later', PASSIVE)
-    # a swamp, a forest and a snowy island: what generated there (ducks and geese of the duck mod live near water)
-    for k in ['R1', 'f1', 'e1', 'D1']:
-        i = I[k]
-        S += [f'cmd tp packtest {i["x"]} {i["y_top"] + 40} {i["z"]}', 'sleep 45', f'cmd say SECTION animals on {k} {i["biome"]}'] + count(k, PASSIVE)
-    S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd weather rain', 'sleep 12', 'shot', 'cmd weather clear']
 S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd gamerule spawn_monsters false', 'cmd gamemode spectator packtest']
 # views: top-down and from the side, of a spread of islands
 VIEWS = ['S2', 'Pt3', 'D4', 'K6', 'M4', 'T3', 'C4', 'e3']
@@ -496,6 +482,21 @@ if on('portals'):
           'cmd execute at packtest run function packtest:top', 'cmd execute at packtest run function packtest:col', 'cmd scoreboard players get y pt', 'shot',
           'cmd gamemode spectator packtest', 'cmd execute as packtest at @s run tp @s ~12 ~8 ~12 135 25', 'sleep 6', 'shot',
           'cmd execute in minecraft:the_end run tp packtest 60 70 0 90 10', 'sleep 20', 'cmd say CHECK the end', 'cmd data get entity packtest Dimension', 'shot']
+MOBS = ['zombie', 'skeleton', 'creeper', 'spider', 'enderman', 'witch', 'slime', 'zombie_villager', 'bat']
+if on('mobs'):
+    # monsters at night, in survival, on the spawn island
+    S += ['cmd gamemode survival packtest', 'cmd effect give packtest minecraft:resistance infinite 255 true', 'cmd gamerule advance_time true', 'cmd time set midnight', 'sleep 90',
+          'cmd say SECTION mobs'] + count('night', MOBS) + ['shot']
+    S += ['cmd time set noon', 'cmd gamerule spawn_monsters false', 'cmd kill @e[type=#minecraft:undead]', 'cmd kill @e[type=minecraft:creeper]',
+          'cmd kill @e[type=minecraft:spider]', 'cmd kill @e[type=minecraft:enderman]', 'cmd kill @e[type=minecraft:witch]', 'cmd kill @e[type=minecraft:item]']
+    # animals that spawn later: everything generated is removed, then half a day passes at full speed (the game tries every 400 ticks)
+    S += [f'cmd kill @e[type={m}]' for m in PASSIVE] + ['cmd kill @e[type=minecraft:item]', 'cmd kill @e[type=minecraft:experience_orb]', 'cmd say SECTION animals after the kill'] + count('killed', ['cow', 'pig', 'chicken'])
+    S += ['cmd time set 0', 'cmd tick sprint 10000', 'sleep 150', 'cmd tick sprint stop', 'cmd say SECTION animals spawned later'] + count('later', PASSIVE)
+    # a swamp, a forest and a snowy island: what generated there (ducks and geese of the duck mod live near water)
+    for k in ['R1', 'f1', 'e1', 'D1']:
+        i = I[k]
+        S += [f'cmd tp packtest {i["x"]} {i["y_top"] + 40} {i["z"]}', 'sleep 45', f'cmd say SECTION animals on {k} {i["biome"]}'] + count(k, PASSIVE)
+    S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd weather rain', 'sleep 12', 'shot', 'cmd weather clear']
 S += ['cmd execute in minecraft:overworld run tp packtest 0 90 0 0 20', 'sleep 20', 'cmd gamemode creative packtest', 'key F3', 'sleep 4', 'shot', 'key F3',
       'cmd say SECTION client end', 'cmd list', 'cmd tick query', 'sleep 3']
 

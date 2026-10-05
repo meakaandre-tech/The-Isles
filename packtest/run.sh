@@ -107,13 +107,13 @@ feed() { # $1 = command file, $2 = server log
         [ -n "$pid" ] && (for k in $(seq 1 ${rest##* }); do jstack $pid 2>/dev/null; sleep 1; done > $out/prof-$(basename $PWD)-${rest%% *}.txt) &
         ;;
       "#sleep "*) sleep "${line#\#sleep }";;
-      "#poll "*)   # "#poll N command ## regex": sends the command every 3 s until the log shows the regex (at most N seconds)
+      "#poll "*)   # "#poll N command ## regex": sends the command every second until the log shows the regex (at most N seconds)
         rest=${line#\#poll }; t=${rest%% *}; rest=${rest#* }; pc=${rest%% \#\# *}; re=${rest##* \#\# }
         before=$(( $(wc -l < $2) + 1 )); t0=$(date +%s); ok=TIMEOUT
         while [ $(( $(date +%s) - t0 )) -lt $t ]; do
-          echo "$pc" >&3; sleep 1
+          echo "$pc" >&3; sleep 0.7
           sed -n "${before},\$p" $2 | grep -qE "$re" && { ok=ok; break; }
-          sleep 2
+          sleep 0.3
         done
         ts "poll $ok after $(( $(date +%s) - t0 ))s: $re"
         if [ $ok = TIMEOUT ] && [ ! -f $out/timeout-stacks.txt ]; then   # first timeout: what are the server's threads doing
