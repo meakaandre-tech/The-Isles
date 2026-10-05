@@ -5,7 +5,7 @@ name: Pack test
 # See packtest/README.md.
 on:
   push:
-    branches: ["pack-test", "dwarfhollow"]
+    branches: ["nether-perf"]   # nether-perf branch only: Nether jobs, logs to ci-logs-*-nperf, nothing is published
   workflow_dispatch:
 permissions:
   contents: write
@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [vanilla, pack, perf, nether]
+        part: [nperf, nperfmods, nether]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,10 +31,15 @@ jobs:
         id: ph
         shell: bash
         run: |
+          # packtest/nether-run: which of the jobs run (nperf: perf variants with Fabric API only, nperfmods: with every mod, nether: the full Nether test with the client)
           want=""
-          for w in $(cat packtest/phases); do
-            case "${{ matrix.part }}:$w" in vanilla:vanilla|vanilla:baseline|vanilla:bisect|pack:pack|pack:speed|perf:perf|nether:netherbase|nether:nether|nether:nethermods) want="$want $w";; esac
-          done
+          if grep -qw "${{ matrix.part }}" packtest/nether-run; then
+            case "${{ matrix.part }}" in
+              nperf) want="nether netherperf nperfonly"; touch packtest/server-only;;
+              nperfmods) want="nether nethermods netherperf nperfonly"; touch packtest/server-only;;
+              nether) want="netherbase nether nethermods";;
+            esac
+          fi
           echo "phases=${want# }" >> "$GITHUB_OUTPUT"; echo "phases: ${want}"
       - uses: actions/setup-java@v4
         if: steps.ph.outputs.phases != ''
@@ -42,7 +47,7 @@ jobs:
           distribution: temurin
           java-version: 25
       - uses: gradle/actions/setup-gradle@v4
-        if: steps.ph.outputs.phases != '' && (matrix.part == 'pack' || matrix.part == 'nether')
+        if: steps.ph.outputs.phases != '' && matrix.part == 'nether'
       - name: Rebuild the data pack from the layout and zip it
         if: steps.ph.outputs.phases != ''
         shell: bash
@@ -53,13 +58,10 @@ jobs:
           # Biome providers (packtest/providers: ids of layout/providers.json; no file = vanilla biomes). Those with a public
           # URL are downloaded; a pack without one cannot be tested here (it may not be uploaded anywhere) and is left out.
           # Nothing of them is uploaded: the zip tested here stays on the runner, the release is built without them.
-          want=$( (cat packtest/providers 2>/dev/null || true) | tr -s ' \n' ',,' | sed 's/^,//;s/,$//')
-          if [ -n "$want" ]; then
-            (python3 tools/providers.py fetch 2>&1 || true) | tee /tmp/ci/build.txt
-          fi
+          want=""   # the Nether jobs build without biome providers
           echo "ISLES_PROVIDERS=${want:-none}" >> "$GITHUB_ENV"
           ISLES_PROVIDERS=${want:-none} python3 tools/build_pack.py | tee -a /tmp/ci/build.txt
-          git status --porcelain datapack datapack-mods | tee /tmp/ci/datapack-drift.txt
+          git status --porcelain datapack datapack-mods | grep -v server-only | tee /tmp/ci/datapack-drift.txt
           [ -s /tmp/ci/datapack-drift.txt ] && echo "WARNING: the committed data packs differ from the generator output" | tee -a /tmp/ci/build.txt
           src=datapack; [ -d build/the-isles ] && src=build/the-isles
           echo "pack under test: $src" | tee -a /tmp/ci/build.txt
@@ -74,7 +76,7 @@ jobs:
           PUSH_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
           PHASES: ${{ steps.ph.outputs.phases }}
           PART: ${{ matrix.part }}
-        run: LOGS_BRANCH="ci-logs-${SUFFIX// /}${PART}" bash packtest/run.sh
+        run: LOGS_BRANCH="ci-logs-${PART}-nperf" bash packtest/run.sh
       - name: Keep the logs for the report job
         if: always() && steps.ph.outputs.phases != ''
         shell: bash
@@ -102,8 +104,8 @@ jobs:
         shell: bash
         run: |
           mkdir -p /tmp/ci
-          for d in /tmp/parts/ci-vanilla /tmp/parts/ci-pack /tmp/parts/ci-perf /tmp/parts/ci-nether; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
-          cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null || true; (cat /tmp/ci/build-vanilla.txt /tmp/ci/build-pack.txt 2>/dev/null || true) | sort -u > /tmp/ci/build.txt
+          for d in /tmp/parts/ci-nperf /tmp/parts/ci-nperfmods /tmp/parts/ci-nether; do [ -d $d ] && cp -r $d/. /tmp/ci/; done
+          cat /tmp/ci/run-*.txt > /tmp/ci/run.txt 2>/dev/null || true; (cat /tmp/ci/build-*.txt 2>/dev/null || true) | sort -u > /tmp/ci/build.txt
           # the release only holds The Isles' own files: built here without any provider (vanilla biomes)
           ISLES_PROVIDERS=none python3 tools/build_pack.py > /dev/null
           (cd datapack && zip -q -r -X /tmp/the-isles-tested.zip .)
@@ -116,22 +118,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
           git add -A && git commit -q -m "Pack test for ${GITHUB_SHA}"
-          # a partial run (packtest/quick) does not replace the logs of the last full one
-          if [ -f "$GITHUB_WORKSPACE/packtest/quick" ]; then to=ci-logs-quick; else to=ci-logs; fi
-          [ "${SUFFIX// /}" = "" ] || to=ci-logs-dh
+          to=ci-logs-nperf
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "ci-logs:$to"
-      - name: Publish the tested data pack
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          # only when the run says so: packtest/publish exists and the report's verdict (first line of verdict.txt) is PASS
-          if [ -f packtest/publish ] && [ "${GITHUB_REF_NAME}" = pack-test ] && head -1 /tmp/ci/verdict.txt 2>/dev/null | grep -q '^PASS'; then
-            gh release delete pack-test-latest -y --cleanup-tag -R "${{ github.repository }}" || true
-            sleep 3
-            gh release create pack-test-latest /tmp/the-isles-tested.zip /tmp/the-isles-mods-tested.zip -R "${{ github.repository }}" --target "${GITHUB_SHA}" \
-              --prerelease --title "The Isles - tested data pack (26.3)" \
-              --notes "the-isles-tested.zip: the world (no mod needed). the-isles-mods-tested.zip: add it next to the first one when playing with Create, Create Nuclear and Create: Gunsmithing (their ores then follow the islands). Both have the vanilla biomes: Geophilic and Overrealm may not be redistributed, tools/build_pack.py builds them in from your own copies (README, Biome packs). Built from the pack-test branch at ${GITHUB_SHA} and run through packtest/ (see packtest/README.md and the ci-logs branch). $(sed -n '2,40p' /tmp/ci/verdict.txt)"
-          else
-            echo "not published"
-          fi
