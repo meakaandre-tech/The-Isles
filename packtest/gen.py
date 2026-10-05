@@ -313,7 +313,7 @@ def cave_probes():
     for tag, x, z in [('centre', 0, 0), ('mid', 420, -260), ('outer', -780, 380)]:
         x0, z0 = x // 16 * 16, z // 16 * 16
         c += [f'forceload add {x0} {z0} {x0 + 47} {z0 + 47}', f'#time CAVEGEN-{tag}-9-chunks', f'#poll 300 execute if loaded {x0} 0 {z0} if loaded {x0 + 47} 0 {z0 + 47} run say LOADED box-{tag} ## LOADED box-{tag}', '#time']
-        for band, (y0, y1) in (('high', (-150, -12)), ('mid', (-290, -151)), ('low', (-395, -291))):
+        for band, (y0, y1) in (('sea', (-395, -339)), ('high', (-150, -12)), ('mid', (-290, -151)), ('low', (-395, -291))):   # (sea: below its sea level, no air may be left in the zone)
             c += [f'say SCANBOX cave-{tag}-{band} 48x48 columns at {x0} {z0}, y {y0}..{y1}, volume {48 * 48 * (y1 - y0 + 1)}']
             for b in CAVE_BLOCKS: c += [f'say SCAN cave-{tag}-{band} {b}', f'fill {x0} {y0} {z0} {x0 + 47} {y1} {z0 + 47} minecraft:structure_void replace {b}']
         c += ['forceload remove all']

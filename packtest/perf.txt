@@ -2,4 +2,3 @@
 vanilla ISLES_PROVIDERS=none
 biomes ISLES_PROVIDERS=overrealm,geophilic
 caves
-caves4 ISLES_CAVE_CELL_XZ=4
