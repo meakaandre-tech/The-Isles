@@ -346,6 +346,12 @@ def main():
         "type": "minecraft:noise", "biome_source": {"type": "minecraft:multi_noise", "biomes": entries}, "settings": ref("isles")}})
     dim = json.loads((Path(__file__).parent / "vanilla_overworld_dimension_type.json").read_text())
     dim.update(min_y=MIN_Y, height=HEIGHT, logical_height=HEIGHT)
+    # Look. Below y 63 the game draws a black disc over the lower half of the sky (the horizon of a non-flat world is
+    # hard-coded in the client), and islands are down to y -1350. The sky is drawn through the sky fog: with the fog
+    # ending a few blocks out, the whole dome, the disc included, takes the fog colour at every altitude.
+    dim["attributes"].update({"minecraft:visual/sky_fog_end_distance": SKY_FOG_END, "minecraft:visual/fog_color": FOG_COLOR,
+                              "minecraft:visual/cloud_height": CLOUD_HEIGHT})
+    write("data/minecraft/dimension_type/overworld.json", dim)
     # --- no snow line: rainy biomes stay rainy at any altitude
     warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
