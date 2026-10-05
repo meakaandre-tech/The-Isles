@@ -246,7 +246,9 @@ C += HEAD + ['gamerule immediate_respawn true', 'time set noon', 'gamerule advan
              'data get entity @e[type=minecraft:marker,tag=wspawn,limit=1] Pos']
 probe(C, 'spawn centre', 0, 0)
 C += ['say SPAWNCOL', 'execute at @e[type=minecraft:marker,tag=wspawn,limit=1] run function packtest:col', 'scoreboard players get y pt']
-C += island_probes() + void_probes() + pregen('land', *REG_LAND, after=animals())
+# the vanilla phase probes every sampled island; here a spread of them is enough to see that the mods do not change the terrain
+PACK_SAMPLE = ['S1', 'Sh4', 'P1', 'Pt3', 'Qt2', 'J1', 'Jt3', 'D1', 'K6', 'M4', 'T3', 'C4', 'e1', 'M1', 'I1', 'K5', 'R2', 'L3']
+C += island_probes([k for k in PACK_SAMPLE if k in SAMPLE]) + void_probes()[:40] + pregen('land', *REG_LAND, after=animals())
 
 # ---- ores: what is inside the islands, by altitude (64x64 columns through the whole body)
 ORES = ['minecraft:stone', 'minecraft:deepslate', 'minecraft:dirt', 'minecraft:gravel', 'minecraft:granite', 'minecraft:diorite', 'minecraft:andesite', 'minecraft:tuff',
@@ -386,11 +388,11 @@ S += ['cmd time set noon', 'cmd gamerule advance_time false', 'cmd gamerule spaw
       'cmd kill @e[type=minecraft:spider]', 'cmd kill @e[type=minecraft:enderman]', 'cmd kill @e[type=minecraft:witch]', 'cmd kill @e[type=minecraft:item]',
       'cmd weather rain', 'sleep 12', 'shot', 'cmd weather clear', 'cmd gamemode spectator packtest']
 # views: top-down and from the side, of a spread of islands
-VIEWS = ['S2', 'S4', 'Sh4', 'Pt3', 'Qt3', 'D4', 'K6', 'M4', 'T3', 'C4', 'Jt3', 'M5', 'e3', 'R2', 'L5', 'K5']
+VIEWS = ['S2', 'S4', 'Pt3', 'D4', 'K6', 'M4', 'T3', 'C4', 'Jt3', 'M5', 'e3', 'e1', 'R2']
 S += ['cmd say SECTION views']
 for k in VIEWS:
     i = I[k]; x, z, rad, top = i['x'], i['z'], i['radius'], i['y_top']
-    S += [f'cmd say VIEW {k} {i["biome"]} top', f'cmd tp packtest {x} {top + max(70, min(190, int(rad * 1.3)))} {z} 180 90', 'sleep 40', 'shot',
+    S += [f'cmd say VIEW {k} {i["biome"]} top', f'cmd tp packtest {x} {top + max(70, min(190, int(rad * 1.3)))} {z} 180 90', 'sleep 50', 'shot',
           f'cmd say VIEW {k} side', f'cmd tp packtest {x} {top + 12} {z + rad + 70} 180 12', 'sleep 14', 'shot']
 S += ['cmd say VIEW I1 sand above the basin', 'cmd tp packtest -1257 20 3440 180 25', 'sleep 40', 'shot']
 S += ['cmd say VIEW void looking down and at the horizon, y 0 and y -1500', f'cmd tp packtest {VX} 0 {VZ} 0 0', 'sleep 20', 'shot', f'cmd tp packtest {VX} -1500 {VZ} 0 -30', 'sleep 8', 'shot',

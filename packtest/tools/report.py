@@ -85,7 +85,9 @@ def server_report(name, isles=True):
             verdict, exp = 'ok', ''
             if p['kind'] in ('void', 'outside', 'rim') and not cov:
                 exp = f'void {MIN_Y}'
-                if y != MIN_Y: verdict = 'FAIL not empty'
+                own = I.get(p['tag'])   # the rim point is 4 blocks outside the radius: the rag noise can still put a block there
+                if y != MIN_Y and p['kind'] == 'rim' and own and own['y_bottom'] - 40 <= y <= own['y_top'] + 40: verdict = 'ok (ragged rim)'
+                elif y != MIN_Y: verdict = 'FAIL not empty'
                 elif b != 'the_isles:void': verdict = 'FAIL biome'
             elif p['kind'] == 'structure' and not cov: verdict = 'IN THE VOID' if y == MIN_Y else 'outside every island footprint, on something'
             elif y is None: verdict = 'FAIL no answer'
@@ -108,6 +110,8 @@ def server_report(name, isles=True):
             if p.get('y', MIN_Y) > MIN_Y and p.get('biome', '').startswith('minecraft:'):
                 k = p['biome'][10:]; snow.setdefault(k, [0, 0]); snow[k][0] += 1; snow[k][1] += 1 if p.get('snow') else 0
         wrong = sorted(k for k, (n, sn) in snow.items() if sn and k not in SNOWY)
+        bare = sorted(k for k, (n, sn) in snow.items() if not sn and k in SNOWY - {'frozen_ocean', 'deep_frozen_ocean', 'jagged_peaks', 'frozen_peaks', 'snowy_slopes', 'grove'})
+        if bare: fails.append(f'{name}: no snow layer at all in {", ".join(bare)}')
         print(f"\nsnow layer on the ground: {sum(v[1] for v in snow.values())} of {sum(v[0] for v in snow.values())} probes; "
               f"in biomes that do not snow in vanilla: {', '.join(f'{k} {snow[k][1]}/{snow[k][0]}' for k in wrong) or 'none'}")
         if wrong: fails.append(f'{name}: snow cover in {len(wrong)} biomes that rain in vanilla ({", ".join(wrong[:6])}...)')
