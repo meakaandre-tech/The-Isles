@@ -57,6 +57,16 @@ if has pack && [ ! -f $P/server-only ]; then
   (cd $C && chmod +x gradlew && ./gradlew downloadAssets --no-daemon -Dorg.gradle.console=plain > $out/client-prep.log 2>&1; echo "EXIT $?" >> $out/client-prep.log) &
 fi
 
+# ---- test-only diagnostics mod (packtest/debugmod, used when the file packtest/debug exists): compiled against the server's own jars
+if [ -f $P/debug ]; then
+  mkdir -p $W/boot && cd $W/boot && cp $W/server.jar . && echo "eula=true" > eula.txt
+  timeout 300 java -jar server.jar --initSettings > $out/debugmod.txt 2>&1
+  cp=$(find $W/boot -name '*.jar' | tr '\n' ':')
+  mkdir -p $W/dbg && javac -proc:none -nowarn -d $W/dbg -cp "$cp" $(find $P/debugmod/src -name '*.java') >> $out/debugmod.txt 2>&1
+  cp $P/debugmod/res/* $W/dbg/ && (cd $W/dbg && jar cf $W/packtest-debug.jar .) && ts "diagnostics mod built" || ts "diagnostics mod FAILED"
+  find $W/boot -name '*.jar' | sed "s#$W/boot/##" >> $out/debugmod.txt
+  cd $root
+fi
 SX=${SERVER_XMX:-5G}
 start_server() { # $1 = log file (in the current directory)
   rm -f in.fifo; mkfifo in.fifo
@@ -74,7 +84,14 @@ start_server() { # $1 = log file (in the current directory)
   done
   ts "server start took $(( $(date +%s) - t0 ))s: $(grep -o 'Done (.*' $1 | head -1)"
 }
-stop_server() { echo "stop" >&3; for i in $(seq 1 120); do grep -q '^EXIT' $1 && break; sleep 2; done; exec 3>&-; }
+stop_server() { # $1 = log; the server is killed when it does not stop by itself
+  echo "stop" >&3; for i in $(seq 1 60); do grep -q '^EXIT' $1 && break; sleep 2; done; exec 3>&-
+  if ! grep -q '^EXIT' $1; then ts "server did not stop: killed"; pkill -9 -f 'server.jar'; sleep 3; echo "EXIT killed" >> $1; fi
+}
+alive() { # $1 = log: does the server thread still answer the console (20 s)
+  local tag="PING $RANDOM"; echo "say $tag" >&3
+  for i in $(seq 1 20); do grep -q "$tag" $1 && return 0; sleep 1; done; return 1
+}
 feed() { # $1 = command file, $2 = server log
   [ -f "$1" ] || return
   local before=1 line rest t pc re t0 ok
@@ -93,7 +110,8 @@ feed() { # $1 = command file, $2 = server log
         ts "poll $ok after $(( $(date +%s) - t0 ))s: $re"
         if [ $ok = TIMEOUT ] && [ ! -f $out/timeout-stacks.txt ]; then   # first timeout: what are the server's threads doing
           pid=$(pgrep -f 'server.jar' | head -1); [ -n "$pid" ] && jstack $pid > $out/timeout-stacks.txt 2>&1
-        fi;;
+        fi
+        if [ $ok = TIMEOUT ] && ! alive $2; then ts "the server thread hangs: feed aborted at: $line"; HUNG=1; break; fi;;
       "#wait "*)   # "#wait N ## regex": waits until the log shows the regex after the previous command
         rest=${line#\#wait }; t=${rest%% *}; re=${rest##* \#\# }; t0=$(date +%s); ok=TIMEOUT
         while [ $(( $(date +%s) - t0 )) -lt $t ]; do
@@ -106,6 +124,7 @@ feed() { # $1 = command file, $2 = server log
   done < "$1"
 }
 finish_feed() { # $1 = log: waits until the console has caught up
+  [ -n "$HUNG" ] && { HUNG=; return; }
   echo "say CHECK commands done" >&3
   for i in $(seq 1 360); do grep -q 'CHECK commands done' $1 && break; grep -q '^EXIT' $1 && break; sleep 2; done
 }
@@ -119,6 +138,7 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   mkdir -p $dir/mods $dir/world/datapacks && cd $dir
   cp $W/server.jar . && cp "$W"/mods/fabric-api*.jar mods/
   [ "$2" = 1 ] && cp $ZIP world/datapacks/the-isles.zip
+  [ -f $W/packtest-debug.jar ] && cp $W/packtest-debug.jar mods/
   cp -r $W/gen/probes world/datapacks/packtest-probes
   props world
   ts "$name: server start"
