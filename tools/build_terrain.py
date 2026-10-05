@@ -30,7 +30,7 @@ BIG_RADIUS = 230          # islands at least this wide are "big" (flag_big write
 
 # ---------------------------------------------------------------------------------------------------------- seas
 SEA_BELOW_TOP = 8         # the highest water block is this far under the island's listed top (the rim's crest)
-RING, SHORE = 34, 14      # blocks from the rim to where the bowl starts; the sea biome starts SHORE blocks before that
+RING, SHORE = 30, 14      # blocks from the rim to where the bowl starts; the sea biome starts SHORE blocks before that
 SHORE_BIOME = {"warm_ocean": "beach", "lukewarm_ocean": "beach", "deep_lukewarm_ocean": "beach", "ocean": "beach", "deep_ocean": "beach",
                "cold_ocean": "stony_shore", "deep_cold_ocean": "stony_shore", "frozen_ocean": "snowy_beach", "deep_frozen_ocean": "snowy_beach"}
 SAND_FLOOR = {"warm_ocean", "lukewarm_ocean", "deep_lukewarm_ocean"}
@@ -38,7 +38,9 @@ def is_basin(i): return i["kind"] == "basin"
 def basin_shape(i):
     R, t = i["radius"], i["thickness"]
     e0 = max(0.16, RING / R)
-    return {"e0": e0, "e_sea": e0 - SHORE / R, "depth": round(0.3 * t), "water": i["y_top"] - SEA_BELOW_TOP}
+    depth = round(0.3 * t)
+    # (slope: the floor reaches its depth within a tenth of the radius, or less steeply than 60 degrees)
+    return {"e0": e0, "e_sea": e0 - SHORE / R, "depth": depth, "slope": max(0.1, 0.6 * depth / R), "water": i["y_top"] - SEA_BELOW_TOP}
 def layout_biome(i): return i.get("layout_biome", i["biome"])
 def shore_biome(i): return SHORE_BIOME.get(layout_biome(i), "beach")
 
@@ -58,7 +60,8 @@ def seas(bp, islands):
             "feature": {"type": "minecraft:block_column", "direction": "down", "prioritize_tip": False,
                         "allowed_placement": mc("matching_block_tag", tag="minecraft:air", offset=[0, 1, 0]),
                         "layers": [{"height": s["depth"] + 12, "provider": {"id": "minecraft:water", "properties": {"level": "0"}}}]},
-            "placement": [mc("fixed_placement", positions=chunks), mc("cuboid", xz_size=15, y_size=0),
+            # (a cuboid is at least two layers high: both are put back on the water level, the second attempt finds water)
+            "placement": [mc("fixed_placement", positions=chunks), mc("cuboid", xz_size=15, y_size=1), mc("height_range", height={"absolute": s["water"]}),
                           mc("block_predicate_filter", predicate=air), mc("biome")]}, separators=(",", ":")) + "\n")
         out.setdefault(i["biome"], []).append(bp.ref(f"sea/{i['key']}"))
     # the sea floor: the surface rule cannot know about water that features place, so what it made of the floor (grass,
@@ -68,7 +71,7 @@ def seas(bp, islands):
             "feature": {"type": "minecraft:block_column", "direction": "down", "prioritize_tip": False,
                         "allowed_placement": mc("matching_blocks", blocks=["minecraft:grass_block", "minecraft:dirt"], offset=[0, 1, 0]),
                         "layers": [{"height": 4, "provider": {"id": block}}]},
-            "placement": [mc("cuboid", xz_size=15, y_size=0), mc("heightmap", heightmap="OCEAN_FLOOR_WG"),
+            "placement": [mc("cuboid", xz_size=15, y_size=1), mc("heightmap", heightmap="OCEAN_FLOOR_WG"),
                           mc("block_predicate_filter", predicate=mc("matching_fluids", fluids="minecraft:water")),
                           mc("offset", x=0, y=-1, z=0),
                           mc("block_predicate_filter", predicate=mc("matching_blocks", blocks=["minecraft:grass_block", "minecraft:dirt"])), mc("biome")]})

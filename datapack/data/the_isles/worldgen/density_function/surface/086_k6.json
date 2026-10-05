@@ -36,9 +36,9 @@
       "left": {
        "type": "minecraft:sub",
        "left": "the_isles:edge/086_k6",
-       "right": 0.23776223776223776
+       "right": 0.2097902097902098
       },
-      "right": 4
+      "right": 8.511904761904761
      },
      "min": 0,
      "max": 1

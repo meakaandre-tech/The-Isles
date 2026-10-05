@@ -179,7 +179,7 @@ def island_fields(i):
     surface = sub(sub(top, mul(0.5 * amp, sub(1, RELIEF_N))), mul(rim, sub(1, c)))
     if basin:  # bowl: the rim ring stays up, the interior drops (a little less where the relief noise is low)
         surface = sub(sub(top, mul(rim, sub(1, clamp(mul(e, R / 12), 0, 1)))),
-                      mul(mul(sea["depth"], clamp(mul(sub(e, sea["e0"]), 4), 0, 1)), add(0.85, mul(0.15, RELIEF_N))))
+                      mul(mul(sea["depth"], clamp(mul(sub(e, sea["e0"]), 1 / sea["slope"]), 0, 1)), add(0.85, mul(0.15, RELIEF_N))))
     g = i.get("geyser_at")
     if g:   # level ground around the geyser, at the height layout/geysers.json gives
         gd = mc("distance_to_point", metric="euclidean", point=[g["x"], 0, g["z"]])
