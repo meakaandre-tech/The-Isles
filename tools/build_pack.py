@@ -14,6 +14,7 @@ NS = "the_isles"
 MIN_Y, HEIGHT = -2032, 4064
 CELL = 512          # grid cell size for the island lookup
 PAD = 8             # footprint padding in blocks
+SURFACE_RULE_DEPTH = 48   # the vanilla surface rule only runs this many blocks into the ground (see main)
 VOID_BIOME = f"{NS}:void"
 
 # surface relief (blocks) by biome; anything not listed uses DEFAULT_RELIEF
@@ -147,7 +148,13 @@ def main():
         "noise_router": {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
                          "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final},
         "sea_level": MIN_Y, "spawn_target": []})
-    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": ["minecraft:overworld/surface"]})
+    # The vanilla overworld only runs its surface rule near the surface (above_preliminary_surface). Without a limit the
+    # badlands branch turns a whole column into terracotta bands, and the band lookup throws below y -192
+    # (ArrayIndexOutOfBoundsException in MaterialSystem.getBand), which kills chunk generation there.
+    near_surface = {"type": "minecraft:stone_depth", "offset": SURFACE_RULE_DEPTH, "add_surface_depth": True,
+                    "secondary_depth_range": 0, "surface_type": "floor"}
+    write(f"data/{NS}/worldgen/material_rule/isles.json", {"type": "minecraft:sequence", "sequence": [
+        {"type": "minecraft:condition", "if_true": near_surface, "then_run": "minecraft:overworld/surface"}]})
     write(f"data/{NS}/worldgen/biome/void.json", {
         "attributes": {"minecraft:gameplay/natural_mob_spawns": {"argument": {"spawn_costs": {}, "spawns_by_category": {
             k: [] for k in ["ambient", "axolotls", "creature", "misc", "monster", "underground_water_creature", "water_ambient", "water_creature"]}},
