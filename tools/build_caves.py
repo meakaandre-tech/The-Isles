@@ -35,7 +35,6 @@ FADE = 12.0
 LAYER_TRIES = 12        # attempts per unit of a count_on_every_layer count
 SINK_BOTTOM = {"spiral_ledge": -150, "water_landing": -120, "sheer_drop": -110}   # where a shaft ends (the cave world's highlands)
 RAMP_PITCH, RAMP_WIDTH, RAMP_THICK, SECTORS = 36, 8, 12, 12
-CELL_XZ, CELL_Y = int(os.environ.get("ISLES_CAVE_CELL_XZ", 8)), int(os.environ.get("ISLES_CAVE_CELL_Y", 8))   # grid of the cave density (Dwarfhollow's own: 4, 8)
 CHAMBER, CHAMBER_OPEN = 48, 0.8   # within this many blocks around the foot of a shaft the cave density is lowered by this much
 
 def base_amplitude(amps):
@@ -129,9 +128,9 @@ class Caves:
             out.append((shaft, ramp)); self.log.append(f"sinkhole {s['id']} ({s.get('type')}): radius {r}, down to y {yb}" + (", spiral ramp" if ramp else ""))
         return out
     def carve(self, terrain):
-        """-> (the islands' density with the sinkholes cut through the roof, the cave world's density - below 0 where a cavern is,
-        above 1 outside the zone -, the density of the spiral ramps or None). The three are combined after the interpolation
-        (see build_pack), so the cave world can be computed on a coarser grid: the game computes it for every chunk of the world."""
+        """the world's density with the cave world cut into the island, the sinkholes cut through its roof and their ramps put back.
+        (Measured: a coarser grid for the cave noise, as a second interpolated function, gains nothing - 256 chunks of void take
+        the same 6.9 s with 4 and with 8 block cells -, so everything stays in the one function the terrain already is.)"""
         bp = self.bp
         self.noises(); self.zone()
         m = bp.clamp(bp.mul(bp.ref("cave/inner"), 1 / FADE), 0, 1)
@@ -140,11 +139,11 @@ class Caves:
         dens = self.density()
         if self.chambers: dens = bp.sub(dens, bp.mul(CHAMBER_OPEN, bp.tree(bp.dmax, self.chambers)))
         cave = bp.add(bp.clamp(dens, -2.0, 2.5), bp.mul(3.2, bp.sub(1, m)))   # >= 1.2 (no effect) outside the zone
-        out, ramps = terrain, [bp.clamp(ramp, -1, 1) for shaft, ramp in holes if ramp is not None]
-        for shaft, ramp in holes: out = bp.dmin(out, bp.clamp(bp.mul(shaft, -1.0), -1, 1))
-        bp.write(f"data/{bp.NS}/worldgen/density_function/cave/density.json", cave)
-        if ramps: bp.write(f"data/{bp.NS}/worldgen/density_function/cave/ramps.json", bp.tree(bp.dmax, ramps))
-        return out, bp.ref("cave/density"), bp.ref("cave/ramps") if ramps else None
+        out = bp.dmin(terrain, cave)
+        for shaft, ramp in holes:
+            out = bp.dmin(out, bp.clamp(bp.mul(shaft, -1.0), -1, 1))
+            if ramp is not None: out = bp.dmax(out, bp.clamp(ramp, -1, 1))
+        return out
 
     # ------------------------------------------------------------------------------------------------ biomes
     ISLAND_DEPTH = -1.9     # the "depth" climate parameter outside the cave world; Dwarfhollow's own runs from -0.3 to 1.1
@@ -153,10 +152,16 @@ class Caves:
         bp = self.bp
         inner = bp.ref("cave/inner")
         depth = bp.clamp(bp.mc("gradient", axis="y", from_coordinate=self.lo, to_coordinate=self.hi, from_value=1.1, to_value=-0.3), -0.3, 1.1)
-        router.update(continents=bp.ref("cave/continents"), erosion=bp.ref("cave/erosion"), ridges="minecraft:overworld/ridges",
-                      vegetation=bp.flat("minecraft:overworld/vegetation"),
-                      temperature=bp.choice(inner, 0, 100000, bp.flat("minecraft:overworld/temperature"), router["temperature"]),
-                      depth=bp.choice(inner, 0, 100000, depth, self.ISLAND_DEPTH))
+        # The game asks for the climate point by point (16,000 points per chunk), and there a range_choice only computes the
+        # branch it takes. So the heights and the island's circle are tested first, with numbers alone: with the noises
+        # computed for every point of the world, 256 chunks of void took 6.9 s instead of 4.9.
+        i = self.island
+        def near(inside, outside):
+            return bp.choice(bp.Y, self.lo - 16, self.hi + 48, bp.choice(bp.ref(f"dist/{i['key']}"), 0, i["radius"], inside, outside), outside)
+        router.update(continents=near(bp.ref("cave/continents"), 0.0), erosion=near(bp.ref("cave/erosion"), 0.0),
+                      ridges=near("minecraft:overworld/ridges", 0.0), vegetation=near(bp.flat("minecraft:overworld/vegetation"), 0.0),
+                      temperature=near(bp.choice(inner, 0, 100000, bp.flat("minecraft:overworld/temperature"), router["temperature"]), router["temperature"]),
+                      depth=near(bp.choice(inner, 0, 100000, depth, self.ISLAND_DEPTH), self.ISLAND_DEPTH))
     def island_point(self, point):
         """an island biome's parameters: any climate, outside the cave world"""
         wide = [-2, 2]

@@ -518,7 +518,7 @@ def build(src):
     if src and src.cave:   # the cave world inside the spawn island (tools/build_caves.py)
         import build_caves
         caves = build_caves.Caves(sys.modules[__name__], src.cave, layout, islands, src.cave_island)
-        land, cave_density, cave_ramps = caves.carve(land); caves.files()
+        land = caves.carve(land); caves.files()
     write(f"data/{NS}/worldgen/density_function/terrain.json", land)
 
     # --- biome code: one main island per column; stacked tiers switch biome by height
@@ -551,13 +551,8 @@ def build(src):
           + [biome_term(i) for i in mains if has_stack(i)]))))
 
     # --- noise settings, surface rule, dimension
-    def shaped(f, xz=CELL_XZ, y=CELL_Y, blend=True):
-        return mc("squeeze", input=mc("interpolated", cell_size_xz=xz, cell_size_y=y, input=mul(mc("blend_density", input=f) if blend else f, 0.64)))
-    final = shaped(ref("terrain"))
-    if caves:   # caverns where the cave world's density is lower; the ramps of the sinkholes stay
-        final = dmin(final, shaped(cave_density, build_caves.CELL_XZ, build_caves.CELL_Y, False))
-        if cave_ramps: final = dmax(final, shaped(cave_ramps, blend=False))
-    final = add(final, mc("beardifier"))
+    final = add(mc("squeeze", input=mc("interpolated", cell_size_xz=CELL_XZ, cell_size_y=CELL_Y,
+                input=mul(mc("blend_density", input=ref("terrain")), 0.64))), mc("beardifier"))
     router = {"chunk_surface_level": 0.0, "continents": 0.0, "depth": 0.0, "erosion": 0.0, "ridges": 0.0,
               "vegetation": 0.0, "temperature": ref("biome_code"), "final_density": final}
     if caves: caves.router(router)
