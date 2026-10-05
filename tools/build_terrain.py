@@ -174,7 +174,8 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     if not sites: return None, None
     air = mc("matching_block_tag", tag="minecraft:air")
     # the geyser: the vanilla sulfur spring on the ground at the fixed place (under a tier too: no heightmap)
-    # (down to the ground through whatever a tree of the chunk next door hangs over it: a start in leaves found no ground)
+    # (down to the ground through whatever the chunk next door has already grown over the place - leaves, a trunk, flowers:
+    # with a search through air only, two of 25 geysers were missing, one under a flower)
     tree = mc("any_of", predicates=[mc("matching_block_tag", tag="minecraft:leaves"), mc("matching_block_tag", tag="minecraft:logs")])
     # The vanilla feature picks one of ten templates by weight; here only the small and medium ones (weights as in vanilla):
     # in the test the two geysers that were missing of 25 fit the share of the large ones, which never appeared.
@@ -184,8 +185,7 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     bp.write(f"data/{bp.NS}/worldgen/feature/geyser.json", spring)
     bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser.json", {"feature": bp.ref("geyser"), "placement": [
         mc("fixed_placement", positions=[[g["x"], g["y"] + 8, g["z"]] for i, g in sites]),
-        mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("all_of", predicates=[mc("solid"), mc("not", predicate=tree)]),
-           allowed_search_condition=mc("any_of", predicates=[air, tree, mc("replaceable")])),
+        mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("all_of", predicates=[mc("solid"), mc("not", predicate=tree)])),
         mc("offset", x=0, y=1, z=0)]})
     # Where water freezes (snowy plains, peaks) the spring's pool would be ice and the geyser "dry": a light block (invisible,
     # level 13) over the water above every potent sulfur block of those springs keeps it open (ice from generation melts).
