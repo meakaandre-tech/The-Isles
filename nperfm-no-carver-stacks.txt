@@ -1,0 +1,34 @@
+38 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 34.2%    13 surface rule
+ 31.6%    12 features
+ 15.8%     6 terrain: aquifer
+  5.3%     2 terrain: 3D noise
+  5.3%     2 terrain: other density functions
+  5.3%     2 biomes
+  2.6%     1 terrain: fill (blocks into sections)
+--- features
+ 21.1%     8 placement.FeaturePlacer.place
+  2.6%     1 placement.OffsetPlacement.modify
+  2.6%     1 placement.BiomeFilter.shouldPlace
+  2.6%     1 placement.BlockPredicateFilter.shouldPlace
+  2.6%     1 feature.SteppedColumnClusterFeature.place
+--- top frames
+    6 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    4 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001e99a470.tryApply
+    4 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001e99a470.tryApply < material.rule.SequenceRule.lambda$compile$0
+    4 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    4 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < net.minecraft.server.level.WorldGenRegion.getBlockState
+    2 com.ishland.c2me.opts.natives_math.common.Bindings.c2me_natives_noise_perlin_sample_legacy_area < synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume
+    2 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x000000001e99e470.call
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 BitRandomSource.nextInt < net.minecraft.util.valueproviders.TrapezoidInt.sample < placement.OffsetPlacement.modify
+    1 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    1 chunk.status.ChunkStatusTasks.generateBiomes < chunk.status.ChunkPyramid$$Lambda/0x000000001e8a77e8.doWork < chunk.status.ChunkStep.apply
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < LevelReader.getBiome
+    1 densityfunction.op.InterpolatedFunction$Sampler.fillCell < densityfunction.op.InterpolatedFunction$Sampler.sampleWithBlockStep < densityfunction.op.InterpolatedFunction$Sampler.sampleVolume
+    1 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.fillBiomesFromNoise
+    1 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000001e99ef58.apply
+    1 block.state.StateHolder.valueIndex < block.state.StateHolder.hasProperty < block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid

@@ -1,0 +1,48 @@
+92 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 43.5%    40 surface rule
+ 23.9%    22 terrain: aquifer
+  9.8%     9 terrain: 3D noise
+  6.5%     6 features
+  4.3%     4 light
+  3.3%     3 terrain: fill (blocks into sections)
+  3.3%     3 saving / loading chunks
+  2.2%     2 terrain: other density functions
+  2.2%     2 biomes
+  1.1%     1 tick
+--- features
+  2.2%     2 other
+  2.2%     2 placement.BlockPredicateFilter.shouldPlace
+  1.1%     1 feature.HugeFungusFeature.place
+  1.1%     1 placement.FeaturePlacer.place
+--- top frames
+   20 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+   15 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000008c1aa5a8.tryApply
+    8 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+    7 material.MaterialRuleContext.resolveAnchorY < material.condition.YCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    4 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000008c1aa5a8.tryApply < material.rule.SequenceRule.lambda$compile$0
+    4 biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000008c1a88c0.apply < material.MaterialRuleContext.getBiome
+    3 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    2 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000008c1a58b8.get
+    2 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    2 lighting.LightEngine.getState < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    2 net.minecraft.util.SimpleBitStorage.<init> < chunk.PalettedContainer.pack < chunk.PalettedContainer.lambda$codec$2
+    1 densityfunction.op.LerpFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.iterateNoiseColumn < NoiseBasedChunkGenerator.getBaseColumn
+    1 material.rule.SequenceRule.lambda$compile$0 < material.rule.SequenceRule$$Lambda/0x000000008c1aac50.tryApply < material.rule.ConditionRule.lambda$compile$0
+    1 densityfunction.generator.GradientFunction$GradientSampler.sampleVolume < densityfunction.generator.GradientFunction$ClampedSampler.sampleVolume < densityfunction.op.BinaryFunction$MaxSampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x000000008c1af7f8.visitColumn
+    1 chunk.PalettedContainer$$Lambda/0x000000008c1b6998.accept < net.minecraft.util.SimpleBitStorage.getAll < chunk.PalettedContainer.getAll
+    1 feature.HugeFungusFeature.placeHat < feature.HugeFungusFeature.place < placement.FeaturePlacer.place
+    1 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    1 biome.Climate$RTree.search < biome.Climate$ParameterList.findValueIndex < biome.Climate$ParameterList.findValueIndex
+    1 biome.Climate$ParameterList.findValueIndex < biome.Climate$ParameterList.findValueIndex < biome.Climate$ParameterList.findValue
+    1 synth.NoiseStack$Perlin.get < material.MaterialRuleContext$1.getAsDouble < material.condition.NoiseThresholdCondition.lambda$compile$0
+    1 lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases < lighting.LightEngine.runLightUpdates
+    1 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    1 material.FluidState.isEmpty < material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface
+    1 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    1 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSet < chunk.LevelChunkSection.setBlockState
+    1 lighting.DataLayerStorageMap.getLayer < lighting.LayerLightSectionStorage.getDataLayer < lighting.LayerLightSectionStorage.getDataLayer
+    1 chunk.LevelChunkSection.setBlockState < chunk.LevelChunkSection.setBlockState < chunk.ProtoChunk.setBlockState
+    1 material.FlowingFluid.isSourceBlockOfThisType < material.FlowingFluid.canMaybePassThrough < material.FlowingFluid.canPassThrough

@@ -1,0 +1,91 @@
+4
+               total        used        free      shared  buff/cache   available
+Mem:           15989        1117       12481          45        2759       14872
+sample islands: S1 S2 Sh4 P1 Pt2 Pt3 Q1 Qt2 Qt3 J1 Jt2 Jt3 D1 K1 K6 M4 T3 C1 E1 F1 H1 R1 T1 e1 M1 N1 I1 K2 L3 R2 S4 F2 H2 B1 L5 D2 K5 P3 E4
+1715 pack commands, 730 script lines, 31 restart commands; shots: 93 script sleep: 2282 s
+[21:57:34] mods: 1
+-rw-r--r-- 1 runner runner 181838 Oct  5 21:57 /tmp/work/server.jar
+[21:57:50] diagnostics mod built
+[21:58:11] server start took 20s: Done (3.865s)! For help, type "help"
+[21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+[21:59:06] server start took 20s: Done (3.317s)! For help, type "help"
+[22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:03:10] server start took 21s: Done (3.493s)! For help, type "help"
+[22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+[22:05:27] server start took 20s: Done (3.262s)! For help, type "help"
+[22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+[22:07:41] server start took 20s: Done (3.612s)! For help, type "help"
+[22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+[22:10:00] server start took 20s: Done (3.708s)! For help, type "help"
+[22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:11:53] server start took 20s: Done (3.121s)! For help, type "help"
+[22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+[22:14:07] server start took 20s: Done (3.568s)! For help, type "help"
+[22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+[22:16:20] server start took 20s: Done (3.586s)! For help, type "help"
+[22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+[22:18:17] server start took 20s: Done (3.396s)! For help, type "help"
+[22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+[22:20:32] server start took 20s: Done (3.410s)! For help, type "help"
+[22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+[21:57:34] mods: 1
+[21:57:50] diagnostics mod built
+[21:58:11] server start took 20s: Done (3.865s)! For help, type "help"
+[21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+[21:59:06] server start took 20s: Done (3.317s)! For help, type "help"
+[22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:03:10] server start took 21s: Done (3.493s)! For help, type "help"
+[22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+[22:05:27] server start took 20s: Done (3.262s)! For help, type "help"
+[22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+[22:07:41] server start took 20s: Done (3.612s)! For help, type "help"
+[22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+[22:10:00] server start took 20s: Done (3.708s)! For help, type "help"
+[22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:11:53] server start took 20s: Done (3.121s)! For help, type "help"
+[22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+[22:14:07] server start took 20s: Done (3.568s)! For help, type "help"
+[22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+[22:16:20] server start took 20s: Done (3.586s)! For help, type "help"
+[22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+[22:18:17] server start took 20s: Done (3.396s)! For help, type "help"
+[22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+[22:20:32] server start took 20s: Done (3.410s)! For help, type "help"
+[22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+build: eroded_badlands -> badlands on 6 islands
+build: layer 0: 196 islands
+build: layer 1: 41 islands
+build: layer 2: 3 islands
+build: 32 of 48 biomes get a constant climate
+build: structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+build: structure ancient_city: 60 blocks under the island surface
+build: structure mansion: off
+build: structure mineshaft: off
+build: structure mineshaft_mesa: off
+build: structure monument: off
+build: structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+build: structure ruined_portal: on or half in the island surface
+build: structure ruined_portal_desert: on or half in the island surface
+build: structure ruined_portal_jungle: on or half in the island surface
+build: structure ruined_portal_mountain: on or half in the island surface
+build: structure ruined_portal_ocean: on or half in the island surface
+build: structure ruined_portal_swamp: on or half in the island surface
+build: structure stronghold: off
+[22:22:18] end

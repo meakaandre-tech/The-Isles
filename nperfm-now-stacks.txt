@@ -1,0 +1,30 @@
+36 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 30.6%    11 surface rule
+ 30.6%    11 features
+ 22.2%     8 terrain: aquifer
+  5.6%     2 terrain: fill (blocks into sections)
+  5.6%     2 terrain: 3D noise
+  2.8%     1 structures
+  2.8%     1 terrain: other density functions
+--- features
+ 22.2%     8 placement.FeaturePlacer.place
+  5.6%     2 feature.SteppedColumnClusterFeature.place
+  2.8%     1 other
+--- top frames
+    8 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    7 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000129a0d30.tryApply
+    5 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    2 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 Aquifer$NoiseBasedAquifer.aquiferExtracted$getFinalBlockState < Aquifer$NoiseBasedAquifer.aquiferExtracted$applyPost < Aquifer$NoiseBasedAquifer.computeSubstance
+    2 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    1 net.minecraft.nbt.IntTag$1.readAccounted < net.minecraft.nbt.IntTag$1.load < net.minecraft.nbt.IntTag$1.load
+    1 densityfunction.op.BinaryFunction$MaxSampler.sampleVolume < densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    1 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000001299b168.get
+    1 Aquifer$NoiseBasedAquifer.aquiferExtracted$extractedCheckFG < Aquifer$NoiseBasedAquifer.aquiferExtracted$getFinalBlockState < Aquifer$NoiseBasedAquifer.aquiferExtracted$applyPost
+    1 feature.SteppedColumnClusterFeature.placeColumn < feature.SteppedColumnClusterFeature.place < placement.FeaturePlacer.place
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x000000001299c800.apply
+    1 block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid < block.state.BlockBehaviour$BlockStateBase.getFluidState < material.MaterialSystem.isStone
+    1 LevelWriter.setBlock < LevelWriter.setBlockAndUpdate < feature.Feature.setBlock
+    1 block.state.StateHolder.valueIndex < block.state.StateHolder.hasProperty < block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid
+    1 chunk.ChunkGenerator$$Lambda/0x00000000129a7000.apply < chunk.ChunkGenerator.applyBiomeDecoration < chunk.status.ChunkStatusTasks.generateFeatures

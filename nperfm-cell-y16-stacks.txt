@@ -1,0 +1,42 @@
+36 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 30.6%    11 surface rule
+ 27.8%    10 features
+ 19.4%     7 terrain: aquifer
+  5.6%     2 terrain: 3D noise
+  5.6%     2 biomes
+  5.6%     2 terrain: fill (blocks into sections)
+  2.8%     1 terrain: other density functions
+  2.8%     1 carvers
+--- features
+ 13.9%     5 placement.FeaturePlacer.place
+  5.6%     2 other
+  2.8%     1 feature.HugeFungusFeature.place
+  2.8%     1 placement.BlockPredicateFilter.shouldPlace
+  2.8%     1 feature.ReplaceBlobsFeature.place
+--- top frames
+    5 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    3 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    2 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.iterateNoiseColumn < NoiseBasedChunkGenerator.getBaseColumn
+    2 block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid < block.state.BlockBehaviour$BlockStateBase.getFluidState < material.MaterialSystem.isStone
+    2 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < net.minecraft.server.level.WorldGenRegion.getBlockState
+    1 densityfunction.op.BinaryFunction$MaxSampler.sampleVolume < densityfunction.op.IntervalSelectFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$ConstFirstSampler.sampleVolume
+    1 com.ishland.c2me.opts.natives_math.common.Bindings.c2me_natives_noise_perlin_sample_legacy_area < synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume
+    1 LevelReader.getChunk < net.minecraft.server.level.WorldGenRegion.getChunk < LevelReader.getChunk
+    1 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x0000000039999cd0.call
+    1 biome.Climate$ParameterList.findValueIndex < biome.Climate$ParameterList.findValueIndex < biome.Climate$ParameterList.findValue
+    1 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    1 material.MaterialRuleContext$LazyYCondition.test < material.condition.NotCondition.lambda$compile$0 < material.condition.NotCondition$$Lambda/0x00000000399a5cd0.test
+    1 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000399a4218.apply
+    1 block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid < block.state.BlockBehaviour$BlockStateBase.getFluidState < material.MaterialSystem.buildSurface
+    1 net.minecraft.world.attribute.EnvironmentAttributeSystem.lambda$addBiomeLayer$0 < net.minecraft.world.attribute.EnvironmentAttributeSystem$$Lambda/0x00000000398eaa40.apply < net.minecraft.world.attribute.EnvironmentAttributeSystem.addBiomeLayer
+    1 carver.CaveWorldCarver.carve < NoiseBasedChunkGenerator.generateCarvers < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    1 material.rule.ConditionRule.compile < material.rule.SequenceRule.compile < material.rule.MaterialRule$HolderHolder.compile
+    1 block.state.BlockBehaviour$BlockStateBase.handler$cmn000$the_sift$theSift$actualFluid < block.state.BlockBehaviour$BlockStateBase.getFluidState < chunk.LevelChunkSection.setBlockState
+    1 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    1 chunk.PalettedContainer$$Lambda/0x00000000399aa730.accept < net.minecraft.util.SimpleBitStorage.getAll < chunk.PalettedContainer.getAll
+    1 biome.MultiNoiseBiomeSource.parameters < biome.MultiNoiseBiomeSource.getNoiseBiome < biome.MultiNoiseBiomeSource.lambda$createResolverForChunk$0
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    1 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000399a5628.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000399a5628.tryApply

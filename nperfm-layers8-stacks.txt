@@ -1,0 +1,26 @@
+34 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 26.5%     9 terrain: aquifer
+ 26.5%     9 features
+ 26.5%     9 surface rule
+ 14.7%     5 terrain: fill (blocks into sections)
+  2.9%     1 terrain: other density functions
+  2.9%     1 terrain: 3D noise
+--- features
+ 20.6%     7 placement.FeaturePlacer.place
+  5.9%     2 feature.ReplaceBlobsFeature.place
+--- top frames
+    7 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    7 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    3 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001f99f410.tryApply
+    2 net.minecraft.core.HolderSet$Direct.contains < material.condition.BiomeCondition$1.compute < material.MaterialRuleContext$LazyYCondition.test
+    2 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000001f998450.get
+    2 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x000000001f99f410.tryApply < material.rule.SequenceRule.lambda$compile$0
+    2 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x000000001f99b3c8.call
+    1 densityfunction.op.IntervalSelectFunction.hashCode < densityfunction.DensityFunctionCompiler.getSampler < RandomState.getSampler
+    1 Aquifer$NoiseBasedAquifer.surfaceLevel < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 net.minecraft.server.level.WorldGenRegion.setBlock < LevelWriter.setBlock < LevelWriter.setBlockAndUpdate
+    1 feature.ReplaceBlobsFeature.place < placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck
+    1 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    1 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.lambda$applyCarvingMask$0 < NoiseBasedChunkGenerator$$Lambda/0x000000001f9a4cc0.visitColumn

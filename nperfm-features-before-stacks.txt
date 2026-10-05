@@ -1,0 +1,35 @@
+38 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 34.2%    13 features
+ 18.4%     7 surface rule
+ 18.4%     7 terrain: fill (blocks into sections)
+  7.9%     3 terrain: aquifer
+  5.3%     2 other
+  5.3%     2 terrain: 3D noise
+  5.3%     2 saving / loading chunks
+  2.6%     1 structures
+  2.6%     1 terrain: other density functions
+--- features
+ 26.3%    10 placement.FeaturePlacer.place
+  2.6%     1 feature.SpringFeature.place
+  2.6%     1 placement.BlockPredicateFilter.shouldPlace
+  2.6%     1 feature.ReplaceBlobsFeature.place
+--- top frames
+    9 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    5 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000004499f328.get
+    4 chunk.PalettedContainer.getAndSet < chunk.PalettedContainer.getAndSetUnchecked < chunk.LevelChunkSection.setBlockState
+    3 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    2 synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume < densityfunction.op.LerpFunction$Sampler.sampleVolume
+    2 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x00000000449a6470.call
+    2 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000449a2470.tryApply
+    1 net.minecraft.nbt.CompoundTag$1.loadCompound < net.minecraft.nbt.CompoundTag$1.load < net.minecraft.nbt.CompoundTag$1.load
+    1 com.ishland.flowsched.scheduler.StatusAdvancingScheduler.getHolder < com.ishland.flowsched.scheduler.StatusAdvancingScheduler.tickHolder0 < com.ishland.flowsched.scheduler.ItemHolder.lambda$markDirty0$0
+    1 com.ishland.flowsched.scheduler.ItemHolder.subscribeOp < com.ishland.flowsched.scheduler.StatusAdvancingScheduler.advanceStatus0 < com.ishland.flowsched.scheduler.StatusAdvancingScheduler.tickHolder0
+    1 chunk.ProtoChunk.setBlockState < chunk.ChunkAccess.setBlockState < material.MaterialSystem$1.setBlock
+    1 net.minecraft.world.ticks.SavedTick$1.hashCode < net.minecraft.world.ticks.ProtoChunkTicks.schedule < net.minecraft.world.ticks.ProtoChunkTicks.schedule
+    1 Beardifier.sampleValueUnchecked < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    1 net.minecraft.core.TypedInstance.is < blockpredicates.MatchingBlockTagPredicate.test < blockpredicates.StateTestingPredicate.test
+    1 net.minecraft.server.level.WorldGenRegion.warnIfReadOutsideWriteZone < net.minecraft.server.level.WorldGenRegion.getBlockState < placement.FeaturePlacer.place
+    1 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000449a2470.tryApply < material.rule.SequenceRule.lambda$compile$0
+    1 net.minecraft.util.DelegateDataOutput.writeLong < net.minecraft.nbt.LongArrayTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag
+    1 net.minecraft.nbt.CompoundTag.write < net.minecraft.nbt.CompoundTag.writeNamedTag < net.minecraft.nbt.CompoundTag.write

@@ -1,0 +1,54 @@
+-rw-r--r-- 1 runner runner   4113 Oct  5 21:56 /tmp/the-isles-mods-tested.zip
+-rw-r--r-- 1 runner runner   4113 Oct  5 21:57 /tmp/the-isles-mods-tested.zip
+-rw-r--r-- 1 runner runner 473375 Oct  5 21:56 /tmp/the-isles-tested.zip
+-rw-r--r-- 1 runner runner 473375 Oct  5 21:57 /tmp/the-isles-tested.zip
+240 islands, 48 biomes, 1135 files -> /home/runner/work/The-Isles/The-Isles/datapack
+32 of 48 biomes get a constant climate
+WARNING: the committed data packs differ from the generator output
+eroded_badlands -> badlands on 6 islands
+layer 0: 196 islands
+layer 1: 41 islands
+layer 2: 3 islands
+nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+nether: 6 layers, lava at y -1977 -1297 -657 23 703 1383, 34 features per layer
+nether: 8 layers, lava at y -1977 -1457 -977 -497 23 543 1023 1503, 34 features per layer
+no provider in vendor/ (or ISLES_PROVIDERS=none): vanilla biomes only
+pack under test: datapack
+structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+structure ancient_city: 60 blocks under the island surface
+structure mansion: off
+structure mineshaft: off
+structure mineshaft_mesa: off
+structure monument: off
+structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+structure ruined_portal: on or half in the island surface
+structure ruined_portal_desert: on or half in the island surface
+structure ruined_portal_jungle: on or half in the island surface
+structure ruined_portal_mountain: on or half in the island surface
+structure ruined_portal_ocean: on or half in the island surface
+structure ruined_portal_swamp: on or half in the island surface
+structure stronghold: off
+structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+structure trial_chambers: 32..48 blocks under the island surface
+structure village_desert: surface (as in vanilla), not at the bottom of the world
+structure village_plains: surface (as in vanilla), not at the bottom of the world
+structure village_savanna: surface (as in vanilla), not at the bottom of the world
+structure village_snowy: surface (as in vanilla), not at the bottom of the world
+structure village_taiga: surface (as in vanilla), not at the bottom of the world

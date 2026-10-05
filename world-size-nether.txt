@@ -1,0 +1,2 @@
+287M	world
+du: cannot access 'world/DIM-1': No such file or directory

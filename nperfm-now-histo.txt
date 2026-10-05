@@ -1,0 +1,23 @@
+5476:
+ num     #instances         #bytes  class name (module)
+-------------------------------------------------------
+   1:        964539      120959736  [B (java.base@25.0.4.1)
+   2:        160047      112504408  [J (java.base@25.0.4.1)
+   3:        255875       30965992  [Ljava.lang.Object; (java.base@25.0.4.1)
+   4:           858       18839856  [F (java.base@25.0.4.1)
+   5:        141260       18081280  net.minecraft.world.level.block.state.BlockState
+   6:        639572       15349728  net.minecraft.world.level.chunk.PalettedContainer
+   7:        639572       15349728  net.minecraft.world.level.chunk.PalettedContainer$Data
+   8:        532300       12775200  net.minecraft.core.BlockPos
+   9:        480326       11527824  net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate$StructureBlockInfo
+  10:        474725       11393400  java.lang.String (java.base@25.0.4.1)
+  11:        319786       10233152  net.minecraft.world.level.chunk.LevelChunkSection
+  12:         66760        8382968  [I (java.base@25.0.4.1)
+  13:        522941        8367056  net.minecraft.util.ZeroBitStorage
+  14:        522941        8367056  net.minecraft.world.level.chunk.SingleValuePalette
+  15:        324295        8060176  [S (java.base@25.0.4.1)
+  16:        240598        7699136  java.util.HashMap$Node (java.base@25.0.4.1)
+  17:        137194        7682864  net.minecraft.world.phys.shapes.SubShape
+  18:        319786        7674864  net.caffeinemc.mods.lithium.common.world.section.LithiumSectionData$SectionData
+  19:         15670        7463120  [Ljdk.internal.vm.FillerElement; (java.base@25.0.4.1)
+Total      10943606      589381256

@@ -1,0 +1,23 @@
+2721:
+ num     #instances         #bytes  class name (module)
+-------------------------------------------------------
+   1:        331262       41195768  [B (java.base@25.0.4.1)
+   2:         76731        9603120  [Ljava.lang.Object; (java.base@25.0.4.1)
+   3:         25879        7900480  [J (java.base@25.0.4.1)
+   4:        299809        7195416  java.lang.String (java.base@25.0.4.1)
+   5:        192448        6158336  java.util.HashMap$Node (java.base@25.0.4.1)
+   6:        211012        5064288  net.minecraft.core.BlockPos
+   7:        210051        5041224  net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate$StructureBlockInfo
+   8:         35723        3715192  net.minecraft.world.level.block.state.BlockState
+   9:         52148        3614888  [Ljava.util.HashMap$Node; (java.base@25.0.4.1)
+  10:         28610        3598896  java.lang.Class (java.base@25.0.4.1)
+  11:         51450        3292800  java.util.LinkedHashMap (java.base@25.0.4.1)
+  12:         76717        3068680  java.util.LinkedHashMap$Entry (java.base@25.0.4.1)
+  13:         48198        2699088  net.minecraft.world.phys.shapes.SubShape
+  14:         18731        2152080  [I (java.base@25.0.4.1)
+  15:         38145        1971760  [D (java.base@25.0.4.1)
+  16:         61000        1682648  [Lnet.minecraft.world.level.block.state.StateHolder;
+  17:         48198        1542336  net.minecraft.world.phys.shapes.SliceShape
+  18:         38505        1540200  it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
+  19:          6772        1512592  [Ljdk.internal.vm.FillerElement; (java.base@25.0.4.1)
+Total       4079091      177869472

@@ -1,0 +1,38 @@
+71 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 46.5%    33 surface rule
+ 15.5%    11 terrain: 3D noise
+ 15.5%    11 terrain: fill (blocks into sections)
+  9.9%     7 terrain: aquifer
+  4.2%     3 terrain: other density functions
+  2.8%     2 features
+  2.8%     2 tick
+  1.4%     1 carvers
+  1.4%     1 light
+--- features
+  1.4%     1 placement.OffsetPlacement.modify
+  1.4%     1 placement.CountPlacement.hashCode
+--- top frames
+   16 material.MaterialRuleContext$LazyYCondition.test < material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000821b11c0.tryApply
+   11 synth.SmearedPerlinNoise.addToVolume < synth.NoiseStack$SmearedPerlin.addToVolume < densityfunction.generator.NoiseFunction$Sampler.sampleVolume
+   11 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x00000000821ae5b8.get
+    6 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000821b11c0.tryApply < material.rule.SequenceRule.lambda$compile$0
+    5 Aquifer$NoiseBasedAquifer.computeSubstance < NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    3 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface < NoiseBasedChunkGenerator.lambda$buildTerrain$0
+    2 material.rule.SequenceRule.lambda$compile$0 < material.rule.SequenceRule$$Lambda/0x00000000821b1638.tryApply < material.rule.ConditionRule.lambda$compile$0
+    2 biome.BiomeManager.getBiome < biome.BiomeManager.getBiome < material.MaterialSystem$$Lambda/0x00000000821afcc8.apply
+    1 net.minecraft.util.Mth.floor < Aquifer$NoiseBasedAquifer.maxSurfaceLevel < Aquifer$NoiseBasedAquifer.<init>
+    1 material.FluidState.isEmpty < material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface
+    1 material.MaterialSystem$1.getBlock < material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.buildSurface
+    1 Aquifer$NoiseBasedAquifer.surfaceLevel < Aquifer$NoiseBasedAquifer.computeFluid < Aquifer$NoiseBasedAquifer.getAquiferStatus
+    1 carver.WorldCarver.carveEllipsoid < carver.CaveWorldCarver.createTunnel < carver.CaveWorldCarver.carve
+    1 material.rule.ConditionRule.lambda$compile$0 < material.rule.ConditionRule$$Lambda/0x00000000821b11c0.tryApply < material.rule.ConditionRule.lambda$compile$0
+    1 densityfunction.DensityBuffer.fill < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    1 WorldgenRandom.next < BitRandomSource.nextInt < net.minecraft.util.valueproviders.TrapezoidInt.sample
+    1 placement.CountPlacement.hashCode < placement.PlacedFeature.hashCode < biome.BiomeGenerationSettings.hasFeature
+    1 densityfunction.op.UnaryFunction$SqueezeSampler.sampleVolume < densityfunction.op.BinaryFunction$AddSampler.sampleVolume < densityfunction.DensitySampler$Bound.sampleVolume
+    1 chunk.ChunkAccess.getMinY < LevelHeightAccessor.getMinSectionY < LevelHeightAccessor.getSectionYFromSectionIndex
+    1 Beardifier.sampleValueUnchecked < Beardifier.sampleVolume < densityfunction.ContextBoundSampler.sampleVolume
+    1 net.minecraft.world.entity.ai.navigation.PathNavigation.createPath < net.minecraft.world.entity.ai.navigation.PathNavigation.createPath < net.minecraft.world.entity.ai.navigation.PathNavigation.createPath
+    1 lighting.LayerLightSectionStorage.setStoredLevel < lighting.BlockLightEngine.propagateIncrease < lighting.LightEngine.propagateIncreases
+    1 material.FluidState.isSource < material.FlowingFluid.getLegacyLevel < material.LavaFluid.createLegacyBlock

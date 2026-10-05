@@ -1,0 +1,776 @@
+[21:57:11] mods: 32
+[21:57:37] diagnostics mod built
+[21:57:37] nether-base: server start
+[21:58:07] server start took 30s: Done (5.203s)! For help, type "help"
+[21:58:21] HEAP before-ngen used 154567K 
+[21:58:25] TIME NGEN-64-chunks 3.9 s
+[21:58:27] HEAP with-ngen used 189343K 
+[21:59:25] nether-base: commands done
+[21:59:27] nether-base: stopped
+[21:59:27] nether: server start with 33 mods
+[21:59:52] server start took 25s: Done (3.990s)! For help, type "help"
+[22:00:06] HEAP before-ngen used 264876K 
+[22:00:43] TIME NGEN-64-chunks 37.4 s
+[22:00:46] HEAP with-ngen used 1527006K 
+[22:06:20] nether: commands done
+[22:06:20] nether: client start
+[22:07:48] nether: client joined
+[22:27:43] nether: client script done
+[22:27:51] nether: stopped
+[21:57:11] mods: 32
+[21:57:37] diagnostics mod built
+[21:57:37] nether-base: server start
+[21:58:07] server start took 30s: Done (5.203s)! For help, type "help"
+[21:58:21] HEAP before-ngen used 154567K 
+[21:58:25] TIME NGEN-64-chunks 3.9 s
+[21:58:27] HEAP with-ngen used 189343K 
+[21:59:25] nether-base: commands done
+[21:59:27] nether-base: stopped
+[21:59:27] nether: server start with 33 mods
+[21:59:52] server start took 25s: Done (3.990s)! For help, type "help"
+[22:00:06] HEAP before-ngen used 264876K 
+[22:00:43] TIME NGEN-64-chunks 37.4 s
+[22:00:46] HEAP with-ngen used 1527006K 
+[22:06:20] nether: commands done
+[22:06:20] nether: client start
+[22:07:48] nether: client joined
+[22:27:43] nether: client script done
+[22:27:51] nether: stopped
+[22:27:51] end
+[21:57:34] mods: 1
+[21:57:50] diagnostics mod built
+[21:58:11] server start took 20s: Done (3.865s)! For help, type "help"
+[21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+[21:59:06] server start took 20s: Done (3.317s)! For help, type "help"
+[22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:03:10] server start took 21s: Done (3.493s)! For help, type "help"
+[22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+[22:05:27] server start took 20s: Done (3.262s)! For help, type "help"
+[22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+[22:07:41] server start took 20s: Done (3.612s)! For help, type "help"
+[22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+[22:10:00] server start took 20s: Done (3.708s)! For help, type "help"
+[22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:11:53] server start took 20s: Done (3.121s)! For help, type "help"
+[22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+[22:14:07] server start took 20s: Done (3.568s)! For help, type "help"
+[22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+[22:16:20] server start took 20s: Done (3.586s)! For help, type "help"
+[22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+[22:18:17] server start took 20s: Done (3.396s)! For help, type "help"
+[22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+[22:20:32] server start took 20s: Done (3.410s)! For help, type "help"
+[22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+[21:57:34] mods: 1
+[21:57:50] diagnostics mod built
+[21:58:11] server start took 20s: Done (3.865s)! For help, type "help"
+[21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+[21:59:06] server start took 20s: Done (3.317s)! For help, type "help"
+[22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:03:10] server start took 21s: Done (3.493s)! For help, type "help"
+[22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+[22:05:27] server start took 20s: Done (3.262s)! For help, type "help"
+[22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+[22:07:41] server start took 20s: Done (3.612s)! For help, type "help"
+[22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+[22:10:00] server start took 20s: Done (3.708s)! For help, type "help"
+[22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:11:53] server start took 20s: Done (3.121s)! For help, type "help"
+[22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+[22:14:07] server start took 20s: Done (3.568s)! For help, type "help"
+[22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+[22:16:20] server start took 20s: Done (3.586s)! For help, type "help"
+[22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+[22:18:17] server start took 20s: Done (3.396s)! For help, type "help"
+[22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+[22:20:32] server start took 20s: Done (3.410s)! For help, type "help"
+[22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+[22:22:18] end
+[21:57:02] mods: 32
+[21:57:17] diagnostics mod built
+[21:57:37] server start took 20s: Done (3.065s)! For help, type "help"
+[21:57:59] NPERF nperfm-vanilla gen64 2.8 s  portal9 0.9 s  heap 258 -> 283 MB, live objects 277 MB  ()
+[21:58:31] server start took 20s: Done (2.575s)! For help, type "help"
+[21:59:41] NPERF nperfm-before gen64 38.9 s  portal9 12.6 s  heap 258 -> 670 MB, live objects 560 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:00:25] server start took 20s: Done (2.445s)! For help, type "help"
+[22:01:11] NPERF nperfm-now gen64 20.9 s  portal9 7.0 s  heap 258 -> 680 MB, live objects 562 MB  ()
+[22:01:56] server start took 20s: Done (2.542s)! For help, type "help"
+[22:02:41] NPERF nperfm-layers8 gen64 19.9 s  portal9 6.8 s  heap 258 -> 696 MB, live objects 550 MB  (ISLES_NETHER_LAYERS=8)
+[22:03:26] server start took 20s: Done (2.642s)! For help, type "help"
+[22:04:11] NPERF nperfm-layers6 gen64 19.7 s  portal9 7.3 s  heap 257 -> 1457 MB, live objects 541 MB  (ISLES_NETHER_LAYERS=6)
+[22:04:57] server start took 20s: Done (2.759s)! For help, type "help"
+[22:05:40] NPERF nperfm-layers6-cavern320 gen64 18.3 s  portal9 6.4 s  heap 258 -> 647 MB, live objects 539 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:06:22] server start took 20s: Done (2.604s)! For help, type "help"
+[22:07:10] NPERF nperfm-features-before gen64 21.8 s  portal9 7.9 s  heap 258 -> 1138 MB, live objects 554 MB  (ISLES_NETHER_OLD=features)
+[22:07:55] server start took 20s: Done (2.724s)! For help, type "help"
+[22:08:43] NPERF nperfm-no-aquifer gen64 22.8 s  portal9 7.3 s  heap 258 -> 904 MB, live objects 554 MB  (ISLES_NETHER_OFF=aquifer)
+[22:09:28] server start took 20s: Done (2.955s)! For help, type "help"
+[22:10:12] NPERF nperfm-no-features gen64 19.3 s  portal9 6.4 s  heap 258 -> 1557 MB, live objects 518 MB  (ISLES_NETHER_OFF=features)
+[22:10:55] server start took 20s: Done (3.012s)! For help, type "help"
+[22:11:44] NPERF nperfm-no-carver gen64 23.0 s  portal9 7.1 s  heap 258 -> 1501 MB, live objects 547 MB  (ISLES_NETHER_OFF=carver)
+[22:12:28] server start took 20s: Done (2.871s)! For help, type "help"
+[22:13:16] NPERF nperfm-cell-y16 gen64 21.7 s  portal9 7.1 s  heap 258 -> 909 MB, live objects 551 MB  (ISLES_NETHER_CELL_Y=16)
+[21:57:02] mods: 32
+[21:57:17] diagnostics mod built
+[21:57:37] server start took 20s: Done (3.065s)! For help, type "help"
+[21:57:59] NPERF nperfm-vanilla gen64 2.8 s  portal9 0.9 s  heap 258 -> 283 MB, live objects 277 MB  ()
+[21:58:31] server start took 20s: Done (2.575s)! For help, type "help"
+[21:59:41] NPERF nperfm-before gen64 38.9 s  portal9 12.6 s  heap 258 -> 670 MB, live objects 560 MB  (ISLES_NETHER_OLD=noise,surface,features)
+[22:00:25] server start took 20s: Done (2.445s)! For help, type "help"
+[22:01:11] NPERF nperfm-now gen64 20.9 s  portal9 7.0 s  heap 258 -> 680 MB, live objects 562 MB  ()
+[22:01:56] server start took 20s: Done (2.542s)! For help, type "help"
+[22:02:41] NPERF nperfm-layers8 gen64 19.9 s  portal9 6.8 s  heap 258 -> 696 MB, live objects 550 MB  (ISLES_NETHER_LAYERS=8)
+[22:03:26] server start took 20s: Done (2.642s)! For help, type "help"
+[22:04:11] NPERF nperfm-layers6 gen64 19.7 s  portal9 7.3 s  heap 257 -> 1457 MB, live objects 541 MB  (ISLES_NETHER_LAYERS=6)
+[22:04:57] server start took 20s: Done (2.759s)! For help, type "help"
+[22:05:40] NPERF nperfm-layers6-cavern320 gen64 18.3 s  portal9 6.4 s  heap 258 -> 647 MB, live objects 539 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+[22:06:22] server start took 20s: Done (2.604s)! For help, type "help"
+[22:07:10] NPERF nperfm-features-before gen64 21.8 s  portal9 7.9 s  heap 258 -> 1138 MB, live objects 554 MB  (ISLES_NETHER_OLD=features)
+[22:07:55] server start took 20s: Done (2.724s)! For help, type "help"
+[22:08:43] NPERF nperfm-no-aquifer gen64 22.8 s  portal9 7.3 s  heap 258 -> 904 MB, live objects 554 MB  (ISLES_NETHER_OFF=aquifer)
+[22:09:28] server start took 20s: Done (2.955s)! For help, type "help"
+[22:10:12] NPERF nperfm-no-features gen64 19.3 s  portal9 6.4 s  heap 258 -> 1557 MB, live objects 518 MB  (ISLES_NETHER_OFF=features)
+[22:10:55] server start took 20s: Done (3.012s)! For help, type "help"
+[22:11:44] NPERF nperfm-no-carver gen64 23.0 s  portal9 7.1 s  heap 258 -> 1501 MB, live objects 547 MB  (ISLES_NETHER_OFF=carver)
+[22:12:28] server start took 20s: Done (2.871s)! For help, type "help"
+[22:13:16] NPERF nperfm-cell-y16 gen64 21.7 s  portal9 7.1 s  heap 258 -> 909 MB, live objects 551 MB  (ISLES_NETHER_CELL_Y=16)
+[22:13:40] end
+build: -rw-r--r-- 1 runner runner   4113 Oct  5 21:56 /tmp/the-isles-mods-tested.zip
+build: -rw-r--r-- 1 runner runner   4113 Oct  5 21:57 /tmp/the-isles-mods-tested.zip
+build: -rw-r--r-- 1 runner runner 473375 Oct  5 21:56 /tmp/the-isles-tested.zip
+build: -rw-r--r-- 1 runner runner 473375 Oct  5 21:57 /tmp/the-isles-tested.zip
+build: 240 islands, 48 biomes, 1135 files -> /home/runner/work/The-Isles/The-Isles/datapack
+build: 32 of 48 biomes get a constant climate
+build: WARNING: the committed data packs differ from the generator output
+build: eroded_badlands -> badlands on 6 islands
+build: layer 0: 196 islands
+build: layer 1: 41 islands
+build: layer 2: 3 islands
+build: nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+build: nether: 6 layers, lava at y -1977 -1297 -657 23 703 1383, 34 features per layer
+build: nether: 8 layers, lava at y -1977 -1457 -977 -497 23 543 1023 1503, 34 features per layer
+build: no provider in vendor/ (or ISLES_PROVIDERS=none): vanilla biomes only
+build: pack under test: datapack
+build: structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+build: structure ancient_city: 60 blocks under the island surface
+build: structure mansion: off
+build: structure mineshaft: off
+build: structure mineshaft_mesa: off
+build: structure monument: off
+build: structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+build: structure ruined_portal: on or half in the island surface
+build: structure ruined_portal_desert: on or half in the island surface
+build: structure ruined_portal_jungle: on or half in the island surface
+build: structure ruined_portal_mountain: on or half in the island surface
+build: structure ruined_portal_ocean: on or half in the island surface
+build: structure ruined_portal_swamp: on or half in the island surface
+build: structure stronghold: off
+build: structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+build: structure trial_chambers: 32..48 blocks under the island surface
+build: structure village_desert: surface (as in vanilla), not at the bottom of the world
+build: structure village_plains: surface (as in vanilla), not at the bottom of the world
+build: structure village_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure village_snowy: surface (as in vanilla), not at the bottom of the world
+build: structure village_taiga: surface (as in vanilla), not at the bottom of the world
+build: 
+
+================ nether, perf variants (packtest/nether-perf.txt; one fresh world each) ================
+   seconds for 64 chunks / for 9 chunks elsewhere afterwards, heap before -> with the chunks loaded
+   [21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+   [22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+   [22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+   [22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+   [22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+   [22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+   [22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+   [22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+   [22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+   [22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+   [22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+   [21:58:34] NPERF nperf-vanilla gen64 4.3 s  portal9 1.3 s  heap 151 -> 182 MB, live objects 169 MB  ()
+   [22:02:19] NPERF nperf-before gen64 115.0 s  portal9 59.5 s  heap 156 -> 812 MB, live objects 523 MB  (ISLES_NETHER_OLD=noise,surface,features)
+   [22:04:34] NPERF nperf-now gen64 46.1 s  portal9 20.5 s  heap 156 -> 804 MB, live objects 525 MB  ()
+   [22:06:46] NPERF nperf-layers8 gen64 41.5 s  portal9 19.8 s  heap 156 -> 727 MB, live objects 513 MB  (ISLES_NETHER_LAYERS=8)
+   [22:08:57] NPERF nperf-layers6 gen64 40.0 s  portal9 18.3 s  heap 155 -> 713 MB, live objects 507 MB  (ISLES_NETHER_LAYERS=6)
+   [22:11:07] NPERF nperf-layers6-cavern320 gen64 33.0 s  portal9 16.1 s  heap 156 -> 616 MB, live objects 502 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+   [22:13:19] NPERF nperf-features-before gen64 47.0 s  portal9 20.4 s  heap 156 -> 808 MB, live objects 522 MB  (ISLES_NETHER_OLD=features)
+   [22:15:30] NPERF nperf-no-aquifer gen64 45.1 s  portal9 19.5 s  heap 156 -> 776 MB, live objects 521 MB  (ISLES_NETHER_OFF=aquifer)
+   [22:17:33] NPERF nperf-no-features gen64 38.0 s  portal9 16.2 s  heap 156 -> 526 MB, live objects 470 MB  (ISLES_NETHER_OFF=features)
+   [22:19:40] NPERF nperf-no-carver gen64 44.5 s  portal9 19.8 s  heap 156 -> 785 MB, live objects 523 MB  (ISLES_NETHER_OFF=carver)
+   [22:21:48] NPERF nperf-cell-y16 gen64 40.8 s  portal9 17.1 s  heap 156 -> 765 MB, live objects 516 MB  (ISLES_NETHER_CELL_Y=16)
+   [21:57:59] NPERF nperfm-vanilla gen64 2.8 s  portal9 0.9 s  heap 258 -> 283 MB, live objects 277 MB  ()
+   [21:59:41] NPERF nperfm-before gen64 38.9 s  portal9 12.6 s  heap 258 -> 670 MB, live objects 560 MB  (ISLES_NETHER_OLD=noise,surface,features)
+   [22:01:11] NPERF nperfm-now gen64 20.9 s  portal9 7.0 s  heap 258 -> 680 MB, live objects 562 MB  ()
+   [22:02:41] NPERF nperfm-layers8 gen64 19.9 s  portal9 6.8 s  heap 258 -> 696 MB, live objects 550 MB  (ISLES_NETHER_LAYERS=8)
+   [22:04:11] NPERF nperfm-layers6 gen64 19.7 s  portal9 7.3 s  heap 257 -> 1457 MB, live objects 541 MB  (ISLES_NETHER_LAYERS=6)
+   [22:05:40] NPERF nperfm-layers6-cavern320 gen64 18.3 s  portal9 6.4 s  heap 258 -> 647 MB, live objects 539 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+   [22:07:10] NPERF nperfm-features-before gen64 21.8 s  portal9 7.9 s  heap 258 -> 1138 MB, live objects 554 MB  (ISLES_NETHER_OLD=features)
+   [22:08:43] NPERF nperfm-no-aquifer gen64 22.8 s  portal9 7.3 s  heap 258 -> 904 MB, live objects 554 MB  (ISLES_NETHER_OFF=aquifer)
+   [22:10:12] NPERF nperfm-no-features gen64 19.3 s  portal9 6.4 s  heap 258 -> 1557 MB, live objects 518 MB  (ISLES_NETHER_OFF=features)
+   [22:11:44] NPERF nperfm-no-carver gen64 23.0 s  portal9 7.1 s  heap 258 -> 1501 MB, live objects 547 MB  (ISLES_NETHER_OFF=carver)
+   [22:13:16] NPERF nperfm-cell-y16 gen64 21.7 s  portal9 7.1 s  heap 258 -> 909 MB, live objects 551 MB  (ISLES_NETHER_CELL_Y=16)
+   [21:57:59] NPERF nperfm-vanilla gen64 2.8 s  portal9 0.9 s  heap 258 -> 283 MB, live objects 277 MB  ()
+   [21:59:41] NPERF nperfm-before gen64 38.9 s  portal9 12.6 s  heap 258 -> 670 MB, live objects 560 MB  (ISLES_NETHER_OLD=noise,surface,features)
+   [22:01:11] NPERF nperfm-now gen64 20.9 s  portal9 7.0 s  heap 258 -> 680 MB, live objects 562 MB  ()
+   [22:02:41] NPERF nperfm-layers8 gen64 19.9 s  portal9 6.8 s  heap 258 -> 696 MB, live objects 550 MB  (ISLES_NETHER_LAYERS=8)
+   [22:04:11] NPERF nperfm-layers6 gen64 19.7 s  portal9 7.3 s  heap 257 -> 1457 MB, live objects 541 MB  (ISLES_NETHER_LAYERS=6)
+   [22:05:40] NPERF nperfm-layers6-cavern320 gen64 18.3 s  portal9 6.4 s  heap 258 -> 647 MB, live objects 539 MB  (ISLES_NETHER_LAYERS=6 ISLES_NETHER_CAVERN=320)
+   [22:07:10] NPERF nperfm-features-before gen64 21.8 s  portal9 7.9 s  heap 258 -> 1138 MB, live objects 554 MB  (ISLES_NETHER_OLD=features)
+   [22:08:43] NPERF nperfm-no-aquifer gen64 22.8 s  portal9 7.3 s  heap 258 -> 904 MB, live objects 554 MB  (ISLES_NETHER_OFF=aquifer)
+   [22:10:12] NPERF nperfm-no-features gen64 19.3 s  portal9 6.4 s  heap 258 -> 1557 MB, live objects 518 MB  (ISLES_NETHER_OFF=features)
+   [22:11:44] NPERF nperfm-no-carver gen64 23.0 s  portal9 7.1 s  heap 258 -> 1501 MB, live objects 547 MB  (ISLES_NETHER_OFF=carver)
+   [22:13:16] NPERF nperfm-cell-y16 gen64 21.7 s  portal9 7.1 s  heap 258 -> 909 MB, live objects 551 MB  (ISLES_NETHER_CELL_Y=16)
+-- blocks of two layers in a 64x64 box, per variant (same layers and seed: the same counts)
+   box                               netherrac      lava   bedrock nether_qu nether_go ancient_d glowstone soul_sand soul_soil    basalt blackston magma_blo    gravel crimson_n warped_ny crimson_s warped_st crimson_r nether_sp       air
+   nperf-before layer3                  421533      9181         0       917       332        24        33         0         0         0      2075      2406      2180     17670         0      4306         0         0         0    985584
+   nperf-before layer6                  748446       215         0      2298       712        25       181         0         0       217      3041      4998      3792     20477         0      4113         0         0         0    494079
+   nperf-cell-y16 layer3                388513      9891         0       773       318        22        31         0         0         0      1983      2781      2162     11964         0      3810         0         0         0   1029246
+   nperf-cell-y16 layer6                799485       223         0      2497       789        27       132         0         0       217      3050      5121      3792     13605         0      3335         0         0         0    455648
+   nperf-features-before layer3         421413      9163         0       917       332        24        33         0         0         0      2075      2406      2158     17755         0      4541         0         0         0    985004
+   nperf-features-before layer6         748330       206         0      2298       712        25       181         0         0       217      3041      4998      3792     20593         0      4014         0         0         0    494368
+   nperf-layers6 layer1                1098584     10896         0      1689       595        14       240         0         0         0      1523       753      2183      3053         0       345         0         0         0   1499541
+   nperf-layers6 layer3                1693770       381         0      2707       753        36       107         0         0         0      2753      7368      2951     41134         0      4235         0         0         0   1003340
+   nperf-layers6-cavern320 layer1       818341     11191         0      2465       870        16       248         0         0         0      1522       753      2183      1707         0       320         0         0         0    468406
+   nperf-layers6-cavern320 layer3       756257       910         0      2418       636        40       139         0         0         0      2752      7368      2951     20653         0      3829         0         0         0    489050
+   nperf-layers8 layer2                 783459      9840         0      1234       534        15       130         0         0       217      2062       614      2316         0         0         0         0         0         0   1163180
+   nperf-layers8 layer4                1232584       381         0      2081       865        24        71         5         0         0      3839      6866      3341         0         0         0         0         0         0    879863
+   nperf-no-aquifer layer3              420560       104         0       916       326        24        33         0         0         0      2059      2207      2143     17661         0      4768         0         0         0    994064
+   nperf-no-aquifer layer6              748314       218         0      2298       712        25       181         0         0       217      3041      4998      3792     20609         0      4226         0         0         0    494213
+   nperf-no-carver layer3               422170      9156         0       917       332        24        32         0         0         0      2075      2390      2179     17920         0      5043         0         0         0    981702
+   nperf-no-carver layer6               749571       199         0      2298       712        25       181         0         0       217      3043      4998      3849     20681         0      4627         0         0         0    492077
+   nperf-no-features layer3             429157      9061         0         0         0         0         0         0         0         0         0         0         0     18037         0         0         0         0         0   1018264
+   nperf-no-features layer6             762890         2         0         0         0         0         0         0         0       217       150         0         0     20882         0         0         0         0         0    524101
+   nperf-now layer3                     421409      9161         0       917       332        24        33         0         0         0      2075      2406      2171     17753         0      4706         0         0         0    984703
+   nperf-now layer6                     748327       219         0      2298       712        25       181         0         0       217      3041      4998      3792     20596         0      4352         0         0         0    494062
+   nperf-vanilla vanilla                362760       841     24616      2667       972        25        50         0         0         0      3068      6916      3329      4768         0      1380         0         0         0    105410
+   nperfm-before layer3                 423038      9154         0       931       333        24        26         0         0         0      2074      2417      2121     11362         0      3501         0       650         0    985988
+   nperfm-before layer6                 747570       177         0      2326       704        25        69         0         0       918      3195      4998      3792     12806         0      2487         0       723         0    496332
+   nperfm-cell-y16 layer3               389228      9645         0       781       317        22         0         0         0         0      1983      2753      2151      7637         0      2370         0       528         0   1032286
+   nperfm-cell-y16 layer6               795404       208         0      2507       776        27        55         0         0      1418      3379      5121      3792      8352         0      2026         0       469         0    459031
+   nperfm-features-before layer3        423029      9143         0       931       337        24        26         0         0         0      2074      2380      2206     11384         0      3582         0       589         0    984524
+   nperfm-features-before layer6        747556       171         0      2326       704        25        69         0         0       919      3195      4998      3792     12816         0      2591         0       729         0    495903
+   nperfm-layers6 layer1               1091181     10854         0      1672       595        14       210         0         0         0      1524       720      2177      1859         0       212         0        73         0   1486066
+   nperfm-layers6 layer3               1696497       176         0      2721       751        37        47         0         0       702      2906      7376      2951     25231         0      2855         0       803         0    998511
+   nperfm-layers6-cavern320 layer1      815060     11037         0      2462       868        16       243         0         0         0      1523       720      1976      1012         0       114         0        38         0    463156
+   nperfm-layers6-cavern320 layer3      755494       369         0      2426       637        40       114         0         0       702      2905      7376      2951     12854         0      2514         0       743         0    489245
+   nperfm-layers8 layer2                777089      9642         0      1221       532        15        59         0         0       217      2061       605      2220         0         0         0         0         0         0   1153009
+   nperfm-layers8 layer4               1221132       319         0      2066       859        24        61         5         0       731      3994      6866      3341         0         0         0         0         0         0    865902
+   nperfm-no-aquifer layer3             422137        71         0       930       327        24        26         0         0         0      2058      2211      2113     11276         0      3492         0       640         0    996542
+   nperfm-no-aquifer layer6             747559       169         0      2328       704        25        69         0         0       918      3195      4996      3792     12815         0      2849         0       636         0    495320
+   nperfm-no-carver layer3              423783      9132         0       931       333        24        28         0         0         0      2074      2401      2148     11475         0      3532         0       620         0    983877
+   nperfm-no-carver layer6              748908       177         0      2326       704        25        69         0         0       918      3197      4998      3849     12817         0      2781         0       647         0    493886
+   nperfm-no-features layer3            430942      9055         0         0         0         0         0         0         0         0         0         0         0     11484         0         0         0         0         0   1010690
+   nperfm-no-features layer6            762316         2         0         0         0         0         0         0         0       919       304         0         0     12924         0         0         0         0         0    515854
+   nperfm-now layer3                    423014      9144         0       931       333        24        26         0         0         0      2074      2417      2121     11386         0      3423         0       617         0    986008
+   nperfm-now layer6                    747564       173         0      2326       704        25        69         0         0       918      3195      4998      3792     12818         0      2642         0       690         0    494489
+   nperfm-vanilla vanilla               358479       796     24616      2606       956        25         7         0         0       700      3194      6913      3329      3038         0       893         0       236         0    105777
+-- where the time goes, nperf-before
+   228 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    39.5%    90 surface rule
+    29.8%    68 terrain: 3D noise
+    10.1%    23 terrain: fill (blocks into sections)
+     9.6%    22 terrain: aquifer
+     3.1%     7 terrain: other density functions
+     3.1%     7 features
+     2.2%     5 light
+     1.3%     3 carvers
+     0.4%     1 tick
+     0.4%     1 biomes
+     0.4%     1 other
+   --- features
+     1.3%     3 feature.ReplaceBlobsFeature.place
+     0.9%     2 feature.SteppedColumnClusterFeature.place
+     0.4%     1 feature.DeltaFeature.place
+     0.4%     1 placement.EnvironmentScanPlacement.modify
+-- where the time goes, nperf-cell-y16
+   85 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    36.5%    31 surface rule
+    14.1%    12 terrain: aquifer
+    10.6%     9 light
+     9.4%     8 terrain: fill (blocks into sections)
+     7.1%     6 terrain: 3D noise
+     7.1%     6 features
+     4.7%     4 terrain: other density functions
+     3.5%     3 biomes
+     3.5%     3 saving / loading chunks
+     2.4%     2 structures
+     1.2%     1 full chunk (entities, block entities, POI)
+   --- features
+     1.2%     1 other
+     1.2%     1 feature.DeltaFeature.place
+     1.2%     1 placement.HeightRangePlacement.modify
+     1.2%     1 placement.BlockPredicateFilter.shouldPlace
+     1.2%     1 placement.EnvironmentScanPlacement.modify
+     1.2%     1 feature.OreFeature.place
+-- where the time goes, nperf-features-before
+   101 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    41.6%    42 surface rule
+    20.8%    21 terrain: aquifer
+     8.9%     9 terrain: fill (blocks into sections)
+     8.9%     9 features
+     7.9%     8 terrain: 3D noise
+     5.0%     5 light
+     4.0%     4 saving / loading chunks
+     2.0%     2 tick
+     1.0%     1 terrain: other density functions
+   --- features
+     3.0%     3 placement.EnvironmentScanPlacement.modify
+     2.0%     2 feature.SimpleBlockFeature.place
+     2.0%     2 feature.ReplaceBlobsFeature.place
+     1.0%     1 feature.OreFeature.place
+     1.0%     1 placement.BiomeFilter.shouldPlace
+-- where the time goes, nperf-layers6-cavern320
+   71 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    46.5%    33 surface rule
+    15.5%    11 terrain: 3D noise
+    15.5%    11 terrain: fill (blocks into sections)
+     9.9%     7 terrain: aquifer
+     4.2%     3 terrain: other density functions
+     2.8%     2 features
+     2.8%     2 tick
+     1.4%     1 carvers
+     1.4%     1 light
+   --- features
+     1.4%     1 placement.OffsetPlacement.modify
+     1.4%     1 placement.CountPlacement.hashCode
+-- where the time goes, nperf-layers6
+   89 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    32.6%    29 terrain: aquifer
+    29.2%    26 surface rule
+     7.9%     7 terrain: 3D noise
+     6.7%     6 terrain: fill (blocks into sections)
+     6.7%     6 light
+     5.6%     5 terrain: other density functions
+     4.5%     4 features
+     3.4%     3 tick
+     2.2%     2 saving / loading chunks
+     1.1%     1 structures
+   --- features
+     1.1%     1 placement.OffsetPlacement.modify
+     1.1%     1 feature.OreFeature.place
+     1.1%     1 placement.BlockPredicateFilter.shouldPlace
+     1.1%     1 feature.HugeFungusFeature.place
+-- where the time goes, nperf-layers8
+   92 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    43.5%    40 surface rule
+    23.9%    22 terrain: aquifer
+     9.8%     9 terrain: 3D noise
+     6.5%     6 features
+     4.3%     4 light
+     3.3%     3 terrain: fill (blocks into sections)
+     3.3%     3 saving / loading chunks
+     2.2%     2 terrain: other density functions
+     2.2%     2 biomes
+     1.1%     1 tick
+   --- features
+     2.2%     2 other
+     2.2%     2 placement.BlockPredicateFilter.shouldPlace
+     1.1%     1 feature.HugeFungusFeature.place
+     1.1%     1 placement.FeaturePlacer.place
+-- where the time goes, nperf-no-aquifer
+   96 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    37.5%    36 surface rule
+    15.6%    15 terrain: fill (blocks into sections)
+    13.5%    13 terrain: aquifer
+     8.3%     8 terrain: 3D noise
+     7.3%     7 features
+     7.3%     7 light
+     5.2%     5 terrain: other density functions
+     2.1%     2 structures
+     2.1%     2 tick
+     1.0%     1 biomes
+   --- features
+     3.1%     3 feature.SteppedColumnClusterFeature.place
+     2.1%     2 feature.ReplaceBlobsFeature.place
+     1.0%     1 feature.OreFeature.place
+     1.0%     1 placement.EnvironmentScanPlacement.modify
+-- where the time goes, nperf-no-carver
+   94 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    36.2%    34 surface rule
+    17.0%    16 terrain: aquifer
+    11.7%    11 terrain: 3D noise
+    11.7%    11 terrain: fill (blocks into sections)
+     7.4%     7 features
+     7.4%     7 light
+     3.2%     3 saving / loading chunks
+     2.1%     2 terrain: other density functions
+     2.1%     2 other
+     1.1%     1 tick
+   --- features
+     2.1%     2 other
+     2.1%     2 placement.BlockPredicateFilter.shouldPlace
+     1.1%     1 placement.CountPlacement.hashCode
+     1.1%     1 placement.BiomeFilter.shouldPlace
+     1.1%     1 feature.SteppedColumnClusterFeature.place
+-- where the time goes, nperf-no-features
+   81 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    38.3%    31 surface rule
+    19.8%    16 terrain: aquifer
+    17.3%    14 terrain: 3D noise
+    11.1%     9 terrain: fill (blocks into sections)
+     4.9%     4 terrain: other density functions
+     3.7%     3 light
+     1.2%     1 structures
+     1.2%     1 spawn at generation
+     1.2%     1 biomes
+     1.2%     1 tick
+-- where the time goes, nperf-now
+   93 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    25.8%    24 surface rule
+    16.1%    15 terrain: fill (blocks into sections)
+    14.0%    13 terrain: aquifer
+    12.9%    12 terrain: 3D noise
+    10.8%    10 light
+     9.7%     9 features
+     6.5%     6 terrain: other density functions
+     2.2%     2 full chunk (entities, block entities, POI)
+     1.1%     1 structures
+     1.1%     1 tick
+   --- features
+     1.1%     1 feature.RandomNeighborSpreadFeature.place
+     1.1%     1 feature.HugeFungusFeature.place
+     1.1%     1 feature.ReplaceBlobsFeature.place
+     1.1%     1 placement.CountPlacement.hashCode
+     1.1%     1 placement.BiomeFilter.shouldPlace
+     1.1%     1 placement.EnvironmentScanPlacement.modify
+     1.1%     1 placement.FeaturePlacer.place
+     1.1%     1 feature.DeltaFeature.place
+     1.1%     1 placement.OffsetPlacement.modify
+-- where the time goes, nperf-vanilla
+   5 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    20.0%     1 saving / loading chunks
+    20.0%     1 other
+    20.0%     1 terrain: fill (blocks into sections)
+    20.0%     1 light
+    20.0%     1 features
+   --- features
+    20.0%     1 placement.FeaturePlacer.place
+-- where the time goes, nperfm-before
+   68 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    41.2%    28 surface rule
+    26.5%    18 terrain: 3D noise
+    10.3%     7 terrain: aquifer
+    10.3%     7 features
+     5.9%     4 terrain: fill (blocks into sections)
+     2.9%     2 saving / loading chunks
+     1.5%     1 structures
+     1.5%     1 terrain: other density functions
+   --- features
+     8.8%     6 placement.FeaturePlacer.place
+     1.5%     1 feature.SteppedColumnClusterFeature.place
+-- where the time goes, nperfm-cell-y16
+   36 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    30.6%    11 surface rule
+    27.8%    10 features
+    19.4%     7 terrain: aquifer
+     5.6%     2 terrain: 3D noise
+     5.6%     2 biomes
+     5.6%     2 terrain: fill (blocks into sections)
+     2.8%     1 terrain: other density functions
+     2.8%     1 carvers
+   --- features
+    13.9%     5 placement.FeaturePlacer.place
+     5.6%     2 other
+     2.8%     1 feature.HugeFungusFeature.place
+     2.8%     1 placement.BlockPredicateFilter.shouldPlace
+     2.8%     1 feature.ReplaceBlobsFeature.place
+-- where the time goes, nperfm-features-before
+   38 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    34.2%    13 features
+    18.4%     7 surface rule
+    18.4%     7 terrain: fill (blocks into sections)
+     7.9%     3 terrain: aquifer
+     5.3%     2 other
+     5.3%     2 terrain: 3D noise
+     5.3%     2 saving / loading chunks
+     2.6%     1 structures
+     2.6%     1 terrain: other density functions
+   --- features
+    26.3%    10 placement.FeaturePlacer.place
+     2.6%     1 feature.SpringFeature.place
+     2.6%     1 placement.BlockPredicateFilter.shouldPlace
+     2.6%     1 feature.ReplaceBlobsFeature.place
+-- where the time goes, nperfm-layers6-cavern320
+   32 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    53.1%    17 surface rule
+    15.6%     5 terrain: aquifer
+    12.5%     4 features
+     9.4%     3 terrain: fill (blocks into sections)
+     3.1%     1 terrain: other density functions
+     3.1%     1 terrain: 3D noise
+     3.1%     1 structures
+   --- features
+    12.5%     4 placement.FeaturePlacer.place
+-- where the time goes, nperfm-layers6
+   34 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    32.4%    11 surface rule
+    32.4%    11 features
+    20.6%     7 terrain: aquifer
+     8.8%     3 terrain: fill (blocks into sections)
+     5.9%     2 terrain: other density functions
+   --- features
+    32.4%    11 placement.FeaturePlacer.place
+-- where the time goes, nperfm-layers8
+   34 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    26.5%     9 terrain: aquifer
+    26.5%     9 features
+    26.5%     9 surface rule
+    14.7%     5 terrain: fill (blocks into sections)
+     2.9%     1 terrain: other density functions
+     2.9%     1 terrain: 3D noise
+   --- features
+    20.6%     7 placement.FeaturePlacer.place
+     5.9%     2 feature.ReplaceBlobsFeature.place
+-- where the time goes, nperfm-no-aquifer
+   38 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    36.8%    14 features
+    31.6%    12 surface rule
+    13.2%     5 terrain: aquifer
+     7.9%     3 terrain: fill (blocks into sections)
+     5.3%     2 terrain: 3D noise
+     2.6%     1 terrain: other density functions
+     2.6%     1 structures
+   --- features
+    31.6%    12 placement.FeaturePlacer.place
+     2.6%     1 other
+     2.6%     1 feature.ReplaceBlobsFeature.place
+-- where the time goes, nperfm-no-carver
+   38 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    34.2%    13 surface rule
+    31.6%    12 features
+    15.8%     6 terrain: aquifer
+     5.3%     2 terrain: 3D noise
+     5.3%     2 terrain: other density functions
+     5.3%     2 biomes
+     2.6%     1 terrain: fill (blocks into sections)
+   --- features
+    21.1%     8 placement.FeaturePlacer.place
+     2.6%     1 placement.OffsetPlacement.modify
+     2.6%     1 placement.BiomeFilter.shouldPlace
+     2.6%     1 placement.BlockPredicateFilter.shouldPlace
+     2.6%     1 feature.SteppedColumnClusterFeature.place
+-- where the time goes, nperfm-no-features
+   35 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    34.3%    12 features
+    28.6%    10 surface rule
+    20.0%     7 terrain: fill (blocks into sections)
+    11.4%     4 terrain: aquifer
+     2.9%     1 terrain: other density functions
+     2.9%     1 terrain: 3D noise
+   --- features
+    22.9%     8 placement.FeaturePlacer.place
+    11.4%     4 other
+-- where the time goes, nperfm-now
+   36 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    30.6%    11 surface rule
+    30.6%    11 features
+    22.2%     8 terrain: aquifer
+     5.6%     2 terrain: fill (blocks into sections)
+     5.6%     2 terrain: 3D noise
+     2.8%     1 structures
+     2.8%     1 terrain: other density functions
+   --- features
+    22.2%     8 placement.FeaturePlacer.place
+     5.6%     2 feature.SteppedColumnClusterFeature.place
+     2.8%     1 other
+-- where the time goes, nperfm-vanilla
+   6 running samples (worker and server threads, waiting ones left out)
+   --- share of the samples
+    33.3%     2 surface rule
+    16.7%     1 terrain: fill (blocks into sections)
+    16.7%     1 features
+    16.7%     1 light
+    16.7%     1 other
+   --- features
+    16.7%     1 placement.FeaturePlacer.place
+
+================ nether (The Isles, every mod when the phases say nethermods) ================
+layers (bottom..top, lava surface): 0: -2016..-1657 lava -1977  1: -1656..-1337 lava -1617  2: -1336..-1057 lava -1297  3: -1056..-697 lava -1017  4: -696..-377 lava -657  5: -376..-17 lava -337  6: -16..303 lava 23  7: 304..663 lava 343  8: 664..943 lava 703  9: 944..1263 lava 983  10: 1264..1623 lava 1303  11: 1624..2031 lava 1663
+   [21:58:21] HEAP before-ngen used 154567K 
+   [21:58:25] poll ok after 4s: LOADED ngen
+   [21:58:25] TIME NGEN-64-chunks 3.9 s
+   [21:58:27] HEAP with-ngen used 189343K 
+   [22:00:06] HEAP before-ngen used 264876K 
+   [22:00:43] poll ok after 37s: LOADED ngen
+   [22:00:43] TIME NGEN-64-chunks 37.4 s
+   [22:00:46] HEAP with-ngen used 1527006K 
+   [21:58:21] HEAP before-ngen used 154567K 
+   [21:58:25] TIME NGEN-64-chunks 3.9 s
+   [21:58:27] HEAP with-ngen used 189343K 
+   [22:00:06] HEAP before-ngen used 264876K 
+   [22:00:43] TIME NGEN-64-chunks 37.4 s
+   [22:00:46] HEAP with-ngen used 1527006K 
+-- column 8 8: per layer blocks of air, lava runs (top..bottom), bedrock, solid at the layer top / bottom
+   layer 11: air 234  lava -                        bedrock 2  solid top 0 bottom 85
+   layer 10: air  53  lava -                        bedrock 0  solid top 21 bottom 269
+   layer  9: air 234  lava 982..976                 bedrock 0  solid top 20 bottom 32
+   layer  8: air 133  lava -                        bedrock 0  solid top 23 bottom 86
+   layer  7: air  63  lava -                        bedrock 0  solid top 163 bottom 91
+   layer  6: air 126  lava -                        bedrock 0  solid top 27 bottom 40
+   layer  5: air 180  lava -338..-345               bedrock 0  solid top 23 bottom 31
+   layer  4: air  76  lava -658..-665               bedrock 0  solid top 29 bottom 31
+   layer  3: air 187  lava -1018..-1025             bedrock 0  solid top 24 bottom 31
+   layer  2: air  60  lava -1298..-1306             bedrock 0  solid top 44 bottom 30
+   layer  1: air  54  lava -1620..-1638             bedrock 0  solid top 35 bottom 9
+   layer  0: air  43  lava -1978..-1982             bedrock 0  solid top 21 bottom 34
+-- column 72 40: per layer blocks of air, lava runs (top..bottom), bedrock, solid at the layer top / bottom
+   layer 11: air 191  lava -                        bedrock 3  solid top 0 bottom 42
+   layer 10: air 125  lava -                        bedrock 0  solid top 55 bottom 0
+   layer  9: air 171  lava 1094..1094               bedrock 0  solid top 0 bottom 15
+   layer  8: air  92  lava 874..874                 bedrock 0  solid top 6 bottom 0
+   layer  7: air 100  lava -                        bedrock 0  solid top 0 bottom 85
+   layer  6: air 185  lava -                        bedrock 0  solid top 25 bottom 39
+   layer  5: air 224  lava -                        bedrock 0  solid top 54 bottom 0
+   layer  4: air 108  lava -                        bedrock 0  solid top 0 bottom 0
+   layer  3: air 246  lava -870..-870               bedrock 0  solid top 0 bottom 40
+   layer  2: air 155  lava -                        bedrock 0  solid top 19 bottom 0
+   layer  1: air 122  lava -                        bedrock 0  solid top 0 bottom 0
+   layer  0: air 147  lava -                        bedrock 0  solid top 0 bottom 63
+-- column 120 120: per layer blocks of air, lava runs (top..bottom), bedrock, solid at the layer top / bottom
+   layer 11: air 156  lava 1660..1655               bedrock 4  solid top 0 bottom 31
+   layer 10: air 157  lava 1302..1294               bedrock 0  solid top 17 bottom 30
+   layer  9: air 170  lava 982..974                 bedrock 0  solid top 16 bottom 30
+   layer  8: air  77  lava 702..692                 bedrock 0  solid top 27 bottom 28
+   layer  7: air 204  lava -                        bedrock 0  solid top 75 bottom 58
+   layer  6: air 101  lava 22..14                   bedrock 0  solid top 23 bottom 30
+   layer  5: air 156  lava -338..-348               bedrock 0  solid top 29 bottom 28
+   layer  4: air 134  lava -658..-658               bedrock 0  solid top 36 bottom 38
+   layer  3: air 230  lava -1018..-1026             bedrock 0  solid top 19 bottom 30
+   layer  2: air 179  lava -1298..-1309             bedrock 0  solid top 20 bottom 27
+   layer  1: air 135  lava -1521..-1521             bedrock 0  solid top 20 bottom 72
+   layer  0: air 101  lava -                        bedrock 0  solid top 22 bottom 110
+-- column 40 100: per layer blocks of air, lava runs (top..bottom), bedrock, solid at the layer top / bottom
+   layer 11: air 145  lava -                        bedrock 4  solid top 0 bottom 48
+   layer 10: air  95  lava -                        bedrock 0  solid top 19 bottom 246
+   layer  9: air 171  lava 982..973                 bedrock 0  solid top 25 bottom 29
+   layer  8: air  94  lava 872..872                 bedrock 0  solid top 18 bottom 82
+   layer  7: air 181  lava 342..333                 bedrock 0  solid top 17 bottom 29
+   layer  6: air  86  lava 22..15                   bedrock 0  solid top 96 bottom 31
+   layer  5: air 158  lava -338..-341               bedrock 0  solid top 100 bottom 35
+   layer  4: air 145  lava -                        bedrock 0  solid top 23 bottom 39
+   layer  3: air 193  lava -1018..-1025             bedrock 0  solid top 19 bottom 31
+   layer  2: air 106  lava -1302..-1305             bedrock 0  solid top 16 bottom 31
+   layer  1: air 127  lava -1618..-1624             bedrock 0  solid top 43 bottom 32
+   layer  0: air  85  lava -                        bedrock 0  solid top 116 bottom 61
+-- blocks per layer in a 64x64 box (vanilla: the vanilla Nether, same box, y 0..127)
+   box             netherrac      lava   bedrock nether_qu nether_go ancient_d glowstone soul_sand soul_soil    basalt blackston magma_blo    gravel crimson_n warped_ny crimson_s warped_st crimson_r nether_sp sulfur_or       air
+   layer0            1148126      7584         0      3177      1039        33        28         0         0         0      3582      5000      2284         0         0         0         0         0         0         0          
+   layer1            1047144      3170         0      3440      1115        25       161         0         0         0      2939      4854      3869       565         0       147         0        29         0         0          
+   layer2             696842     10847         0      2199       713        22        86         0         0         0      1177       572      1527        13         0         0         0         0         0         0          
+   layer3             423274      9278         0       931       333        24        26         0         0         0      2074      2417      2135     11142         0      3584         0       624         0         0          
+   layer4             940991      9958         0      2727      1023        27       146         1         0         0      3679      4152      2258         0         0         0         0         0         0         0          
+   layer5             688999      5507         0      1999       709        20        26     17581      5992      1055      4089      3242      2565         0         0         0         0         0         0         0          
+   layer6             747775       355         0      2326       704        25        69         0         0       918      3195      4998      3719     12602         0      2619         0       660         0         0          
+   layer7            1009285      7275         0      2850       827        36       102         0         0     10224      6453      3364      3025         0         0         0         0         0         0         0          
+   layer8             294837      4303         0      1945       620        31        14         0         0    391637    102320      4148        58         3         0         0         0         0         0         0          
+   layer9             299567     11628         0       671       276        17        21         0         0      1390      2397      2146      1523      5732         0      1435         0       373         0         0          
+   layer10           1174393      3556         0      2979      1152        25        20         0         0         0      1493      4850      2606        18         0         0         0         0         0         0          
+   layer11            711742      1342     12352      1606       443        22        41         0         0         0      3117      5457      2913     14780         0      2895         0       748         0         0          
+   bottom-pad          53250         0     12286                                                                                                                                                                                   0
+   vanilla            362875      1281     24616      2667       972        25        50         0         0         0      3059      6906      3342      4667         0      1363         0         0         0                    
+-- air in the 16 blocks around each layer boundary, 128x128 (of 262144): 45943 44569 4644 26381 32502 4832 37527 32225 22527 42917 8952
+-- structures: marker blocks per layer around the located start
+   fortress         layer  6: 58579 nether_bricks
+   bastion0         layer  6: 5705 polished_blackstone_bricks
+   bastion1         layer  8: 13586 polished_blackstone_bricks
+   bastion2         layer  6: 9128 polished_blackstone_bricks
+   ruined-portal    layer  6: 9 obsidian
+   fossil           layer  5: 51 bone_block
+-- portal into Nether that does not exist yet (server thread; the pings are sent half a second apart)
+   [22:26:33] [Server thread/INFO]: [Not Secure] [Server] FREEZE start
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 0
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 1
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 2
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 3
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 4
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 5
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 6
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 7
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 8
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 9
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 10
+   [22:26:48] [Server thread/INFO]: [Not Secure] [Server] FREEZE ping 11
+   [22:26:48] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 14793ms or 295 ticks behind
+   [22:27:42] [Server thread/INFO]: [Not Secure] [Server] CHECK through the overworld-fresh portal
+   [22:27:44] [Server thread/INFO]: packtest lost connection: Disconnected
+-- mobs, portals, structures found, tick times
+   TICK after-45s                                       Percentiles: P50: 2.7ms P95: 6.0ms P99: 8.9ms. Sample: 100
+   COUNT gen piglin                                     Test passed. Count: 40
+   COUNT gen wither_skeleton                            NBIOME nether_wastes | NBIOME nether_wastes | NBIOME nether_wastes | NBIOME crimson_forest | NBIOME nether_wastes | NBIOME nether_wastes | NBIOME crimson_forest | NBIOME nether_wastes | NBIOME nether_
+   LOCATE fortress                                      The nearest minecraft:fortress is at [-128, ~, 192] (230 blocks away)
+   LOCATE bastion0                                      The nearest minecraft:bastion_remnant is at [32, ~, 16] (35 blocks away)
+   LOCATE bastion1                                      The nearest minecraft:bastion_remnant is at [1440, ~, 1504] (60 blocks away)
+   LOCATE bastion2                                      The nearest minecraft:bastion_remnant is at [-2064, ~, 848] (80 blocks away)
+   LOCATE ruined-portal                                 The nearest minecraft:ruined_portal_nether is at [384, ~, 48] (386 blocks away)
+   LOCATE fossil                                        The nearest minecraft:nether_fossil is at [-32, ~, -32] (45 blocks away) | Percentiles: P50: 0.0ms P95: 0.1ms P99: 3.2ms. Sample: 100
+   COUNT layer6-120s strider                            Test passed. Count: 15
+   COUNT layer6-120s piglin                             Test passed. Count: 66
+   COUNT layer6-120s zombified_piglin                   Test passed. Count: 6
+   COUNT layer6-120s hoglin                             Test passed. Count: 30
+   COUNT layer6-120s wither_skeleton                    Percentiles: P50: 30.6ms P95: 52.9ms P99: 239.1ms. Sample: 100
+   COUNT layer6-240s strider                            Test passed. Count: 15
+   COUNT layer6-240s piglin                             Test passed. Count: 79
+   COUNT layer6-240s zombified_piglin                   Test passed. Count: 5
+   COUNT layer6-240s hoglin                             Test passed. Count: 43
+   COUNT layer9-120s strider                            Test passed. Count: 5
+   COUNT layer9-120s piglin                             Test passed. Count: 28
+   COUNT layer9-120s zombified_piglin                   Test passed. Count: 5
+   COUNT layer9-120s hoglin                             Test passed. Count: 11
+   COUNT layer9-120s skeleton                           Test passed. Count: 9
+   COUNT layer9-120s wither_skeleton                    Percentiles: P50: 10.5ms P95: 14.3ms P99: 15.6ms. Sample: 100
+   COUNT layer9-240s strider                            Test passed. Count: 5
+   COUNT layer9-240s piglin                             Test passed. Count: 36
+   COUNT layer9-240s zombified_piglin                   Test passed. Count: 1
+   COUNT layer9-240s hoglin                             Test passed. Count: 11
+   COUNT layer9-240s skeleton                           Test passed. Count: 7
+   PORTALTEST overworld-low island M4 top -1350         [1114.5d, -1351.0d, -3125.5d] | PORTAL lit
+   CHECK through the overworld-low portal               "minecraft:the_nether" | [1106.5d, -1362.0d, -3138.5d] | UNDER obsidian | AT nether_portal | UNDER solid | NBIOME nether_wastes
+   PORTALTEST overworld-high island K6 top 1402         [-2485.5d, 1375.0d, -1285.5d] | PORTAL lit
+   CHECK through the overworld-high portal              "minecraft:the_nether" | [-2484.5d, 1375.0d, -1285.5d] | UNDER obsidian | AT nether_portal | UNDER solid | NBIOME soul_sand_valley
+   PORTALTEST nether-layer2-under-S1 at 300 -1257 300   PORTAL lit
+   CHECK through the nether-layer2-under-S1 portal      "minecraft:overworld" | [290.5d, 53.0d, 315.5d] | UNDER obsidian | AT nether_portal | UNDER solid
+   PORTALTEST nether-layer9-void at 2000 1023 -1000     PORTAL lit
+   CHECK through the nether-layer9-void portal          "minecraft:overworld" | [1999.5d, 1023.0d, -999.5d] | UNDER obsidian | AT nether_portal | UNDER solid | Percentiles: P50: 11.3ms P95: 23.6ms P99: 27.0ms. Sample: 100
+   PORTALTEST overworld-fresh island Sh1 top 234        PORTAL lit
+   CHECK through the overworld-fresh portal             "minecraft:the_nether" | [-441.5d, 216.0d, -453.5d] | UNDER obsidian | AT nether_portal | UNDER solid | NBIOME nether_wastes
+
+================ verdict ================
+PASS

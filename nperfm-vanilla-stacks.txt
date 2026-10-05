@@ -1,0 +1,16 @@
+6 running samples (worker and server threads, waiting ones left out)
+--- share of the samples
+ 33.3%     2 surface rule
+ 16.7%     1 terrain: fill (blocks into sections)
+ 16.7%     1 features
+ 16.7%     1 light
+ 16.7%     1 other
+--- features
+ 16.7%     1 placement.FeaturePlacer.place
+--- top frames
+    1 NoiseBasedChunkGenerator.doFill < NoiseBasedChunkGenerator.lambda$buildTerrain$0 < NoiseBasedChunkGenerator$$Lambda/0x000000001499f028.get
+    1 material.MaterialSystem.buildSurface < NoiseBasedChunkGenerator.mixinextras$bridge$buildSurface$40 < NoiseBasedChunkGenerator$$Lambda/0x00000000149b1190.call
+    1 placement.FeaturePlacer.place < placement.FeaturePlacer.placeWithBiomeCheck < chunk.ChunkGenerator.applyBiomeDecoration
+    1 net.minecraft.util.thread.AbstractConsecutiveExecutor.registerForExecution < net.minecraft.util.thread.AbstractConsecutiveExecutor.schedule < net.minecraft.server.level.ChunkTaskDispatcher.submit
+    1 com.ishland.flowsched.scheduler.StatusAdvancingScheduler.getHolder < com.ishland.flowsched.scheduler.StatusAdvancingScheduler.tickHolder0 < com.ishland.flowsched.scheduler.ItemHolder.lambda$markDirty0$0
+    1 material.rule.SequenceRule.lambda$compile$0 < material.rule.SequenceRule$$Lambda/0x00000000149b66b8.tryApply < material.MaterialSystem.buildSurface
