@@ -11,6 +11,9 @@ import json, math, os, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = sys.argv[1]
 L = json.load(open(ROOT + '/layout/islands.json'))
+sys.path.insert(0, ROOT + '/tools')
+from build_pack import BIOME_SUBSTITUTE
+for i in L['islands']: i['biome'] = BIOME_SUBSTITUTE.get(i['biome'], i['biome'])   # what the generated pack uses
 I = {i['id']: i for i in L['islands']}
 MIN_Y, TOP_Y = L['min_y'], L['min_y'] + L['height'] - 1
 

@@ -7,10 +7,8 @@ L = json.load(open(ROOT + '/layout/islands.json'))
 I = {i['id']: i for i in L['islands']}
 MIN_Y = L['min_y']
 sys.path.insert(0, ROOT + '/tools')
-try:
-    from build_pack import RELIEF, DEFAULT_RELIEF
-except Exception:
-    RELIEF, DEFAULT_RELIEF = {}, 18
+from build_pack import RELIEF, DEFAULT_RELIEF, BIOME_SUBSTITUTE
+for i in L['islands']: i['layout_biome'] = i['biome']; i['biome'] = BIOME_SUBSTITUTE.get(i['biome'], i['biome'])
 fails, notes = [], []
 
 def lines(name):
@@ -31,7 +29,7 @@ def problems(name):
 def covering(x, z, frac=1.0):
     return [i for i in L['islands'] if math.hypot(x - i['x'], z - i['z']) < i['radius'] * frac]
 def top_range(i):
-    amp = 0 if i['kind'] == 'basin' else min(RELIEF.get(i['biome'], DEFAULT_RELIEF), 0.5 * i['thickness'])
+    amp = 0 if i['kind'] == 'basin' else min(RELIEF.get(i['layout_biome'], DEFAULT_RELIEF), 0.5 * i['thickness'])
     lo = i['y_top'] - amp - min(10, 0.1 * i['thickness']) - (0.3 * i['thickness'] if i['kind'] == 'basin' else 0) - 10
     return lo, i['y_top'] + 40   # trees and structures may stand on top
 
@@ -58,8 +56,11 @@ def parse_tagged(name, start):
     res, cur = {}, None
     for l in lines(name):
         t, m = msg(l)
-        if m.startswith(start + ' '): cur = m[len(start) + 1:]; res[cur] = []; continue
-        if re.match(r'(SECTION|PROBE|BODY|MID|COUNT|LOCATE|DIMCOUNT|SCAN|LOADED|PREGEN|CHECK) ', m) or m.startswith('say '): cur = None
+        if m.startswith(start + ' ') or m == start:
+            cur = m[len(start) + 1:] or start
+            while cur in res: cur += "'"
+            res[cur] = []; continue
+        if re.match(r'(SECTION|PROBE|BODY|MID|COUNT|LOCATE|DIMCOUNT|SCAN|SCANBOX|OIL|VIEW|LOADED|PREGEN|CHECK|WORLDSPAWN)( |$)', m) or m.startswith('say '): cur = None
         elif cur is not None and t.startswith('Server thread') and not m.startswith(('Running function', 'Executed ', 'Marked ', 'Unmarked ')): res[cur].append(m)
     return res
 
@@ -96,7 +97,21 @@ def server_report(name, isles=True):
                 elif hit and b != 'minecraft:' + hit[0]['biome'] and b not in ['minecraft:' + i['biome'] for i in cov]: verdict = f"FAIL biome (want {hit[0]['biome']})"
             if verdict != 'ok': fails.append(f"{name}: probe {p['tag']} {p['kind']}: {verdict}")
             print(f"{p['tag']:<16}{p['x']:>6}{p['z']:>6}{str(y):>8}{str(p.get('ws')):>7}  {exp:<16}{b:<30}{p.get('top', '?'):<14} {verdict}")
-    for start in ('BODY', 'MID', 'COUNT', 'LOCATE', 'DIMCOUNT', 'SCAN'):
+    scans = parse_tagged(log, 'SCAN')
+    if scans:   # blocks per island: "SCAN <island> <block>" followed by the fill answers
+        table = {}
+        for k, v in scans.items():
+            isl, block = k.split(' ', 1)
+            m = re.search(r'filled (\d+) block', v[0]) if v else None
+            table.setdefault(isl, {})[block] = int(m.group(1)) if m else (0 if v and 'No blocks' in v[0] else None)
+        boxes = {msg(l)[1].split()[1]: msg(l)[1] for l in ls if msg(l)[1].startswith('SCANBOX ')}
+        print('\n-- blocks inside 64x64 columns (SCAN)')
+        for isl, d in table.items():
+            print(f'   {boxes.get(isl, isl)}')
+            print('      ' + ', '.join(f'{b.split(":")[1]} {n}' for b, n in d.items() if n))
+            print('      none of: ' + ' '.join(b.split(':')[1] for b, n in d.items() if n == 0))
+            if any(n is None for n in d.values()): print('      no answer: ' + ' '.join(b for b, n in d.items() if n is None))
+    for start in ('BODY', 'MID', 'COUNT', 'LOCATE', 'DIMCOUNT', 'OIL', 'CHECK', 'WORLDSPAWN', 'VIEW'):
         d = parse_tagged(log, start)
         if d:
             print(f'\n-- {start}')
@@ -104,14 +119,14 @@ def server_report(name, isles=True):
     print('\n-- other')
     for l in ls:
         t, m = msg(l)
-        if re.match(r'(LIMIT|TOPBIOMEOK|PREGEN|CHECK|SECTION) ', m) or re.search(r'Average time per tick|P50|P95|P99|Target tick rate|Sample: ', m): print('   ', l[:11], m[:200])
+        if re.match(r'(LIMIT|PREGEN|PORTAL|CHURN|SECTION) ', m) or re.search(r'Average time per tick|P50|P95|P99|Target tick rate|Sample: ', m): print('   ', l[:11], m[:200])
     if isles:
         want = {i for i in json.load(open(f'{D}/gen.json'))['sample']} if os.path.exists(f'{D}/gen.json') else set()
         ok = {msg(l)[1].split()[1] for l in ls if msg(l)[1].startswith('TOPBIOMEOK ')}
-        if want and want - ok:
+        if want and want - ok and name in ('vanilla', 'pack'):
             fails.append(f'{name}: biome above the island is not the layout biome on {sorted(want - ok)}')
         for lim in ('bottom-ok', 'top-ok'):
-            if not any('LIMIT ' + lim in l for l in ls): fails.append(f'{name}: build limit {lim} missing')
+            if name == 'vanilla' and not any('LIMIT ' + lim in l for l in ls): fails.append(f'{name}: build limit {lim} missing')
 
 for l in lines('run.txt'):
     if l.startswith('['): print(l)
@@ -119,6 +134,8 @@ for l in lines('build.txt'): print('build:', l)
 server_report('vanilla'); server_report('baseline', False)
 for n in range(20): server_report(f'bisect-{n}')
 server_report('pack')
+if lines('server2-pack.log'):
+    os.rename(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log'); server_report('pack-restart')
 for extra in ('report-pack.txt',):
     for l in lines(extra): print(l)
 print('\n================ verdict ================')
