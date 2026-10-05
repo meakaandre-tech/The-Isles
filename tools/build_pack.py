@@ -233,6 +233,18 @@ def main():
     # --- no snow line: rainy biomes stay rainy at any altitude
     warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
+    # --- vanilla features with a hard-coded height
+    # Ice spikes fill the 3x3 columns under their base with packed ice down to y 50 while they meet air: at the rim of an
+    # island that is a pillar hanging hundreds of blocks into the void. Only place them where all nine columns have ground.
+    under = [{"type": "minecraft:not", "predicate": {"type": "minecraft:matching_block_tag", "tag": "minecraft:air", "offset": [dx, -4, dz]}}
+             for dx in (-1, 0, 1) for dz in (-1, 0, 1)]
+    write("data/minecraft/worldgen/placed_feature/ice_spike.json", {"feature": "minecraft:ice_spike", "placement": [
+        mc("count", count=3), mc("in_square"), mc("heightmap", heightmap="MOTION_BLOCKING"),
+        mc("block_predicate_filter", predicate={"type": "minecraft:all_of", "predicates": under}), mc("biome")]})
+    # Icebergs are built at the generator's sea level, which here is the bottom of the world: under the frozen ocean
+    # islands they would float at y -2032. Off until those islands hold water.
+    for name in ("iceberg_packed", "iceberg_blue"):
+        write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": f"minecraft:{name}", "placement": [mc("count", count=0)]})
     # --- ores follow the island surface
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
