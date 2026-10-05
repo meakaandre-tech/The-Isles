@@ -401,6 +401,10 @@ def main():
     # --- no snow line: rainy biomes stay rainy at any altitude
     warm = [b for b in biomes if (d := climate_biome(b)) and not write(f"data/minecraft/worldgen/biome/{b}.json", d)]
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
+    # Snow and ice: freeze_top_layer has no placement but a biome check, which the game makes at the bottom of the chunk -
+    # void biome there (see biome_code). Without the check the feature still decides column by column from the biome at
+    # the surface.
+    write("data/minecraft/worldgen/placed_feature/freeze_top_layer.json", {"feature": "minecraft:freeze_top_layer", "placement": []})
     # --- vanilla features with a hard-coded height
     # Ice spikes fill the 3x3 columns under their base with packed ice down to y 50 while they meet air: at the rim of an
     # island that is a pillar hanging hundreds of blocks into the void. Only place them where all nine columns have rock.
