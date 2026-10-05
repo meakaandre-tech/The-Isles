@@ -129,7 +129,7 @@ def server_report(name, isles=True):
             if name == 'vanilla' and not any('LIMIT ' + lim in l for l in ls): fails.append(f'{name}: build limit {lim} missing')
 
 for l in lines('run.txt'):
-    if l.startswith('['): print(l)
+    if l.startswith('[') and ' poll ok ' not in l: print(l)
 for l in lines('build.txt'): print('build:', l)
 server_report('vanilla'); server_report('baseline', False)
 for n in range(20): server_report(f'bisect-{n}')

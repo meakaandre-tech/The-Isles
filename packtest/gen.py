@@ -99,16 +99,16 @@ def island_probes(sample=None):
               f'say MID {k} {i["y_top"] - i["thickness"] // 3}', f'execute positioned {x} {i["y_top"] - i["thickness"] // 3} {z} run function packtest:at',
               f'execute positioned {x} {i["y_top"] - i["thickness"] // 3} {z} run function packtest:biome',
               f'execute if biome {x} {i["y_top"] + 3} {z} minecraft:{i["biome"]} run say TOPBIOMEOK {k}',
-              ]
-    # tickets are dropped once, at the end: removing and re-adding tickets on neighbouring chunks within seconds is what the "churn" section does
-    return c + ['forceload remove all']
+              'forceload remove all']   # per island: 1,500 force-loaded chunks of this height do not fit in a 5 GB heap
+    return c
 
 def void_probes():
     c = ['say SECTION void']
     for n, (x, z) in enumerate(void_points()):
         c += [f'forceload add {x} {z}', f'#poll 120 execute if loaded {x} 0 {z} run say LOADED void{n} ## LOADED void{n}']
         probe(c, f'void{n} void', x, z)
-    return c + ['forceload remove all']
+        c += ['forceload remove all']
+    return c
 
 def limits():
     """build limits: blocks can be placed at the lowest and highest layer, not beyond"""
@@ -120,9 +120,11 @@ def limits():
             f'forceload remove {x} {z}']
 
 def pregen(name, cx0, cz0, cx1, cz1, wait=900):
+    """time to generate a region (forceload returns when the chunks are there), heap in use with it loaded, then drop it"""
     n = region_fn(name, cx0, cz0, cx1, cz1)
-    return [f'say PREGEN {name} start {n}', f'forceload add {cx0 * 16} {cz0 * 16} {cx1 * 16} {cz1 * 16}',
-            f'#poll {wait} function packtest:count_{name} ## PREGEN {name} done', 'tick query']
+    return ['forceload remove all', '#sleep 20', f'#heap before-{name}', f'say PREGEN {name} start {n}', f'#time PREGEN-{name}-{n}-chunks',
+            f'forceload add {cx0 * 16} {cz0 * 16} {cx1 * 16} {cz1 * 16}',
+            f'#poll {wait} function packtest:count_{name} ## PREGEN {name} done', '#time', f'#heap with-{name}', 'tick query', 'forceload remove all']
 
 REG_LAND = (20, -8, 35, 7)       # 16x16 chunks inside the spawn island (600 blocks of rock under them)
 p = I['P1']; REG_TIER = (p['x'] // 16 - 4, p['z'] // 16 - 4, p['x'] // 16 + 3, p['z'] // 16 + 3)   # 8x8 chunks through three stacked tiers

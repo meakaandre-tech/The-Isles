@@ -67,7 +67,7 @@ if [ -f $P/debug ]; then
   find $W/boot -name '*.jar' | sed "s#$W/boot/##" >> $out/debugmod.txt
   cd $root
 fi
-SX=${SERVER_XMX:-5G}
+SX=${SERVER_XMX:-6G}
 start_server() { # $1 = log file (in the current directory)
   rm -f in.fifo; mkfifo in.fifo
   (java -Xmx$SX -jar server.jar --nogui < in.fifo > $1 2>&1; echo "EXIT $?" >> $1) &
@@ -118,6 +118,11 @@ feed() { # $1 = command file, $2 = server log
           sed -n "${before},\$p" $2 | grep -qE "$re" && { ok=ok; break; }; sleep 1
         done
         [ $ok = ok ] || ts "wait TIMEOUT after ${t}s: $re";;
+      "#time "*) tname=${line#\#time }; ttime=$(date +%s.%N);;   # "#time name" ... "#time": seconds in between
+      "#time") ts "TIME $tname $(python3 -c "import time; print(round(time.time() - $ttime, 1))") s";;
+      "#heap "*)  # heap in use after a full collection
+        pid=$(pgrep -f 'server.jar' | head -1)
+        [ -n "$pid" ] && { jcmd $pid GC.run >/dev/null 2>&1; sleep 2; ts "HEAP ${line#\#heap } $(jcmd $pid GC.heap_info 2>/dev/null | grep -oE 'used [0-9]+[KMG]' | head -1) $(grep -c . $2 >/dev/null; echo)"; };;
       ""|"#"*) ;;
       *) before=$(( $(wc -l < $2) + 1 )); echo "$line" >&3; sleep 0.12;;
     esac
