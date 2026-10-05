@@ -7,5 +7,5 @@ git commit -q --allow-empty -m "$msg
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01GKaUgBKxTjJi7CdM5RT2V2"
-git push -q origin pack-test 2>&1 | grep -v "^remote:" | tail -1
+git push -q origin HEAD 2>&1 | grep -v "^remote:" | tail -1
 git rev-parse --short=7 HEAD
