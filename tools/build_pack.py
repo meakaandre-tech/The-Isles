@@ -37,14 +37,15 @@ BIOME_SUBSTITUTE = {"eroded_badlands": "badlands"}
 # below anything), so most islands get none and no island gets diamonds. The pack replaces their placement by a
 # depth below the island's own surface: what the vanilla overworld has at y is put (64 - y) blocks under the ground.
 # (placed feature, feature, count or -rarity, shallowest depth, deepest depth); counts are the vanilla ones scaled by
-# the share of the vanilla height range that lies under y 64. Ores that only exist above y 64 (coal_upper, iron_upper,
-# the *_upper stone blobs) and cave decoration keep their vanilla placement.
+# the share of the vanilla height range that lies inside the vanilla world and under y 64 (the diamond and lower redstone
+# ranges are centred on the vanilla bottom, so half of their attempts never land). Ores that only exist above y 64
+# (coal_upper, iron_upper, the *_upper stone blobs) and cave decoration keep their vanilla placement.
 ORES = [("ore_coal_lower", "ore_coal_buried", 5, 0, 64), ("ore_copper", "ore_copper_small", 12, 0, 80),
         ("ore_iron_middle", "ore_iron", 10, 8, 88), ("ore_iron_small", "ore_iron_small", 10, 0, 128),
         ("ore_gold", "ore_gold_buried", 4, 32, 128), ("ore_gold_lower", "ore_gold_buried", {"type": "minecraft:uniform", "min_inclusive": 0, "max_inclusive": 1}, 112, 128),
-        ("ore_gold_extra", "ore_gold", 7, 0, 32), ("ore_redstone", "ore_redstone", 4, 48, 128), ("ore_redstone_lower", "ore_redstone", 8, 96, 160),
-        ("ore_diamond", "ore_diamond_small", 7, 48, 208), ("ore_diamond_buried", "ore_diamond_buried", 4, 48, 208),
-        ("ore_diamond_large", "ore_diamond_large", -9, 48, 208), ("ore_diamond_medium", "ore_diamond_medium", 2, 68, 128),
+        ("ore_gold_extra", "ore_gold", 7, 0, 32), ("ore_redstone", "ore_redstone", 4, 48, 128), ("ore_redstone_lower", "ore_redstone", 4, 96, 128),
+        ("ore_diamond", "ore_diamond_small", 4, 48, 128), ("ore_diamond_buried", "ore_diamond_buried", 2, 48, 128),
+        ("ore_diamond_large", "ore_diamond_large", -18, 48, 128), ("ore_diamond_medium", "ore_diamond_medium", 2, 68, 128),
         ("ore_lapis", "ore_lapis", 2, 32, 96), ("ore_lapis_buried", "ore_lapis_buried", 4, 0, 128), ("ore_emerald", "ore_emerald", 5, 0, 80),
         ("ore_infested", "ore_infested", 14, 0, 128), ("ore_dirt", "ore_dirt", 3, 0, 64), ("ore_gravel", "ore_gravel", 5, 0, 128),
         ("ore_granite_lower", "ore_granite", 2, 4, 64), ("ore_diorite_lower", "ore_diorite", 2, 4, 64),
@@ -235,8 +236,9 @@ def main():
     print(f"{len(warm)} of {len(biomes)} biomes get a constant climate")
     # --- vanilla features with a hard-coded height
     # Ice spikes fill the 3x3 columns under their base with packed ice down to y 50 while they meet air: at the rim of an
-    # island that is a pillar hanging hundreds of blocks into the void. Only place them where all nine columns have ground.
-    under = [{"type": "minecraft:not", "predicate": {"type": "minecraft:matching_block_tag", "tag": "minecraft:air", "offset": [dx, -4, dz]}}
+    # island that is a pillar hanging hundreds of blocks into the void. Only place them where all nine columns have rock.
+    # (the fill also passes through snow and dirt, so ask for rock under the soil)
+    under = [{"type": "minecraft:matching_block_tag", "tag": "minecraft:base_stone_overworld", "offset": [dx, -7, dz]}
              for dx in (-1, 0, 1) for dz in (-1, 0, 1)]
     write("data/minecraft/worldgen/placed_feature/ice_spike.json", {"feature": "minecraft:ice_spike", "placement": [
         mc("count", count=3), mc("in_square"), mc("heightmap", heightmap="MOTION_BLOCKING"),

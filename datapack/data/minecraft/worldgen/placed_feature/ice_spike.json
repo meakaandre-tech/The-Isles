@@ -18,112 +18,85 @@
     "type": "minecraft:all_of",
     "predicates": [
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        -1,
-        -4,
-        -1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       -1,
+       -7,
+       -1
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        -1,
-        -4,
-        0
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       -1,
+       -7,
+       0
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        -1,
-        -4,
-        1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       -1,
+       -7,
+       1
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        0,
-        -4,
-        -1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       0,
+       -7,
+       -1
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        0,
-        -4,
-        0
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       0,
+       -7,
+       0
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        0,
-        -4,
-        1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       0,
+       -7,
+       1
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        1,
-        -4,
-        -1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       1,
+       -7,
+       -1
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        1,
-        -4,
-        0
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       1,
+       -7,
+       0
+      ]
      },
      {
-      "type": "minecraft:not",
-      "predicate": {
-       "type": "minecraft:matching_block_tag",
-       "tag": "minecraft:air",
-       "offset": [
-        1,
-        -4,
-        1
-       ]
-      }
+      "type": "minecraft:matching_block_tag",
+      "tag": "minecraft:base_stone_overworld",
+      "offset": [
+       1,
+       -7,
+       1
+      ]
      }
     ]
    }
