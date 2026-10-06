@@ -6,12 +6,12 @@ Nothing here is part of the data pack; `tools/build_pack.py` and `datapack/` do 
 ## Running it
 
 Push to the `pack-test` branch (or start the "Pack test" workflow by hand). The workflow has one job per group of
-phases (`vanilla`, `pack`, `perf`; they run side by side, about 45 minutes for everything) and a `report` job:
+phases (`vanilla`, `terrain`, `pack`, `perf`; they run side by side, about an hour for everything - the client script of `pack` is the longest) and a `report` job:
 
 1. each job rebuilds `datapack/` and `datapack-mods/` from `layout/islands.json` - with the biome packs named in
    `packtest/providers` it also builds `build/the-isles/` and tests that one (see "Biome packs" below) -, zips them and runs `packtest/run.sh`
    with its phases; while it runs, a snapshot of its logs is pushed every 3 minutes to `ci-logs-vanilla`,
-   `ci-logs-pack`, `ci-logs-perf`,
+   `ci-logs-terrain`, `ci-logs-pack`, `ci-logs-perf`,
 2. the `report` job puts the logs together, writes `report.txt` and `verdict.txt` (`packtest/tools/report.py`) and
    force-pushes everything, screenshots included, to the `ci-logs` branch,
 3. if `packtest/publish` exists and the verdict is PASS, it publishes the two zips as release `pack-test-latest`. The
@@ -24,7 +24,8 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 
 | Phase | What runs | What it answers |
 |---|---|---|
-| `vanilla` | dedicated server, Fabric API + The Isles only | does the world load and generate without errors; islands where the layout says, right biome, empty void, build limits, every structure (`/locate`, then its blocks counted around the island surface, in the rest of the columns and on the world floor), the terrain features (section `terrain`: seas, caves, bands and snow line, geysers, sulfur caves), pre-generation time and heap |
+| `vanilla` | dedicated server, Fabric API + The Isles only | does the world load and generate without errors; islands where the layout says, right biome, empty void, build limits, every structure (`/locate`, then its blocks counted around the island surface, in the rest of the columns and on the world floor), pre-generation time and heap |
+| `terrain` | the same server in a job of its own, then `tools/scan.py` on its saved world (without this phase the section runs inside `vanilla`) | the terrain features: every geyser block by block against `layout/geysers.json`, the springs in freezing biomes, water under and outside all 33 sea basins, structures in the basins, caves, bands and snow line, sulfur caves |
 | `baseline` | the same server without The Isles (vanilla generator) | reference for time and heap |
 | `pack` | every mod of `mods.tsv` + both data packs, a real client under Xvfb, then a restart | boot log, ores per island, oil, a Create line / diesel engine / reactor / gun / hypertube across the void, spawn, respawn, mobs, weather, portals, the look of the sky at three altitudes, screenshots |
 | `perf` | one fresh world per line of `perf.txt`: the pack built by an older commit (`@commit`) or with generator settings (`ISLES_OFF=caves` leaves a feature out) | generation time of the same land / void / stacked-tier / sea-basin regions, heap, tick times, a `/locate` that finds nothing; thread dumps while generating, summed up by step in the report |
@@ -44,8 +45,9 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 | `client-options.txt` | extra `options.txt` lines (key bindings must be legacy numbers: `key_key.use:22` is U) |
 | `debugmod/`, `debug` | test-only mod, built in the run when the file `debug` exists: prints chunk generation exceptions that the game otherwise swallows (see below) |
 | `view-distance` | server view distance and client render distance |
+| `tools/scan.py` | reads the saved world of the terrain phase (region files, no game needed): where the blocks are that the fills marked (water under a sea floor or past a rim: position, the structure piece or neighbouring island they belong to, the blocks around), and every structure that starts in a basin's chunks - its pieces against the water level and the ground under them, chests; `scan.py selftest` checks the reader against a region file it writes itself |
 | `known.txt` | regexes of failures that are known findings; they are listed in the report but do not fail the run |
-| `quick` | while iterating: the only sections to run (words used by `on()` in `gen.py`, e.g. `islands-few structures look biomes biomeviews`); delete it for a full run |
+| `quick` | while iterating: the only sections to run (words used by `on()` in `gen.py`, e.g. `islands-few structures look biomes biomeviews`; with `terrain`, any of `geysers pockets seas tcaves surfaces` limits that section to those parts; `cavemobs` is the client's count in two islands' caves); delete it for a full run |
 | `providers` | ids of `layout/providers.json` the tested pack is built with; only packs with a public download reach the runner (`geophilic`); no file = vanilla biomes |
 | `server-only`, `exclude.txt`, `no-mods-datapack`, `publish` | switches: no client; regexes of mod jars to leave out; pack phase without `datapack-mods`; publish the release |
 

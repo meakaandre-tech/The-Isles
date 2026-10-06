@@ -52,8 +52,11 @@ def ci(d, *names):
         if n.lower() in low: return low[n.lower()]
     return None
 
-def pname(p): return p if isinstance(p, str) else ci(p, 'Name', 'id')     # (26.3 writes a block without properties as its id alone)
-def pprops(p): return None if isinstance(p, str) else ci(p, 'Properties', 'properties')
+def unwrap(p):
+    """26.3 writes a block without properties as its id alone; in a list that also holds compounds, as the compound {"": id}"""
+    return p[''] if isinstance(p, dict) and len(p) == 1 and '' in p else p
+def pname(p): p = unwrap(p); return p if isinstance(p, str) else ci(p, 'Name', 'id', 'name')
+def pprops(p): p = unwrap(p); return None if isinstance(p, str) else ci(p, 'Properties', 'properties')
 
 class World:
     def __init__(self, world):
@@ -186,7 +189,7 @@ def main(world, root, log=None):
                 if not shown_keys:
                     shown_keys = True
                     sec = next((s_ for s_ in (ci(c.nbt, 'sections') or []) if ci(ci(s_, 'block_states'), 'data')), None)
-                    print('chunk keys:', sorted(c.nbt), '| section keys:', sorted(sec) if sec else None, '| palette entry:', (ci(ci(sec, 'block_states'), 'palette') or [None])[0] if sec else None)
+                    print('chunk keys:', sorted(c.nbt), '| section keys:', sorted(sec) if sec else None, '| palette entries:', (ci(ci(sec, 'block_states'), 'palette') or [None])[:4] if sec else None)
                 if has_void:
                     n_void += 1
                     # (only under the floor or past the rim: the sea-life scan marks the whole floor of six seas)
@@ -231,7 +234,7 @@ def main(world, root, log=None):
             print(f'FAIL sea basin {i["id"]}: ' + ', '.join(f'{len(v)} blocks of water {k}' for k, v in sorted(zones.items()) if k.startswith(('under', 'outside'))))
         bad = {k: v for k, v in zones.items() if not k.startswith('on ')}
         if not bad: continue
-        print(f'{i["id"]} {i["biome"]} centre {i["x"]} {i["z"]} radius {R} top {i["y_top"]} water {w} designed floor {w - d} bottom {i["y_bottom"]}: ' + ', '.join(f'{len(v)} {k}' for k, v in sorted(zones.items())))
+        print(f'{i["id"]} {i["biome"]} centre {i["x"]} {i["z"]} radius {R} top {i["y_top"]} water {w} floor in the middle {i["y_top"] - d} bottom {i["y_bottom"]}: ' + ', '.join(f'{len(v)} {k}' for k, v in sorted(zones.items())))
         for k, v in sorted(bad.items()):
             v.sort(); xs, ys, zs = zip(*v)
             print(f'  {k}: x {min(xs)}..{max(xs)} y {min(ys)}..{max(ys)} z {min(zs)}..{max(zs)}; by height: ' + ' '.join(f'{y}:{n}' for y, n in sorted(collections.Counter(ys).items())))
@@ -329,7 +332,8 @@ def main(world, root, log=None):
     for sid, v in sorted(summary.items()):
         sea = [e for e in v if e[0] == 'sea']
         if any(e[0] == 'bottom' for e in v): print(f'{sid}: {sum(1 for e in v if e[0] == "bottom")} at the bottom of the world')
-        v = [e for e in v if e[0] != 'bottom']
+        v = [e for e in v if e[0] != 'bottom']; sea = [e for e in v if e[0] == 'sea']
+        if not v: continue
         print(f'{sid}: {len(v)} ({len(sea)} in a sea, {sum(1 for e in v if e[0] == "ring")} on a ring, {sum(1 for e in v if e[0] == "past the rim")} past the rim); in a sea: '
               f'{sum(1 for e in sea if e[1] <= 0)} wholly under water, {sum(1 for e in sea if e[1] > 0)} reach above it, '
               f'{sum(1 for e in sea if e[2] is not None and e[2] > 2)} float (more than 2 blocks of water or air under every column), {sum(1 for e in v if e[3])} with columns over nothing')
