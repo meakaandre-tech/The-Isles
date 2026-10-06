@@ -28,7 +28,7 @@ and with the Create mod pack it is made for); the test, its findings and what is
 | Badlands: red sand, terracotta bands and wooded tops relative to each island, the same bands on every tier of the mesa stack; snow caps on the windswept hills | Swamp ponds (the rule puts water at y 62; on an island's rim it would run off) |
 | One sulfur geyser per big island (25) and a pocket of sulfur caves under it | Sulfur nodes (the mod) |
 | | A way into the End other than the pack's own portal rooms (vanilla strongholds generate at the bottom of the world), oil deposits for Create Diesel Generators (no bedrock) |
-| | Structures the game puts at fixed heights (mineshafts, monuments: off) |
+| | Structures the game puts at fixed heights (mineshafts, monuments: off), beached shipwrecks (off: they take the lowest column under the hull), trial chambers under the seas (none: a sea basin is too thin for them) |
 
 ## Using it
 
@@ -197,7 +197,7 @@ else. It stands a quarter of the radius from the island's centre (clear of sinkh
 stacked above, and the rim), on a patch of level ground. Nothing about it depends on the world's seed: each island has
 its own template and rotation (the size by the island's radius - extra large on the spawn island, large from radius 300,
 medium from 250, small below; which of the templates and which way round by the island's shape seed), the ground is
-level at a fixed height for 12 blocks around (no ragged noise, no cave entrance within 32 blocks; under the three
+level at a fixed height around it (a patch of radius 12 in the terrain function, exact for about 10 blocks: no ragged noise, and no cave entrance within 32 blocks; under the three
 tier stacks, where the only free place is in the outer part of the island, the rim is held 20 blocks away from it)
 and the spring is put there without a search. `layout/geysers.json` lists, for every geyser, the block of its potent
 sulfur (`x`, `y`, `z`; both blocks of the extra large one under `vents`), the template and rotation, and the ground
