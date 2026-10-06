@@ -416,7 +416,7 @@ def terrain_probes():
             load(c, f'ent-{k}', x + ox - r, z - r, x + ox + r, z + r, 400)
             c += [f'say ENTGRID {k} y {ye} radius {r} step 6', f'function packtest:ent_{k.lower()}', f'say ENTGRID {k} end']
     # the pack's End portal rooms (30 blocks under the ground of the spawn island) are whole
-    c += ['say LOCATE isles-stronghold/caves', 'execute positioned 0 0 0 run locate structure the_isles:stronghold', '#wait 180 ## is at \\[|Could not find|could not find|ERROR|Unknown|There is no structure', '#loc',
+    c += ['say PORTALROOM locate', 'execute positioned 0 0 0 run locate structure the_isles:stronghold',     # (not "LOCATE": the report's structure table wants a probe after that) '#wait 180 ## is at \\[|Could not find|could not find|ERROR|Unknown|There is no structure', '#loc',
           'forceload remove all', 'forceload add {X0} {Z0} {X1} {Z1}', '#poll 240 execute if loaded {X0} 0 {Z0} if loaded {X1} 0 {Z1} if loaded {LX} 0 {LZ} run say LOADED loc ## LOADED loc',
           'say SCAN portalroom minecraft:end_portal_frame', 'fill {X0} -40 {Z0} {X1} 60 {Z1} minecraft:structure_void replace minecraft:end_portal_frame',
           'say SCAN portalroom minecraft:stone_bricks', 'fill {X0} -40 {Z0} {X1} 60 {Z1} minecraft:structure_void replace minecraft:stone_bricks']

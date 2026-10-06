@@ -255,8 +255,8 @@ def server_report(name, isles=True):
         print('\n-- blocks inside 64x64 columns (SCAN)')
         for isl, d in table.items():
             print(f'   {boxes.get(isl, isl)}')
-            print('      ' + ', '.join(f'{b.split(":")[1]} {n}' for b, n in d.items() if n))
-            print('      none of: ' + ' '.join(b.split(':')[1] for b, n in d.items() if n == 0))
+            print('      ' + ', '.join(f'{b.split(":")[-1]} {n}' for b, n in d.items() if n))
+            print('      none of: ' + ' '.join(b.split(':')[-1] for b, n in d.items() if n == 0))
             if any(n is None for n in d.values()): print('      no answer: ' + ' '.join(b for b, n in d.items() if n is None))
     structure_table(name, log, probes, scans)
     cave_report(log)
