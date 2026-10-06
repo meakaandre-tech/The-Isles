@@ -348,8 +348,9 @@ def surface(bp, islands):
         b = c.get("biome_is") if isinstance(c, dict) and c.get("type") == "minecraft:biome" else None
         return b is not None and all(x.split(":")[1] in ("frozen_ocean", "deep_frozen_ocean") for x in ([b] if isinstance(b, str) else b))
     def walk(o):
-        # The frozen oceans' rule (holes in the top layer: air above the water level, water below) is left out: with the sea
-        # filled in afterwards it put single water blocks on ledges of the island's underside (60 counted under M2).
+        # The frozen oceans' rule (holes in the top layer: air above the generator's sea level, water below it) is left out:
+        # that level is the bottom of the world here. (It was taken out as the suspect for 60 blocks of water counted under
+        # M2; those were a trial chamber's own - see build_pack, "No trial chambers under a sea".)
         if isinstance(o, list): return [walk(v) for v in o if not (isinstance(v, dict) and v.get("type") == "minecraft:condition" and is_frozen_sea(v["if_true"]))]
         if not isinstance(o, dict): return o
         if o.get("type") == "minecraft:condition" and is_badlands(o["if_true"]) and groups: return {**o, "then_run": per_island(o["then_run"])}
