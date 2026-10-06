@@ -1,0 +1,118 @@
+overrealm: no public download (https://www.patreon.com/posts/overrealm-data-148060790); put your copy (*overrealm*) into vendor/
+geophilic: Geophilic_v3.7.dp.zip (1114215 bytes)
+dwarfhollow: no public download (https://www.patreon.com/posts/dwarfhollow-135712745); put your copy (*dwarfhollow*) into vendor/
+eroded_badlands -> badlands on 6 islands
+geyser of J1: -0.08 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+geyser of P1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+geyser of Q1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+layer 0: 196 islands, 163 with caves
+layer 1: 41 islands, 19 with caves
+layer 2: 3 islands, 0 with caves
+sulfur: 25 geysers (islands of radius 230 or more that are not sea basins: 7 small, 9 medium, 8 large, 1 extra_large; 3 vents kept open in freezing biomes), a pocket of sulfur caves 14..46 blocks under each
+surface: badlands heights and bands per island on 21 islands (452 bands), snow line on 10 windswept islands
+seas: 33 basins, water up to 8 under the top, cold_ocean 8, deep_cold_ocean 2, deep_frozen_ocean 1, deep_lukewarm_ocean 2, deep_ocean 1, frozen_ocean 2, lukewarm_ocean 5, ocean 4, warm_ocean 8
+40 of 48 biomes get a constant climate
+structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+structure ancient_city: 60 blocks under the island surface
+structure mansion: off
+structure mineshaft: off
+structure mineshaft_mesa: off
+structure monument: off
+structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+structure ruined_portal: on or half in the island surface
+structure ruined_portal_desert: on or half in the island surface
+structure ruined_portal_jungle: on or half in the island surface
+structure ruined_portal_mountain: on or half in the island surface
+structure ruined_portal_ocean: on or half in the island surface
+structure ruined_portal_swamp: on or half in the island surface
+structure shipwreck_beached: off
+structure stronghold: off
+structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+structure trial_chambers: 32..48 blocks under the island surface
+structure village_desert: surface (as in vanilla), not at the bottom of the world
+structure village_plains: surface (as in vanilla), not at the bottom of the world
+structure village_savanna: surface (as in vanilla), not at the bottom of the world
+structure village_snowy: surface (as in vanilla), not at the bottom of the world
+structure village_taiga: surface (as in vanilla), not at the bottom of the world
+nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+240 islands, 48 biomes, 1257 files -> /home/runner/work/The-Isles/The-Isles/datapack
+eroded_badlands -> badlands on 6 islands
+geyser of J1: -0.08 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+geyser of P1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+geyser of Q1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+geophilic (Geophilic_v3.7.dp.zip): 302 files copied, 0 fixed-height placements moved under the island surface
+layer 0: 196 islands, 163 with caves
+layer 1: 41 islands, 19 with caves
+layer 2: 3 islands, 0 with caves
+sulfur: 25 geysers (islands of radius 230 or more that are not sea basins: 7 small, 9 medium, 8 large, 1 extra_large; 3 vents kept open in freezing biomes), a pocket of sulfur caves 14..46 blocks under each
+surface: badlands heights and bands per island on 21 islands (452 bands), snow line on 10 windswept islands
+seas: 33 basins, water up to 8 under the top, cold_ocean 8, deep_cold_ocean 2, deep_frozen_ocean 1, deep_lukewarm_ocean 2, deep_ocean 1, frozen_ocean 2, lukewarm_ocean 5, ocean 4, warm_ocean 8
+40 of 48 biomes get a constant climate
+biome -> provider (islands)
+  overrealm: 0 biomes, 0 islands: 
+  geophilic: 30 biomes, 166 islands: bamboo_jungle(4) beach(11) birch_forest(7) cherry_grove(8) dark_forest(4) desert(10) flower_forest(4) forest(7) grove(5) jungle(7) meadow(9) old_growth_birch_forest(5) old_growth_pine_taiga(4) old_growth_spruce_taiga(3) pale_garden(3) plains(11) savanna(6) savanna_plateau(4) snowy_plains(5) snowy_taiga(3) sparse_jungle(4) stony_shore(3) sunflower_plains(5) swamp(7) taiga(6) windswept_forest(4) windswept_gravelly_hills(2) windswept_hills(4) windswept_savanna(4) wooded_badlands(7)
+  vanilla: 18 biomes, 74 islands: badlands(14) cold_ocean(8) deep_cold_ocean(2) deep_frozen_ocean(1) deep_lukewarm_ocean(2) deep_ocean(1) frozen_ocean(2) frozen_peaks(3) ice_spikes(2) jagged_peaks(4) lukewarm_ocean(5) mangrove_swamp(6) mushroom_fields(1) ocean(4) snowy_beach(3) snowy_slopes(5) stony_peaks(3) warm_ocean(8)
+WARNING: overrealm is not in vendor/: its biomes fall through to the next provider
+structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+structure ancient_city: 60 blocks under the island surface
+structure mansion: off
+structure mineshaft: off
+structure mineshaft_mesa: off
+structure monument: off
+structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+structure ruined_portal: on or half in the island surface
+structure ruined_portal_desert: on or half in the island surface
+structure ruined_portal_jungle: on or half in the island surface
+structure ruined_portal_mountain: on or half in the island surface
+structure ruined_portal_ocean: on or half in the island surface
+structure ruined_portal_swamp: on or half in the island surface
+structure shipwreck_beached: off
+structure stronghold: off
+structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+structure trial_chambers: 32..48 blocks under the island surface
+structure village_desert: surface (as in vanilla), not at the bottom of the world
+structure village_plains: surface (as in vanilla), not at the bottom of the world
+structure village_savanna: surface (as in vanilla), not at the bottom of the world
+structure village_snowy: surface (as in vanilla), not at the bottom of the world
+structure village_taiga: surface (as in vanilla), not at the bottom of the world
+nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+240 islands, 48 biomes, 1562 files -> /home/runner/work/The-Isles/The-Isles/build/the-isles
+with provider biomes -> /home/runner/work/The-Isles/The-Isles/build/the-isles.zip (for your own worlds; not to be redistributed)
+WARNING: the committed data packs differ from the generator output
+pack under test: build/the-isles
+-rw-r--r-- 1 runner runner   3219 Oct  6 11:59 /tmp/the-isles-mods-tested.zip
+-rw-r--r-- 1 runner runner 799508 Oct  6 11:59 /tmp/the-isles-tested.zip
