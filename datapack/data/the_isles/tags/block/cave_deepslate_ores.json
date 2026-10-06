@@ -1,0 +1,9 @@
+{
+ "values": [
+  "#minecraft:deepslate_ore_replaceables",
+  {
+   "id": "#dwho:replaceable/deepslate_ores",
+   "required": false
+  }
+ ]
+}

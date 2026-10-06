@@ -73,6 +73,7 @@ ORES = [("ore_coal_lower", "ore_coal_buried", 5, 0, 64), ("ore_copper", "ore_cop
         ("ore_andesite_lower", "ore_andesite", 2, 4, 64), ("ore_tuff", "ore_tuff", 2, 64, 128)]
 # The same for the ores of the mods of the owner's pack. These go into a second data pack (datapack-mods/): a data
 # pack that names a mod's feature does not load without that mod.
+CAVE_ORES = {"zinc_ore": (("create:zinc_ore", "create:deepslate_zinc_ore"), 12), "lead_ore_placed": (("cgs:lead_ore", "cgs:deepslate_lead_ore"), 9)}   # (the mods' own blocks and vein sizes)
 MOD_ORES = [("create", "zinc_ore", "create:zinc_ore", 8, 0, 128, "create:config_filter"),
             ("create", "striated_ores_overworld", "create:striated_ores_overworld", -18, 0, 96, "create:config_filter"),
             ("cgs", "lead_ore_placed", "cgs:lead_ore", 11, 0, 128, "minecraft:biome")]
@@ -703,6 +704,7 @@ def build(src):
     if sulfur_biome: write(bfile(SULFUR), sulfur_biome)
     sea_features = bt.seas(me, islands)
     bt.springs(me)
+    bt.geodes(me)
     # the game's cave carvers tunnel through anything, undersides and sea floors included: off (the caves are in the terrain)
     for f in sorted((Path(__file__).parent / "vanilla_carver").glob("*.json")):
         write(f"data/minecraft/worldgen/carver/{f.name}", {**json.loads(f.read_text()), "probability": 0.0})
@@ -797,10 +799,35 @@ def build(src):
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
     if OUT_MODS.exists(): shutil.rmtree(OUT_MODS)
+    # (the same with and without the cave world's pack: datapack-mods is one public pack)
+    cw = json.loads((ROOT / "layout" / "biome_sources.json").read_text()).get("cave_world") or {}
+    cave_range = None
+    if cw.get("island"):
+        import build_caves
+        cave_range = (build_caves.DH_MIN + build_caves.SHIFT, build_caves.DH_TOP + build_caves.SHIFT)
+    write(f"data/{NS}/tags/worldgen/biome/cave_world.json", {"values": [f"{build_caves.NSD}:{b}" for b in caves.biomes] if caves else []})
+    for kind, vanilla_tag in (("stone", "stone_ore_replaceables"), ("deepslate", "deepslate_ore_replaceables")):
+        write(f"data/{NS}/tags/block/cave_{kind}_ores.json", {"values": [f"#minecraft:{vanilla_tag}", {"id": f"#dwho:replaceable/{kind}_ores", "required": False}]})
     write("pack.mcmeta", {"pack": {"description": "The Isles - ores of Create and Gunsmithing follow the islands",
                                    "pack_format": 121, "min_format": [121, 0], "max_format": [121, 0]}}, OUT_MODS)
     for ns, name, feature, count, d0, d1, last in MOD_ORES:
-        write(f"data/{ns}/worldgen/placed_feature/{name}.json", ore_placement(feature, count, d0, d1, last), OUT_MODS)
+        placed = ore_placement(feature, count, d0, d1, last)
+        if name in CAVE_ORES and cave_range:
+            # The cave world (tools/build_caves.py) lies deeper in its island than these placements reach, and part of its rock
+            # is not stone (Dwarfhollow: amethyst, calcite, packed ice, tuff ...). The mods add their placed feature to every
+            # biome of the Overworld, the cave world's included, so the feature itself becomes two: the one under the surface
+            # as everywhere, then one at the cave world's heights, only in the cave world's biomes (#the_isles:cave_world,
+            # empty without the cave world) and into the rock its own ores replace (#the_isles:cave_stone_ores, ..._deepslate_ores).
+            (stone, deep), size = CAVE_ORES[name]
+            n = max(1, round(count * (cave_range[1] - cave_range[0]) / (d1 - d0)))
+            ore = {"type": "minecraft:ore", "discard_chance_on_air_exposure": 0.0, "size": size, "targets": [
+                {"state": stone, "target": {"predicate_type": "minecraft:tag_match", "tag": ref("cave_stone_ores")}},
+                {"state": deep, "target": {"predicate_type": "minecraft:tag_match", "tag": ref("cave_deepslate_ores")}}]}
+            deep_placed = {"feature": ore, "placement": [mc("count", count=n), mc("in_square"),
+                           mc("height_range", height=mc("uniform", min_inclusive={"absolute": cave_range[0]}, max_inclusive={"absolute": cave_range[1]})),
+                           mc("block_predicate_filter", predicate=mc("matching_biomes", biomes="#" + ref("cave_world")))] + ([{"type": last}] if last != "minecraft:biome" else [])}
+            placed = {"feature": {"type": "minecraft:sequence", "features": [placed, deep_placed]}, "placement": []}
+        write(f"data/{ns}/worldgen/placed_feature/{name}.json", placed, OUT_MODS)
     # --- the Nether: stacked layers over the same height (tools/build_nether.py)
     import build_nether
     build_nether.build(write, OUT_MODS)

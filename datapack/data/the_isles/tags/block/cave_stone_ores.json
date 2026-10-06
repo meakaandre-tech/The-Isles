@@ -1,0 +1,9 @@
+{
+ "values": [
+  "#minecraft:stone_ore_replaceables",
+  {
+   "id": "#dwho:replaceable/stone_ores",
+   "required": false
+  }
+ ]
+}

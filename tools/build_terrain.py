@@ -129,6 +129,19 @@ def springs(bp):
         bp.write(f"data/minecraft/worldgen/placed_feature/{name}.json", {"feature": feature, "placement":
                  [mc("count", count=count), mc("in_square")] + bp.depth_mods(d0, d1) + [rock, mc("biome")]})
 
+def geodes(bp):
+    """The game puts amethyst geodes at a height of the whole world below y 30, wherever at most one of a few points around
+    the centre is air or water: only the islands below y 30 had any, and there at any height of the body - one under the sea
+    floor of the frozen basin M2 was open to the sea and full of water (the 60 blocks of water the pack test counted under
+    that floor), one near an underside would break through it. Here they are placed like the ores, 24 to 128 blocks under
+    the surface (the sea floor in a basin), and only with rock 12 blocks to every side, above and below (a geode is up to
+    9 blocks in radius), in every island that is thick enough."""
+    mc = bp.mc
+    rock = mc("block_predicate_filter", predicate=mc("all_of", predicates=[
+        mc("matching_block_tag", tag="minecraft:base_stone_overworld", offset=o) for o in ([12, 0, 0], [-12, 0, 0], [0, 0, 12], [0, 0, -12], [0, 12, 0], [0, -12, 0], [0, -16, 0])]))
+    bp.write("data/minecraft/worldgen/placed_feature/amethyst_geode.json", {"feature": "minecraft:amethyst_geode", "placement":
+             [mc("rarity_filter", chance=24), mc("in_square")] + bp.depth_mods(24, 128) + [rock, mc("biome")]})
+
 # ---------------------------------------------------------------------------------------------------------- sulfur
 POCKET_R, POCKET_TOP, POCKET_BOTTOM = 40, 14, 46     # the sulfur caves under a geyser: radius, and depth under the geyser's ground
 CHAMBER_R, CHAMBER_H = 12, 5                         # the cavern in the middle of the pocket (always open)
