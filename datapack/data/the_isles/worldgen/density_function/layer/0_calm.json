@@ -1,0 +1,727 @@
+{
+ "type": "minecraft:slice",
+ "axis": "y",
+ "coordinate": 0,
+ "input": {
+  "type": "minecraft:add",
+  "left": {
+   "type": "minecraft:add",
+   "left": {
+    "type": "minecraft:add",
+    "left": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/000_s1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            236,
+            0,
+            185
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/012_a1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            2358,
+            0,
+            -39
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/019_b1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            1093,
+            0,
+            2024
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/026_c1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -1084,
+            0,
+            2028
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    },
+    "right": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/040_e1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -1163,
+            0,
+            -2061
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/047_f1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            1132,
+            0,
+            -1935
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/053_g1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            3312,
+            0,
+            1395
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/060_h1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            1457,
+            0,
+            3396
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    }
+   },
+   "right": {
+    "type": "minecraft:add",
+    "left": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/074_j1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -3427,
+            0,
+            1246
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/088_l1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -1380,
+            0,
+            -3435
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/107_p1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            3301,
+            0,
+            -3185
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/113_q1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -3497,
+            0,
+            -3335
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    },
+    "right": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/119_r1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            3478,
+            0,
+            3437
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/125_t1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -3298,
+            0,
+            3403
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/131_a1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            2275,
+            0,
+            -1493
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/143_c1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            2445,
+            0,
+            2449
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  "right": {
+   "type": "minecraft:add",
+   "left": {
+    "type": "minecraft:add",
+    "left": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/155_e1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -2275,
+            0,
+            -2899
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/161_f1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            3525,
+            0,
+            205
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/173_h1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            107,
+            0,
+            -3525
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/179_i1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -3593,
+            0,
+            -371
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    },
+    "right": {
+     "type": "minecraft:add",
+     "left": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/185_j1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -1963,
+            0,
+            -772
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/191_k1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -3663,
+            0,
+            2385
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "right": {
+      "type": "minecraft:add",
+      "left": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/197_l1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -2847,
+            0,
+            2562
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      },
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:inside/203_m1",
+       "right": {
+        "type": "minecraft:clamp",
+        "input": {
+         "type": "minecraft:mul",
+         "left": {
+          "type": "minecraft:sub",
+          "left": 20,
+          "right": {
+           "type": "minecraft:distance_to_point",
+           "metric": "euclidean",
+           "point": [
+            -2556,
+            0,
+            -3739
+           ]
+          }
+         },
+         "right": 0.125
+        },
+        "min": 0,
+        "max": 1
+       }
+      }
+     }
+    }
+   },
+   "right": {
+    "type": "minecraft:mul",
+    "left": "the_isles:inside/209_n1",
+    "right": {
+     "type": "minecraft:clamp",
+     "input": {
+      "type": "minecraft:mul",
+      "left": {
+       "type": "minecraft:sub",
+       "left": 20,
+       "right": {
+        "type": "minecraft:distance_to_point",
+        "metric": "euclidean",
+        "point": [
+         3754,
+         0,
+         2177
+        ]
+       }
+      },
+      "right": 0.125
+     },
+     "min": 0,
+     "max": 1
+    }
+   }
+  }
+ }
+}

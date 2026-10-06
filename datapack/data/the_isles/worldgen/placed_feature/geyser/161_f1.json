@@ -1,0 +1,15 @@
+{
+ "feature": "the_isles:geyser/large_1_clockwise_90",
+ "placement": [
+  {
+   "type": "minecraft:fixed_placement",
+   "positions": [
+    [
+     3525,
+     -533,
+     205
+    ]
+   ]
+  }
+ ]
+}

@@ -133,26 +133,66 @@ def springs(bp):
 POCKET_R, POCKET_TOP, POCKET_BOTTOM = 40, 14, 46     # the sulfur caves under a geyser: radius, and depth under the geyser's ground
 CHAMBER_R, CHAMBER_H = 12, 5                         # the cavern in the middle of the pocket (always open)
 WARMTH = 13                                          # light over a geyser's pool where water freezes (see sulfur)
-GEYSER_SIZES = ("sulfur_spring_small_", "sulfur_spring_medium_")   # the vanilla spring templates used
-PAD_R = 14                                           # the ground is level this far around a geyser
+PAD_R, PAD_FADE = 12, 8                              # the ground is level this far around a geyser, and comes back to the island's relief over the fade
+CLEAR = PAD_R + PAD_FADE                             # nothing else within this distance of a geyser: rim, cave entrance
+# The vanilla spring templates (minecraft:spring/<name>, 26.3): size x/y/z and their potent sulfur blocks (x, y, z in the
+# template, water blocks above). The template feature centres the template on its position (x and z minus half the size)
+# and the spring feature puts it 7 blocks down: the layers 0..6 are in the ground, the pool's surface is the ground's top block.
+SPRINGS = {"small": {"sulfur_spring_small_1": ((8, 11, 9), [(3, 6, 4, 1)]), "sulfur_spring_small_2": ((9, 11, 8), [(4, 5, 4, 1)]),
+                     "sulfur_spring_small_3": ((9, 11, 9), [(4, 5, 5, 1)]), "sulfur_spring_small_4": ((9, 11, 9), [(4, 5, 3, 1)])},
+           "medium": {"sulfur_spring_medium_1": ((11, 11, 11), [(4, 5, 7, 1)]), "sulfur_spring_medium_2": ((12, 11, 11), [(6, 5, 5, 1)]),
+                      "sulfur_spring_medium_3": ((12, 11, 12), [(6, 5, 6, 1)])},
+           "large": {"sulfur_spring_large_1": ((13, 11, 12), [(5, 4, 5, 2)]), "sulfur_spring_large_2": ((12, 11, 13), [(5, 4, 7, 2)])},
+           "extra_large": {"sulfur_spring_extra_large_1": ((16, 11, 16), [(6, 4, 6, 2), (10, 4, 8, 2)])}}
+GEYSER_SIZES = (("extra_large", 1000), ("large", 300), ("medium", 250), ("small", 0))   # the size of the spring by the island's radius (at least)
+ROTATIONS = ("none", "clockwise_90", "180", "counterclockwise_90")
+SPRING_DEPTH = 7
 def flag_big(layout):
     """writes "geyser": true/false into every island of the layout (once; the owner edits the flags afterwards)"""
     for i in layout["islands"]:
         i.setdefault("geyser", i["radius"] >= BIG_RADIUS and not is_basin(i))
+def spring_of(i):
+    """which spring an island gets: the size by its radius, template and rotation by its shape seed -> (size, template, rotation)"""
+    size = next(name for name, r in GEYSER_SIZES if i["radius"] >= r)
+    names = sorted(SPRINGS[size])
+    return size, names[i["shape_seed"] % len(names)], ROTATIONS[(i["shape_seed"] // 7) % 4]
+def vents(g):
+    """the potent sulfur blocks of the spring at g -> [(x, y, z, water blocks above)] (the rotation as the game's template feature does it)"""
+    (sx, sy, sz), potent = SPRINGS[g["size"]][g["template"]]
+    out = []
+    for lx, ly, lz, wa in potent:
+        dx, dz = {"none": (lx - sx // 2, lz - sz // 2), "clockwise_90": (sz // 2 - lz, lx - sx // 2),
+                  "180": (sx // 2 - lx, sz // 2 - lz), "counterclockwise_90": (lz - sz // 2, sx // 2 - lx)}[g["rotation"]]
+        out.append((g["x"] + dx, g["y"] - SPRING_DEPTH + ly, g["z"] + dz, wa))
+    return out
+def rim_margin(i, x, z):
+    """the island's edge term (1 at the centre, 0 at the rim) CLEAR blocks further out than x/z, with the rim drawn in as far as the
+    edge noise can (see build_pack.island_fields): positive = the level ground around a geyser there cannot reach the rim"""
+    R = i["radius"]; shrink = max(0.05, min(0.2, 40 / R + 0.04))
+    return 1 - (math.hypot(x - i["x"], z - i["z"]) + CLEAR) / R - 2 * shrink
 def geyser(bp, i, layout, islands):
-    """the place of an island's geyser -> {x, y, z} (y: the ground there, the first free block) or None"""
+    """the place of an island's geyser -> {x, y, z, size, template, rotation} (y: the ground there, the first free block) or None"""
     if not i.get("geyser") or is_basin(i) or "sulfur" in OFF: return None
     R = i["radius"]; amp = min(bp.RELIEF.get(layout_biome(i), bp.DEFAULT_RELIEF), 0.5 * i["thickness"])
     a = i["shape_seed"] % 360
+    size, template, rotation = spring_of(i)
     # a quarter of the radius from the centre, turned (then moved outwards) until it is clear of the sinkholes, of the spawn
-    # point and of every island above or below (a tier, an islet)
-    for far in (0.25, 0.35, 0.45, 0.55, 0.62):
-        for turn in range(10):
+    # point, of every island above or below (a tier, an islet) and of the rim; the place furthest from the rim when none is
+    best = None
+    for far in (0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.62):
+        for turn in range(20):
             x = round(i["x"] + far * R * math.cos(math.radians(a + 37 * turn))); z = round(i["z"] + far * R * math.sin(math.radians(a + 37 * turn)))
             if all(math.hypot(x - s["x"], z - s["z"]) > s["radius"] + 80 for s in layout.get("sinkholes", [])) and math.hypot(x, z) > 150 \
                and all(j is i or math.hypot(x - j["x"], z - j["z"]) > j["radius"] + 24 for j in islands):
-                return {"x": x, "y": i["y_top"] - round(0.6 * amp) - 2, "z": z}
-    return {"x": x, "y": i["y_top"] - round(0.6 * amp) - 2, "z": z}
+                m = rim_margin(i, x, z)
+                if best is None or m > best[0] + 1e-9: best = (m, x, z)
+                if m >= 0.05: break
+        if best and best[0] >= 0.05: break
+    if best is None: print(f"WARNING: no place for a geyser on {i['id']}"); return None
+    g = {"x": best[1], "y": i["y_top"] - round(0.6 * amp) - 2, "z": best[2], "size": size, "template": template, "rotation": rotation}
+    if best[0] < 0.05:   # (under a stack of tiers there is no better place: the rim is held out around the geyser, see build_pack.island_fields)
+        g["hold"] = True; print(f"geyser of {i['id']}: {best[0]:.2f} from the rim at the edge noise's worst, the rim is held {CLEAR} blocks away from it")
+    return g
 def pocket(g): return {"x": g["x"], "z": g["z"], "radius": POCKET_R, "y_min": g["y"] - POCKET_BOTTOM, "y_max": g["y"] - POCKET_TOP,
                        "chamber": {"x": g["x"], "y": g["y"] - (POCKET_TOP + POCKET_BOTTOM) // 2, "z": g["z"], "radius": CHAMBER_R}}
 
@@ -164,39 +204,53 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     for i in islands:
         if i.get("geyser") and is_basin(i): print(f"WARNING: {i['id']} is flagged for a geyser but is a sea basin (no dry ground): none placed")
     if bp.OUT == ROOT / "datapack" and not OFF - {""}:   # (the layout files are written by the build of the public pack)
-        (ROOT / "layout" / "geysers.json").write_text(json.dumps({
-            "note": "generated by tools/build_pack.py from the \"geyser\" flags of islands.json. x/z: where the sulfur spring feature is placed "
-                    "(its potent sulfur block lies within 8 blocks of it); y: the ground there (the ground is level 8 blocks around, +-4 with the seed)",
-            "geysers": [{"island": i["id"], **g} for i, g in sites]}, indent=1) + "\n")
+        note = ("generated by tools/build_pack.py from the \"geyser\" flags of islands.json. x/y/z: the potent sulfur block of the geyser (the block "
+                "that erupts; a magma block under it, water over it), the same block in every world; vents: every potent sulfur block of the spring (two in "
+                "an extra large one, the first is x/y/z); ground: where the spring stands (y: the first free block of the level ground around it); "
+                "template, rotation: the vanilla minecraft:spring/ template placed there")
+        rows = [{"island": i["id"], **dict(zip("xyz", vents(g)[0][:3])), "vents": [list(v[:3]) for v in vents(g)], "size": g["size"],
+                 "template": g["template"], "rotation": g["rotation"], "ground": {k: g[k] for k in "xyz"}} for i, g in sites]
+        (ROOT / "layout" / "geysers.json").write_text('{\n "note": ' + json.dumps(note) + ',\n "geysers": [\n' + ",\n".join("  " + json.dumps(r) for r in rows) + "\n ]\n}\n")
         (ROOT / "layout" / "sulfur_caves.json").write_text(json.dumps({
             "note": "generated by tools/build_pack.py: one pocket of minecraft:sulfur_caves under every geyser (a cylinder), with an open chamber in its middle",
             "sulfur_caves": [{"island": i["id"], **pocket(g)} for i, g in sites]}, indent=1) + "\n")
     if not sites: return None, None
     air = mc("matching_block_tag", tag="minecraft:air")
-    # the geyser: the vanilla sulfur spring on the ground at the fixed place (under a tier too: no heightmap)
-    # (down to the ground through whatever the chunk next door has already grown over the place - leaves, a trunk, flowers:
-    # with a search through air only, two of 25 geysers were missing, one under a flower)
-    tree = mc("any_of", predicates=[mc("matching_block_tag", tag="minecraft:leaves"), mc("matching_block_tag", tag="minecraft:logs")])
-    # The vanilla feature picks one of ten templates by weight; here only the small and medium ones (weights as in vanilla):
-    # in the test the two geysers that were missing of 25 fit the share of the large ones, which never appeared.
+    # The geyser: a vanilla sulfur spring at the fixed place. The vanilla feature picks one of ten templates and one of four
+    # rotations with the world's seed and is put on whatever ground it finds; here every island has its template and its
+    # rotation (spring_of), the ground around the place is level at a fixed height (build_pack.island_fields; no ragged
+    # noise, no cave entrance there) and the spring is placed at that height without a search: the potent sulfur block is at
+    # the same block in every world, layout/geysers.json lists it.
     spring = json.loads((HERE / "vanilla_feature" / "sulfur_spring.json").read_text())
-    spring["features"] = [e for e in spring["features"] if any(k in json.dumps(e) for k in GEYSER_SIZES)]
-    assert spring["type"] == "minecraft:weighted_random_selector" and len(spring["features"]) == len(GEYSER_SIZES)
-    bp.write(f"data/{bp.NS}/worldgen/feature/geyser.json", spring)
-    bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser.json", {"feature": bp.ref("geyser"), "placement": [
-        mc("fixed_placement", positions=[[g["x"], g["y"] + 8, g["z"]] for i, g in sites]),
-        mc("environment_scan", direction_of_search="down", max_steps=20, target_condition=mc("all_of", predicates=[mc("solid"), mc("not", predicate=tree)])),
-        mc("offset", x=0, y=1, z=0)]})
-    # Where water freezes (snowy plains, peaks) the spring's pool would be ice and the geyser "dry": a light block (invisible,
-    # level 13) over the water above every potent sulfur block of those springs keeps it open (ice from generation melts).
-    cold = [g for i, g in sites if bp.vanilla_biome(layout_biome(i))["temperature"] < 0.15]
-    potent = lambda dy: mc("matching_blocks", blocks="minecraft:potent_sulfur", offset=[0, dy, 0])
-    bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser_warmth.json", {
-        "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:light", "properties": {"level": str(WARMTH), "waterlogged": "false"}}},
-        # (from the geyser's own position: the feature then runs with the geyser's chunk, after the geyser)
-        "placement": [mc("fixed_placement", positions=[[g["x"], g["y"], g["z"]] for g in cold]), mc("offset", x=-8, y=-8, z=-8), mc("cuboid", xz_size=15, y_size=12),
-                      mc("block_predicate_filter", predicate=mc("all_of", predicates=[air, mc("matching_blocks", blocks="minecraft:water", offset=[0, -1, 0]),
-                                                                                      mc("any_of", predicates=[potent(-2), potent(-3)])]))]})
+    assert spring["type"] == "minecraft:weighted_random_selector"
+    by_size = {}
+    for e in spring["features"]:
+        seq = e["data"]["feature"]; t = seq["features"][-1]["feature"]
+        assert seq["type"] == "minecraft:sequence" and t["type"] == "minecraft:template" and seq["features"][-1]["placement"] == [mc("offset", x=0, y=-SPRING_DEPTH, z=0)]
+        size = next(k for k in SPRINGS if all(x["data"]["id"].split("/")[-1] in SPRINGS[k] for x in t["templates"]))
+        assert len(t["templates"]) == len(SPRINGS[size]); by_size[size] = seq
+    refs = []
+    for i, g in sites:
+        name = f"geyser/{g['template'].replace('sulfur_spring_', '')}_{g['rotation']}"
+        seq = copy.deepcopy(by_size[g["size"]])
+        seq["features"][-1]["feature"]["templates"] = [{"data": {"id": f"minecraft:spring/{g['template']}", "rotations": [g["rotation"]]}, "weight": 1}]
+        bp.write(f"data/{bp.NS}/worldgen/feature/{name}.json", seq)
+        bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser/{i['key']}.json", {"feature": bp.ref(name), "placement": [
+            mc("fixed_placement", positions=[[g["x"], g["y"], g["z"]]])]})
+        refs.append(bp.ref(f"geyser/{i['key']}"))
+    # Where water freezes (snowy plains, peaks) the top of the spring's pool turns to ice at generation, and a spring with one
+    # block of water over its potent sulfur is then "dry". Two features at the exact block over every vent of those springs:
+    # after the game's freezing step the ice there is water again (geyser_thaw), and a light block (invisible, level 13) over
+    # it keeps it open - water does not freeze at a block light of 10 or more, and ice next to it melts.
+    cold = [v for i, g in sites if bp.vanilla_biome(layout_biome(i))["temperature"] < 0.15 for v in vents(g)]
+    if cold:
+        bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser_warmth.json", {
+            "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:light", "properties": {"level": str(WARMTH), "waterlogged": "false"}}},
+            "placement": [mc("fixed_placement", positions=[[x, y + wa + 1, z] for x, y, z, wa in cold]), mc("block_predicate_filter", predicate=air)]})
+        bp.write(f"data/{bp.NS}/worldgen/placed_feature/geyser_thaw.json", {
+            "feature": {"type": "minecraft:simple_block", "to_place": {"id": "minecraft:water", "properties": {"level": "0"}}},
+            "placement": [mc("fixed_placement", positions=[[x, y + wa, z] for x, y, z, wa in cold]),
+                          mc("block_predicate_filter", predicate=mc("matching_blocks", blocks="minecraft:ice"))]})
     # the vanilla features of the biome pick heights of the whole world: here a depth under the island's surface (the pockets
     # lie POCKET_TOP..POCKET_BOTTOM under it), with the vanilla attempts scaled to that height
     src = HERE.parent / "tools"
@@ -213,9 +267,12 @@ def sulfur(bp, islands, layout, sea_biomes=()):
               y=mc("clamped_normal", deviation=0.6, max_inclusive=2, mean=0.0, min_inclusive=-2),
               z=mc("clamped_normal", deviation=3.0, max_inclusive=10, mean=0.0, min_inclusive=-10))])
     biome = json.loads((HERE / "vanilla_biome" / "sulfur_caves.json").read_text())
-    # one geyser per big island: the springs the biome grows up to the surface by itself (rooted_sulfur_spring) are replaced by the fixed one
-    biome["features"] = [[x for f in step for x in ([bp.ref("geyser")] + ([bp.ref("geyser_warmth")] if cold else []) if f == "minecraft:rooted_sulfur_spring" else [f])]
+    # one geyser per big island: the springs the biome grows up to the surface by itself (rooted_sulfur_spring) are replaced by the fixed ones
+    biome["features"] = [[x for f in step for x in (refs + ([bp.ref("geyser_warmth")] if cold else []) if f == "minecraft:rooted_sulfur_spring" else [f])]
                          for step in biome["features"]]
+    assert sum(r in step for step in biome["features"] for r in refs) == len(refs)
+    if cold:   # (after freeze_top_layer, in its step)
+        step = next(s for s in biome["features"] if "minecraft:freeze_top_layer" in s); step.insert(step.index("minecraft:freeze_top_layer") + 1, bp.ref("geyser_thaw"))
     biome["carvers"] = []
     # the surface rule of the biome (sulfur and cinnabar in bands of a 3D noise) for every block of a pocket; heights first
     lo, hi = min(g["y"] for i, g in sites) - POCKET_BOTTOM - 8, max(g["y"] for i, g in sites) - POCKET_TOP + 8
@@ -223,8 +280,9 @@ def sulfur(bp, islands, layout, sea_biomes=()):
     cond = lambda c, then: {"type": "minecraft:condition", "if_true": c, "then_run": then}
     rule = cond(above(lo), cond({"type": "minecraft:not", "invert": above(hi)},
                 cond({"type": "minecraft:biome", "biome_is": "minecraft:sulfur_caves"}, "minecraft:overworld/biome_surface/sulfur_caves")))
-    print(f"sulfur: {len(sites)} geysers (islands of radius {BIG_RADIUS} or more that are not sea basins), a pocket of sulfur caves "
-          f"{POCKET_TOP}..{POCKET_BOTTOM} blocks under each")
+    sizes = {k: sum(1 for i, g in sites if g["size"] == k) for k in SPRINGS}
+    print(f"sulfur: {len(sites)} geysers (islands of radius {BIG_RADIUS} or more that are not sea basins: " + ", ".join(f"{n} {k}" for k, n in sizes.items() if n)
+          + f"; {len(cold)} vents kept open in freezing biomes), a pocket of sulfur caves {POCKET_TOP}..{POCKET_BOTTOM} blocks under each")
     return biome, rule
 
 # ---------------------------------------------------------------------------------------------------------- surfaces

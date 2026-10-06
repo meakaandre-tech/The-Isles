@@ -1,0 +1,40 @@
+{
+ "feature": {
+  "type": "minecraft:simple_block",
+  "to_place": {
+   "id": "minecraft:water",
+   "properties": {
+    "level": "0"
+   }
+  }
+ },
+ "placement": [
+  {
+   "type": "minecraft:fixed_placement",
+   "positions": [
+    [
+     -1378,
+     741,
+     -3434
+    ],
+    [
+     -2274,
+     201,
+     -2898
+    ],
+    [
+     -2556,
+     -591,
+     -3740
+    ]
+   ]
+  },
+  {
+   "type": "minecraft:block_predicate_filter",
+   "predicate": {
+    "type": "minecraft:matching_blocks",
+    "blocks": "minecraft:ice"
+   }
+  }
+ ]
+}

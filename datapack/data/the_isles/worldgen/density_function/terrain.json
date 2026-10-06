@@ -36,7 +36,15 @@
      "right": {
       "type": "minecraft:mul",
       "left": 0.55,
-      "right": "the_isles:noise/rag"
+      "right": {
+       "type": "minecraft:mul",
+       "left": "the_isles:noise/rag",
+       "right": {
+        "type": "minecraft:sub",
+        "left": 1,
+        "right": "the_isles:layer/0_calm"
+       }
+      }
      }
     },
     "min": -1,

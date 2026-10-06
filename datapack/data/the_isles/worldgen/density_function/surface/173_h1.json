@@ -44,7 +44,7 @@
      "type": "minecraft:mul",
      "left": {
       "type": "minecraft:sub",
-      "left": 14,
+      "left": 20,
       "right": {
        "type": "minecraft:distance_to_point",
        "metric": "euclidean",
@@ -55,7 +55,7 @@
        ]
       }
      },
-     "right": 0.16666666666666666
+     "right": 0.125
     },
     "min": 0,
     "max": 1

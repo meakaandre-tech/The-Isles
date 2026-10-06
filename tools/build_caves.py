@@ -69,7 +69,7 @@ class Caves:
         """flat fields of the island: top and bottom of the zone the cave world may occupy and the distance in from the side
         shell; cave/inner: how many blocks a point lies inside that zone (negative outside)"""
         bp, i = self.bp, self.island
-        inside, surface, bottom, edge = bp.island_fields(i)     # (writes the island's files again, unchanged)
+        inside, surface, bottom, edge = bp.island_fields(i)[:4]     # (writes the island's files again, unchanged)
         w = lambda name, f: bp.write(f"data/{bp.NS}/worldgen/density_function/cave/{name}.json", f)
         w("top", bp.flat(bp.sub(surface, ROOF)))
         w("bottom", bp.flat(bp.add(bottom, FLOOR)))

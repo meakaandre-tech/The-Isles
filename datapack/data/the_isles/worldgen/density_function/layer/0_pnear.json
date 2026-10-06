@@ -310,9 +310,9 @@
            "type": "minecraft:distance_to_point",
            "metric": "euclidean",
            "point": [
-            3247,
+            3301,
             0,
-            -3216
+            -3185
            ]
           }
          },
@@ -336,9 +336,9 @@
            "type": "minecraft:distance_to_point",
            "metric": "euclidean",
            "point": [
-            -3431,
+            -3497,
             0,
-            -3294
+            -3335
            ]
           }
          },

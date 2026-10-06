@@ -174,7 +174,11 @@ def island_fields(i):
     shrink = max(0.05, min(0.2, 40 / R + 0.04))
     d = ref(f"dist/{i['key']}")
     # e: 1 at the centre, 0 at the (noise-warped) rim, negative outside. The rim never passes R.
-    e = mc("cache", input=sub(sub(1, mul(d, 1 / R)), mul(shrink, add(1, EDGE))))
+    e = sub(sub(1, mul(d, 1 / R)), mul(shrink, add(1, EDGE)))
+    g = i.get("geyser_at")
+    if g and g.get("hold"):   # a geyser that has to stand in the outer part of the island (tiers over the middle): the rim stays away from it
+        e = dmax(e, mul(0.12, clamp(mul(sub(bt.CLEAR + 12, mc("distance_to_point", metric="euclidean", point=[g["x"], 0, g["z"]])), 1 / 12), 0, 1)))
+    e = mc("cache", input=e)
     write(f"data/{NS}/worldgen/density_function/edge/{i['key']}.json", e)
     e = ref(f"edge/{i['key']}")
     c = clamp(mul(e, 1 / 0.6), 0, 1)
@@ -183,10 +187,9 @@ def island_fields(i):
     if basin:  # bowl: the rim ring stays up, the interior drops (a little less where the relief noise is low)
         surface = sub(sub(top, mul(rim, sub(1, clamp(mul(e, R / 6), 0, 1)))),
                       mul(mul(sea["depth"], clamp(mul(sub(e, sea["e0"]), 1 / sea["slope"]), 0, 1)), add(0.85, mul(0.15, RELIEF_N))))
-    g = i.get("geyser_at")
     if g:   # level ground around the geyser, at the height layout/geysers.json gives
         gd = mc("distance_to_point", metric="euclidean", point=[g["x"], 0, g["z"]])
-        pad = clamp(mul(sub(bt.PAD_R, gd), 1 / 6), 0, 1)
+        pad = clamp(mul(sub(bt.CLEAR, gd), 1 / bt.PAD_FADE), 0, 1)
         surface = add(surface, mul(pad, sub(g["y"], surface)))
     write(f"data/{NS}/worldgen/density_function/surface/{i['key']}.json", mc("cache", input=surface))
     surface = ref(f"surface/{i['key']}")
@@ -198,9 +201,9 @@ def island_fields(i):
     bottom = sub(surface, thick)
     if g:   # rock under the chamber of the sulfur caves below the geyser, wherever the island is thin there
         floor = bt.pocket(g)["chamber"]["y"] - bt.CHAMBER_H - bt.FLOOR - 14
-        bottom = sub(bottom, mul(clamp(mul(sub(2 * bt.PAD_R, gd), 1 / 8), 0, 1), clamp(sub(bottom, floor), 0, 1000)))
+        bottom = sub(bottom, mul(clamp(mul(sub(28, gd), 1 / 8), 0, 1), clamp(sub(bottom, floor), 0, 1000)))
     write(f"data/{NS}/worldgen/density_function/inside/{i['key']}.json", mc("cache", input=choice(d, 0, R + PAD, 1, 0)))
-    return ref(f"inside/{i['key']}"), surface, bottom, mul(e, R / 12)
+    return ref(f"inside/{i['key']}"), surface, bottom, mul(e, R / 12), (pad if g else None)
 
 def layers(islands):
     """groups of islands whose padded footprints do not touch (stacked tiers and the islets above an island go to further groups)"""
@@ -241,7 +244,11 @@ def terrain(islands, nocave=()):
             ground where the entrance noise is high"""
             S_i = f[i["key"]][1]
             base = dmin(sub(S_i, 12), float(bt.cave_top(sys.modules[__name__], i)))
-            out = add(base, mul(ref("hollow/entrance"), sub(add(S_i, 16), base)))
+            entrance = ref("hollow/entrance")
+            if i.get("geyser_at"):   # no entrance within 12 blocks of the level ground around the geyser
+                gd = mc("distance_to_point", metric="euclidean", point=[i["geyser_at"]["x"], 0, i["geyser_at"]["z"]])
+                entrance = mul(entrance, sub(1, clamp(mul(sub(bt.CLEAR + 20, gd), 1 / 8), 0, 1)))
+            out = add(base, mul(entrance, sub(add(S_i, 16), base)))
             if i.get("geyser_at"): out = dmax(out, add(mul(near(i), add(sub(S_i, 16), 100000.0)), -100000.0))
             return out
         if caved:
@@ -249,11 +256,14 @@ def terrain(islands, nocave=()):
         if pockets:
             fields["pnear"] = tree(add, [mul(f[i["key"]][0], near(i)) for i in pockets])
             fields["py"] = tree(add, [mul(f[i["key"]][0], bt.pocket(i["geyser_at"])["chamber"]["y"]) for i in pockets])
+        # (the ragged noise is left out on the level ground around a geyser: the ground there is exactly at the listed height)
+        calm = [mul(v[0], v[4]) for v in f.values() if v[4] is not None]
+        if calm: fields["calm"] = tree(add, calm)
         for i in group: levels.append((i, f[i["key"]]))
         for k, v in fields.items(): write(f"data/{NS}/worldgen/density_function/layer/{n}_{k}.json", flat(v))
         S, B, E = (ref(f"layer/{n}_{k}") for k in ("surface", "bottom", "edge"))
         solid = dmin(dmin(mul(sub(S, Y), 1 / 8), mul(sub(Y, B), 1 / 12)), E)
-        part = clamp(add(solid, mul(0.55, RAG)), -1, 1)
+        part = clamp(add(solid, mul(0.55, mul(RAG, sub(1, ref(f"layer/{n}_calm"))) if calm else RAG)), -1, 1)
         if caved:
             inner = dmin(dmin(sub(ref(f"layer/{n}_ctop"), Y), sub(sub(Y, B), bt.FLOOR)), sub(mul(E, 12.0), bt.SIDE))
             cave = hollow

@@ -1,23 +1,52 @@
 {
  "type": "minecraft:cache",
  "input": {
-  "type": "minecraft:sub",
+  "type": "minecraft:max",
   "left": {
    "type": "minecraft:sub",
-   "left": 1,
+   "left": {
+    "type": "minecraft:sub",
+    "left": 1,
+    "right": {
+     "type": "minecraft:mul",
+     "left": "the_isles:dist/113_q1",
+     "right": 0.004347826086956522
+    }
+   },
    "right": {
     "type": "minecraft:mul",
-    "left": "the_isles:dist/113_q1",
-    "right": 0.004347826086956522
+    "left": 0.2,
+    "right": {
+     "type": "minecraft:add",
+     "left": 1,
+     "right": "the_isles:noise/edge"
+    }
    }
   },
   "right": {
    "type": "minecraft:mul",
-   "left": 0.2,
+   "left": 0.12,
    "right": {
-    "type": "minecraft:add",
-    "left": 1,
-    "right": "the_isles:noise/edge"
+    "type": "minecraft:clamp",
+    "input": {
+     "type": "minecraft:mul",
+     "left": {
+      "type": "minecraft:sub",
+      "left": 32,
+      "right": {
+       "type": "minecraft:distance_to_point",
+       "metric": "euclidean",
+       "point": [
+        -3497,
+        0,
+        -3335
+       ]
+      }
+     },
+     "right": 0.08333333333333333
+    },
+    "min": 0,
+    "max": 1
    }
   }
  }

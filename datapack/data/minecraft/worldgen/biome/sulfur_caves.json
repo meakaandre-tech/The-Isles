@@ -88,7 +88,31 @@
   [
    "minecraft:lake_lava_underground",
    "minecraft:lake_lava_surface",
-   "the_isles:geyser",
+   "the_isles:geyser/000_s1",
+   "the_isles:geyser/012_a1",
+   "the_isles:geyser/019_b1",
+   "the_isles:geyser/026_c1",
+   "the_isles:geyser/040_e1",
+   "the_isles:geyser/047_f1",
+   "the_isles:geyser/053_g1",
+   "the_isles:geyser/060_h1",
+   "the_isles:geyser/074_j1",
+   "the_isles:geyser/088_l1",
+   "the_isles:geyser/107_p1",
+   "the_isles:geyser/113_q1",
+   "the_isles:geyser/119_r1",
+   "the_isles:geyser/125_t1",
+   "the_isles:geyser/131_a1",
+   "the_isles:geyser/143_c1",
+   "the_isles:geyser/155_e1",
+   "the_isles:geyser/161_f1",
+   "the_isles:geyser/173_h1",
+   "the_isles:geyser/179_i1",
+   "the_isles:geyser/185_j1",
+   "the_isles:geyser/191_k1",
+   "the_isles:geyser/197_l1",
+   "the_isles:geyser/203_m1",
+   "the_isles:geyser/209_n1",
    "the_isles:geyser_warmth",
    "minecraft:sulfur_pool"
   ],
@@ -145,7 +169,8 @@
    "minecraft:patch_tall_grass_2"
   ],
   [
-   "minecraft:freeze_top_layer"
+   "minecraft:freeze_top_layer",
+   "the_isles:geyser_thaw"
   ]
  ],
  "has_precipitation": true,

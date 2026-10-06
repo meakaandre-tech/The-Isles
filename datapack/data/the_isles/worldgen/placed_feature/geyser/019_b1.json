@@ -1,0 +1,15 @@
+{
+ "feature": "the_isles:geyser/medium_2_180",
+ "placement": [
+  {
+   "type": "minecraft:fixed_placement",
+   "positions": [
+    [
+     1093,
+     231,
+     2024
+    ]
+   ]
+  }
+ ]
+}

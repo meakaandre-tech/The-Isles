@@ -14,75 +14,27 @@
    "type": "minecraft:fixed_placement",
    "positions": [
     [
-     -1380,
+     -1378,
      742,
-     -3435
+     -3434
     ],
     [
-     -2275,
+     -2274,
      202,
-     -2899
+     -2898
     ],
     [
      -2556,
      -590,
-     -3739
+     -3740
     ]
    ]
   },
   {
-   "type": "minecraft:offset",
-   "x": -8,
-   "y": -8,
-   "z": -8
-  },
-  {
-   "type": "minecraft:cuboid",
-   "xz_size": 15,
-   "y_size": 12
-  },
-  {
    "type": "minecraft:block_predicate_filter",
    "predicate": {
-    "type": "minecraft:all_of",
-    "predicates": [
-     {
-      "type": "minecraft:matching_block_tag",
-      "tag": "minecraft:air"
-     },
-     {
-      "type": "minecraft:matching_blocks",
-      "blocks": "minecraft:water",
-      "offset": [
-       0,
-       -1,
-       0
-      ]
-     },
-     {
-      "type": "minecraft:any_of",
-      "predicates": [
-       {
-        "type": "minecraft:matching_blocks",
-        "blocks": "minecraft:potent_sulfur",
-        "offset": [
-         0,
-         -2,
-         0
-        ]
-       },
-       {
-        "type": "minecraft:matching_blocks",
-        "blocks": "minecraft:potent_sulfur",
-        "offset": [
-         0,
-         -3,
-         0
-        ]
-       }
-      ]
-     }
-    ]
+    "type": "minecraft:matching_block_tag",
+    "tag": "minecraft:air"
    }
   }
  ]
