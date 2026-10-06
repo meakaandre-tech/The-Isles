@@ -346,13 +346,16 @@ def structures(islands, biomes):
       monument                                built at y 39..61
       mansion                                 only where the ground is at y 60 or higher (kept when a dark forest or pale
                                               garden island is that high)
+      shipwreck_beached                       takes the lowest column under its hull as its height (one that hung a few blocks
+                                              over a rim stood at the bottom of the world under D4) and the water's surface as
+                                              ground (one floated on D3's sea); the wrecks of the seas stay
     Without the stronghold nothing leads to the End, so the pack has one of its own: the_isles:stronghold, a sealed
     End portal room buried under the surface, placed like the vanilla one (rings around the origin: the first three
     lie in the spawn island) and found by eyes of ender."""
     src = Path(__file__).parent / "vanilla_structure"
     report = {}
     high_dark = any(i["biome"] in ("dark_forest", "pale_garden") and i["y_top"] >= 76 for i in islands)
-    off = {"stronghold", "mineshaft", "mineshaft_mesa", "monument"} | (set() if high_dark else {"mansion"})
+    off = {"stronghold", "mineshaft", "mineshaft_mesa", "monument", "shipwreck_beached"} | (set() if high_dark else {"mansion"})
     for f in sorted(src.glob("*.json")):
         d = json.loads(f.read_text()); name = f.stem; how = None
         if name in off:
@@ -704,7 +707,6 @@ def build(src):
     if sulfur_biome: write(bfile(SULFUR), sulfur_biome)
     sea_features = bt.seas(me, islands)
     bt.springs(me)
-    bt.geodes(me)
     # the game's cave carvers tunnel through anything, undersides and sea floors included: off (the caves are in the terrain)
     for f in sorted((Path(__file__).parent / "vanilla_carver").glob("*.json")):
         write(f"data/minecraft/worldgen/carver/{f.name}", {**json.loads(f.read_text()), "probability": 0.0})
@@ -758,6 +760,18 @@ def build(src):
     # A provider's own biome is in none of the vanilla biome tags (structures, mob rules and the mods' ores go by them),
     # unless its pack says so: it joins the tags of the layout biomes it stands in for.
     member = json.loads((Path(__file__).parent / "vanilla_biome_tags.json").read_text()); join = {}
+    # No trial chambers under a sea. The game has them under its oceans; here a chamber that starts 32..48 blocks under a sea
+    # floor hangs out of the basin's underside in its casing of rock (the body under a floor is 26 to 90 thick, a chamber
+    # 40 high and up to 230 wide) - the "water under the floor" of M2 and M5 in the pack test was the water of two such
+    # chambers' own rooms. The structure's biome tag is written without the seas' biomes.
+    no_chambers = "minecraft:has_structure/trial_chambers"
+    seas_ = {i["biome"] for i in islands if bt.is_basin(i)} | {i.get("layout_biome", i["biome"]) for i in islands if bt.is_basin(i)}
+    for b in seas_:
+        if b in member: member[b] = [t for t in member[b] if t != no_chambers]
+    p = OUT / "data/minecraft/tags/worldgen/biome/has_structure/trial_chambers.json"
+    theirs = json.loads(p.read_text())["values"] if p.exists() else []     # (a provider's additions)
+    values = [bid(b) for b, tags in member.items() if no_chambers in tags] + [v for v in theirs if isinstance(v, dict) or v.split(":")[0] != "minecraft"]
+    write("data/minecraft/tags/worldgen/biome/has_structure/trial_chambers.json", {"replace": True, "values": [v for v in values if isinstance(v, dict) or v[v.find(":") + 1:] not in seas_ and v not in {bid(b) for b in seas_}]})
     for t, was in replaced.items():
         if ":" in t:
             for tag in {tag for w in was for tag in member.get(w, [])}: join.setdefault(tag, []).append(t)
