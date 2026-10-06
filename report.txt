@@ -1,0 +1,673 @@
+[10:53:33] mods: 1
+[10:53:47] diagnostics mod built
+[10:53:47] vanilla: server start
+[10:54:02] server start took 15s: Done (2.673s)! For help, type "help"
+[11:06:25] vanilla: commands done
+[11:06:27] vanilla: scan of the saved world
+[11:06:40] vanilla: scan done, 77 lines
+[11:06:40] vanilla: stopped
+[10:53:33] mods: 1
+[10:53:47] diagnostics mod built
+[10:53:47] vanilla: server start
+[10:54:02] server start took 15s: Done (2.673s)! For help, type "help"
+[11:06:25] vanilla: commands done
+[11:06:27] vanilla: scan of the saved world
+[11:06:40] vanilla: scan done, 77 lines
+[11:06:40] vanilla: stopped
+[11:06:40] end
+build:   geophilic: 30 biomes, 166 islands: bamboo_jungle(4) beach(11) birch_forest(7) cherry_grove(8) dark_forest(4) desert(10) flower_forest(4) forest(7) grove(5) jungle(7) meadow(9) old_growth_birch_forest(5) old_growth_pine_taiga(4) old_growth_spruce_taiga(3) pale_garden(3) plains(11) savanna(6) savanna_plateau(4) snowy_plains(5) snowy_taiga(3) sparse_jungle(4) stony_shore(3) sunflower_plains(5) swamp(7) taiga(6) windswept_forest(4) windswept_gravelly_hills(2) windswept_hills(4) windswept_savanna(4) wooded_badlands(7)
+build:   overrealm: 0 biomes, 0 islands: 
+build:   vanilla: 18 biomes, 74 islands: badlands(14) cold_ocean(8) deep_cold_ocean(2) deep_frozen_ocean(1) deep_lukewarm_ocean(2) deep_ocean(1) frozen_ocean(2) frozen_peaks(3) ice_spikes(2) jagged_peaks(4) lukewarm_ocean(5) mangrove_swamp(6) mushroom_fields(1) ocean(4) snowy_beach(3) snowy_slopes(5) stony_peaks(3) warm_ocean(8)
+build: -rw-r--r-- 1 runner runner   3221 Oct  6 10:53 /tmp/the-isles-mods-tested.zip
+build: -rw-r--r-- 1 runner runner 799074 Oct  6 10:53 /tmp/the-isles-tested.zip
+build: 240 islands, 48 biomes, 1256 files -> /home/runner/work/The-Isles/The-Isles/datapack
+build: 240 islands, 48 biomes, 1561 files -> /home/runner/work/The-Isles/The-Isles/build/the-isles
+build: 40 of 48 biomes get a constant climate
+build: WARNING: overrealm is not in vendor/: its biomes fall through to the next provider
+build: WARNING: the committed data packs differ from the generator output
+build: biome -> provider (islands)
+build: dwarfhollow: no public download (https://www.patreon.com/posts/dwarfhollow-135712745); put your copy (*dwarfhollow*) into vendor/
+build: eroded_badlands -> badlands on 6 islands
+build: geophilic (Geophilic_v3.7.dp.zip): 302 files copied, 0 fixed-height placements moved under the island surface
+build: geophilic: Geophilic_v3.7.dp.zip (1114215 bytes)
+build: geyser of J1: -0.08 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+build: geyser of P1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+build: geyser of Q1: 0.01 from the rim at the edge noise's worst, the rim is held 20 blocks away from it
+build: layer 0: 196 islands, 163 with caves
+build: layer 1: 41 islands, 19 with caves
+build: layer 2: 3 islands, 0 with caves
+build: nether: 12 layers, lava at y -1977 -1617 -1297 -1017 -657 -337 23 343 703 983 1303 1663, 34 features per layer
+build: overrealm: no public download (https://www.patreon.com/posts/overrealm-data-148060790); put your copy (*overrealm*) into vendor/
+build: pack under test: build/the-isles
+build: seas: 33 basins, water up to 8 under the top, cold_ocean 8, deep_cold_ocean 2, deep_frozen_ocean 1, deep_lukewarm_ocean 2, deep_ocean 1, frozen_ocean 2, lukewarm_ocean 5, ocean 4, warm_ocean 8
+build: structure abandoned_camp_bamboo_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_cherry_grove: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_dappled_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_flower_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_meadow: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_birch_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_pine_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_old_growth_spruce_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_pale_garden: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_snowy_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_sparse_jungle: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_swamp: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_taiga: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_windswept_forest: surface (as in vanilla), not at the bottom of the world
+build: structure abandoned_camp_wooded_badlands: surface (as in vanilla), not at the bottom of the world
+build: structure ancient_city: 60 blocks under the island surface
+build: structure mansion: off
+build: structure mineshaft: off
+build: structure mineshaft_mesa: off
+build: structure monument: off
+build: structure pillager_outpost: surface (as in vanilla), not at the bottom of the world
+build: structure ruined_portal: on or half in the island surface
+build: structure ruined_portal_desert: on or half in the island surface
+build: structure ruined_portal_jungle: on or half in the island surface
+build: structure ruined_portal_mountain: on or half in the island surface
+build: structure ruined_portal_ocean: on or half in the island surface
+build: structure ruined_portal_swamp: on or half in the island surface
+build: structure stronghold: off
+build: structure trail_ruins: surface (as in vanilla), not at the bottom of the world
+build: structure trial_chambers: 32..48 blocks under the island surface
+build: structure village_desert: surface (as in vanilla), not at the bottom of the world
+build: structure village_plains: surface (as in vanilla), not at the bottom of the world
+build: structure village_savanna: surface (as in vanilla), not at the bottom of the world
+build: structure village_snowy: surface (as in vanilla), not at the bottom of the world
+build: structure village_taiga: surface (as in vanilla), not at the bottom of the world
+build: sulfur: 25 geysers (islands of radius 230 or more that are not sea basins: 7 small, 9 medium, 8 large, 1 extra_large; 3 vents kept open in freezing biomes), a pocket of sulfur caves 14..46 blocks under each
+build: surface: badlands heights and bands per island on 21 islands (452 bands), snow line on 10 windswept islands
+build: with provider biomes -> /home/runner/work/The-Isles/The-Isles/build/the-isles.zip (for your own worlds; not to be redistributed)
+build: 
+
+================ vanilla ================
+boot: Done (2.673s)! For help, type "help"
+ERROR/WARN lines: 230
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=217, range=[-11.6; 22.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=217, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=217, range=[-11.6; 22.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=217, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=219, range=[-57.05; 1.25], domainAxes=5, cachingSampler=CachingDensitySampler[id=219, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=219, range=[-57.05; 1.25], domainAxes=5, cachingSampler=CachingDensitySampler[id=219, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=221, range=[64.0; 98.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=221, input=YSampler[input=SubSampler[lef
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=221, range=[64.0; 98.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=221, input=YSampler[input=SubSampler[lef
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=223, range=[32.0; 66.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=223, input=YSampler[input=SubSampler[lef
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=223, range=[32.0; 66.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=223, input=YSampler[input=SubSampler[lef
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=227, range=[83.2; 136.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=227, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=227, range=[83.2; 136.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=227, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=229, range=[-12.7; 18.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=229, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=229, range=[-12.7; 18.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=229, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=231, range=[156.0; 190.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=231, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=231, range=[156.0; 190.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=231, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=233, range=[138.45; 207.75], domainAxes=5, cachingSampler=CachingDensitySampler[id=233, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=233, range=[138.45; 207.75], domainAxes=5, cachingSampler=CachingDensitySampler[id=233, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=239, range=[-93.9; -53.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=239, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=239, range=[-93.9; -53.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=239, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=241, range=[-142.7; -97.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=241, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=241, range=[-142.7; -97.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=241, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=243, range=[-137.5; -97.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=243, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=243, range=[-137.5; -97.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=243, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=247, range=[-219.0; -173.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=247, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=247, range=[-219.0; -173.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=247, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=249, range=[-239.3; -197.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=249, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=249, range=[-239.3; -197.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=249, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=253, range=[349.5; 404.5], domainAxes=5, cachingSampler=CachingDensitySampler[id=253, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=253, range=[349.5; 404.5], domainAxes=5, cachingSampler=CachingDensitySampler[id=253, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=257, range=[98.0; 142.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=257, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=257, range=[98.0; 142.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=257, input=YSampler[input=SubSampler[le
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=259, range=[218.45; 287.75], domainAxes=5, cachingSampler=CachingDensitySampler[id=259, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=259, range=[218.45; 287.75], domainAxes=5, cachingSampler=CachingDensitySampler[id=259, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=261, range=[345.3; 385.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=261, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=261, range=[345.3; 385.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=261, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=271, range=[270.0; 304.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=271, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=271, range=[270.0; 304.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=271, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=273, range=[415.5; 470.5], domainAxes=5, cachingSampler=CachingDensitySampler[id=273, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=273, range=[415.5; 470.5], domainAxes=5, cachingSampler=CachingDensitySampler[id=273, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=279, range=[261.7; 276.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=279, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=279, range=[261.7; 276.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=279, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=285, range=[303.8; 316.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=285, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=285, range=[303.8; 316.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=285, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=293, range=[179.0; 241.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=293, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=293, range=[179.0; 241.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=293, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=295, range=[334.0; 392.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=295, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=295, range=[334.0; 392.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=295, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=297, range=[195.0; 257.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=297, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=297, range=[195.0; 257.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=297, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=299, range=[242.7; 301.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=299, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=299, range=[242.7; 301.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=299, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=303, range=[-187.0; -133.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=303, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=303, range=[-187.0; -133.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=303, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=305, range=[-73.0; -27.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=305, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=305, range=[-73.0; -27.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=305, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=307, range=[-215.0; -161.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=307, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=307, range=[-215.0; -161.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=307, input=YSampler[input=SubSampler
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=309, range=[-113.0; -67.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=309, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=309, range=[-113.0; -67.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=309, input=YSampler[input=SubSampler[
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=313, range=[102.4; 143.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=313, input=YSampler[input=SubSampler[l
+    [10:53:58] [Worker-Main-1/WARN]: Compiling a MIN function between two non-overlapping inputs: BinaryFunction[type=SUB, left=PreparedCache[id=313, range=[102.4; 143.0], domainAxes=5, cachingSampler=CachingDensitySampler[id=313, input=YSampler[input=SubSampler[l
+
+probe                x     z  ground   surf  expected        biome                         top            verdict
+D4               -2706   365     415    415  D4 422          minecraft:lukewarm_ocean      water          ok
+I4               -1412  2775    -335   -335  I4 -328         minecraft:warm_ocean          water          ok
+K3               -2773 -1406    1391   1391  K3 1398         minecraft:ocean               water          ok
+M2                1792 -3029   -1341  -1341  M2 -1334        minecraft:frozen_ocean        ice            ok
+N4                3557 -1791    -527   -527  N4 -520         minecraft:cold_ocean          water          ok
+d2                -406  3323     837    837  d2 844          minecraft:warm_ocean          water          ok
+
+snow layer on the ground: 0 of 6 probes; in biomes that do not snow in vanilla: none
+
+-- blocks inside 64x64 columns (SCAN)
+   SCANBOX sea-under-D4 -2825 131 246 .. -2587 378 484 volume 14166008 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-D4 -2825 379 246 .. -2780 416 291 volume 80408 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-D4 -2737 415 334 .. -2675 454 396 volume 158760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-D4 -2801 379 270 .. -2611 416 460 volume 1386278 (the sea: before its water is counted)
+      kelp 149, kelp_plant 393, seagrass 626, tall_seagrass 243, sand 20040, gravel 2837, clay 13, grass_block 619, dirt 15658
+      none of: coral_blocks corals sea_pickle ice packed_ice magma_block
+   SCANBOX sea-D4 -2825 379 246 .. -2587 414 484 volume 2056356 (the sea: floor to water level)
+      water 34236
+      none of: ice
+   SCANBOX sea-over-D4 -2825 415 246 .. -2587 454 484 volume 2284840 (above the water level, shore ring included: pools of the shore biome)
+      
+      none of: water
+   SCANBOX sea-under-I4 -1535 -616 2652 .. -1289 -371 2898 volume 15008214 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-I4 -1535 -370 2652 .. -1489 -334 2698 volume 81733 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-I4 -1445 -335 2742 .. -1379 -296 2808 volume 179560 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-I4 -1511 -370 2676 .. -1313 -334 2874 volume 1465237 (the sea: before its water is counted)
+      seagrass 625, tall_seagrass 255, coral_blocks 2076, sand 31961, gravel 2131, dirt 7345
+      none of: kelp kelp_plant corals sea_pickle clay grass_block ice packed_ice magma_block
+   SCANBOX sea-I4 -1535 -370 2652 .. -1289 -336 2898 volume 2135315 (the sea: floor to water level)
+      water 46934
+      none of: ice
+   SCANBOX sea-over-I4 -1535 -335 2652 .. -1289 -296 2898 volume 2440360 (above the water level, shore ring included: pools of the shore biome)
+      
+      none of: water
+   SCANBOX sea-under-K3 -2898 1104 -1531 .. -2648 1353 -1281 volume 15750250 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-K3 -2898 1354 -1531 .. -2851 1392 -1484 volume 89856 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-K3 -2806 1391 -1439 .. -2740 1430 -1373 volume 179560 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-K3 -2874 1354 -1507 .. -2672 1392 -1305 volume 1607151 (the sea: before its water is counted)
+      kelp 380, kelp_plant 1151, seagrass 452, tall_seagrass 188, sand 4851, gravel 18796, clay 25, grass_block 540, dirt 12803
+      none of: coral_blocks corals sea_pickle ice packed_ice magma_block
+   SCANBOX sea-K3 -2898 1354 -1531 .. -2648 1390 -1281 volume 2331037 (the sea: floor to water level)
+      water 49144
+      none of: ice
+   SCANBOX sea-over-K3 -2898 1391 -1531 .. -2648 1430 -1281 volume 2520040 (above the water level, shore ring included: pools of the shore biome)
+      
+      none of: water
+   SCANBOX sea-under-M2 1565 -1676 -3256 .. 2019 -1394 -2802 volume 58588075 (under the sea floor and under the island: none)
+      water 60
+      none of: 
+   SCANBOX sea-outside-M2 1565 -1393 -3256 .. 1634 -1340 -3187 volume 264600 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-M2 1725 -1341 -3096 .. 1859 -1302 -2962 volume 729000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-M2 1589 -1393 -3232 .. 1995 -1340 -2826 volume 8945046 (the sea: before its water is counted)
+      sand 23900, gravel 168965, clay 139, grass_block 2959, dirt 70314, ice 50734
+      none of: kelp kelp_plant seagrass tall_seagrass coral_blocks corals sea_pickle packed_ice magma_block
+   SCANBOX sea-M2 1565 -1393 -3256 .. 2019 -1342 -2802 volume 10765300 (the sea: floor to water level)
+      water 947386
+      none of: ice
+   SCANBOX sea-over-M2 1565 -1341 -3256 .. 2019 -1302 -2802 volume 8281000 (above the water level, shore ring included: pools of the shore biome)
+      
+      none of: water
+   SCANBOX sea-under-N4 3401 -844 -1947 .. 3713 -574 -1635 volume 26549599 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-N4 3401 -573 -1947 .. 3455 -526 -1893 volume 145200 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-N4 3513 -527 -1835 .. 3601 -488 -1747 volume 316840 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-N4 3425 -573 -1923 .. 3689 -526 -1659 volume 3370800 (the sea: before its water is counted)
+      kelp 1213, kelp_plant 4156, seagrass 1063, tall_seagrass 457, sand 3454, gravel 62114, clay 79, grass_block 944, dirt 28378
+      none of: coral_blocks corals sea_pickle ice packed_ice magma_block
+   SCANBOX sea-N4 3401 -573 -1947 .. 3713 -528 -1635 volume 4506574 (the sea: floor to water level)
+      water 282430
+      none of: ice
+   SCANBOX sea-over-N4 3401 -527 -1947 .. 3713 -488 -1635 volume 3918760 (above the water level, shore ring included: pools of the shore biome)
+      water 666
+      none of: 
+   SCANBOX sea-under-d2 -553 530 3176 .. -259 793 3470 volume 22974600 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-d2 -553 794 3176 .. -501 838 3228 volume 126405 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-d2 -447 837 3282 .. -365 876 3364 volume 275560 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-life-d2 -529 794 3200 .. -283 838 3446 volume 2745405 (the sea: before its water is counted)
+      seagrass 1327, tall_seagrass 550, coral_blocks 2040, sea_pickle 23, sand 50055, gravel 5036, dirt 15301, magma_block 40
+      none of: kelp kelp_plant corals clay grass_block ice packed_ice
+   SCANBOX sea-d2 -553 794 3176 .. -259 836 3470 volume 3742075 (the sea: floor to water level)
+      water 141086
+      none of: ice
+   SCANBOX sea-over-d2 -553 837 3176 .. -259 876 3470 volume 3481000 (above the water level, shore ring included: pools of the shore biome)
+      
+      none of: water
+   SCANBOX sea-under-D1 -2624 -97 -324 .. -1976 248 324 volume 145735546 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-D1 -2624 249 -324 .. -2534 328 -234 volume 662480 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-D1 -2400 327 -100 .. -2200 366 100 volume 1616040 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-D3 -2656 7 319 .. -2206 301 769 volume 60003295 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-D3 -2656 302 319 .. -2587 360 388 volume 289100 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-D3 -2498 359 477 .. -2364 398 611 volume 729000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-D6 -3075 -88 0 .. -2759 172 316 volume 26227629 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-D6 -3075 173 0 .. -3021 216 54 volume 133100 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-D6 -2961 215 114 .. -2873 254 202 volume 316840 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-D7 -3032 165 -323 .. -2716 435 -7 volume 27232519 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-D7 -3032 436 -323 .. -2978 484 -269 volume 148225 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-D7 -2918 483 -209 .. -2830 522 -121 volume 316840 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-I1 -1701 -739 3068 .. -1093 -389 3676 volume 130179231 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-I1 -1701 -388 3068 .. -1615 -306 3154 volume 628227 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-I1 -1490 -307 3279 .. -1304 -268 3465 volume 1398760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-I5 -1919 -573 2766 .. -1497 -275 3188 volume 53499771 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-I5 -1919 -274 2766 .. -1853 -214 2832 volume 273829 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-I5 -1770 -215 2915 .. -1646 -176 3039 volume 625000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-I6 -1078 -538 3339 .. -804 -292 3613 volume 18679375 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-I6 -1078 -291 3339 .. -1029 -254 3388 volume 95000 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-I6 -978 -255 3439 .. -904 -216 3513 volume 225000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-I7 -2383 -731 2835 .. -1943 -445 3275 volume 55816047 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-I7 -2383 -444 2835 .. -2315 -390 2903 volume 261855 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-I7 -2228 -391 2990 .. -2098 -352 3120 volume 686440 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-K1 -3716 814 -1741 .. -3028 1162 -1053 volume 165677629 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-K1 -3716 1163 -1741 .. -3621 1244 -1646 volume 755712 (outside the rim, corner 3: none)
+      water' 14977, water'' 721
+      none of: water water'''
+   SCANBOX sea-over-middle-K1 -3478 1243 -1503 .. -3266 1282 -1291 volume 1814760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-K4 -3143 911 -872 .. -2873 1163 -602 volume 18580573 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-K4 -3143 1164 -872 .. -3094 1204 -823 volume 102500 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-K4 -3045 1203 -774 .. -2971 1242 -700 volume 225000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-K6 -2653 1089 -1453 .. -2319 1351 -1119 volume 29515175 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-K6 -2653 1352 -1453 .. -2597 1396 -1397 volume 146205 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-K6 -2533 1395 -1333 .. -2439 1434 -1239 volume 361000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-K7 -3138 922 -1812 .. -2900 1169 -1574 volume 14166008 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-K7 -3138 1170 -1812 .. -3093 1208 -1767 volume 82524 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-K7 -3050 1207 -1724 .. -2988 1246 -1662 volume 158760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-M1 1113 -1629 -3656 .. 1681 -1321 -3088 volume 100042149 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-M1 1113 -1320 -3656 .. 1195 -1256 -3574 volume 447785 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-M1 1311 -1257 -3458 .. 1483 -1218 -3286 volume 1197160 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-M5 652 -1617 -3334 .. 1018 -1334 -2968 volume 38251676 (under the sea floor and under the island: none)
+      water 77
+      none of: 
+   SCANBOX sea-outside-M5 652 -1333 -3334 .. 711 -1280 -3275 volume 194400 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-M5 782 -1281 -3204 .. 888 -1242 -3098 volume 457960 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-N1 3088 -1011 -1681 .. 3656 -680 -1113 volume 107488652 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-N1 3088 -679 -1681 .. 3170 -606 -1599 volume 509786 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-N1 3286 -607 -1483 .. 3458 -568 -1311 volume 1197160 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-N2 3278 -970 -1127 .. 3628 -693 -777 volume 34249878 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-N2 3278 -692 -1127 .. 3336 -642 -1069 volume 177531 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-N2 3403 -643 -1002 .. 3503 -604 -902 volume 408040 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-N5 3063 -1030 -813 .. 3473 -748 -403 volume 47804643 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-N5 3063 -747 -813 .. 3127 -694 -749 volume 228150 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-N5 3208 -695 -668 .. 3328 -656 -548 volume 585640 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-N6 3605 -804 -1328 .. 3863 -557 -1070 volume 16636088 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-N6 3605 -556 -1328 .. 3653 -518 -1280 volume 93639 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-N6 3699 -519 -1234 .. 3769 -480 -1164 volume 201640 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-b1 -424 -668 -3024 .. 224 -339 -2376 volume 138996330 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-b1 -424 -338 -3024 .. -334 -266 -2934 volume 604513 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-b1 -200 -267 -2800 .. 0 -228 -2600 volume 1616040 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-b2 173 -635 -2623 .. 409 -394 -2387 volume 13592898 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-b2 173 -393 -2623 .. 218 -358 -2578 volume 76176 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-b2 260 -359 -2536 .. 322 -320 -2474 volume 158760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-b3 104 -594 -2413 .. 338 -348 -2179 volume 13640575 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-b3 104 -347 -2413 .. 149 -310 -2368 volume 80408 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-b3 190 -311 -2327 .. 252 -272 -2265 volume 158760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-b5 -687 -523 -2532 .. -303 -234 -2148 volume 42985250 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-b5 -687 -233 -2532 .. -626 -178 -2471 volume 215264 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-b5 -551 -179 -2396 .. -439 -140 -2284 volume 510760 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-b6 -196 -465 -2298 .. 124 -200 -1978 volume 27408906 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-b6 -196 -199 -2298 .. -142 -154 -2244 volume 139150 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-b6 -81 -155 -2183 .. 9 -116 -2093 volume 331240 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-d1 -324 462 2776 .. 324 812 3424 volume 147841551 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-d1 -324 813 2776 .. -234 894 2866 volume 679042 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-d1 -100 893 3000 .. 100 932 3200 volume 1616040 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-d5 -357 665 2483 .. -27 940 2813 volume 30238836 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-d5 -357 941 2483 .. -301 990 2539 volume 162450 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-d5 -239 989 2601 .. -145 1028 2695 volume 361000 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-g1 -1824 476 776 .. -1176 816 1424 volume 143629541 (under the sea floor and under the island: none)
+      
+      none of: 
+      no answer: minecraft:water
+   SCANBOX sea-outside-g1 -1824 817 776 .. -1734 894 866 volume 645918 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-g1 -1600 893 1000 .. -1400 932 1200 volume 1616040 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX sea-under-g5 -2210 543 675 .. -1770 822 1115 volume 54454680 (under the sea floor and under the island: none)
+      
+      none of: water
+   SCANBOX sea-outside-g5 -2210 823 675 .. -2142 874 743 volume 247572 (outside the rim, corner 3: none)
+      
+      none of: water water' water'' water'''
+   SCANBOX sea-over-middle-g5 -2055 873 830 .. -1925 912 960 volume 686440 (above the water level over the middle of the sea: none)
+      
+      none of: water
+   SCANBOX S1 plains y -556..74
+      stone 1637519, dirt 16240, gravel 7667, granite 13448, diorite 13346, andesite 13004, tuff 19424, coal_ore 1112, iron_ore 1142, copper_ore 1207, gold_ore 430, redstone_ore 668, lapis_ore 427, diamond_ore 430, deepslate_iron_ore 8, deepslate_diamond_ore 37, deepslate_redstone_ore 56, water 5
+      none of: deepslate emerald_ore lava
+   SCANBOX B1 savanna y 22..254
+      stone 436475, dirt 15537, gravel 8688, granite 19986, diorite 18986, andesite 20566, tuff 18237, coal_ore 2236, iron_ore 5644, copper_ore 1478, gold_ore 473, redstone_ore 663, lapis_ore 455, diamond_ore 446
+      none of: deepslate emerald_ore deepslate_iron_ore deepslate_redstone_ore water lava
+      no answer: minecraft:deepslate_diamond_ore
+   SCANBOX a1 taiga y 577..910
+      stone 723080, dirt 13808, gravel 7990, granite 14050, diorite 16425, andesite 15870, tuff 19744, coal_ore 2521, iron_ore 1239, copper_ore 1308, gold_ore 468, redstone_ore 674, lapis_ore 465, diamond_ore 494
+      none of: deepslate emerald_ore deepslate_iron_ore deepslate_diamond_ore deepslate_redstone_ore water lava
+   SCANBOX T1 desert y -1267..-890
+      stone 932278, dirt 4402, gravel 8322, granite 12398, diorite 15216, andesite 17449, tuff 20925, coal_ore 1318, iron_ore 1204, copper_ore 1296, gold_ore 459, redstone_ore 684, lapis_ore 412, diamond_ore 450, deepslate_iron_ore 4, deepslate_diamond_ore 45, deepslate_redstone_ore 49
+      none of: deepslate emerald_ore water lava
+   SCANBOX S2 sunflower_plains y -100..26
+      stone 151341, dirt 11168, gravel 2463, granite 13811, diorite 14375, andesite 15540, coal_ore 1494, iron_ore 710, copper_ore 1066, gold_ore 32, redstone_ore 5, lapis_ore 116, diamond_ore 4
+      none of: deepslate tuff emerald_ore deepslate_iron_ore deepslate_diamond_ore deepslate_redstone_ore water lava
+
+-- sea basins: 33 scanned; water under the floor / outside the rim (four corners) / over the middle above the level, the block at the level
+   D1        0     0     0  water
+   D3        0     0     0  water
+   D4        0     0     0  water
+   D6        0     0     0  water
+   D7        0     0     0  water
+   I1        0     0     0  water
+   I4        0     0     0  water
+   I5        0     0     0  water
+   I6        0     0     0  water
+   I7        0     0     0  water
+   K1        0 15698     0  water
+   K3        0     0     0  water
+   K4        0     0     0  water
+   K6        0     0     0  water
+   K7        0     0     0  water
+   M1        0     0     0  ice
+   M2       60     0     0  ice
+   M5       77     0     0  ice
+   N1        0     0     0  water
+   N2        0     0     0  water
+   N4        0     0     0  water
+   N5        0     0     0  water
+   N6        0     0     0  water
+   b1        0     0     0  water
+   b2        0     0     0  water
+   b3        0     0     0  water
+   b5        0     0     0  water
+   b6        0     0     0  water
+   d1        0     0     0  water
+   d2        0     0     0  water
+   d5        0     0     0  water
+   g1        0     0     0  water
+   g5        0     0     0  water
+   total under 137, outside 15698, over the middle 0; basins with water (or ice) at the level in the middle: 33 of 33
+  scan: region files: world/dimensions/minecraft/overworld/region (120 files)
+  scan: chunk keys: ['DataVersion', 'Heightmaps', 'InhabitedTime', 'LastUpdate', 'PostProcessing', 'Status', 'block_entities', 'block_ticks', 'fluid_ticks', 'isLightOn', 'sections', 'structures', 'xPos', 'yPos', 'zPos'] | section keys: ['Y', 'biomes', 'block_states'] | palette entry: minecraft:air
+  scan: 25114 saved chunks in the squares of 33 basins, 1082 with marked blocks, 61 structure starts
+  scan: 
+  scan: == water under the floor and outside the rim of the sea basins (blocks the fills of the terrain section marked) ==
+  scan: 
+  scan: == structures that start in the chunks of a sea basin ==
+  scan: structure                  basin                  at   r/R             y  water  floor   under  over gap med/max  void  note
+  scan: ocean_ruin_warm               D1           -2483 146  0.78      334..340    326    263      -8    12         -/-     4  sea; 12 above the water, 4 columns with nothing under them; blocks: ? 290, sandstone_stairs 4
+  scan: buried_treasure               D1          -2167 -167  0.71      332..332    326    263      -6     6         -/-     1  sea; 6 above the water, 1 columns with nothing under them; chest -2167 332 -167: 6 over the water level, 0 blocks over it; blocks: chest 1
+  scan: shipwreck                     D1           -2172 -90  0.52      310..318    326    263      16     0         -/-    68  sea; 68 columns with nothing under them; chest -2171 312 -95: 0 blocks of nothing over it, 14 under the water level; chest -2174 313 -90: 0 blocks of nothing over it, 13 under the water level; blocks: ? 1240, oak_stairs 105, spruce_fence 10, oak_fence 6, spruce_stairs 5, oak_log 4, oak_trapdoor 3
+  scan: ocean_ruin_warm               D1            -2163 45  0.48      283..289    326    263      43     0         -/-     0  sea; blocks: ? 294
+  scan: shipwreck_beached             D1            -2076 45  0.76      329..337    326    263      -3    11         -/-    81  sea; 11 above the water, 81 columns with nothing under them; chest -2076 331 40: 5 over the water level, 0 blocks over it; chest -2075 331 50: 5 over the water level, 0 blocks over it; blocks: ? 1025, dark_oak_stairs 81, jungle_fence 12, jungle_stairs 8, dark_oak_trapdoor 4, dark_oak_door 2, chest 2
+  scan: ocean_ruin_warm               D3           -2521 503  0.49      331..346    358    316      27     0         -/-     1  sea; 1 columns with nothing under them; chest -2517 331 504: 0 blocks of nothing over it, 27 under the water level; blocks: ? 4069, tall_seagrass 17, water 9, chest 1
+  scan: shipwreck_beached             D3           -2460 432  0.58      357..365    358    316       1     7         -/-    56  sea; 7 above the water, 56 columns with nothing under them; chest -2459 359 422: 1 over the water level, 0 blocks over it; chest -2462 360 427: 2 over the water level, 0 blocks over it; blocks: ? 1007, spruce_stairs 80, jungle_fence 16, jungle_stairs 11, spruce_trapdoor 7, spruce_log 6, spruce_fence 6
+  scan: trial_chambers                D3           -2418 655  0.56      307..374    358    316      51     1         -/-     8  sea; 1 above the water, 8 columns with nothing under them; chest -2451 351 615: 0 blocks of nothing over it, 7 under the water level; chest -2433 354 650: 0 blocks of nothing over it, 4 under the water level; chest -2438 351 660: 0 blocks of nothing over it, 7 under the water level; blocks: ? 12354, waxed_oxidized_cut_copper_stairs 5, tall_seagrass 5, waxed_exposed_copper_bulb 3, water 2, oak_leaves 2, waxed_weathered_copper_bulb 2
+  scan: buried_treasure               D3           -2327 633  0.68      363..363    358    316      -5     5         -/-     1  sea; 5 above the water, 1 columns with nothing under them; chest -2327 363 633: 5 over the water level, 0 blocks over it; blocks: chest 1
+  scan: shipwreck_beached             D4           -2761 319  0.75  -2038..-2030    414    393    2452     0         -/-     9  ring; 9 columns with nothing under them; blocks: air 1296, ? 638, oak_fence 6, oak_stairs 4
+  scan: ocean_ruin_warm               D4           -2733 413  0.58      423..429    414    393      -9    15         -/-     0  sea; 15 above the water; blocks: ? 294
+  scan: shipwreck                     D7          -2828 -216  0.51      476..484    482    450       6     2         -/-    68  sea; 2 above the water, 68 columns with nothing under them; chest -2829 478 -211: 0 blocks of nothing over it, 4 under the water level; chest -2826 479 -216: 0 blocks of nothing over it, 3 under the water level; blocks: ? 1239, spruce_stairs 104, jungle_fence 10, spruce_fence 6, jungle_stairs 5, spruce_log 4, spruce_trapdoor 3
+  scan: shipwreck                     I1          -1531 3375  0.48    -338..-330   -308   -374      30     0         0/0    77  sea; 77 columns with nothing under them; chest -1541 -334 3377: 0 blocks of nothing over it, 26 under the water level; chest -1525 -336 3375: 0 blocks of nothing over it, 28 under the water level; chest -1535 -336 3376: 0 blocks of nothing over it, 28 under the water level; blocks: ? 983, spruce_stairs 88, jungle_slab 16, jungle_fence 15, jungle_stairs 13, spruce_fence 6, spruce_trapdoor 5
+  scan: ocean_ruin_warm               I1          -1438 3347  0.17    -355..-349   -308   -374      47     0         -/-     1  sea; 1 columns with nothing under them; chest -1437 -354 3348: 0 blocks of nothing over it, 46 under the water level; blocks: ? 281, tall_seagrass 9, water 3, chest 1
+  scan: trial_chambers                I1          -1300 3327  0.38    -413..-350   -308   -374     105     0         -/-    13  sea; 13 columns with nothing under them; chest -1318 -390 3353: 2 blocks of waxed_oxidized_cut_copper_slab over it, 82 under the water level; chest -1284 -383 3295: 0 blocks of nothing over it, 75 under the water level; chest -1291 -398 3351: 0 blocks of nothing over it, 90 under the water level; blocks: ? 12513, tall_seagrass 8, waxed_copper_bulb 6, waxed_exposed_copper_bulb 4, waxed_weathered_copper_bulb 3, waxed_oxidized_cut_copper_stairs 2, sea_pickle 1
+  scan: ocean_ruin_warm               I1          -1246 3267  0.66    -320..-314   -308   -374      12     0         -/-     3  sea; 3 columns with nothing under them; blocks: ? 289, fire_coral_wall_fan 3, tall_seagrass 2
+  scan: ruined_portal_ocean           I1          -1227 3379  0.61    -299..-290   -308   -374      -9    11         -/-     4  sea; 11 above the water, 4 columns with nothing under them; blocks: ? 696, mossy_stone_brick_stairs 3, stone_brick_stairs 1
+  scan: buried_treasure               I1          -1223 3465  0.70    -304..-304   -308   -374      -4     4         -/-     1  sea; 4 above the water, 1 columns with nothing under them; chest -1223 -304 3465: 4 over the water level, 0 blocks over it; blocks: chest 1
+  scan: shipwreck                     I4          -1443 2815  0.51    -331..-323   -336   -356      -5    13         -/-    68  sea; 13 above the water, 68 columns with nothing under them; chest -1443 -328 2813: 8 over the water level, 0 blocks over it; chest -1438 -329 2816: 7 over the water level, 0 blocks over it; blocks: ? 1257, jungle_stairs 92, spruce_fence 10, jungle_fence 6, jungle_log 4, jungle_trapdoor 3, spruce_stairs 3
+  scan: buried_treasure               I4          -1367 2825  0.68    -333..-333   -336   -356      -3     3         -/-     1  sea; 3 above the water, 1 columns with nothing under them; chest -1367 -333 2825: 3 over the water level, 0 blocks over it; blocks: chest 1
+  scan: trial_chambers                I5          -1579 3004  0.70    -293..-250   -216   -260      77     0         -/-    15  sea; 15 columns with nothing under them; chest -1550 -260 2971: 0 blocks of nothing over it, 44 under the water level; chest -1550 -260 2976: 0 blocks of nothing over it, 44 under the water level; blocks: ? 7979, waxed_copper_bulb 11, waxed_exposed_copper_bulb 5, waxed_oxidized_cut_copper_stairs 4, waxed_weathered_copper_bulb 3, waxed_oxidized_copper_bulb 3, red_glazed_terracotta 1
+  scan: ocean_ruin_warm               I7          -2243 2948  0.68    -418..-378   -392   -430      26     0         -/-    14  sea; 14 columns with nothing under them; blocks: ? 9566, tall_seagrass 12, bubble_coral_wall_fan 5, tube_coral_wall_fan 3, horn_coral_wall_fan 2, sea_pickle 2, brain_coral_wall_fan 2
+  scan: shipwreck                     I7          -2229 3087  0.37    -418..-410   -392   -430      26     0         -/-    68  sea; 68 columns with nothing under them; chest -2234 -416 3086: 0 blocks of nothing over it, 24 under the water level; chest -2229 -415 3089: 0 blocks of nothing over it, 23 under the water level; blocks: ? 1238, dark_oak_stairs 105, spruce_fence 10, dark_oak_fence 6, spruce_stairs 5, tall_seagrass 4, dark_oak_log 4
+  scan: trial_chambers                K1         -3598 -1390  0.71    1198..1267   1242   1177      44    20         -/-    13  sea; 20 above the water, 13 columns with nothing under them; chest -3606 1210 -1415: 2 blocks of waxed_oxidized_cut_copper_slab over it, 32 under the water level; chest -3582 1229 -1406: 0 blocks of nothing over it, 13 under the water level; chest -3577 1219 -1391: 0 blocks of nothing over it, 23 under the water level; blocks: ? 12723, waxed_oxidized_cut_copper_stairs 4, red_candle 3, waxed_weathered_copper_bulb 2, waxed_copper_bulb 2, oak_leaves 2, waxed_exposed_copper_bulb 1
+  scan: shipwreck                     K1         -3451 -1473  0.34    1199..1207   1242   1177      43     0         -/-    57  sea; 57 columns with nothing under them; chest -3461 1201 -1474: 0 blocks of nothing over it, 41 under the water level; chest -3445 1202 -1472: 0 blocks of nothing over it, 40 under the water level; chest -3456 1202 -1471: 0 blocks of nothing over it, 40 under the water level; blocks: ? 1003, spruce_stairs 73, tall_seagrass 17, jungle_fence 12, jungle_stairs 11, spruce_fence 6, spruce_log 6
+  scan: ocean_ruin_cold               K1         -3411 -1230  0.54    1189..1195   1242   1177      53     0         -/-     1  sea; 1 columns with nothing under them; chest -3411 1189 -1231: 0 blocks of nothing over it, 53 under the water level; blocks: ? 293, chest 1
+  scan: ocean_ruin_cold               K1         -3363 -1582  0.58      513..519   1242   1177     729     0         -/-    13  sea; 13 columns with nothing under them; blocks: ? 275, stone_brick_stairs 19
+  scan: trial_chambers                K4          -3043 -733  0.32    1150..1196   1202   1178      52     0         -/-    11  sea; 11 columns with nothing under them; chest -3053 1162 -756: 0 blocks of nothing over it, 40 under the water level; chest -3043 1162 -750: 0 blocks of nothing over it, 40 under the water level; chest -3027 1177 -701: 0 blocks of nothing over it, 25 under the water level; blocks: ? 8537, waxed_oxidized_cut_copper_stairs 3, tall_seagrass 3, waxed_exposed_copper_bulb 2, waxed_copper_bulb 2, waxed_oxidized_copper_bulb 1, decorated_pot 1
+  scan: buried_treasure               K6         -2599 -1335  0.86    1391..1391   1394   1366       3     0         -/-     1  ring; 1 columns with nothing under them; chest -2599 1391 -1335: 0 blocks of nothing over it, 3 under the water level; blocks: chest 1
+  scan: ocean_ruin_cold               K6         -2467 -1230  0.41    1380..1386   1394   1366      14     0         -/-    16  sea; 16 columns with nothing under them; chest -2466 1380 -1230: 0 blocks of nothing over it, 14 under the water level; blocks: ? 266, stone_brick_stairs 22, water 2, kelp 2, tall_seagrass 1, chest 1
+  scan: buried_treasure               M1          1241 -3303  0.66  -1253..-1253  -1258  -1306      -5     5         -/-     1  sea; 5 above the water, 1 columns with nothing under them; chest 1241 -1253 -3303: 5 over the water level, 0 blocks over it; blocks: chest 1
+  scan: ocean_ruin_cold               M1          1411 -3203  0.65  -1256..-1250  -1258  -1306      -2     7         -/-    33  sea; 7 above the water, 33 columns with nothing under them; blocks: ? 261, grass_block 32, stone_brick_stairs 1
+  scan: ocean_ruin_cold               M1          1426 -3341  0.16  -1295..-1289  -1258  -1306      37     0         -/-     0  sea; blocks: ? 294
+  scan: shipwreck                     M2          1778 -2913  0.58  -1358..-1338  -1342  -1379      16     0         -/-    96  sea; 96 columns with nothing under them; chest 1774 -1356 -2913: 0 blocks of nothing over it, 14 under the water level; chest 1783 -1356 -2914: 0 blocks of nothing over it, 14 under the water level; chest 1789 -1354 -2915: 0 blocks of nothing over it, 12 under the water level; blocks: ? 2468, oak_stairs 89, birch_slab 39, birch_fence 14, birch_stairs 11, oak_log 11, oak_trapdoor 8
+  scan: trial_chambers                M2          1824 -2990  0.25  -1412..-1350  -1342  -1379      70     0         -/-    15  sea; 15 columns with nothing under them; chest 1818 -1402 -3015: 2 blocks of waxed_oxidized_cut_copper_slab over it, 60 under the water level; chest 1829 -1400 -3027: 0 blocks of nothing over it, 58 under the water level; chest 1852 -1393 -2986: 0 blocks of nothing over it, 51 under the water level; blocks: ? 12328, waxed_oxidized_cut_copper_stairs 5, waxed_copper_bulb 4, waxed_exposed_copper_bulb 3, waxed_oxidized_copper_trapdoor 2, waxed_oxidized_copper_bulb 1, oak_button 1
+  scan: trial_chambers                M5           837 -3133  0.11  -1367..-1321  -1282  -1319      85     0         -/-     7  sea; 7 columns with nothing under them; chest 826 -1344 -3159: 2 blocks of waxed_oxidized_cut_copper_slab over it, 62 under the water level; chest 856 -1337 -3144: 0 blocks of nothing over it, 55 under the water level; chest 860 -1352 -3129: 0 blocks of nothing over it, 70 under the water level; blocks: ? 9201, waxed_oxidized_cut_copper_stairs 3, waxed_copper_bulb 2, polished_tuff_slab 1, waxed_oxidized_copper_bulb 1, waxed_weathered_copper_bulb 1, waxed_exposed_copper_bulb 1
+  scan: shipwreck                     N1          3268 -1510  0.59    -626..-618   -608   -665      18     0         -/-    98  sea; 98 columns with nothing under them; chest 3268 -621 -1512: 0 blocks of nothing over it, 13 under the water level; chest 3267 -621 -1503: 0 blocks of nothing over it, 13 under the water level; blocks: ? 1656, spruce_stairs 82, oak_stairs 20, spruce_trapdoor 11, oak_fence 8, kelp 3, chest 2
+  scan: ruined_portal_mountain        N1          3374 -1581  0.71    -600..-591   -608   -665      -8    11         -/-     8  sea; 11 above the water, 8 columns with nothing under them; blocks: ? 692, mossy_stone_brick_stairs 4, stone_brick_stairs 4
+  scan: ocean_ruin_cold               N5           3330 -541  0.50    -717..-711   -696   -733      21     0         -/-     1  sea; 1 columns with nothing under them; chest 3331 -716 -540: 0 blocks of nothing over it, 20 under the water level; blocks: ? 290, tall_seagrass 3, chest 1
+  scan: shipwreck                     N6          3716 -1238  0.41    -516..-508   -520   -542      -4    12         -/-   107  sea; 12 above the water, 107 columns with nothing under them; chest 3716 -511 -1240: 9 over the water level, 0 blocks over it; chest 3715 -511 -1231: 9 over the water level, 0 blocks over it; blocks: ? 1650, dark_oak_stairs 93, jungle_stairs 18, dark_oak_trapdoor 11, jungle_fence 8, chest 2
+  scan: ocean_ruin_cold               b1          -220 -2714  0.40    -309..-290   -268   -324      41     0         -/-     0  sea; chest -235 -305 -2726: 0 blocks of nothing over it, 37 under the water level; chest -238 -304 -2720: 0 blocks of nothing over it, 36 under the water level; chest -212 -305 -2715: 0 blocks of nothing over it, 37 under the water level; blocks: ? 4985, kelp 30, tall_seagrass 24, water 1
+  scan: shipwreck_beached             d1           -227 3007  0.82      896..904    892    827      -4    12       22/22    65  sea; 12 above the water, floats, 65 columns with nothing under them; chest -227 899 3005: 7 over the water level, 0 blocks over it; chest -222 898 3008: 6 over the water level, 0 blocks over it; blocks: ? 1250, dark_oak_stairs 97, jungle_fence 10, dark_oak_fence 6, jungle_stairs 5, dark_oak_log 4, dark_oak_trapdoor 3
+  scan: trial_chambers                d1           -229 3015  0.81      835..895    892    827      57     0         -/-     5  sea; 5 columns with nothing under them; chest -257 873 3057: 0 blocks of nothing over it, 19 under the water level; chest -247 867 3014: 0 blocks of nothing over it, 25 under the water level; chest -254 867 3064: 0 blocks of nothing over it, 25 under the water level; blocks: ? 11091, waxed_oxidized_cut_copper_stairs 3, waxed_oxidized_copper_trapdoor 2, waxed_weathered_copper_bulb 2, waxed_oxidized_copper_door 2, waxed_cut_copper_slab 1, waxed_exposed_copper_bulb 1
+  scan: ocean_ruin_warm               d1           -153 2967  0.68      901..916    892    827      -9    24         -/-     0  sea; 24 above the water; blocks: ? 4096
+  scan: shipwreck                     d1            -76 3254  0.57      846..854    892    827      46     0         -/-    99  sea; 99 columns with nothing under them; chest -77 848 3256: 0 blocks of nothing over it, 44 under the water level; chest -78 850 3250: 0 blocks of nothing over it, 42 under the water level; blocks: ? 1126, dark_oak_stairs 108, jungle_slab 19, jungle_fence 14, jungle_stairs 9, dark_oak_fence 6, tall_seagrass 3
+  scan: buried_treasure               d1              9 2857  0.81      890..890    892    827       2     0         -/-     1  sea; 1 columns with nothing under them; chest 9 890 2857: 0 blocks of nothing over it, 2 under the water level; blocks: chest 1
+  scan: ocean_ruin_warm               d1            -12 2997  0.35      513..845    892    827     379     0         -/-     9  sea; 9 columns with nothing under them; chest -27 838 2980: 0 blocks of nothing over it, 54 under the water level; chest -30 837 2997: 0 blocks of nothing over it, 55 under the water level; chest -32 838 3010: 0 blocks of nothing over it, 54 under the water level; blocks: ? 69903, tall_seagrass 16, fire_coral_wall_fan 3, tube_coral_wall_fan 3, brain_coral_wall_fan 2, bubble_coral_wall_fan 2, horn_coral_wall_fan 1
+  scan: ruined_portal_ocean           d1              8 3235  0.45      841..850    892    827      51     0         -/-    15  sea; 15 columns with nothing under them; chest 8 843 3238: 0 blocks of nothing over it, 49 under the water level; blocks: ? 337, mossy_stone_brick_slab 6, stone_brick_stairs 6, stone_slab 2, fire_coral_wall_fan 2, mossy_stone_brick_stairs 2, tall_seagrass 1
+  scan: trial_chambers                d1             39 2836  0.89      847..884    892    827      45     0         -/-     8  ring; 8 columns with nothing under them; chest 83 861 2809: 0 blocks of nothing over it, 31 under the water level; chest 83 866 2819: 0 blocks of nothing over it, 26 under the water level; blocks: ? 6409, decorated_pot 3, waxed_copper_bulb 3, waxed_oxidized_cut_copper_stairs 2, waxed_exposed_copper_bulb 2, waxed_oxidized_copper_door 2, waxed_oxidized_copper_trapdoor 1
+  scan: ocean_ruin_warm               d1             13 3277  0.59      513..519    892    827     379     0         -/-     0  sea; blocks: ? 294
+  scan: shipwreck                     d1             31 3151  0.20      844..852    892    827      48     0         -/-    98  sea; 98 columns with nothing under them; chest 29 849 3151: 0 blocks of nothing over it, 43 under the water level; chest 38 849 3152: 0 blocks of nothing over it, 43 under the water level; blocks: ? 1654, spruce_stairs 82, oak_stairs 20, spruce_trapdoor 11, oak_fence 8, tall_seagrass 5, chest 2
+  scan: buried_treasure               d1            249 3081  0.83      888..888    892    827       4     0         -/-     1  sea; 1 columns with nothing under them; chest 249 888 3081: 0 blocks of nothing over it, 4 under the water level; blocks: chest 1
+  scan: ocean_ruin_warm               d2           -483 3341  0.64      843..849    836    808      -7    11         -/-     8  sea; 11 above the water, 8 columns with nothing under them; blocks: ? 286, sandstone_stairs 8
+  scan: ruined_portal_ocean           d2           -404 3348  0.20      818..829    836    808      18     0         -/-    27  sea; 27 columns with nothing under them; chest -400 820 3346: 0 blocks of nothing over it, 16 under the water level; blocks: ? 935, mossy_stone_brick_slab 20, mossy_stone_brick_stairs 8, stone_brick_slab 4, iron_bars 2, stone_brick_stairs 1, smooth_stone_slab 1
+  scan: shipwreck                     g1          -1701 1087  0.67      889..897    892    831       3     5         -/-    68  sea; 5 above the water, 68 columns with nothing under them; chest -1706 891 1086: 0 blocks of nothing over it, 1 under the water level; chest -1701 892 1089: 0 blocks of nothing over it, 0 under the water level; blocks: ? 1269, spruce_stairs 78, jungle_fence 10, spruce_fence 6, jungle_stairs 5, spruce_log 4, spruce_trapdoor 3
+  scan: shipwreck                     g1          -1499 1247  0.49      848..868    892    831      44     0         -/-    95  sea; 95 columns with nothing under them; chest -1509 852 1249: 0 blocks of nothing over it, 40 under the water level; chest -1494 850 1247: 0 blocks of nothing over it, 42 under the water level; chest -1503 850 1248: 0 blocks of nothing over it, 42 under the water level; blocks: ? 2453, dark_oak_stairs 93, jungle_slab 31, jungle_fence 21, jungle_stairs 13, dark_oak_trapdoor 8, kelp 7
+  scan: ocean_ruin_warm               g1          -1451 1075  0.18      513..854    892    831     379     0         -/-     0  sea; chest -1466 844 1069: 0 blocks of nothing over it, 48 under the water level; chest -1468 845 1057: 0 blocks of nothing over it, 47 under the water level; chest -1435 848 1075: 0 blocks of nothing over it, 44 under the water level; blocks: ? 62215, tall_seagrass 21, kelp 8
+  scan: buried_treasure               g1          -1415 1289  0.69      897..897    892    831      -5     5         -/-     1  sea; 5 above the water, 1 columns with nothing under them; chest -1415 897 1289: 5 over the water level, 0 blocks over it; blocks: chest 1
+  scan: shipwreck                     g1          -1348 1055  0.53      872..880    892    831      20     0         -/-   102  sea; 102 columns with nothing under them; chest -1349 874 1054: 0 blocks of nothing over it, 18 under the water level; chest -1343 876 1053: 0 blocks of nothing over it, 16 under the water level; blocks: ? 1105, spruce_stairs 112, jungle_slab 20, tall_seagrass 15, jungle_fence 15, jungle_stairs 13, spruce_fence 6
+  scan: ruined_portal_ocean           g5           -1870 967  0.71      878..884    872    837      -6    12         -/-     2  sea; 12 above the water, 2 columns with nothing under them; blocks: ? 243, stone_brick_stairs 2
+  scan: 
+  scan: buried_treasure: 9 (8 in a sea, 1 on a ring, 0 past the rim); in a sea: 2 wholly under water, 6 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 9 with columns over nothing
+  scan: ocean_ruin_cold: 7 (7 in a sea, 0 on a ring, 0 past the rim); in a sea: 6 wholly under water, 1 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 5 with columns over nothing
+  scan: ocean_ruin_warm: 12 (12 in a sea, 0 on a ring, 0 past the rim); in a sea: 8 wholly under water, 4 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 7 with columns over nothing
+  scan: ruined_portal_mountain: 1 (1 in a sea, 0 on a ring, 0 past the rim); in a sea: 0 wholly under water, 1 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 1 with columns over nothing
+  scan: ruined_portal_ocean: 4 (4 in a sea, 0 on a ring, 0 past the rim); in a sea: 2 wholly under water, 2 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 4 with columns over nothing
+  scan: shipwreck: 14 (14 in a sea, 0 on a ring, 0 past the rim); in a sea: 10 wholly under water, 4 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 14 with columns over nothing
+  scan: shipwreck_beached: 4 (3 in a sea, 1 on a ring, 0 past the rim); in a sea: 0 wholly under water, 3 reach above it, 1 float (more than 2 blocks of water or air under the middle column), 4 with columns over nothing
+  scan: trial_chambers: 9 (8 in a sea, 1 on a ring, 0 past the rim); in a sea: 6 wholly under water, 2 reach above it, 0 float (more than 2 blocks of water or air under the middle column), 9 with columns over nothing
+  scan: 
+
+-- CHECK
+   commands done                      Stopping the server | Stopping server | Saving players | Saving worlds | Saving chunks for level 'ServerLevel[world]'/minecraft:overworld | Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether | Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+
+-- other
+    [10:54:02]  SECTION start
+    [10:54:02]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 10.1ms (Target: 50.0ms)
+    [10:54:02]  Percentiles: P50: 0.0ms P95: 36.7ms P99: 105.0ms. Sample: 100
+    [10:54:02]  SECTION terrain
+    [11:05:30]  Target tick rate: 20.0 per second.
+    Average tim Average time per tick: 4.7ms (Target: 50.0ms)
+    [11:05:30]  Percentiles: P50: 1.7ms P95: 9.5ms P99: 95.1ms. Sample: 100
+    [11:05:30]  SECTION end vanilla
+    [11:05:30]  SECTION ores
+    [11:06:23]  SECTION end vanilla-ores
+
+================ verdict ================
+FAIL
+  - vanilla: sea basin K1: 0 blocks of water under its floor, 15698 outside its rim
+  - vanilla: sea basin M2: 60 blocks of water under its floor, 0 outside its rim
+  - vanilla: sea basin M5: 77 blocks of water under its floor, 0 outside its rim
+  - vanilla: build limit bottom-ok missing
+  - vanilla: build limit top-ok missing

@@ -1,0 +1,6 @@
+FAIL
+- vanilla: sea basin K1: 0 blocks of water under its floor, 15698 outside its rim
+- vanilla: sea basin M2: 60 blocks of water under its floor, 0 outside its rim
+- vanilla: sea basin M5: 77 blocks of water under its floor, 0 outside its rim
+- vanilla: build limit bottom-ok missing
+- vanilla: build limit top-ok missing
