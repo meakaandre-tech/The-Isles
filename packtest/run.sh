@@ -142,7 +142,7 @@ feed() { # $1 = command file, $2 = server log
         [ -n "$pid" ] && { jcmd $pid GC.run >/dev/null 2>&1; sleep 2; ts "HEAP ${line#\#heap } $(jcmd $pid GC.heap_info 2>/dev/null | grep -oE 'used [0-9]+[KMG]' | head -1) $(grep -c . $2 >/dev/null; echo)"; };;
       ""|"#"*) ;;
       *) case "$line" in locate*|*"run locate"*|fill*|"execute "*fill*) before=$(( $(wc -l < $2) + 1 ));; esac
-         echo "$line" >&3; sleep 0.12;;
+         echo "$line" >&3; sleep 0.06;;
     esac
   done < "$1"
 }
@@ -177,7 +177,7 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   python3 $P/tools/nbt.py world/level.dat > $out/level-$name.txt 2>&1
   # the saved world itself: where the blocks are that the terrain section marked, the structures in the sea basins (tools/scan.py)
   if [ "$name" = vanilla ] && [ -f $P/tools/scan.py ]; then
-    ts "$name: scan of the saved world"; timeout 1500 python3 $P/tools/scan.py world $root > $out/scan-$name.txt 2>&1 || echo "FAIL scan: scan.py did not finish ($?)" >> $out/scan-$name.txt
+    ts "$name: scan of the saved world"; timeout 1500 python3 -u $P/tools/scan.py world $root > $out/scan-$name.txt 2>&1 || echo "FAIL scan: scan.py did not finish ($?)" >> $out/scan-$name.txt
     ts "$name: scan done, $(wc -l < $out/scan-$name.txt) lines"
   fi
   du -sh world > $out/world-size-$name.txt 2>&1; find world -maxdepth 3 | head -80 >> $out/world-size-$name.txt

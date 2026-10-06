@@ -404,9 +404,12 @@ def terrain_probes():
             c += [f'say GEYSER {k} {g["size"]} {g["template"]} {g["rotation"]} ground {x} {y} {z} vents {len(g["vents"])}']
             for v in g['vents']: c += vent('gen', k, *v)
             # the level ground: the first free block 11 blocks from the spring's middle to four sides (a tree or the spring's own tuff can stand there)
+            # (ground: rock, soil, sand, terracotta, snow blocks - at the listed height there is air, or a plant, a snow layer, the spring's tuff)
             for dx, dz in ((11, 0), (-11, 0), (0, 11), (0, -11)):
-                c += [f'execute if block {x + dx} {y - 1} {z + dz} #minecraft:air run say GROUND {k} low {dx} {dz}'] + [
-                      f'execute unless block {x + dx} {y - 1} {z + dz} #minecraft:air if block {x + dx} {y + h} {z + dz} #minecraft:air run say GROUND {k} ok {dx} {dz} +{h}' for h in (0, 2)]
+                high = ' '.join(f'unless block {x + dx} {y} {z + dz} {b}' for b in ('#minecraft:base_stone_overworld', '#minecraft:dirt', '#minecraft:sand', '#minecraft:terracotta', 'minecraft:snow_block', 'minecraft:gravel', 'minecraft:sandstone'))
+                c += [f'execute if block {x + dx} {y - 1} {z + dz} #minecraft:air run say GROUND {k} low {dx} {dz}',
+                      f'execute unless block {x + dx} {y - 1} {z + dz} #minecraft:air {high} run say GROUND {k} ok {dx} {dz} +0',
+                      f'execute unless block {x + dx} {y - 1} {z + dz} #minecraft:air unless block {x + dx} {y} {z + dz} #minecraft:air if block {x + dx} {y + 1} {z + dz} #minecraft:air run say GROUND {k} covered {dx} {dz}']
             if n == 0:
                 vx, vy, vz = g['vents'][0]
                 c += [f'say ERUPTION watch {k}', '#time ERUPTION', f'#poll 400 execute if block {vx} {vy} {vz} minecraft:potent_sulfur[potent_sulfur_state=erupting] run say ERUPTING {k} ## ERUPTING {k}', '#time']
@@ -430,7 +433,7 @@ def terrain_probes():
         for i in sorted((i for i in L['islands'] if i['kind'] == 'basin'), key=lambda i: i['id'] not in SEA_SAMPLE):
             k = i['id']; x, z, R = i['x'], i['z'], i['radius']; s = _bt.basin_shape(i); w, d = s['water'], s['depth']; q = int(0.78 * R)
             load(c, f'sea-{k}', x - R - 24, z - R - 24, x + R + 24, z + R + 24)
-            c += [f'#sleep {12 if k in SEA_SAMPLE else 6}', f'say SEA {k} {i["biome"]} water level {w} depth {d} top {i["y_top"]}']
+            c += [f'#sleep {12 if k in SEA_SAMPLE else 3}', f'say SEA {k} {i["biome"]} water level {w} depth {d} top {i["y_top"]}']
             if k in SEA_SAMPLE: probe(c, f'{k} sea-centre', x, z)
             c += [f'execute if block {x} {w} {z} minecraft:water run say SEATOP {k} water', f'execute if block {x} {w} {z} minecraft:ice run say SEATOP {k} ice',
                   f'execute if block {x} {w + 1} {z} #minecraft:air run say SEAABOVE {k} air', f'execute if biome {x} {w - 2} {z} minecraft:{i["biome"]} run say SEABIOME {k} ok']

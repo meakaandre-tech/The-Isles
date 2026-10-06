@@ -171,12 +171,16 @@ def main(world, root, log=None):
                     print('chunk keys:', sorted(c.nbt), '| section keys:', sorted(sec) if sec else None, '| palette entry:', (ci(ci(sec, 'block_states'), 'palette') or [None])[0] if sec else None)
                 if has_void:
                     n_void += 1
-                    for x, y, z, name in c.find({'minecraft:structure_void'}, i['y_bottom'] - 230, w + 60): marked[i['id']].append((cx * 16 + x, y, cz * 16 + z))
+                    # (only under the floor or past the rim: the sea-life scan marks the whole floor of six seas)
+                    far = math.hypot(min(abs(cx * 16 - i['x']), abs(cx * 16 + 15 - i['x'])), min(abs(cz * 16 - i['z']), abs(cz * 16 + 15 - i['z']))) > R - 24
+                    for x, y, z, name in c.find({'minecraft:structure_void'}, i['y_bottom'] - 230, w + 60 if far else w - d - 15):
+                        if y < w - d - 14 or math.hypot(cx * 16 + x - i['x'], cz * 16 + z - i['z']) > R: marked[i['id']].append((cx * 16 + x, y, cz * 16 + z))
                 if has_start:
                     st = ci(ci(c.nbt, 'structures'), 'starts') or {}
                     for sid, sv in st.items():
                         ch = ci(sv, 'Children')
                         if ch: starts.append((i, sid, sv, cx, cz))
+    sys.stdout.flush()
     print(f'{n_chunks} saved chunks in the squares of {len(basins)} basins, {n_void} with marked blocks, {len(starts)} structure starts')
 
     # ---- 1. water under and outside the basins (marked by the terrain section's fills)
@@ -189,7 +193,7 @@ def main(world, root, log=None):
             if o: zone = f'on {o["id"]}'
             elif y < w - d - 14: zone = 'under' if r <= R + bp.PAD else 'under, past the rim'
             elif r > R: zone = 'outside the rim'
-            else: zone = 'in the sea (plants counted by the sea-life scan)'
+            else: continue
             zones[zone].append((x, y, z))
         bad = {k: v for k, v in zones.items() if k.startswith(('under', 'outside'))}
         if not bad: continue
@@ -221,6 +225,7 @@ def main(world, root, log=None):
                 print('      first blocks: ' + ' '.join(f'{x},{y},{z}' for x, y, z in grp[:6]))
 
     # ---- 2. structures in the basins
+    sys.stdout.flush()
     print('\n== structures that start in the chunks of a sea basin ==')
     print(f'{"structure":<26}{"basin":>6}{"at":>20}{"r/R":>6}{"y":>14}{"water":>7}{"floor":>7}{"under":>8}{"over":>6}{"gap med/max":>12}{"void":>6}  note')
     seen = set(); summary = collections.defaultdict(list)
