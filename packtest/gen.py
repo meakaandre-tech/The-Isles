@@ -334,10 +334,10 @@ def cave_probes():
 
 # ------------------------------------------------------------------ terrain: seas, caves, surfaces, geysers, sulfur caves
 import build_pack as _bp, build_terrain as _bt
-def box(c, tag, x0, y0, z0, x1, y1, z1, blocks, note=''):
-    """SCAN lines: how many of each block are in a box (the blocks are replaced by what counts them)"""
+def box(c, tag, x0, y0, z0, x1, y1, z1, blocks, note='', mark='minecraft:structure_void'):
+    """SCAN lines: how many of each block are in a box (the blocks are replaced by what counts them: mark)"""
     c += [f'say SCANBOX {tag} {x0} {y0} {z0} .. {x1} {y1} {z1} volume {(x1 - x0 + 1) * (y1 - y0 + 1) * (z1 - z0 + 1)} {note}']
-    for b in blocks: c += [f'say SCAN {tag} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} minecraft:structure_void replace {b}']
+    for b in blocks: c += [f'say SCAN {tag} {b}', f'fill {x0} {y0} {z0} {x1} {y1} {z1} {mark} replace {b}']
 def load(c, tag, x0, z0, x1, z1, wait=420):
     ncx = x1 // 16 - x0 // 16 + 1; rows = max(1, 256 // ncx)     # (one forceload takes 256 chunks at most)
     c += ['forceload remove all'] + [f'forceload add {x0} {cz * 16} {x1} {min(cz + rows - 1, z1 // 16) * 16 + 15}' for cz in range(z0 // 16, z1 // 16 + 1, rows)] + [
@@ -437,6 +437,7 @@ def terrain_probes():
             if k in SEA_SAMPLE: probe(c, f'{k} sea-centre', x, z)
             c += [f'execute if block {x} {w} {z} minecraft:water run say SEATOP {k} water', f'execute if block {x} {w} {z} minecraft:ice run say SEATOP {k} ice',
                   f'execute if block {x} {w + 1} {z} #minecraft:air run say SEAABOVE {k} air', f'execute if biome {x} {w - 2} {z} minecraft:{i["biome"]} run say SEABIOME {k} ok']
+            # (only these two counts mark with structure_void: tools/scan.py takes every such block in a basin's square for water under a floor or past a rim)
             box(c, f'sea-under-{k}', x - R - 24, i['y_bottom'] - 220, z - R - 24, x + R + 24, w - d - 15, z + R + 24, ['minecraft:water'], '(under the sea floor and under the island: none)')
             for n, (sx, sz) in enumerate(((1, 1), (1, -1), (-1, 1), (-1, -1))):
                 x0, x1 = sorted((x + sx * q, x + sx * (R + 24))); z0, z1 = sorted((z + sz * q, z + sz * (R + 24)))
@@ -445,11 +446,11 @@ def terrain_probes():
                         and math.hypot(max(x0 - j['x'], 0, j['x'] - x1), max(z0 - j['z'], 0, j['z'] - z1)) <= j['radius'] + 12]
                 if near: c += [f'say SEACORNER {k} {n} skipped: {" ".join(near)} reaches into it']; continue
                 box(c, f'sea-outside-{k}', x0, w - d - 14, z0, x1, w + 2, z1, ['minecraft:water'], f'(outside the rim, corner {n}: none)')
-            box(c, f'sea-over-middle-{k}', x - R // 3, w + 1, z - R // 3, x + R // 3, w + 40, z + R // 3, ['minecraft:water'], '(above the water level over the middle of the sea: none)')
+            box(c, f'sea-over-middle-{k}', x - R // 3, w + 1, z - R // 3, x + R // 3, w + 40, z + R // 3, ['minecraft:water'], '(above the water level over the middle of the sea: none)', mark='minecraft:barrier')
             if k in SEA_SAMPLE:
-                box(c, f'sea-life-{k}', x - R, w - d - 14, z - R, x + R, w + 2, z + R, SEA_BLOCKS, '(the sea: before its water is counted)')
-                box(c, f'sea-{k}', x - R - 24, w - d - 14, z - R - 24, x + R + 24, w, z + R + 24, ['minecraft:water', 'minecraft:ice'], '(the sea: floor to water level)')
-                box(c, f'sea-over-{k}', x - R - 24, w + 1, z - R - 24, x + R + 24, w + 40, z + R + 24, ['minecraft:water'], '(above the water level, shore ring included: pools of the shore biome)')
+                box(c, f'sea-life-{k}', x - R, w - d - 14, z - R, x + R, w + 2, z + R, SEA_BLOCKS, '(the sea: before its water is counted)', mark='minecraft:barrier')
+                box(c, f'sea-{k}', x - R - 24, w - d - 14, z - R - 24, x + R + 24, w, z + R + 24, ['minecraft:water', 'minecraft:ice'], '(the sea: floor to water level)', mark='minecraft:barrier')
+                box(c, f'sea-over-{k}', x - R - 24, w + 1, z - R - 24, x + R + 24, w + 40, z + R + 24, ['minecraft:water'], '(above the water level, shore ring included: pools of the shore biome)', mark='minecraft:barrier')
     if part('tcaves'):
         # --- caves
         for k in CAVE_SAMPLE:

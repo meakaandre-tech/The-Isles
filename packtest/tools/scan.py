@@ -287,9 +287,9 @@ def main(world, root, log=None):
             print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{floor:>7}  AT THE BOTTOM OF THE WORLD')
             print(f'FAIL structure {short(sid)} at {mx} {mz} ({i["id"]}, {r / R:.2f} R) stands at the bottom of the world (y {y0}..{y1})')
             summary[short(sid)].append(('bottom', 0, None, 0, 0)); continue
-        if y1 < i['y_bottom'] - 80 or y0 > i['y_top'] + 80:
-            # (a piece keeps the height it was created with until its chunk is decorated; the start saved before that has it still)
-            stale = [b for b in boxes if b[4] < i['y_bottom'] - 80 or b[1] > i['y_top'] + 80]
+        # (a piece keeps the height it was created with until its chunk is decorated; the start saved before that has it still)
+        stale = [b for b in boxes if b[4] < i['y_bottom'] - 80 or b[1] > i['y_top'] + 80]
+        if stale:
             if len(stale) == len(boxes):
                 print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{floor:>7}  not placed when its start was saved (the height it was created with)')
                 continue
