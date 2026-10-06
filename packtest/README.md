@@ -24,10 +24,10 @@ sheets of the screenshots. Start with `report.txt` and `verdict.txt`.
 
 | Phase | What runs | What it answers |
 |---|---|---|
-| `vanilla` | dedicated server, Fabric API + The Isles only | does the world load and generate without errors; islands where the layout says, right biome, empty void, build limits, every structure (`/locate`, then its blocks counted around the island surface, in the rest of the columns and on the world floor), pre-generation time and heap |
+| `vanilla` | dedicated server, Fabric API + The Isles only | does the world load and generate without errors; islands where the layout says, right biome, empty void, build limits, every structure (`/locate`, then its blocks counted around the island surface, in the rest of the columns and on the world floor), the terrain features (section `terrain`: seas, caves, bands and snow line, geysers, sulfur caves), pre-generation time and heap |
 | `baseline` | the same server without The Isles (vanilla generator) | reference for time and heap |
 | `pack` | every mod of `mods.tsv` + both data packs, a real client under Xvfb, then a restart | boot log, ores per island, oil, a Create line / diesel engine / reactor / gun / hypertube across the void, spawn, respawn, mobs, weather, portals, the look of the sky at three altitudes, screenshots |
-| `perf` | one fresh world per line of `perf.txt`: the pack built by an older commit (`@commit`) or with generator settings | generation time of the same land / void / stacked-tier regions, heap, tick times, a `/locate` that finds nothing; thread dumps while generating, summed up by step in the report |
+| `perf` | one fresh world per line of `perf.txt`: the pack built by an older commit (`@commit`) or with generator settings (`ISLES_OFF=caves` leaves a feature out) | generation time of the same land / void / stacked-tier / sea-basin regions, heap, tick times, a `/locate` that finds nothing; thread dumps while generating, summed up by step in the report |
 | `speed` | servers with subsets of the mods (`speed.txt`) | which mods change the generation time |
 | `nether` | Fabric API + The Isles (with `nethermods`: every mod and `datapack-mods`), then a client | the Nether: generation time and heap of 64 chunks, columns through all layers, blocks per layer, bedrock, structures per layer, views and mob counts in two layers, four portals (`nether-phase.sh`, `gen_nether.py`, screenshots `nether-NN.png`, `nether-stacks.txt`) |
 | `netherbase` | the same server without The Isles | the vanilla Nether as reference for time, heap and block counts |
@@ -79,6 +79,71 @@ Fixed in the generator (each its own commit on `pack-test`):
 | Structures start over empty columns of an island's biome (an igloo and a treasure were located over the void) | `/locate` answers with ground at y -2032 | the biome follows the island's rim (24 blocks past it), and the 500 layers under the lowest island are void biome, so a start that falls to the bottom of the world is rejected; `freeze_top_layer` (snow, ice) lost its biome check, which the game makes at the bottom of the chunk |
 | Below y 63 the lower half of the sky is black | screenshots at y 0 and y -1500 | the whole sky is drawn in the fog colour (`sky_fog_end_distance` 3) |
 | Every chunk pays for all 240 islands; void costs as much as land | thread dumps: 60-80% of the generation in the terrain function; 256 void chunks 21 s | terrain from flat per-layer fields: 256 land chunks 32 s -> 15 s, void 21 s -> 7 s, three stacked tiers (64 chunks) 13 s -> 6-7 s, same heights at every probe |
+
+### Seas, caves, surfaces, sulfur (`tools/build_terrain.py`)
+
+What they are: main README. Tested by the section `terrain` of the `vanilla` phase (`terrain_probes()` in `gen.py`; the
+pack with Geophilic's biomes, Fabric API only) and by views in the client script; numbers of run cb6946e. The scans
+count blocks with `fill ... replace`, column profiles say for every second block whether it is air.
+
+**What Minecraft 26.3 has for sulfur** (from the server jar's data and classes): blocks `sulfur`, `cinnabar` (and their
+building variants), `sulfur_spike`, `potent_sulfur`; the biome `minecraft:sulfur_caves` (sulfur cubes, its own surface
+rule of sulfur and cinnabar bands from a 3D noise); the features `sulfur_spring` (ten templates
+`spring/sulfur_spring_{small,medium,large,extra_large}_N`: 8x11x9 to 16x11x16 blocks of tuff, granite, stone, sulfur,
+cinnabar and spikes around a pool, with one potent sulfur block over a magma block - two in the extra large one),
+`rooted_sulfur_spring` (grows a spring up to the surface above a sulfur cave, like an azalea above a lush cave),
+`sulfur_pool`, `sulfur_spike`, `sulfur_spike_cluster`. There is no geyser block or structure: the geyser is the state
+of `potent_sulfur` (`PotentSulfurBlock`, property `potent_sulfur_state`): without a water source above it `dry`; over a
+block of `#causes_continuous_geyser_eruptions` (lava source) `continuous`; over `#causes_periodic_geyser_eruptions`
+(magma block) `dormant`, and its block entity counts down to `erupting` and back; otherwise `wet` (gas bubbles only).
+
+| | Evidence |
+|---|---|
+| Geysers | all 25 of `layout/geysers.json` are there: exactly one potent sulfur block over one magma block under water, 51..141 sulfur, 33..167 cinnabar, 8..20 spikes, tuff and granite around (the vanilla small and medium templates), counted in a box of 25x25x25 around each. 22 `dormant` right after generation, the one on the spawn island was `erupting` 27 s after its chunks loaded. The 3 on freezing islands (L1, e1 snowy plains, m1 jagged peaks) are `dry` at that moment - their pool is ice from generation - and have the hidden light block over it that melts it (not waited for). The potent sulfur block lies within 2 blocks of the listed x/z and 4 below to 2 above the listed y (23 of them); on k1 the ground is 8 higher than listed (something raised it there, probably a structure's terrain) and the spring stands on it. |
+| What went wrong on the way | the spring's place was first searched through air only: under a flower, or leaves, that the chunk next door had already grown, no geyser (2 of 25). In deserts, savannas and badlands the pool was ice: the game freezes water by altitude in dry biomes too (also a village's well) - those biomes now get the constant climate as well. |
+| Sulfur caves | five pockets scanned (S1, F1, P1, c1, j1; 89x41x89 blocks each): 51,769..67,760 sulfur, 45,143..67,773 cinnabar, 16..148 spikes in four of them, sulfur pools with water in two (one with its potent sulfur block), the biome at the chamber's centre is `minecraft:sulfur_caves` in all five, the chamber is open in four (in F1 a pool or spike stands at the tested block); no sulfur or cinnabar 12 blocks above a pocket. No sulfur ore (`cgs:sulfur_ore` is off in `datapack-mods`; the pack phase's Nether scan lists it with whatever it counts, nothing checks it). |
+| Seas | six basins (d2 warm, M2 frozen, N4 cold, D4 lukewarm, K3 ocean, I4 warm): 34,260 to 947,385 blocks of water from the floor to the designed level (8 under the top), water (ice on M2: 50,734 blocks) at the level in the middle and air above it. Above the level over the middle of the sea: 0 in all six. Under the sea floor and under the island (down to 220 blocks below it): 0 in five; **60 under M2** (same number in three runs, source not found - not the sea: nothing moves, see below). Outside the rim (the four corners of the square around the island, three basins): 0. After a block update at the surface and 30 s: 0 under the three basins. On N4's shore ring 673 blocks of water lie above the sea's level: pools of Geophilic's stony shore, not the sea. |
+| Sea life | kelp 147..1,213 tops and 396..4,177 stems in the cold, lukewarm and normal seas, seagrass 449..1,342 and tall seagrass 190..562 in all but the frozen one, 2,018 and 2,020 coral blocks in the two warm ones (23 sea pickles in one), clay; floors of sand (warm, lukewarm) or gravel. Animals around a player in the warm sea d5 for 100 s at night (whole mod pack): 20 tropical fish, 1 drowned; no cod, salmon, pufferfish, squid, dolphin or turtle (see "Open"). |
+| Caves | air in a box of 128x128 columns of the body, from 6 blocks under the caves' top level down: S1 3.2%, C1 5.2%, E1 5.3%, T1 4.7%, A1 4.0%, R1 12.9% (H1's box reaches below its underside and does not count); no `cave_air` (the carvers are off). Ores in the same boxes as before (C1: 2,096 coal, 8,150 iron, 2,010 copper, 328 diamond). Nine column profiles per island: caves in 8 of 9 columns of S1 (600 thick), 6 of T1 (347), 4 of R1, 3 of C1, 2 of E1 and A1, 1 of H1; none in the 18 columns of S2 and C2 (96 thick; 157 thick with 45 blocks of relief). Rock between the lowest cave and the underside in those 26 columns: 24 blocks at least (24, 24, 26, 30, 30, ...), so no column opens downwards. Entrances (air on a 6-block grid 22 blocks under the lowest ground, over the middle of the island): 2 on S1 (a circle of 150 blocks), 2 on C1, 3 on T1; on R1 and A1 the grid of this run reached past the rim (an earlier run with the grid over the middle: 3 and 4). |
+| Portal rooms | the located `the_isles:stronghold` has its 12 frames and 554 stone bricks (the structure is buried by the game's own terrain adaptation, caves do not cut it). |
+| Bands | all seven terracotta colours on J1 (y -575..-496, far below the y -192 where the game's table ends), Jt2, Jt3 and C2; red sand on the low ground of J1 and Jt3. Layer by layer on the three tiers of the mesa stack (61x61 columns, 12 layers each): in all 30 layers that hold blocks the colour of the pattern is the most frequent one (e.g. Jt2 y -333: 286 brown, 50 plain - the plain ones are the vanilla rule's speckles). |
+| Snow line | windswept forest A5 (top -90, line -118): 2,781 snow blocks above the line, none below. Windswept hills E4: no ground reaches its line (390) in the sampled 128x128 columns. The peak tiers are snowy biomes and unchanged: 15,448 snow blocks on Pt2 (jagged peaks), 19,315 on Qt3 (snowy slopes). |
+
+Screenshots (`client-NN.png` after `VIEW terrain ...`, run cb6946e: 51-53 the warm sea d5 from above, from its shore and under
+water - sand ring, turquoise water, a coral reef with sea grass; 55 the frozen sea M5, frozen over inside a snowy ring; 57-59
+C1's caves from inside the rock; 60 C1 from above with one cave mouth some 60 blocks across and the geyser's mound; 62 the
+wooded badlands tier Jt2 with its bands and coarse dirt on top; 63 the snow cap on the highest point of A5; 65 the
+spring on the spawn plains - yellow sulfur with spikes around a pool, cinnabar and tuff at its foot; 69 the one on the
+snowy plains of L1; 70 the chamber of the sulfur caves under the spawn island's geyser, cinnabar and sulfur walls. 61, the
+whole mesa stack from 190 blocks away, shows only sky: out of the client's render distance.)
+
+What was not measured: cave mobs and cave spawning (nothing changed for them: dark air in the island's own biome); how
+long the ice over a cold geyser takes to melt; the seas, caves and sulfur of the build with Overrealm and Dwarfhollow
+(built and checked statically: every JSON parses, every feature, placed feature, biome, carver, density function, noise,
+rule and template reference resolves - 0 problems in 2,406 files).
+
+**Generation time** per feature (perf phase, same runner, Fabric API only, seconds; polled once a second, so +-1):
+
+| Pack | 256 chunks of land (spawn island) | 256 of void | 64 through three tiers | 64 in a sea basin (d1) |
+|---|---|---|---|---|
+| before (commit 693f2b4) | 16.2 | 6.9 | 5.9 | 5.9 |
+| now | 17.2 | 8.0 | 6.9 | 8.0 |
+| now without caves | 16.2 | 7.0 | 6.9 | 8.0 |
+| now without the seas' water | 17.2 | 8.0 | 7.0 | 6.9 |
+| now without geysers and sulfur caves | 16.2 | 8.0 | 7.0 | 7.9 |
+| now with the vanilla surface rule | 17.2 | 8.0 | 6.9 | 7.9 |
+| now with Geophilic's biomes | 17.2 | 8.0 | 7.0 | |
+
+So: land +6%, void +16%, tiers +17%, a sea basin +36%. The caves' three noises cost about a second per 256 chunks
+wherever they are computed (everywhere: nothing is skipped), the water of a sea about a second per 64 chunks of basin,
+the rest is within the second the polling can see. Heap with the land loaded 0.56 to 0.90 GB as before. Three things
+cost far more before they were changed, all for the same reason - the game computes these functions for every column
+or point of a chunk at once and every branch of a selection with them:
+
+* the surface level the surface rule needs (so that cave floors stay stone) as the real surface of whichever island the
+  column is in: +40% on every chunk, void too. Now one height per island.
+* the sulfur caves' biome as branches by height inside the biome lookup: +25%. Now a flat mask and a test of the height.
+* (earlier, the cave world) aquifers: five times.
 
 ### Biome packs (Geophilic 3.7, Overrealm 0.3.1)
 
@@ -311,6 +376,13 @@ vanilla reference (`netherbase`), 4-core runner.
   badlands and ocean islands).
 * A Nether portal lit under an empty column of the Overworld makes a portal with a 4-block platform in the void
   (the Nether of this pack is being built on the `nether` branch).
+* Sea animals: cod, salmon, pufferfish, squid, dolphins, nautilus, turtles and the drowned of open oceans do not spawn in
+  the basins (their rules compare with the world's sea level, in code); tropical fish and drowned do, by biome tag.
+  Icebergs, blue ice and monuments stay off for the same kind of reason. For the mod.
+* 60 blocks of water under the frozen basin M2 (none under five other seas): source not found.
+* Not done: cave biomes (lush, dripstone) and deepslate inside islands, swamp ponds, a snow line on taiga islands (their
+  relief never reaches the vanilla line), geysers on the eight sea-basin mains (flag them in the layout to try: the
+  build says it places none on a basin).
 * Create Nuclear: a reactor is only assembled or taken apart while a player is online.
 * Hypertubes: one tube piece is at most 40 blocks long (`BezierConnection.MAX_DISTANCE`); longer lines need a block
   to carry an accelerator every 40 blocks.

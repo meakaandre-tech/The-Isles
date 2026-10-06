@@ -11,19 +11,24 @@ A hand-placed floating-island world for Minecraft Java **26.3**, built as a data
 
 ## Status
 
-Prototype 0.1: terrain, biomes and ores. Tested in the game by `packtest/` (Minecraft 26.3 with Fabric API alone,
+Prototype 0.2: terrain, biomes, ores, seas, caves, sulfur geysers. Tested in the game by `packtest/` (Minecraft 26.3 with Fabric API alone,
 and with the Create mod pack it is made for); the test, its findings and what is still open are in
 [`packtest/README.md`](packtest/README.md) and on the `ci-logs` branch.
 
 | Done | Not yet |
 |---|---|
-| Island terrain from the layout | Water in the sea-basin islands (they generate as dry bowls) |
+| Island terrain from the layout | |
 | One biome per island, tiers switch biome by height | |
-| Cave world inside the spawn island, and its sinkholes (with Dwarfhollow, see below) | |
-| Max world height | Cave systems and deepslate inside islands |
-| Ores follow the surface of each island (depth instead of absolute height) | Surface rules that depend on fixed heights (badlands bands below y 63) |
-| Rain or snow by biome, not by altitude | A way into the End (strongholds generate at the bottom of the world), oil deposits for Create Diesel Generators (no bedrock) |
-| | Structures the game puts at fixed heights (trial chambers at y -40..-20, in rock, wherever an island's column is) |
+| Water in the 33 sea-basin islands, each at its own level, with sea floor, plants, corals, ice on the frozen ones | Cod, salmon, squid, dolphins, turtles and drowned in open water: their spawn rules compare with the world's sea level in the game's code (the bottom of the world here). Tropical fish and drowned spawn through biome tags. Needs the mod. |
+| Caves in the 182 main land islands, inside a rock shell, with entrances | Cave biomes (lush, dripstone) and deepslate inside islands |
+| Cave world inside the spawn island, and its sinkholes (with Dwarfhollow, see below) | Icebergs and blue ice (built at the world's sea level in code), ocean monuments (y 39..61 in code) |
+| Max world height | |
+| Ores follow the surface of each island (depth instead of absolute height) | |
+| Rain or snow by biome, not by altitude; water no longer freezes in deserts, savannas and badlands | |
+| Badlands: red sand, terracotta bands and wooded tops relative to each island, the same bands on every tier of the mesa stack; snow caps on the windswept hills | Swamp ponds (the rule puts water at y 62; on an island's rim it would run off) |
+| One sulfur geyser per big island (25) and a pocket of sulfur caves under it | Sulfur nodes (the mod) |
+| | A way into the End other than the pack's own portal rooms (vanilla strongholds generate at the bottom of the world), oil deposits for Create Diesel Generators (no bedrock) |
+| | Structures the game puts at fixed heights (mineshafts, monuments: off) |
 
 ## Using it
 
@@ -98,12 +103,13 @@ What the build does to a provider's files, for any version:
   blocks down, at most 128 - and need rock within 16 blocks under them, so nothing is placed in the open under a
   thin island,
 * what the game builds at the generator's sea level (icebergs; here the bottom of the world) and the features listed
-  in `drop_features` (Overrealm's jellyfish, which float above a sea floor that has no water yet) are taken out,
+  in `drop_features` (Overrealm's 64 springs per chunk for flooded ocean caves) are taken out,
 * `eroded_badlands` islands use the pack's `badlands` (see the findings),
 * files of a pack that The Isles has to own (dimension, noise settings, structures) are left out and listed.
 
-The sea-basin islands are still dry (see the status table), so Overrealm's ocean floors generate without water:
-corals, sponges, shelves and wrecks lie on a dry sea bed, kelp and sea grass do not grow.
+The sea-basin islands hold water (see "Seas" below), so Overrealm's ocean floors are under water like in its own
+world: its jellyfish are back in, its water features find the sea they expect. Its icebergs stay out (the game builds
+an iceberg at the world's sea level, whatever the pack asks for).
 
 ## Cave world: Dwarfhollow inside the spawn island
 
@@ -138,9 +144,66 @@ inside S1 (surface rule and features of a decorated cave world); numbers in `pac
 `ISLES_PROVIDERS=overrealm,geophilic python3 tools/build_pack.py`): the spawn island is then solid rock and nothing
 of this costs anything.
 
+## Seas, caves, surfaces, sulfur (`tools/build_terrain.py`)
+
+**Seas.** Every sea-basin island (`"kind": "basin"`, 33 of them) holds a sea at its own level, 8 blocks under its listed
+top. The rim rises to the top within 6 blocks and stays there, a ring 30 blocks wide or more; inside it the floor drops
+by up to 0.3 of the island's thickness (19 to 66 blocks; the water is 7 less deep). The water is not the game's sea
+(the generator's sea level has to stay at the bottom of the world, or the void floods) and not an aquifer either:
+aquifers decide per 16 x 12 x 16 cell, which needs some 40 blocks of rock around a sea to be tight; every block of air
+below a possible water level is sampled, also the 2,000 blocks of void under a basin (five times the generation time
+when the cave world's seas were tried that way); and a cell takes the lowest level of 13 chunks around it, which mixes
+neighbouring basins at different heights. So the sea is filled in by a feature, like the cave world's: in every column
+of the sea's biome the air from the water level down to the floor becomes water. What keeps it in: the ring is solid at
+the water level all the way round, and only the inside of the ring has the sea's biome - the ring and the margin past
+the rim are a shore biome (beach, stony shore or snowy beach), where nothing is filled. The surface rule cannot see
+water that a feature places, so the floor is made by a second feature: sand in the warm and lukewarm seas, gravel in
+the others; the vanilla sea plants, corals, clay and gravel patches, wrecks, ruins and treasure then generate as in any
+ocean. The frozen seas freeze over. The game's own springs are placed by depth and only with rock around them, so no
+stream leaves an island.
+
+*Sea animals.* The spawn rules of cod, salmon, pufferfish, squid, dolphins, nautilus, turtles and of drowned in oceans
+are code that compares the height with the world's sea level: in a sea 3,000 blocks above it they never pass. Two rules
+have a biome tag instead, which the pack sets: tropical fish spawn at any height in the warm and lukewarm seas, drowned
+spawn in all seas the way they do in rivers. Everything else needs the mod (one line: the sea level a spawn rule sees).
+
+**Caves.** Every main land island (182; not the tiers, the islets above islands, or the basins) has tunnels and caverns
+from three 3D noises in the terrain's own function. They stay inside a shell: they start under the island's lowest
+ground (36 blocks under it), end 16 blocks above the underside and 20 in from the rim, and fade out over the last 10
+blocks, so islands thinner than about 80 blocks have none and nothing opens to the void. Where a wide 2D noise is high
+the cave zone comes up through the ground: those are the entrances. The game's own cave and canyon carvers are off
+(they tunnel through undersides). With Dwarfhollow the spawn island keeps its cave world instead; without it, it has
+ordinary caves like the others. Cave floors stay stone: the surface rule only runs above the island's "preliminary
+surface", which the generator gives the game as one height per island.
+
+**Surfaces.** The vanilla surface rule tests fixed heights in the badlands (red sand below y 74, bands above, forest
+floor on wooded badlands above y 97) and draws the terracotta bands from a table that only exists above y -192 (that
+was a crash). Both are per island now: on every badlands island the rule's heights are moved so that vanilla y 74 lies
+a quarter of the relief above the island's lowest ground, and the bands come from a rule that works at any height with
+one pattern for the whole world, so the three tiers of the mesa stack line up. The windswept hills, gravelly hills and
+windswept forest get snow blocks on the upper part of their relief (the vanilla snow line is a height above sea level,
+too). Peaks, frozen peaks and stony peaks need nothing: their rules go by steepness and noise, not by height.
+
+**Sulfur geysers and sulfur caves.** Minecraft 26.3 has no block called geyser: the geyser is `minecraft:potent_sulfur`
+with a water source above it. Over a magma block it erupts periodically (state `dormant` -> `erupting`, driven by its
+block entity's countdown), over a lava source continuously, over anything else it only bubbles (`wet`), without water it
+is `dry`. The game generates them as "sulfur springs" (`minecraft:sulfur_spring`: ten templates of tuff, granite,
+sulfur and cinnabar around a small pool with one potent sulfur block over magma, two in the largest), which grow up to
+the surface above the `minecraft:sulfur_caves` biome, and as sulfur pools inside that biome. The Isles places exactly
+one spring on every island flagged `"geyser": true` in `layout/islands.json` - the flag was written once for every
+island of radius 230 or more that is not a sea basin: the 25 main land islands of the clusters - and none anywhere
+else. It stands a quarter of the radius from the island's centre (clear of sinkholes, the spawn point and anything
+stacked above), on a patch of level ground; `layout/geysers.json` lists them. Under each lies a pocket of sulfur caves
+(a cylinder of radius 40, 14 to 46 blocks under the geyser's ground) with the biome's own rock (sulfur and cinnabar),
+spikes, pools and mobs, an open chamber in its middle and the ordinary caves running through it;
+`layout/sulfur_caves.json` lists them for the mod's sulfur nodes. On the three islands where water freezes a hidden
+light block over the pool keeps the geyser from freezing shut.
+
 ## Editing the layout
 
-`layout/islands.json` is the source of truth. Each island has a position, radius, top and bottom height, and biome. Change it, rerun `tools/build_pack.py`, and `tools/preview.py` draws a quick offline check (it uses stand-in noise, so shapes are only indicative).
+`layout/islands.json` is the source of truth. Each island has a position, radius, top and bottom height, biome, and the
+`geyser` flag (true: a sulfur geyser and sulfur caves; `python3 tools/build_terrain.py flags` writes the flag for islands
+that have none). `layout/geysers.json` and `layout/sulfur_caves.json` are written by the build. Change it, rerun `tools/build_pack.py`, and `tools/preview.py` draws a quick offline check (it uses stand-in noise, so shapes are only indicative).
 
 ## Layout of this repo
 
@@ -149,6 +212,7 @@ of this costs anything.
 | `layout/` | Island list, maps |
 | `layout/providers.json`, `layout/biome_sources.json` | The biome packs the generator can use, and which pack each biome comes from |
 | `tools/build_pack.py` | Generates `datapack/` and `datapack-mods/` from the layout, and `build/` with the biome packs of `vendor/` |
+| `tools/build_terrain.py` | Seas, caves, island-relative surface rule, geysers and sulfur caves |
 | `tools/providers.py` | Finds, downloads and reads the biome packs |
 | `tools/preview.py` | Offline sanity check |
 | `tools/vanilla_*` | Vanilla 26.3 data the generator starts from |
