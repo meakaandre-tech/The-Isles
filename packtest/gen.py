@@ -494,8 +494,8 @@ if on('probes'): C += island_probes([k for k in PACK_SAMPLE if k in SAMPLE]) + v
 ORES = ['minecraft:stone', 'minecraft:deepslate', 'minecraft:dirt', 'minecraft:gravel', 'minecraft:granite', 'minecraft:diorite', 'minecraft:andesite', 'minecraft:tuff',
         'minecraft:coal_ore', 'minecraft:iron_ore', 'minecraft:copper_ore', 'minecraft:gold_ore', 'minecraft:redstone_ore', 'minecraft:lapis_ore',
         'minecraft:diamond_ore', 'minecraft:emerald_ore', 'minecraft:deepslate_iron_ore', 'minecraft:deepslate_diamond_ore', 'minecraft:deepslate_redstone_ore',
-        'create:zinc_ore', 'create:deepslate_zinc_ore', 'cgs:lead_ore', 'cgs:deepslate_lead_ore', 'createnuclear:uranium_ore',
-        'createnuclear:deepslate_uranium_ore', 'create:scoria', 'create:limestone', 'minecraft:water', 'minecraft:lava']
+        'create:zinc_ore', 'create:deepslate_zinc_ore', 'cgs:lead_ore', 'cgs:deepslate_lead_ore',
+        'create:scoria', 'create:limestone', 'minecraft:water', 'minecraft:lava']
 SCAN_ISLANDS = ['S1', 'B1', 'C2', 'a1', 'h1', 'K2', 'F1', 'T1', 'M1']
 def scan(lines, tag, pre, x0, y0, z0, x1, y1, z1, blocks):
     for b in blocks:
@@ -559,14 +559,6 @@ C += [f'setblock {D(1, 1, 2)} create:fluid_pipe[east=true,waterlogged=false,sout
 # pumpjack: hole over a pipe that ends on what is under it (no bedrock anywhere in The Isles), and one over a bedrock block put there by hand
 C += [f'setblock {D(1, 0, 10)} createdieselgenerators:pumpjack_hole', f'setblock {D(5, 1, 10)} createdieselgenerators:pumpjack_hole',
       f'setblock {D(5, 0, 10)} minecraft:bedrock']
-# Create Nuclear: the 5x7x5 reactor of that mod's smoke test; the controller goes on last and assembles it
-def Nn(dx, dy, dz): return P(24 + dx, dy, dz)
-C += [f'fill {Nn(0, 0, 0)} {Nn(4, 6, 4)} createnuclear:reactor_casing']
-for dx, dz, b in ((0, 2, 'frame'), (4, 2, 'frame'), (2, 0, 'frame'), (2, 4, 'frame'), (1, 1, 'cooler'), (1, 3, 'cooler'), (3, 1, 'cooler'), (3, 3, 'cooler'), (2, 2, 'core')):
-    C += [f'fill {Nn(dx, 1, dz)} {Nn(dx, 5, dz)} createnuclear:reactor_{b}']
-# (the controller is placed by the client script: the mod only assembles the reactor while a player is online)
-C += [f'setblock {Nn(0, 3, 2)} createnuclear:reactor_input', f'setblock {Nn(4, 0, 2)} createnuclear:reactor_output',
-      f'setblock {Nn(-2, 1, 2)} minecraft:stone', f'setblock {Nn(6, 1, 2)} minecraft:stone']
 # guns: a target behind a wall
 C += [f'fill {P(40, 0, 12)} {P(50, 4, 12)} minecraft:stone_bricks',
       f'summon minecraft:iron_golem {BX + 45.5} {BY} {BZ + 10.5} {{NoAI:1b,Tags:["target"],PersistenceRequired:1b}}']
@@ -715,12 +707,6 @@ if on('modsclient'):
           f'cmd tp packtest {BX + 20.5} {BY + 3} {BZ + 2.5} -90 15', 'sleep 5', 'shot',
           'cmd say CHECK create press result', f'cmd data get block {P(2, 0, 4)}', 'cmd say CHECK diesel engine shaft speed (client on)', f'cmd data get block {D(1, 2, 0)} Speed',
           'cmd say CHECK pumpjack hole on a pipe-less island (client on)', f'cmd data get block {D(1, 0, 10)}', 'cmd say CHECK pumpjack hole on bedrock (client on)', f'cmd data get block {D(5, 1, 10)}']
-    # Create Nuclear: the controller goes on with the player there (as in the mod's own smoke test, .github/smoke-script.txt of the port).
-    # Configuring the blueprint and loading rods needs the mod's GUIs; that part is covered by the mod's smoke test, not here.
-    S += ['cmd say SECTION reactor', f'cmd tp packtest {BX + 30.5} {BY + 2} {BZ + 2.5} 90 0', 'sleep 6', f'cmd setblock {Nn(4, 3, 2)} createnuclear:reactor_controller', 'sleep 3',
-          f'cmd execute if block {Nn(4, 3, 2)} createnuclear:reactor_controller[assembled=true] run say CHECK reactor-assembled', 'cmd say CHECK reactor controller',
-          f'cmd data get block {Nn(4, 3, 2)}', 'cmd item replace entity packtest armor.head with create:goggles', 'sleep 3', 'shot',
-          'cmd item replace entity packtest armor.head with minecraft:air']
 if on('guns'):
     # gun: revolver, reload, three shots at the golem
     S += ['cmd say SECTION guns', f'cmd tp packtest {BX + 45.5} {BY} {BZ + 4.5} 0 2', 'cmd gamemode survival packtest', 'cmd item replace entity packtest armor.head with minecraft:air',
@@ -780,7 +766,6 @@ R += ['say SECTION restart', 'forceload query', 'gamerule spawn_monsters false',
       'say CHECK create shaft speed', f'data get block {P(4, 1, 0)} Speed', 'say CHECK create press depot', f'data get block {P(2, 0, 4)}',
       'say CHECK contraption count', 'execute if entity @e[type=create:stationary_contraption]',
       'say CHECK diesel engine shaft speed', f'data get block {D(1, 2, 0)} Speed',
-      f'execute if block {Nn(4, 3, 2)} createnuclear:reactor_controller[assembled=true] run say CHECK reactor-assembled', 'say CHECK reactor controller', f'data get block {Nn(4, 3, 2)}',
       'say CHECK low create shaft speed', f'data get block {LX + 1} {LY} {LZ} Speed',
       'say CHECK tube connections'] + [f'data get block {x} {TY} {TZ} HypertubeConnections' for x in TX] + [
       f'summon minecraft:villager {TX[0] - 0.5} {TY} {TZ + 0.5} {{NoAI:1b,Tags:["rider"]}}', '#sleep 12', 'say CHECK villager ride end',

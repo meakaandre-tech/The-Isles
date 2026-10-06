@@ -274,8 +274,6 @@ def server_report(name, isles=True):
         ok = {msg(l)[1].split()[1] for l in ls if msg(l)[1].startswith('TOPBIOMEOK ')}
         if want and want - ok and name in ('vanilla', 'pack'):
             fails.append(f'{name}: biome above the island is not the layout biome on {sorted(want - ok)}')
-        if name in ('pack', 'pack-restart') and any('SECTION reactor' in l or 'SECTION restart' in l for l in ls) and not any('CHECK reactor-assembled' in l for l in ls):
-            fails.append(f'{name}: the Create Nuclear reactor is not assembled')
         for lim in ('bottom-ok', 'top-ok'):
             if name == 'vanilla' and not any('LIMIT ' + lim in l for l in ls): fails.append(f'{name}: build limit {lim} missing')
 

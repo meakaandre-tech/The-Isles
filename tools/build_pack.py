@@ -75,8 +75,6 @@ ORES = [("ore_coal_lower", "ore_coal_buried", 5, 0, 64), ("ore_copper", "ore_cop
 # pack that names a mod's feature does not load without that mod.
 MOD_ORES = [("create", "zinc_ore", "create:zinc_ore", 8, 0, 128, "create:config_filter"),
             ("create", "striated_ores_overworld", "create:striated_ores_overworld", -18, 0, 96, "create:config_filter"),
-            ("createnuclear", "uranium_ore", "createnuclear:uranium_ore", 6, 0, 128, "create:config_filter"),
-            ("createnuclear", "striated_ores_overworld", "createnuclear:striated_ores_overworld", -18, 0, 96, "create:config_filter"),
             ("cgs", "lead_ore_placed", "cgs:lead_ore", 11, 0, 128, "minecraft:biome")]
 
 # Climate. The game cools a biome by 0.00125 per block above "sea level + 17" and snows below 0.15. The sea level of this
@@ -557,6 +555,13 @@ def main():
     try: build(src)
     finally: OUT = ROOT / "datapack"
     pack_zip(BUILD / "the-isles", BUILD / "the-isles.zip"); pack_zip(OUT_MODS, BUILD / "the-isles-mods.zip")
+    # one zip with the mod ores folded in (needs Create and Create: Gunsmithing installed to load)
+    one = BUILD / "the-isles-all"
+    shutil.copytree(BUILD / "the-isles", one)
+    for f in OUT_MODS.rglob("*"):
+        if f.is_file() and f.name != "pack.mcmeta":
+            d = one / f.relative_to(OUT_MODS); d.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, d)
+    pack_zip(one, BUILD / "the-isles-all-in-one.zip"); shutil.rmtree(one)
     print(f"with provider biomes -> {BUILD / 'the-isles.zip'} (for your own worlds; not to be redistributed)")
 
 def build(src):
@@ -782,7 +787,7 @@ def build(src):
     for name, feature, count, d0, d1 in ORES:
         write(f"data/minecraft/worldgen/placed_feature/{name}.json", ore_placement(f"minecraft:{feature}", count, d0, d1, "minecraft:biome"))
     if OUT_MODS.exists(): shutil.rmtree(OUT_MODS)
-    write("pack.mcmeta", {"pack": {"description": "The Isles - ores of Create, Create Nuclear and Gunsmithing follow the islands",
+    write("pack.mcmeta", {"pack": {"description": "The Isles - ores of Create and Gunsmithing follow the islands",
                                    "pack_format": 121, "min_format": [121, 0], "max_format": [121, 0]}}, OUT_MODS)
     for ns, name, feature, count, d0, d1, last in MOD_ORES:
         write(f"data/{ns}/worldgen/placed_feature/{name}.json", ore_placement(feature, count, d0, d1, last), OUT_MODS)

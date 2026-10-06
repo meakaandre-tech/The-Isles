@@ -184,7 +184,7 @@ speed_phase() { # $1 = name, $2 = regex of the mod files that stay in (fabric-ap
   mkdir -p $dir/mods $dir/world/datapacks && cd $dir
   cp $W/server.jar . && for j in $W/mods/*.jar; do b=$(basename "$j"); case "$b" in fabric-api*) cp "$j" mods/;; *) echo "$b" | grep -qE "$2" && ! echo "$b" | grep -qE "${3:-^\$}" && cp "$j" mods/;; esac; done
   cp $ZIP world/datapacks/the-isles.zip; cp -r $W/gen/probes world/datapacks/packtest-probes
-  ls mods | grep -q '^create-fly' && ls mods | grep -q '^cgs' && ls mods | grep -q '^createnuclear' && cp $ZIP_MODS world/datapacks/the-isles-mods.zip
+  ls mods | grep -q '^create-fly' && ls mods | grep -q '^cgs' && cp $ZIP_MODS world/datapacks/the-isles-mods.zip
   props world
   ts "$name: server start with $(ls mods | wc -l) mods"
   start_server server.log
