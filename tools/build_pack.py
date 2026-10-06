@@ -840,6 +840,9 @@ def build(src):
             deep_placed = {"feature": ore, "placement": [mc("count", count=n), mc("in_square"),
                            mc("height_range", height=mc("uniform", min_inclusive={"absolute": cave_range[0]}, max_inclusive={"absolute": cave_range[1]})),
                            mc("block_predicate_filter", predicate=mc("matching_biomes", biomes="#" + ref("cave_world")))] + ([{"type": last}] if last != "minecraft:biome" else [])}
+            # (no biome filter inside a sequence - the game throws "tried to biome check an unregistered feature" there; the mod
+            # adds its feature to every biome of the Overworld, so the filter passed everywhere anyway)
+            placed["placement"] = [m for m in placed["placement"] if m != {"type": "minecraft:biome"}]
             placed = {"feature": {"type": "minecraft:sequence", "features": [placed, deep_placed]}, "placement": []}
         write(f"data/{ns}/worldgen/placed_feature/{name}.json", placed, OUT_MODS)
     # --- the Nether: stacked layers over the same height (tools/build_nether.py)

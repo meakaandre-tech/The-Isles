@@ -150,9 +150,6 @@
        "max_inclusive": 0
       },
       "z": 0
-     },
-     {
-      "type": "minecraft:biome"
      }
     ]
    },
