@@ -11,7 +11,7 @@ are, and what stands around them.
    and to the floor under it - submerged, floating, on the water, past the rim - and how deep a treasure chest is buried.
 
 Lines starting with "FAIL " go into the verdict (packtest/tools/report.py)."""
-import collections, glob, gzip, json, math, os, struct, sys, zlib
+import collections, glob, gzip, json, math, mmap, os, re, struct, sys, time, zlib
 
 # ------------------------------------------------------------------------------------------------ NBT, region files
 def read_nbt(data):
@@ -52,6 +52,9 @@ def ci(d, *names):
         if n.lower() in low: return low[n.lower()]
     return None
 
+def pname(p): return p if isinstance(p, str) else ci(p, 'Name', 'id')     # (26.3 writes a block without properties as its id alone)
+def pprops(p): return None if isinstance(p, str) else ci(p, 'Properties', 'properties')
+
 class World:
     def __init__(self, world):
         dirs = [d for d in glob.glob(world + '/**/region', recursive=True) if 'the_nether' not in d and 'the_end' not in d and 'DIM' not in d]
@@ -63,7 +66,9 @@ class World:
         if key not in self.files:
             if len(self.files) > 6: self.files.clear()
             p = f'{self.dir}/r.{key[0]}.{key[1]}.mca'
-            self.files[key] = open(p, 'rb').read() if self.dir and os.path.exists(p) and os.path.getsize(p) >= 8192 else None
+            self.files[key] = None
+            if self.dir and os.path.exists(p) and os.path.getsize(p) >= 8192:
+                with open(p, 'rb') as fh: self.files[key] = mmap.mmap(fh.fileno(), 0, access=mmap.ACCESS_READ)
         f = self.files[key]
         if f is None: return None
         n = (cx & 31) + 32 * (cz & 31)
@@ -71,7 +76,7 @@ class World:
         sector, count = off >> 8, off & 255
         if sector == 0: return None
         length, comp = struct.unpack_from('>IB', f, sector * 4096)
-        body = f[sector * 4096 + 5: sector * 4096 + 4 + length]
+        body = bytes(f[sector * 4096 + 5: sector * 4096 + 4 + length])
         if comp & 128:   # the chunk is in its own file
             p = f'{self.dir}/c.{cx}.{cz}.mcc'
             if not os.path.exists(p): return None
@@ -99,14 +104,14 @@ class Chunk:
     def palette(self, sy):
         s = self.sections.get(sy)
         bs = ci(s, 'block_states') if s else None
-        return [ci(p, 'Name', 'id') for p in (ci(bs, 'palette') or [])] if bs else []
+        return [pname(p) for p in (ci(bs, 'palette') or [])] if bs else []
     def section(self, sy):
         """(palette names, palette properties, 4096 palette indices or None for a section of one block)"""
         if sy not in self.decoded:
             s = self.sections.get(sy); bs = ci(s, 'block_states') if s else None
             if not bs: self.decoded[sy] = (['minecraft:air'], [None], None)
             else:
-                pal = ci(bs, 'palette') or []; names = [ci(p, 'Name', 'id') for p in pal]; props = [ci(p, 'Properties', 'properties') for p in pal]
+                pal = ci(bs, 'palette') or []; names = [pname(p) for p in pal]; props = [pprops(p) for p in pal]
                 data = ci(bs, 'data')
                 if not data or len(pal) == 1: self.decoded[sy] = (names, props, None)
                 else:
@@ -144,7 +149,7 @@ SOFT = {'minecraft:air', 'minecraft:cave_air', 'minecraft:water', 'minecraft:str
 def main(world, root, log=None):
     sys.path.insert(0, root + '/tools')
     import build_pack as bp, build_terrain as bt
-    L = json.load(open(root + '/layout/islands.json')); islands = L['islands']
+    L = json.load(open(root + '/layout/islands.json')); islands = L['islands']; MIN_Y = L['min_y']
     basins = [i for i in islands if i['kind'] == 'basin']
     W = World(world)
     print(f'region files: {W.dir} ({len(glob.glob(W.dir + "/*.mca")) if W.dir else 0} files)')
@@ -155,8 +160,21 @@ def main(world, root, log=None):
     shown_keys = False
     marked = collections.defaultdict(list); starts = []
     n_chunks = n_void = 0
-    for i in basins:
+    # Which basins are read: every one whose fills counted water under the floor or outside the rim (server log), and for the
+    # structures the sampled seas first, then the others while the budget of chunks lasts (a chunk of this height takes a while)
+    counted = collections.Counter()
+    if log and os.path.exists(log):
+        text = open(log, errors='replace').read().split('\n')
+        for n, l in enumerate(text):
+            m = re.search(r'SCAN sea-(under|outside)-(\S+) minecraft:water', l)
+            g = re.search(r'filled (\d+) block', text[n + 1]) if m and n + 1 < len(text) else None
+            if g: counted[m.group(2)] += int(g.group(1))
+    budget = int(os.environ.get('SCAN_CHUNKS', 40000)); t0 = time.time(); read = []
+    order = sorted(basins, key=lambda i: (not counted[i['id']], i['id'] not in ('d2', 'M2', 'N4', 'D4', 'K3', 'I4'), i['radius']))
+    for i in order:
         R = i['radius']; s = bt.basin_shape(i); w, d = s['water'], s['depth']
+        if not counted[i['id']] and (n_chunks + ((2 * R + 48) // 16 + 1) ** 2 > budget or time.time() - t0 > 480): continue
+        read.append(i['id'])
         for cx in range((i['x'] - R - 24) >> 4, ((i['x'] + R + 24) >> 4) + 1):
             for cz in range((i['z'] - R - 24) >> 4, ((i['z'] + R + 24) >> 4) + 1):
                 raw = W.raw(cx, cz)
@@ -180,22 +198,38 @@ def main(world, root, log=None):
                     for sid, sv in st.items():
                         ch = ci(sv, 'Children')
                         if ch: starts.append((i, sid, sv, cx, cz))
-    sys.stdout.flush()
-    print(f'{n_chunks} saved chunks in the squares of {len(basins)} basins, {n_void} with marked blocks, {len(starts)} structure starts')
+        print(f'  read {i["id"]}: {n_chunks} chunks so far, {time.time() - t0:.0f} s'); sys.stdout.flush()
+    print(f'{n_chunks} saved chunks in the squares of {len(read)} of {len(basins)} basins ({" ".join(read)}), {n_void} with marked blocks, {len(starts)} structure starts; '
+          f'water counted by the fills: {dict(counted) or "none"}')
 
     # ---- 1. water under and outside the basins (marked by the terrain section's fills)
+    # (the pieces of every structure that starts in those chunks: water inside one is the structure's own - a trial chamber has pools)
+    pieces = []
+    for i, sid, sv, cx, cz in starts:
+        for c_ in ci(sv, 'Children'):
+            b = ci(c_, 'BB')
+            if b: pieces.append((short(sid), b))
+    def inside(x, y, z):
+        for sid, b in pieces:
+            if b[0] - 1 <= x <= b[3] + 1 and b[1] - 1 <= y <= b[4] + 1 and b[2] - 1 <= z <= b[5] + 1: return sid
     print('\n== water under the floor and outside the rim of the sea basins (blocks the fills of the terrain section marked) ==')
+    total = collections.Counter(); with_water = 0
     for i in basins:
         R = i['radius']; s = bt.basin_shape(i); w, d = s['water'], s['depth']
         zones = collections.defaultdict(list)
         for x, y, z in set(marked[i['id']]):
-            r = math.hypot(x - i['x'], z - i['z']); o = owner(x, y, z, but=i)
+            r = math.hypot(x - i['x'], z - i['z']); o = owner(x, y, z, but=i); st = inside(x, y, z)
             if o: zone = f'on {o["id"]}'
+            elif st: zone = f'inside a piece of {st}'
             elif y < w - d - 14: zone = 'under' if r <= R + bp.PAD else 'under, past the rim'
             elif r > R: zone = 'outside the rim'
             else: continue
             zones[zone].append((x, y, z))
-        bad = {k: v for k, v in zones.items() if k.startswith(('under', 'outside'))}
+        for k, v in zones.items(): total[k.split(' of ')[0] if k.startswith('inside') else 'on a neighbouring island' if k.startswith('on ') else k] += len(v)
+        with_water += bool(zones)
+        if any(k.startswith(('under', 'outside')) for k in zones):
+            print(f'FAIL sea basin {i["id"]}: ' + ', '.join(f'{len(v)} blocks of water {k}' for k, v in sorted(zones.items()) if k.startswith(('under', 'outside'))))
+        bad = {k: v for k, v in zones.items() if not k.startswith('on ')}
         if not bad: continue
         print(f'{i["id"]} {i["biome"]} centre {i["x"]} {i["z"]} radius {R} top {i["y_top"]} water {w} designed floor {w - d} bottom {i["y_bottom"]}: ' + ', '.join(f'{len(v)} {k}' for k, v in sorted(zones.items())))
         for k, v in sorted(bad.items()):
@@ -224,10 +258,15 @@ def main(world, root, log=None):
                 print(f'      column at {cx_} {cz_} from y {max(ys) + 12} down: ' + ' '.join(f'{b}x{n}' for b, n in runs))
                 print('      first blocks: ' + ' '.join(f'{x},{y},{z}' for x, y, z in grp[:6]))
 
+    for b, n in counted.items():
+        if b not in read: print(f'FAIL sea basin {b}: {n} blocks of water counted under its floor or outside its rim, not looked at')
+    print(f'{len(basins)} basins, {with_water} with marked water: ' + (', '.join(f'{n} {k}' for k, n in sorted(total.items())) or 'none')
+          + f'; unexplained (under a floor or outside a rim, in no structure): {sum(n for k, n in total.items() if k.startswith(("under", "outside")))}')
+    sys.stdout.flush()
     # ---- 2. structures in the basins
     sys.stdout.flush()
     print('\n== structures that start in the chunks of a sea basin ==')
-    print(f'{"structure":<26}{"basin":>6}{"at":>20}{"r/R":>6}{"y":>14}{"water":>7}{"floor":>7}{"under":>8}{"over":>6}{"gap med/max":>12}{"void":>6}  note')
+    print(f'{"structure":<26}{"basin":>6}{"at":>20}{"r/R":>6}{"y":>14}{"water":>7}{"floor":>7}{"under":>8}{"over":>6}{"gap min/med":>12}{"void":>6}  note')
     seen = set(); summary = collections.defaultdict(list)
     for i, sid, sv, cx, cz in starts:
         boxes = [ci(c_, 'BB') for c_ in ci(sv, 'Children') if ci(c_, 'BB')]
@@ -240,6 +279,19 @@ def main(world, root, log=None):
         i = min(basins, key=lambda b: math.hypot(mx - b['x'], mz - b['z']) / b['radius'])   # (squares of neighbouring basins overlap)
         R = i['radius']; s = bt.basin_shape(i); w, d = s['water'], s['depth']; r = math.hypot(mx - i['x'], mz - i['z'])
         if r > R + 40: continue
+        floor = i['y_top'] - d     # (the floor in the middle of the sea; it rises towards the ring)
+        if y1 < MIN_Y + 60:
+            print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{floor:>7}  AT THE BOTTOM OF THE WORLD')
+            print(f'FAIL structure {short(sid)} at {mx} {mz} ({i["id"]}, {r / R:.2f} R) stands at the bottom of the world (y {y0}..{y1})')
+            summary[short(sid)].append(('bottom', 0, None, 0, 0)); continue
+        if y1 < i['y_bottom'] - 80 or y0 > i['y_top'] + 80:
+            # (a piece keeps the height it was created with until its chunk is decorated; the start saved before that has it still)
+            stale = [b for b in boxes if b[4] < i['y_bottom'] - 80 or b[1] > i['y_top'] + 80]
+            if len(stale) == len(boxes):
+                print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{floor:>7}  not placed when its start was saved (the height it was created with)')
+                continue
+            boxes = [b for b in boxes if b not in stale]
+            x0, y0, z0 = (min(b[k] for b in boxes) for k in range(3)); x1, y1, z1 = (max(b[k] for b in boxes) for k in range(3, 6))
         # the structure's own blocks: what is in its box that is neither water, air nor the ground's kind; the ground under it
         gaps, voids, tops, kinds = [], 0, [], collections.Counter()
         for x in range(x0, x1 + 1, max(1, (x1 - x0) // 12)):
@@ -251,9 +303,8 @@ def main(world, root, log=None):
                 low = 2 + body[-1]     # the lowest block in the box's height in this column (structure or ground)
                 g = 0
                 while low + 1 + g < len(col) and col[low + 1 + g] in SOFT: g += 1
-                if low + 1 + g >= len(col): voids += 1
-                elif low == 2 + y1 - y0: gaps.append(g)     # (the column's lowest block is the box's bottom layer: what is under it)
-                else: gaps.append(0)
+                if low + 1 + g >= len(col): voids += 1      # (nothing within 25 blocks under the box)
+                else: gaps.append(g)                        # water or air between the column's lowest block in the box and what is under it
                 tops.append(y1 - body[0])
         top = max(tops) if tops else y1
         chests = [(x, y, z) for ccx in range(x0 >> 4, (x1 >> 4) + 1) for ccz in range(z0 >> 4, (z1 >> 4) + 1) if W.chunk(ccx, ccz)
@@ -265,21 +316,23 @@ def main(world, root, log=None):
             note.append(f'chest {x} {y} {z}: {cover} blocks of {short(above[0]) if cover else "nothing"} over it, {w - y} under the water level' if y <= w else f'chest {x} {y} {z}: {y - w} over the water level, {cover} blocks over it')
         gaps.sort()
         where = 'sea' if r <= R * (1 - s['e0']) else 'ring' if r <= R else 'past the rim'
-        g_med, g_max = (gaps[len(gaps) // 2], gaps[-1]) if gaps else ('-', '-')
+        g_med, g_max = (gaps[0], gaps[len(gaps) // 2]) if gaps else ('-', '-')     # (least and median: 0 = some column stands on the ground)
         flags = []
         if top > w and where == 'sea': flags.append(f'{top - w} above the water')
-        if gaps and g_med > 2: flags.append('floats')
+        if gaps and gaps[0] > 2: flags.append('floats')
         if voids: flags.append(f'{voids} columns with nothing under them')
-        print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{w - d:>7}{w - y0:>8}{max(0, top - w):>6}{f"{g_med}/{g_max}":>12}{voids:>6}  {where}'
+        print(f'{short(sid):<26}{i["id"]:>6}{f"{mx} {mz}":>20}{r / R:>6.2f}{f"{y0}..{y1}":>14}{w:>7}{floor:>7}{w - y0:>8}{max(0, top - w):>6}{f"{g_med}/{g_max}":>12}{voids:>6}  {where}'
               + ('; ' + ', '.join(flags) if flags else '') + ('; ' + '; '.join(note) if note else '')
               + '; blocks: ' + ', '.join(f'{short(b)} {n}' for b, n in kinds.most_common(7)))
-        summary[short(sid)].append((where, top - w, g_med if gaps else None, voids, w - y1))
+        summary[short(sid)].append((where, top - w, gaps[0] if gaps else None, voids, w - y1))
     print()
     for sid, v in sorted(summary.items()):
         sea = [e for e in v if e[0] == 'sea']
+        if any(e[0] == 'bottom' for e in v): print(f'{sid}: {sum(1 for e in v if e[0] == "bottom")} at the bottom of the world')
+        v = [e for e in v if e[0] != 'bottom']
         print(f'{sid}: {len(v)} ({len(sea)} in a sea, {sum(1 for e in v if e[0] == "ring")} on a ring, {sum(1 for e in v if e[0] == "past the rim")} past the rim); in a sea: '
               f'{sum(1 for e in sea if e[1] <= 0)} wholly under water, {sum(1 for e in sea if e[1] > 0)} reach above it, '
-              f'{sum(1 for e in sea if e[2] is not None and e[2] > 2)} float (more than 2 blocks of water or air under the middle column), {sum(1 for e in v if e[3])} with columns over nothing')
+              f'{sum(1 for e in sea if e[2] is not None and e[2] > 2)} float (more than 2 blocks of water or air under every column), {sum(1 for e in v if e[3])} with columns over nothing')
 
 def selftest():
     """a region file written here and read back: palette indices of 5 bits, a section of one block, a structure start"""

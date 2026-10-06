@@ -142,7 +142,7 @@ feed() { # $1 = command file, $2 = server log
         [ -n "$pid" ] && { jcmd $pid GC.run >/dev/null 2>&1; sleep 2; ts "HEAP ${line#\#heap } $(jcmd $pid GC.heap_info 2>/dev/null | grep -oE 'used [0-9]+[KMG]' | head -1) $(grep -c . $2 >/dev/null; echo)"; };;
       ""|"#"*) ;;
       *) case "$line" in locate*|*"run locate"*|fill*|"execute "*fill*) before=$(( $(wc -l < $2) + 1 ));; esac
-         echo "$line" >&3; sleep 0.06;;
+         echo "$line" >&3; sleep 0.05;;
     esac
   done < "$1"
 }
@@ -176,8 +176,8 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   cp -r crash-reports $out/crash-reports-$name 2>/dev/null
   python3 $P/tools/nbt.py world/level.dat > $out/level-$name.txt 2>&1
   # the saved world itself: where the blocks are that the terrain section marked, the structures in the sea basins (tools/scan.py)
-  if [ "$name" = vanilla ] && [ -f $P/tools/scan.py ]; then
-    ts "$name: scan of the saved world"; timeout 1500 python3 -u $P/tools/scan.py world $root > $out/scan-$name.txt 2>&1 || echo "FAIL scan: scan.py did not finish ($?)" >> $out/scan-$name.txt
+  if [ "$(cat $W/gen/scan-phase.txt 2>/dev/null)" = "$name" ] && [ -f $P/tools/scan.py ]; then
+    ts "$name: scan of the saved world"; timeout 1500 python3 -u $P/tools/scan.py world $root server.log > $out/scan-$name.txt 2>&1 || echo "FAIL scan: scan.py did not finish ($?)" >> $out/scan-$name.txt
     ts "$name: scan done, $(wc -l < $out/scan-$name.txt) lines"
   fi
   du -sh world > $out/world-size-$name.txt 2>&1; find world -maxdepth 3 | head -80 >> $out/world-size-$name.txt
@@ -222,6 +222,7 @@ perf_phase() { # $1 = name, rest = how the pack is built: "@<commit>" (the gener
   cp server.log $out/server-$name.log
 }
 has vanilla && simple_phase vanilla 1
+has terrain && simple_phase terrain 1   # the terrain section in a job of its own (gen.py leaves it out of the vanilla commands then)
 has baseline && simple_phase baseline 0
 if has bisect; then for f in $W/gen/commands-bisect-*.txt; do n=$(basename $f .txt); simple_phase ${n#commands-} 1; done; fi
 has netherbase && simple_phase nether-base 0

@@ -440,6 +440,10 @@ def terrain_probes():
             box(c, f'sea-under-{k}', x - R - 24, i['y_bottom'] - 220, z - R - 24, x + R + 24, w - d - 15, z + R + 24, ['minecraft:water'], '(under the sea floor and under the island: none)')
             for n, (sx, sz) in enumerate(((1, 1), (1, -1), (-1, 1), (-1, -1))):
                 x0, x1 = sorted((x + sx * q, x + sx * (R + 24))); z0, z1 = sorted((z + sz * q, z + sz * (R + 24)))
+                # (not a corner another island reaches into at these heights: K7's sea lies in a corner of K1's square)
+                near = [j['id'] for j in L['islands'] if j is not i and j['y_bottom'] - 12 <= w + 2 and j['y_top'] + 60 >= w - d - 14
+                        and math.hypot(max(x0 - j['x'], 0, j['x'] - x1), max(z0 - j['z'], 0, j['z'] - z1)) <= j['radius'] + 12]
+                if near: c += [f'say SEACORNER {k} {n} skipped: {" ".join(near)} reaches into it']; continue
                 box(c, f'sea-outside-{k}', x0, w - d - 14, z0, x1, w + 2, z1, ['minecraft:water'], f'(outside the rim, corner {n}: none)')
             box(c, f'sea-over-middle-{k}', x - R // 3, w + 1, z - R // 3, x + R // 3, w + 40, z + R // 3, ['minecraft:water'], '(above the water level over the middle of the sea: none)')
             if k in SEA_SAMPLE:
@@ -499,8 +503,13 @@ def write(name, lines):
 
 # vanilla = Fabric API + The Isles only; baseline = the same server without The Isles (vanilla generator), timing only
 QUICK_SAMPLE = ['S1', 'K1', 'I1', 'e1', 'M4', 'Pt3', 'C1']
+# (the terrain section: in the vanilla commands, or - with the phase "terrain" in packtest/phases - a server of its own, in its own job)
+SPLIT = 'terrain' in open(ROOT + '/packtest/phases').read().split() if os.path.exists(ROOT + '/packtest/phases') else False
+TERRAIN = terrain_probes() if on('terrain') else []
+if SPLIT: write('terrain', HEAD + TERRAIN)
+open(OUT + '/scan-phase.txt', 'w').write('terrain' if SPLIT else 'vanilla')     # (whose saved world packtest/tools/scan.py reads)
 write('vanilla', HEAD + (island_probes() if on('islands') else island_probes(QUICK_SAMPLE) if on('islands-few') else [])
-      + (terrain_probes() if on('terrain') else [])    # (its scans replace what they count: on islands and in places the later sections do not look at)
+      + ([] if SPLIT else TERRAIN)    # (its scans replace what they count: on islands and in places the later sections do not look at)
       + (biome_scans() if on('biomes') else [])      # (they replace the blocks they count, on islands nothing else looks at)
       + (void_probes() if on('void') else []) + (limits() if on('limits') else [])
       + (structures() if on('structures') else [])
@@ -713,9 +722,9 @@ if on('terrainviews'):
     for k in [i['id'] for i in L['islands'] if i['biome'] in _bt.SNOW_CAPS][:1]:
         i = I[k]
         S += [f'cmd say VIEW terrain snow cap {k} {i["biome"]}', f'cmd tp packtest {i["x"]} {i["y_top"] + 40} {i["z"] + i["radius"] + 30} 180 15', 'sleep 40', 'shot']
-    for g in GEYSERS[:1] + [g for g in GEYSERS if g['island'] in ('L1', 'C1', 'e1', 'm1', 'P1', 'J1')]:
+    for g in GEYSERS[:1] + [g for g in GEYSERS if g['island'] in ('L1', 'C1', 'P1', 'm1')]:
         gx, gy, gz = (g['ground'][a] for a in 'xyz')
-        S += [f'cmd say VIEW terrain geyser {g["island"]} {g["size"]}', f'cmd tp packtest {gx} {gy + 11} {gz + 17} 180 30', 'sleep 30', 'shot', 'sleep 20', 'shot']
+        S += [f'cmd say VIEW terrain geyser {g["island"]} {g["size"]}', f'cmd tp packtest {gx} {gy + 11} {gz + 17} 180 30', 'sleep 25', 'shot', 'sleep 10', 'shot']
     p = POCKETS[0]['chamber'] if POCKETS else None
     if p: S += ['cmd say VIEW terrain sulfur caves under the geyser of S1 (night vision)', 'cmd effect give packtest minecraft:night_vision infinite 0 true',
                 f'cmd tp packtest {p["x"]} {p["y"]} {p["z"]} 0 10', 'sleep 20', 'shot', f'cmd tp packtest {p["x"]} {p["y"] + 2} {p["z"]} 120 -10', 'sleep 5', 'shot', 'cmd effect clear packtest']

@@ -208,8 +208,9 @@ def terrain_report(name, log, scans):
         print(f'\n-- sea basins: {len(seas)} scanned; water under the floor / outside the rim (four corners) / over the middle above the level, the block at the level')
         for b in seas: print(f'   {b:<5}{under[b]:>6}{outside[b]:>6}{over[b]:>6}  {tops.get(b, "NOTHING at the water level")}')
         print(f'   total under {sum(under.values())}, outside {sum(outside.values())}, over the middle {sum(over.values())}; basins with water (or ice) at the level in the middle: {len(tops)} of {len(seas)}')
+        scanned = any('with marked water' in l for l in lines(f'scan-{name}.txt'))     # (tools/scan.py says where they are and fails what no structure explains)
         for b in seas:
-            if under[b] or outside[b]: fails.append(f'{name}: sea basin {b}: {under[b]} blocks of water under its floor, {outside[b]} outside its rim')
+            if (under[b] or outside[b]) and not scanned: fails.append(f'{name}: sea basin {b}: {under[b]} blocks of water under its floor, {outside[b]} outside its rim')
             if b not in tops: fails.append(f'{name}: sea basin {b}: no water at its level in the middle')
     for l in lines(f'scan-{name}.txt'):
         print('  scan:', l)
@@ -344,7 +345,7 @@ def server_report(name, isles=True):
 for l in lines('run.txt'):
     if l.startswith('[') and ' poll ok ' not in l: print(l)
 for l in lines('build.txt'): print('build:', l)
-server_report('vanilla'); server_report('baseline', False)
+server_report('vanilla'); server_report('terrain'); server_report('baseline', False)
 for n in range(20): server_report(f'bisect-{n}')
 server_report('pack')
 if os.path.exists(f'{D}/server2-pack.log'): os.replace(f'{D}/server2-pack.log', f'{D}/server-pack-restart.log')
