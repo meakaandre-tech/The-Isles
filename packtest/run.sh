@@ -175,6 +175,11 @@ simple_phase() { # $1 = name, $2 = with The Isles (1/0): Fabric API only
   cp server.log $out/server-$name.log
   cp -r crash-reports $out/crash-reports-$name 2>/dev/null
   python3 $P/tools/nbt.py world/level.dat > $out/level-$name.txt 2>&1
+  # the saved world itself: where the blocks are that the terrain section marked, the structures in the sea basins (tools/scan.py)
+  if [ "$name" = vanilla ] && [ -f $P/tools/scan.py ]; then
+    ts "$name: scan of the saved world"; timeout 1500 python3 $P/tools/scan.py world $root > $out/scan-$name.txt 2>&1 || echo "FAIL scan: scan.py did not finish ($?)" >> $out/scan-$name.txt
+    ts "$name: scan done, $(wc -l < $out/scan-$name.txt) lines"
+  fi
   du -sh world > $out/world-size-$name.txt 2>&1; find world -maxdepth 3 | head -80 >> $out/world-size-$name.txt
   ts "$name: stopped"
 }

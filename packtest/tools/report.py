@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Turns the logs of a pack test into a report: report.py <dir with the logs>  (also writes <dir>/verdict.txt)"""
-import json, math, os, re, sys
+import collections, json, math, os, re, sys
 D = sys.argv[1]
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 L = json.load(open(ROOT + '/layout/islands.json'))
@@ -152,6 +152,69 @@ def cave_report(log):
     for (kind, tag, where), v in bio.items():
         print(f'   biomes {tag:<12} ' + ' | '.join(v))
 
+def terrain_report(name, log, scans):
+    """geysers (exact blocks of layout/geysers.json), the springs in freezing biomes, water under and outside the sea basins"""
+    ls = [msg(l)[1] for l in lines(log)]
+    gfile = ROOT + '/layout/geysers.json'
+    vents = [l.split() for l in ls if l.startswith('VENT gen ')]
+    if vents and os.path.exists(gfile):
+        G = json.load(open(gfile))['geysers']
+        seen = {}
+        for v in vents: seen.setdefault((v[2], int(v[3]), int(v[4]), int(v[5])), set()).add(v[6])
+        ground = collections.Counter(l.split()[1] for l in ls if l.startswith('GROUND ') and l.split()[2] == 'ok' and l.split()[5] == '+0')
+        low = collections.Counter(l.split()[1] for l in ls if l.startswith('GROUND ') and l.split()[2] == 'low')
+        exact = wrong = 0; states = collections.Counter(); sizes = collections.Counter(g['size'] for g in G)
+        print(f'\n-- geysers: {len(G)} in layout/geysers.json ({", ".join(f"{n} {k}" for k, n in sizes.items())}); the potent sulfur block at the listed block, magma under it, water over it')
+        probed = {v[2] for v in vents}
+        for g in G:
+            k = g['island']
+            if k not in probed: continue
+            for x, y, z in g['vents']:
+                got = seen.get((k, x, y, z), set()); st = sorted(s_[6:] for s_ in got if s_.startswith('state-'))
+                ok = {'potent', 'magma', 'water'} <= got and 'state-dry' not in got
+                exact += ok; wrong += not ok; states[st[0] if st else 'none'] += 1
+                if not ok:
+                    print(f'   {k} {g["size"]} {g["template"]} {g["rotation"]} vent {x} {y} {z}: {" ".join(sorted(got)) or "nothing there"}')
+                    fails.append(f'{name}: geyser {k}: the vent at {x} {y} {z} is not potent sulfur over magma under water, or is dry ({" ".join(sorted(got)) or "nothing there"})')
+            if ground[k] < 3: notes.append(f'{name}: geyser {k}: the ground 11 blocks from the spring is at the listed height on {ground[k]} of 4 sides ({low[k]} lower)')
+        print(f'   vents exactly as listed: {exact} of {exact + wrong} ({len(probed)} geysers); states right after generation: {dict(states)}; '
+              f'ground at the listed height 11 blocks out on 4 / 3 / fewer sides: {sum(1 for k in probed if ground[k] == 4)} / {sum(1 for k in probed if ground[k] == 3)} / {sum(1 for k in probed if ground[k] < 3)} geysers')
+        for g in G:
+            n = scans.get(f'geyser-{g["island"]} minecraft:potent_sulfur')
+            n = filled(n) if n is not None else None
+            if n is not None and n != len(g['vents']): fails.append(f'{name}: geyser {g["island"]}: {n} potent sulfur blocks in the spring, {len(g["vents"])} listed')
+    cold = [l.split() for l in ls if l.startswith('COLD ')]
+    if cold:
+        print('\n-- geysers in freezing biomes (state of the vent, the block on top of its water, the light over it)')
+        by = collections.defaultdict(lambda: collections.defaultdict(list))
+        for c in cold:
+            if c[1] in ('generated', 'iced', 'thawed', 'later', 'control'): by[c[2]][c[1]].append(c[3])
+        times = {m.group(1): m.group(2) for l in lines('run.txt') for m in [re.search(r'TIME THAW-(\S+) ([\d.]+) s', l)] if m}
+        erupt = {m.group(1): m.group(2) for l in lines('run.txt') for m in [re.search(r'TIME ERUPTION-(\S+) ([\d.]+) s', l)] if m}
+        for k, d in by.items():
+            thawed = any(l == f'THAWED {k}' for l in ls); erupted = any(l == f'ERUPTING {k}' for l in ls)
+            print(f'   {k}: generated {" ".join(d["generated"])} | ice put on the vent: {" ".join(d["iced"])} | melted {"after " + times.get(k, "?") + " s" if thawed else "NOT within 900 s"}: {" ".join(d["thawed"])}'
+                  f' | after 80,000 ticks of frost: {" ".join(d["later"])}, control pool {" ".join(d["control"]) or "?"} | eruption {"after " + erupt.get(k, "?") + " s" if erupted else "NOT seen"}')
+            if 'state-dry' in d['generated'] or 'top-ice' in d['generated']: fails.append(f'{name}: cold geyser {k} is frozen or dry at generation ({" ".join(d["generated"])})')
+            if not thawed: fails.append(f'{name}: cold geyser {k}: ice on the vent did not melt within 900 s')
+            if 'state-dry' in d['later'] or 'top-ice' in d['later']: fails.append(f'{name}: cold geyser {k} froze over again ({" ".join(d["later"])})')
+            if 'frozen' not in d['control']: notes.append(f'{name}: cold geyser {k}: the control pool did not freeze ({" ".join(d["control"])}): the frost test says nothing')
+            if not erupted: fails.append(f'{name}: cold geyser {k}: no eruption within 600 s')
+    seas = sorted({k.split()[0][10:] for k in scans if k.startswith('sea-under-')})
+    if seas:
+        tot = lambda pre: {b: sum(filled(v) or 0 for k, v in scans.items() if k.rstrip("'").split()[0] == pre + b) for b in seas}
+        under, outside, over = tot('sea-under-'), tot('sea-outside-'), tot('sea-over-middle-')
+        tops = {l.split()[1]: l.split()[2] for l in ls if l.startswith('SEATOP ')}
+        print(f'\n-- sea basins: {len(seas)} scanned; water under the floor / outside the rim (four corners) / over the middle above the level, the block at the level')
+        for b in seas: print(f'   {b:<5}{under[b]:>6}{outside[b]:>6}{over[b]:>6}  {tops.get(b, "NOTHING at the water level")}')
+        print(f'   total under {sum(under.values())}, outside {sum(outside.values())}, over the middle {sum(over.values())}; basins with water (or ice) at the level in the middle: {len(tops)} of {len(seas)}')
+        for b in seas:
+            if under[b] or outside[b]: fails.append(f'{name}: sea basin {b}: {under[b]} blocks of water under its floor, {outside[b]} outside its rim')
+            if b not in tops: fails.append(f'{name}: sea basin {b}: no water at its level in the middle')
+    for l in lines(f'scan-{name}.txt'):
+        print('  scan:', l)
+        if l.startswith('FAIL '): fails.append(f'{name}: {l[5:]}')
+
 def phase_times():
     """run.txt -> {phase: [(label, value)]} for the TIME and HEAP lines"""
     res, cur = {}, None
@@ -259,6 +322,7 @@ def server_report(name, isles=True):
             print('      none of: ' + ' '.join(b.split(':')[-1] for b, n in d.items() if n == 0))
             if any(n is None for n in d.values()): print('      no answer: ' + ' '.join(b for b, n in d.items() if n is None))
     structure_table(name, log, probes, scans)
+    terrain_report(name, log, scans)
     cave_report(log)
     for start in ('BODY', 'MID', 'COUNT', 'LOCATE', 'DIMCOUNT', 'OIL', 'CHECK', 'WORLDSPAWN', 'VIEW'):
         d = parse_tagged(log, start)
