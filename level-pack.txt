@@ -1,0 +1,29 @@
+Data:
+  difficulty_settings:
+    hardcore: 0
+    locked: 0
+    difficulty: normal
+  allowCommands: 0
+  WasModded: 1
+  spawn:
+    pos: [0, 57, 0]
+    pitch: 0.0
+    yaw: 0.0
+    dimension: minecraft:overworld
+  LastPlayed: 1791291846581
+  initialized: 1
+  version: 19133
+  ServerBrands: ['fabric']
+  GameType: 1
+  DataPacks:
+    Enabled: ['vanilla', 'cgs', 'create', 'create_hypertube', 'createdieselgenerators', 'fabric-convention-tags-v2', 'farmersdelight', 'ntgl', 'respawninganimals', 'terrain_slabs', 'the_sift', 'untitledduckmod', 'create:dynamic_data', 'file/packtest-probes', 'file/the-isles-mods.zip', 'file/the-isles.zip']
+    Disabled: ['minecart_improvements', 'redstone_experiments', 'trade_rebalance']
+  DataVersion: 5023
+  LevelName: world
+  Time: 81733
+  version_history: [5023]
+  Version:
+    Id: 5023
+    Name: 26.3
+    Series: main
+    Snapshot: 0

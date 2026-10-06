@@ -1,0 +1,29 @@
+Data:
+  difficulty_settings:
+    difficulty: normal
+    hardcore: 0
+    locked: 0
+  Time: 26185
+  version_history: [5023]
+  GameType: 1
+  ServerBrands: ['fabric']
+  version: 19133
+  LastPlayed: 1791289195747
+  spawn:
+    pos: [0, 57, 0]
+    pitch: 0.0
+    dimension: minecraft:overworld
+    yaw: 0.0
+  Version:
+    Snapshot: 0
+    Series: main
+    Id: 5023
+    Name: 26.3
+  LevelName: world
+  initialized: 1
+  WasModded: 1
+  DataVersion: 5023
+  allowCommands: 0
+  DataPacks:
+    Enabled: ['vanilla', 'fabric-convention-tags-v2', 'file/packtest-probes', 'file/the-isles.zip']
+    Disabled: ['minecart_improvements', 'redstone_experiments', 'trade_rebalance']

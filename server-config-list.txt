@@ -1,0 +1,18 @@
+total 76
+drwxr-xr-x  3 runner runner  4096 Oct  6 12:00 .
+drwxr-xr-x 11 runner runner  4096 Oct  6 13:03 ..
+-rw-r--r--  1 runner runner 11454 Oct  6 13:03 c2me.toml
+drwxr-xr-x  2 runner runner  4096 Oct  6 12:00 create
+-rw-r--r--  1 runner runner   365 Oct  6 13:03 create_hypertube-server.json
+-rw-r--r--  1 runner runner   615 Oct  6 13:03 createdieselgenerators-common.json
+-rw-r--r--  1 runner runner  2074 Oct  6 13:03 createdieselgenerators-server.json
+-rw-r--r--  1 runner runner  1248 Oct  6 13:03 farmersdelight-common.json
+-rw-r--r--  1 runner runner   803 Oct  6 13:03 ferritecore.mixin.properties
+-rw-r--r--  1 runner runner   517 Oct  6 13:03 forgeconfigapiport.toml
+-rw-r--r--  1 runner runner   267 Oct  6 12:00 lithium.properties
+-rw-r--r--  1 runner runner  1426 Oct  6 13:03 ntgl-common.json
+-rw-r--r--  1 runner runner   340 Oct  6 13:03 ntgl-server.json
+-rw-r--r--  1 runner runner  1861 Oct  6 12:00 respawninganimals-common.toml
+-rw-r--r--  1 runner runner    92 Oct  6 12:00 smooth_steps.json
+-rw-r--r--  1 runner runner   150 Oct  6 12:00 terrain_slabs.json
+-rw-r--r--  1 runner runner   575 Oct  6 13:03 untitledduckmod.json
